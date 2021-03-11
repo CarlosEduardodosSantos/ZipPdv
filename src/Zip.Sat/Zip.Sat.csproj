@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B5E04F1-8557-4C1E-89AF-BC7D35D43266}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zip.Sat</RootNamespace>
+    <AssemblyName>Zip.Sat</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="MobileAppServerClient, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\alexa\Desktop\MobileAppServerClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing">
+      <HintPath>..\Packages\zxing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bases\Enuns.cs" />
+    <Compile Include="FrmCancelaSat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCancelaSat.Designer.cs">
+      <DependentUpon>FrmCancelaSat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSolicitaSatConcentrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSolicitaSatConcentrador.Designer.cs">
+      <DependentUpon>FrmSolicitaSatConcentrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSolicitaSat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSolicitaSat.Designer.cs">
+      <DependentUpon>FrmSolicitaSat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FuncoesSat.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Libraries\Model\ClienteSatModel.cs" />
+    <Compile Include="Libraries\Model\ProdutoSatModel.cs" />
+    <Compile Include="Libraries\Model\ProdutoTributacaoSatModel.cs" />
+    <Compile Include="Libraries\Model\RetornoSatModel.cs" />
+    <Compile Include="Libraries\Model\VendaSatModel.cs" />
+    <Compile Include="Libraries\Model\VendaFinalizadoraSatModel.cs" />
+    <Compile Include="Libraries\Model\VendaItemSatModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SAT\Interface\ISat.cs" />
+    <Compile Include="SAT\Modelo\Bematech.cs" />
+    <Compile Include="SAT\Modelo\Dimep.cs" />
+    <Compile Include="SAT\Modelo\Elgin.cs" />
+    <Compile Include="SAT\Modelo\Emulador.cs" />
+    <Compile Include="SAT\Modelo\Gertec.cs" />
+    <Compile Include="SAT\Modelo\Kryptus.cs" />
+    <Compile Include="SAT\Modelo\Nitere.cs" />
+    <Compile Include="SAT\Modelo\Sweda.cs" />
+    <Compile Include="SAT\Modelo\Tanca.cs" />
+    <Compile Include="SAT\Modelo\Urano.cs" />
+    <Compile Include="SAT\SatFactory.cs" />
+    <Compile Include="SAT\SatGerencial.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Libraries\Bll\" />
+    <Folder Include="Libraries\Dal\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eticket.Application\Eticket.Application.csproj">
+      <Project>{61392fb6-988c-4e20-937a-6eb52bbd5138}</Project>
+      <Name>Eticket.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zip.Utils\Zip.Utils.csproj">
+      <Project>{66d673b1-6415-4c3e-a5be-f5386886120d}</Project>
+      <Name>Zip.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmCancelaSat.resx">
+      <DependentUpon>FrmCancelaSat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSolicitaSatConcentrador.resx">
+      <DependentUpon>FrmSolicitaSatConcentrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSolicitaSat.resx">
+      <DependentUpon>FrmSolicitaSat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\_sat.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_black_32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

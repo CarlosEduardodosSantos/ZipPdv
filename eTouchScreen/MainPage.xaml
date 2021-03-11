@@ -1,0 +1,33 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" xmlns:System_Windows_Controls_Primitives="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls" x:Class="eTouchScreen.MainPage"
+    d:DesignHeight="680" d:DesignWidth="1024" mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Background="White" Height="659" Width="1022">
+        <sdk:TabControl Height="278" HorizontalAlignment="Left" Margin="10,268,0,0" x:Name="tabControl1" VerticalAlignment="Top" Width="998">
+            <sdk:TabItem Header="Cabecalho" x:Name="tabItem1">
+                <Grid>
+                    <Button Content="Button" Height="31" HorizontalAlignment="Left" Margin="849,204,0,0" x:Name="button1" VerticalAlignment="Top" Width="75" FontStyle="Italic" Click="button1_Click" />
+                </Grid>
+            </sdk:TabItem>
+            <sdk:TabItem Header="Produtos/Serviços" />
+            <sdk:TabItem Header="Outros" Background="#FF134570" RenderTransformOrigin="0.5,0.5" BorderBrush="#FF556F89" BorderThickness="2" >
+            	<sdk:TabItem.RenderTransform>
+            		<CompositeTransform Rotation="-0.699"/>
+            	</sdk:TabItem.RenderTransform>
+            	<System_Windows_Controls_Primitives:TabPanel RenderTransformOrigin="0.5,0.5">
+            		<System_Windows_Controls_Primitives:TabPanel.RenderTransform>
+            			<CompositeTransform TranslateX="5" TranslateY="2"/>
+            		</System_Windows_Controls_Primitives:TabPanel.RenderTransform>
+            	</System_Windows_Controls_Primitives:TabPanel>
+            </sdk:TabItem>
+        </sdk:TabControl>
+        <Border BorderBrush="Silver" BorderThickness="1" Height="250" Margin="16,12,20,0" Name="border1" VerticalAlignment="Top">
+            <sdk:DataGrid AutoGenerateColumns="False" HeadersVisibility="Column" Height="250" Name="dataGrid1" Width="998">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Header="Codigo" IsReadOnly="True" Width="Auto" />
+                    <sdk:DataGridTextColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Header="Nome" IsReadOnly="True" Width="280" />
+                    <sdk:DataGridTextColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Header="Endereço" IsReadOnly="True" Width="280" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

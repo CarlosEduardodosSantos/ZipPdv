@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ControllerMapping class="Zip.Sat.Service.Controllers.NotaFiscalController">
+  <RequestMapping value="ConsultaNF"/>
+  <RequestMapping value="EmiteNF">
+    <RequestParameter alias="parametros" entity="Eticket.Application.ViewModels.ModelParametrosServiceViewModel" />
+  </RequestMapping>
+  <RequestMapping value="CancelarSat">
+    <RequestParameter alias="parametros" entity="Sustem.String" />
+  </RequestMapping>
+</ControllerMapping>

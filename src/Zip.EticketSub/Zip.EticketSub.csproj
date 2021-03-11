@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3ECEC0AA-A1EC-463D-9FF4-72E6F3DCE145}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Zip.EticketSub</RootNamespace>
+    <AssemblyName>Zip.EticketSub</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net45\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="MobileAppServerClient, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\alexa\Desktop\MobileAppServerClient.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=4.7.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.4.7.1\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppSetting.cs" />
+    <Compile Include="FormConfiguracao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfiguracao.Designer.cs">
+      <DependentUpon>FormConfiguracao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEnviaSat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEnviaSat.Designer.cs">
+      <DependentUpon>FormEnviaSat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCpfCupom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCpfCupom.Designer.cs">
+      <DependentUpon>FrmCpfCupom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetValueApp.cs" />
+    <Compile Include="Model\CaixaRepository.cs" />
+    <Compile Include="Model\Pedido.cs" />
+    <Compile Include="Model\Produto.cs" />
+    <Compile Include="Model\SatStatus.cs" />
+    <Compile Include="Model\StatusChk.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\PedidoRepository.cs" />
+    <Compile Include="Repository\ProdutoRepository.cs" />
+    <Compile Include="UControlVenda.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UControlVenda.Designer.cs">
+      <DependentUpon>UControlVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerificaArquivo.cs" />
+    <Compile Include="Web References\br.com.ddns.validacaosolucoesvip\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wizard\FormBase.Designer.cs">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\frm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wizard\frm1.designer.cs">
+      <DependentUpon>frm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\frm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wizard\frm2.designer.cs">
+      <DependentUpon>frm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\frm3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wizard\frm3.designer.cs">
+      <DependentUpon>frm3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\frmParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wizard\frmParent.designer.cs">
+      <DependentUpon>frmParent.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormConfiguracao.resx">
+      <DependentUpon>FormConfiguracao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEnviaSat.resx">
+      <DependentUpon>FormEnviaSat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCpfCupom.resx">
+      <DependentUpon>FrmCpfCupom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UControlVenda.resx">
+      <DependentUpon>UControlVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\frm1.resx">
+      <DependentUpon>frm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\frm2.resx">
+      <DependentUpon>frm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\frm3.resx">
+      <DependentUpon>frm3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\frmParent.resx">
+      <DependentUpon>frmParent.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Web References\br.com.ddns.validacaosolucoesvip\CHK.wsdl" />
+    <None Include="Web References\br.com.ddns.validacaosolucoesvip\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eticket.Application\Eticket.Application.csproj">
+      <Project>{61392fb6-988c-4e20-937a-6eb52bbd5138}</Project>
+      <Name>Eticket.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eticket.Infra.CrossCutting.IoC\Eticket.Infra.CrossCutting.IoC.csproj">
+      <Project>{32dfa282-26f9-441b-913d-43e88e00b025}</Project>
+      <Name>Eticket.Infra.CrossCutting.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zip.Sat\Zip.Sat.csproj">
+      <Project>{1b5e04f1-8557-4c1e-89af-bc7d35d43266}</Project>
+      <Name>Zip.Sat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zip.Utils\Zip.Utils.csproj">
+      <Project>{66d673b1-6415-4c3e-a5be-f5386886120d}</Project>
+      <Name>Zip.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://validacaosolucoesvip.ddns.com.br:8090/chk/CHK.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.com.ddns.validacaosolucoesvip\</RelPath>
+      <UpdateFromURL>http://validacaosolucoesvip.ddns.com.br:8090/chk/CHK.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Zip_EticketSub_br_com_ddns_validacaosolucoesvip_CHK</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\br.com.ddns.validacaosolucoesvip\CHK.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_zip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\z_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <None Include="Resources\map_32.png" />
+    <None Include="Resources\Find Search.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

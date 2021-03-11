@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="377e79c366f14f958077c6c20736e3ff" Name="Diagram1" >
+        <EntityTypeShape EntityType="eFast.VendaItens" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="eFast.Venda" Width="1.5" PointX="3.25" PointY="1.375" />
+        <AssociationConnector Association="eFast.VendaVendaItens" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Auditoria" EntityType="Model.Store.Auditoria" store:Type="Tables" store:Schema="dbo" store:Name="Auditoria" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+            <DefiningQuery>SELECT 
+      [Auditoria].[nro] AS [nro], 
+      [Auditoria].[data] AS [data], 
+      [Auditoria].[hora] AS [hora], 
+      [Auditoria].[loja] AS [loja], 
+      [Auditoria].[usuario] AS [usuario], 
+      [Auditoria].[ocorrencia] AS [ocorrencia], 
+      [Auditoria].[cliente] AS [cliente], 
+      [Auditoria].[valor] AS [valor], 
+      [Auditoria].[maquina] AS [maquina], 
+      [Auditoria].[Venda] AS [Venda], 
+      [Auditoria].[motivo] AS [motivo], 
+      [Auditoria].[NROCX] AS [NROCX]
+      FROM [dbo].[Auditoria] AS [Auditoria]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CadGarcom" EntityType="Model.Store.CadGarcom" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CadMesas" EntityType="Model.Store.CadMesas" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Complemento" EntityType="Model.Store.Complemento" store:Type="Tables" store:Schema="dbo" store:Name="Complemento" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+            <DefiningQuery>SELECT 
+      [Complemento].[inc_compto] AS [inc_compto], 
+      [Complemento].[des_] AS [des_], 
+      [Complemento].[valor] AS [valor], 
+      [Complemento].[GRUPO_PROD] AS [GRUPO_PROD], 
+      [Complemento].[PdvGrupo] AS [PdvGrupo], 
+      [Complemento].[PRODCOD] AS [PRODCOD], 
+      [Complemento].[QTDEBAIXA] AS [QTDEBAIXA]
+      FROM [dbo].[Complemento] AS [Complemento]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GRUPO" EntityType="Model.Store.GRUPO" store:Type="Tables" store:Schema="dbo" store:Name="GRUPO" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+            <DefiningQuery>SELECT 
+      [GRUPO].[GRUPO] AS [GRUPO], 
+      [GRUPO].[DES_] AS [DES_], 
+      [GRUPO].[LUCRO] AS [LUCRO], 
+      [GRUPO].[COMISSAO] AS [COMISSAO], 
+      [GRUPO].[ETIQ] AS [ETIQ], 
+      [GRUPO].[TXT] AS [TXT], 
+      [GRUPO].[DMAX] AS [DMAX], 
+      [GRUPO].[MARCA] AS [MARCA]
+      FROM [dbo].[GRUPO] AS [GRUPO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MeioMeio" EntityType="Model.Store.MeioMeio" store:Type="Tables" store:Schema="dbo" store:Name="MeioMeio" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+            <DefiningQuery>SELECT 
+      [MeioMeio].[IdMeioMeio] AS [IdMeioMeio], 
+      [MeioMeio].[Descricao] AS [Descricao], 
+      [MeioMeio].[NroOperacao] AS [NroOperacao], 
+      [MeioMeio].[TipoOperacao] AS [TipoOperacao], 
+      [MeioMeio].[IdProduto] AS [IdProduto], 
+      [MeioMeio].[SeqProduto] AS [SeqProduto], 
+      [MeioMeio].[ValorVenda] AS [ValorVenda], 
+      [MeioMeio].[Quantidade] AS [Quantidade], 
+      [MeioMeio].[QtdeImpresso] AS [QtdeImpresso], 
+      [MeioMeio].[DataHora] AS [DataHora]
+      FROM [dbo].[MeioMeio] AS [MeioMeio]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="opMesa1" EntityType="Model.Store.opMesa1" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="opMesa2" EntityType="Model.Store.opMesa2" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PROD" EntityType="Model.Store.PROD" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="VENDA_4" EntityType="Model.Store.VENDA_4" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <AssociationSet Name="FK__opMesa1__IdGarco__6676DAAC" Association="Model.Store.FK__opMesa1__IdGarco__6676DAAC">
+            <End Role="CadGarcom" EntitySet="CadGarcom" />
+            <End Role="opMesa1" EntitySet="opMesa1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__opMesa1__IdMesa__6582B673" Association="Model.Store.FK__opMesa1__IdMesa__6582B673">
+            <End Role="CadMesas" EntitySet="CadMesas" />
+            <End Role="opMesa1" EntitySet="opMesa1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__opMesa2__IdopMes__648E923A" Association="Model.Store.FK__opMesa2__IdopMes__648E923A">
+            <End Role="opMesa1" EntitySet="opMesa1" />
+            <End Role="opMesa2" EntitySet="opMesa2" />
+          </AssociationSet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Sampa.dbo.Auditoria' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Auditoria">
+          <Key>
+            <PropertyRef Name="nro" />
+          </Key>
+          <Property Name="nro" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="data" Type="datetime" />
+          <Property Name="hora" Type="datetime" />
+          <Property Name="loja" Type="int" />
+          <Property Name="usuario" Type="int" />
+          <Property Name="ocorrencia" Type="varchar" MaxLength="500" />
+          <Property Name="cliente" Type="int" />
+          <Property Name="valor" Type="money" />
+          <Property Name="maquina" Type="int" />
+          <Property Name="Venda" Type="int" />
+          <Property Name="motivo" Type="varchar" MaxLength="100" />
+          <Property Name="NROCX" Type="int" />
+        </EntityType>
+        <EntityType Name="CadGarcom">
+          <Key>
+            <PropertyRef Name="IdGarcom" />
+          </Key>
+          <Property Name="IdGarcom" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" MaxLength="50" />
+          <Property Name="IsPadrao" Type="bit" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+          <Property Name="Senha" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="CadMesas">
+          <Key>
+            <PropertyRef Name="IdMesa" />
+          </Key>
+          <Property Name="IdMesa" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" MaxLength="20" />
+          <Property Name="IdPraca" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Sampa.dbo.Complemento' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Complemento">
+          <Key>
+            <PropertyRef Name="inc_compto" />
+          </Key>
+          <Property Name="inc_compto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="des_" Type="varchar" MaxLength="70" />
+          <Property Name="valor" Type="money" />
+          <Property Name="GRUPO_PROD" Type="int" />
+          <Property Name="PdvGrupo" Type="int" />
+          <Property Name="PRODCOD" Type="int" />
+          <Property Name="QTDEBAIXA" Type="decimal" Precision="14" Scale="3" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Sampa.dbo.GRUPO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="GRUPO">
+          <Key>
+            <PropertyRef Name="GRUPO" />
+          </Key>
+          <Property Name="GRUPO" Type="int" Nullable="false" />
+          <Property Name="DES_" Type="varchar" MaxLength="20" />
+          <Property Name="LUCRO" Type="float" />
+          <Property Name="COMISSAO" Type="float" />
+          <Property Name="ETIQ" Type="varchar" MaxLength="1" />
+          <Property Name="TXT" Type="varchar" MaxLength="1" />
+          <Property Name="DMAX" Type="float" />
+          <Property Name="MARCA" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Sampa.dbo.MeioMeio' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="MeioMeio">
+          <Key>
+            <PropertyRef Name="IdMeioMeio" />
+            <PropertyRef Name="Quantidade" />
+          </Key>
+          <Property Name="IdMeioMeio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" MaxLength="100" />
+          <Property Name="NroOperacao" Type="int" />
+          <Property Name="TipoOperacao" Type="char" MaxLength="1" />
+          <Property Name="IdProduto" Type="int" />
+          <Property Name="SeqProduto" Type="int" />
+          <Property Name="ValorVenda" Type="decimal" Scale="2" />
+          <Property Name="Quantidade" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="QtdeImpresso" Type="varchar" MaxLength="20" />
+          <Property Name="DataHora" Type="datetime" />
+        </EntityType>
+        <EntityType Name="opMesa1">
+          <Key>
+            <PropertyRef Name="IdopMesa1" />
+          </Key>
+          <Property Name="IdopMesa1" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdGarcom" Type="int" />
+          <Property Name="IdMesa" Type="int" />
+          <Property Name="dthrInicial" Type="datetime" />
+          <Property Name="dthrFinal" Type="datetime" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+          <Property Name="QtdePessoas" Type="smallint" />
+          <Property Name="DINHEIRO" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="CHEQUE" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="CARTAO_DEBITO" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="CARTAO_CREDITO" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TICKET" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TROCO" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="MesaTransf" Type="int" />
+        </EntityType>
+        <EntityType Name="opMesa2">
+          <Key>
+            <PropertyRef Name="idOpMesa2" />
+          </Key>
+          <Property Name="idOpMesa2" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdopMesa1" Type="int" />
+          <Property Name="CodProduto" Type="int" />
+          <Property Name="Qtde" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Valor" Type="decimal" Precision="14" Scale="2" />
+          <Property Name="DesProduto" Type="varchar" MaxLength="254" />
+          <Property Name="Meio1" Type="int" />
+          <Property Name="Meio2" Type="int" />
+          <Property Name="vlunit" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="cod_garcom" Type="int" />
+          <Property Name="SABOR" Type="int" />
+          <Property Name="SEQLANC" Type="int" />
+          <Property Name="IDPROMOCAO" Type="int" />
+          <Property Name="DATAHORA" Type="datetime" />
+          <Property Name="TRANS_MESA" Type="int" />
+          <Property Name="GPI_IMPRIMIR" Type="bit" />
+          <Property Name="PROD_OBS" Type="varchar" MaxLength="100" />
+          <Property Name="ESTACAO" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="PROD">
+          <Key>
+            <PropertyRef Name="CODIGO" />
+          </Key>
+          <Property Name="CODIGO" Type="int" Nullable="false" />
+          <Property Name="DES_" Type="varchar" MaxLength="40" />
+          <Property Name="GRUPO" Type="varchar" MaxLength="10" />
+          <Property Name="VLCUSTO" Type="float" />
+          <Property Name="VLVENDA" Type="float" />
+          <Property Name="QTDE" Type="float" />
+          <Property Name="QTDE_MIN" Type="float" />
+          <Property Name="TIPO" Type="varchar" MaxLength="20" />
+          <Property Name="CODIGOP" Type="varchar" MaxLength="6" />
+          <Property Name="MULTIPLO" Type="int" />
+          <Property Name="D_ATUAL" Type="datetime" />
+          <Property Name="DEPTO" Type="int" />
+          <Property Name="SECAO" Type="int" />
+          <Property Name="DTULT" Type="datetime" />
+          <Property Name="QTULT" Type="float" />
+          <Property Name="VLVENDA2" Type="float" />
+          <Property Name="UNIDADE" Type="varchar" MaxLength="4" />
+          <Property Name="ICMS" Type="int" />
+          <Property Name="CODBARRA" Type="varchar" MaxLength="13" />
+          <Property Name="QTDE_MAX" Type="float" />
+          <Property Name="VLCOMPRA" Type="float" />
+          <Property Name="DTCAD" Type="datetime" />
+          <Property Name="VLULT" Type="float" />
+          <Property Name="VL_MEDIO" Type="float" />
+          <Property Name="IMAGEM" Type="varchar" MaxLength="255" />
+          <Property Name="FALTA" Type="int" />
+          <Property Name="MES00" Type="datetime" />
+          <Property Name="sel" Type="varchar" MaxLength="1" />
+          <Property Name="QTDE1" Type="float" />
+          <Property Name="QTDE2" Type="float" />
+          <Property Name="QTDE3" Type="float" />
+          <Property Name="QTDE4" Type="float" />
+          <Property Name="QTDE5" Type="float" />
+          <Property Name="Falta1" Type="float" />
+          <Property Name="Falta2" Type="float" />
+          <Property Name="Falta3" Type="float" />
+          <Property Name="Falta4" Type="float" />
+          <Property Name="Falta5" Type="float" />
+          <Property Name="vlvenda_old" Type="float" />
+          <Property Name="vlvenda_alt" Type="datetime" />
+          <Property Name="vlvenda3" Type="float" />
+          <Property Name="qtde6" Type="float" />
+          <Property Name="qtde7" Type="float" />
+          <Property Name="qtde8" Type="float" />
+          <Property Name="qtde9" Type="float" />
+          <Property Name="qtde10" Type="float" />
+          <Property Name="falta6" Type="float" />
+          <Property Name="falta7" Type="float" />
+          <Property Name="falta8" Type="float" />
+          <Property Name="falta9" Type="float" />
+          <Property Name="falta10" Type="float" />
+          <Property Name="Lista" Type="varchar" MaxLength="1" />
+          <Property Name="Psico" Type="varchar" MaxLength="1" />
+          <Property Name="Vlvenda4" Type="float" />
+          <Property Name="vlvenda5" Type="float" />
+          <Property Name="vlvenda6" Type="float" />
+          <Property Name="Continuo" Type="bit" />
+          <Property Name="Duracao" Type="int" />
+          <Property Name="Qtde_Min_1" Type="float" />
+          <Property Name="Qtde_Min_2" Type="float" />
+          <Property Name="Qtde_Min_3" Type="float" />
+          <Property Name="Qtde_Min_4" Type="float" />
+          <Property Name="Qtde_Min_5" Type="float" />
+          <Property Name="Qtde_Min_6" Type="float" />
+          <Property Name="Qtde_Min_7" Type="float" />
+          <Property Name="Qtde_Min_8" Type="float" />
+          <Property Name="Qtde_Min_9" Type="float" />
+          <Property Name="Qtde_Min_10" Type="float" />
+          <Property Name="Qtde_Max_1" Type="float" />
+          <Property Name="Qtde_Max_2" Type="float" />
+          <Property Name="Qtde_Max_3" Type="float" />
+          <Property Name="Qtde_Max_4" Type="float" />
+          <Property Name="Qtde_Max_5" Type="float" />
+          <Property Name="Qtde_Max_6" Type="float" />
+          <Property Name="Qtde_Max_7" Type="float" />
+          <Property Name="Qtde_Max_8" Type="float" />
+          <Property Name="Qtde_Max_9" Type="float" />
+          <Property Name="Qtde_Max_10" Type="float" />
+          <Property Name="Qtde_Div1" Type="float" />
+          <Property Name="Qtde_Div2" Type="float" />
+          <Property Name="Qtde_Div3" Type="float" />
+          <Property Name="Qtde_Div4" Type="float" />
+          <Property Name="Qtde_Div5" Type="float" />
+          <Property Name="Qtde_Div6" Type="float" />
+          <Property Name="Qtde_Div7" Type="float" />
+          <Property Name="Qtde_Div8" Type="float" />
+          <Property Name="Qtde_Div9" Type="float" />
+          <Property Name="Qtde_Div10" Type="float" />
+          <Property Name="Fabricante" Type="int" />
+          <Property Name="Fornec" Type="int" />
+          <Property Name="REGISTRO" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Bonificado" Type="bit" Nullable="false" />
+          <Property Name="ImprimirCozinha" Type="bit" />
+          <Property Name="impmesa1" Type="bit" />
+          <Property Name="impmesa2" Type="bit" />
+          <Property Name="impmesa3" Type="bit" />
+          <Property Name="vlentrega" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="VLMESA" Type="float" />
+          <Property Name="ATIVO" Type="varchar" MaxLength="1" />
+          <Property Name="UsaBalanca" Type="bit" />
+          <Property Name="Ingredientes" Type="ntext" />
+          <Property Name="Modo_Preparo" Type="ntext" />
+          <Property Name="Loja_Cad" Type="int" />
+          <Property Name="Usuario_Cad" Type="int" />
+          <Property Name="iva_st" Type="decimal" Scale="3" />
+          <Property Name="pfinal_consumidor" Type="decimal" Scale="2" />
+          <Property Name="codtipo_mercadoria" Type="int" />
+          <Property Name="Perc_Comissao" Type="decimal" Scale="2" />
+          <Property Name="PrazoValidade" Type="int" />
+          <Property Name="aplica_servico" Type="bit" />
+          <Property Name="MVA_COD" Type="int" Nullable="false" />
+          <Property Name="ClassFiscal_INC" Type="int" Nullable="false" />
+          <Property Name="CST" Type="varchar" MaxLength="3" />
+          <Property Name="CSTIPI_ID" Type="int" />
+          <Property Name="CSTPIS_ID" Type="int" />
+          <Property Name="CSTCOFINS_ID" Type="int" />
+          <Property Name="hab_rodizio" Type="bit" />
+          <Property Name="CSOSN" Type="varchar" MaxLength="3" />
+          <Property Name="modBC" Type="int" />
+          <Property Name="modBCST" Type="int" />
+          <Property Name="pRedBC" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="pRedBCST" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="motDesICMS" Type="int" />
+          <Property Name="vBCSTRet" Type="decimal" Precision="14" Scale="2" />
+          <Property Name="vICMSSTRet" Type="decimal" Precision="14" Scale="2" />
+          <Property Name="COD_PONTOS" Type="int" />
+          <Property Name="VL_PONTOS_FID" Type="int" />
+        </EntityType>
+        <EntityType Name="VENDA_4">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NROVENDA" Type="int" />
+          <Property Name="NROCARTAO" Type="int" />
+          <Property Name="PRODCOD" Type="int" />
+          <Property Name="COMPCOD" Type="int" />
+          <Property Name="SEQLANC" Type="int" />
+          <Property Name="VALOR" Type="numeric" Scale="2" />
+          <Property Name="IDOPMESA1" Type="int" />
+          <Property Name="NROPENDENTE" Type="int" />
+        </EntityType>
+        <Association Name="FK__opMesa1__IdGarco__6676DAAC">
+          <End Role="CadGarcom" Type="Model.Store.CadGarcom" Multiplicity="0..1" />
+          <End Role="opMesa1" Type="Model.Store.opMesa1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CadGarcom">
+              <PropertyRef Name="IdGarcom" />
+            </Principal>
+            <Dependent Role="opMesa1">
+              <PropertyRef Name="IdGarcom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__opMesa1__IdMesa__6582B673">
+          <End Role="CadMesas" Type="Model.Store.CadMesas" Multiplicity="0..1" />
+          <End Role="opMesa1" Type="Model.Store.opMesa1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CadMesas">
+              <PropertyRef Name="IdMesa" />
+            </Principal>
+            <Dependent Role="opMesa1">
+              <PropertyRef Name="IdMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__opMesa2__IdopMes__648E923A">
+          <End Role="opMesa1" Type="Model.Store.opMesa1" Multiplicity="0..1" />
+          <End Role="opMesa2" Type="Model.Store.opMesa2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="opMesa1">
+              <PropertyRef Name="IdopMesa1" />
+            </Principal>
+            <Dependent Role="opMesa2">
+              <PropertyRef Name="IdopMesa1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="Entities">
+          <EntitySet Name="CadMesas" EntityType="Model.CadMesas" />
+          <EntitySet Name="GRUPO" EntityType="Model.GRUPO" />
+          <EntitySet Name="opMesa1" EntityType="Model.opMesa1" />
+          <EntitySet Name="opMesa2" EntityType="Model.opMesa2" />
+          <EntitySet Name="PROD" EntityType="Model.PROD" />
+          <EntitySet Name="Complemento" EntityType="Model.Complemento" />
+          <EntitySet Name="OpMesaPrincipalSet" EntityType="Model.OpMesaPrincipal" />
+          <EntitySet Name="VENDA_4" EntityType="Model.VENDA_4" />
+          <EntitySet Name="CadGarcom" EntityType="Model.CadGarcom" />
+          <AssociationSet Name="FK__opMesa1__IdGarco__6676DAAC" Association="Model.FK__opMesa1__IdGarco__6676DAAC">
+            <End Role="CadGarcom" EntitySet="CadGarcom" />
+            <End Role="opMesa1" EntitySet="opMesa1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__opMesa1__IdMesa__6582B673" Association="Model.FK__opMesa1__IdMesa__6582B673">
+            <End Role="CadMesas" EntitySet="CadMesas" />
+            <End Role="opMesa1" EntitySet="opMesa1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__opMesa2__IdopMes__648E923A" Association="Model.FK__opMesa2__IdopMes__648E923A">
+            <End Role="opMesa1" EntitySet="opMesa1" />
+            <End Role="opMesa2" EntitySet="opMesa2" />
+          </AssociationSet>
+          <EntitySet Name="Auditoria" EntityType="Model.Auditoria" />
+          <EntitySet Name="SugestaoObsSet" EntityType="Model.SugestaoObs" />
+          <EntitySet Name="MeioMeio" EntityType="Model.MeioMeio" />
+        </EntityContainer>
+        <EntityType Name="CadMesas">
+          <Key>
+            <PropertyRef Name="IdMesa" />
+          </Key>
+          <Property Type="Int32" Name="IdMesa" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Descricao" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdPraca" />
+          <Property Type="String" Name="Situacao" FixedLength="false" MaxLength="1" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="opMesa1" Relationship="Model.FK__opMesa1__IdMesa__6582B673" FromRole="CadMesas" ToRole="opMesa1" />
+        </EntityType>
+        <EntityType Name="GRUPO">
+          <Key>
+            <PropertyRef Name="GRUPO1" />
+          </Key>
+          <Property Type="Int32" Name="GRUPO1" Nullable="false" />
+          <Property Type="String" Name="DES_" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="LUCRO" />
+          <Property Type="Double" Name="COMISSAO" />
+          <Property Type="String" Name="ETIQ" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TXT" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="DMAX" />
+          <Property Type="String" Name="MARCA" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="opMesa1">
+          <Key>
+            <PropertyRef Name="IdopMesa1" />
+          </Key>
+          <Property Type="Int32" Name="IdopMesa1" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="IdGarcom" />
+          <Property Type="Int32" Name="IdMesa" />
+          <Property Type="DateTime" Name="dthrInicial" Precision="3" />
+          <Property Type="DateTime" Name="dthrFinal" Precision="3" />
+          <Property Type="String" Name="Status" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int16" Name="QtdePessoas" />
+          <Property Type="Decimal" Name="dinheiro" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="CHEQUE" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="CARTAO_DEBITO" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="CARTAO_CREDITO" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TICKET" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TROCO" Precision="14" Scale="4" />
+          <Property Type="Int32" Name="MesaTransf" />
+          <Property Type="Decimal" Name="DINHEIRO" Precision="14" Scale="4" />
+          <NavigationProperty Name="CadGarcom" Relationship="Model.FK__opMesa1__IdGarco__6676DAAC" FromRole="opMesa1" ToRole="CadGarcom" />
+          <NavigationProperty Name="CadMesas" Relationship="Model.FK__opMesa1__IdMesa__6582B673" FromRole="opMesa1" ToRole="CadMesas" />
+          <NavigationProperty Name="opMesa2" Relationship="Model.FK__opMesa2__IdopMes__648E923A" FromRole="opMesa1" ToRole="opMesa2" />
+        </EntityType>
+        <EntityType Name="opMesa2">
+          <Key>
+            <PropertyRef Name="idOpMesa2" />
+          </Key>
+          <Property Type="Int32" Name="idOpMesa2" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="IdopMesa1" />
+          <Property Type="Int32" Name="CodProduto" />
+          <Property Type="Decimal" Name="Qtde" Precision="12" Scale="3" />
+          <Property Type="Boolean" Name="Status" />
+          <Property Type="Decimal" Name="Valor" Precision="14" Scale="2" />
+          <Property Type="String" Name="DesProduto" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Meio1" />
+          <Property Type="Int32" Name="Meio2" />
+          <Property Type="Decimal" Name="vlunit" Precision="14" Scale="4" />
+          <Property Type="Int32" Name="cod_garcom" />
+          <Property Type="Int32" Name="SABOR" />
+          <Property Type="Int32" Name="SEQLANC" />
+          <Property Type="Int32" Name="idpromocao" />
+          <NavigationProperty Name="opMesa1" Relationship="Model.FK__opMesa2__IdopMes__648E923A" FromRole="opMesa2" ToRole="opMesa1" />
+          <Property Type="DateTime" Name="DATAHORA" Precision="3" />
+          <Property Type="Int32" Name="IDPROMOCAO" />
+          <Property Type="Int32" Name="TRANS_MESA" />
+          <Property Type="Boolean" Name="GPI_IMPRIMIR" />
+          <Property Type="String" Name="PROD_OBS" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ESTACAO" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PROD">
+          <Key>
+            <PropertyRef Name="CODIGO" />
+          </Key>
+          <Property Type="Int32" Name="CODIGO" Nullable="false" />
+          <Property Type="String" Name="DES_" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="GRUPO" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="VLCUSTO" />
+          <Property Type="Double" Name="VLVENDA" />
+          <Property Type="Double" Name="QTDE" />
+          <Property Type="Double" Name="QTDE_MIN" />
+          <Property Type="String" Name="TIPO" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CODIGOP" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="MULTIPLO" />
+          <Property Type="DateTime" Name="D_ATUAL" Precision="3" />
+          <Property Type="Int32" Name="DEPTO" />
+          <Property Type="Int32" Name="SECAO" />
+          <Property Type="DateTime" Name="DTULT" Precision="3" />
+          <Property Type="Decimal" Name="QTULT" />
+          <Property Type="Double" Name="VLVENDA2" />
+          <Property Type="String" Name="UNIDADE" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ICMS" />
+          <Property Type="String" Name="CODBARRA" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="QTDE_MAX" />
+          <Property Type="Double" Name="VLCOMPRA" />
+          <Property Type="DateTime" Name="DTCAD" Precision="3" />
+          <Property Type="Double" Name="VLULT" />
+          <Property Type="Double" Name="VL_MEDIO" />
+          <Property Type="String" Name="IMAGEM" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="FALTA" />
+          <Property Type="DateTime" Name="MES00" Precision="3" />
+          <Property Type="String" Name="sel" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="QTDE1" />
+          <Property Type="Double" Name="QTDE2" />
+          <Property Type="Double" Name="QTDE3" />
+          <Property Type="Double" Name="QTDE4" />
+          <Property Type="Double" Name="QTDE5" />
+          <Property Type="Double" Name="Falta1" />
+          <Property Type="Double" Name="Falta2" />
+          <Property Type="Double" Name="Falta3" />
+          <Property Type="Double" Name="Falta4" />
+          <Property Type="Double" Name="Falta5" />
+          <Property Type="Double" Name="vlvenda_old" />
+          <Property Type="DateTime" Name="vlvenda_alt" Precision="3" />
+          <Property Type="Double" Name="vlvenda3" />
+          <Property Type="Double" Name="qtde6" />
+          <Property Type="Double" Name="qtde7" />
+          <Property Type="Double" Name="qtde8" />
+          <Property Type="Double" Name="qtde9" />
+          <Property Type="Double" Name="qtde10" />
+          <Property Type="Double" Name="falta6" />
+          <Property Type="Double" Name="falta7" />
+          <Property Type="Double" Name="falta8" />
+          <Property Type="Double" Name="falta9" />
+          <Property Type="Double" Name="falta10" />
+          <Property Type="String" Name="Lista" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Psico" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Vlvenda4" />
+          <Property Type="Double" Name="vlvenda5" />
+          <Property Type="Double" Name="vlvenda6" />
+          <Property Type="Boolean" Name="Continuo" />
+          <Property Type="Int32" Name="Duracao" />
+          <Property Type="Double" Name="Qtde_Min_1" />
+          <Property Type="Double" Name="Qtde_Min_2" />
+          <Property Type="Double" Name="Qtde_Min_3" />
+          <Property Type="Double" Name="Qtde_Min_4" />
+          <Property Type="Double" Name="Qtde_Min_5" />
+          <Property Type="Double" Name="Qtde_Min_6" />
+          <Property Type="Double" Name="Qtde_Min_7" />
+          <Property Type="Double" Name="Qtde_Min_8" />
+          <Property Type="Double" Name="Qtde_Min_9" />
+          <Property Type="Double" Name="Qtde_Min_10" />
+          <Property Type="Double" Name="Qtde_Max_1" />
+          <Property Type="Double" Name="Qtde_Max_2" />
+          <Property Type="Double" Name="Qtde_Max_3" />
+          <Property Type="Double" Name="Qtde_Max_4" />
+          <Property Type="Double" Name="Qtde_Max_5" />
+          <Property Type="Double" Name="Qtde_Max_6" />
+          <Property Type="Double" Name="Qtde_Max_7" />
+          <Property Type="Double" Name="Qtde_Max_8" />
+          <Property Type="Double" Name="Qtde_Max_9" />
+          <Property Type="Double" Name="Qtde_Max_10" />
+          <Property Type="Double" Name="Qtde_Div1" />
+          <Property Type="Double" Name="Qtde_Div2" />
+          <Property Type="Double" Name="Qtde_Div3" />
+          <Property Type="Double" Name="Qtde_Div4" />
+          <Property Type="Double" Name="Qtde_Div5" />
+          <Property Type="Double" Name="Qtde_Div6" />
+          <Property Type="Double" Name="Qtde_Div7" />
+          <Property Type="Double" Name="Qtde_Div8" />
+          <Property Type="Double" Name="Qtde_Div9" />
+          <Property Type="Double" Name="Qtde_Div10" />
+          <Property Type="Int32" Name="Fabricante" />
+          <Property Type="Int32" Name="Fornec" />
+          <Property Type="Boolean" Name="ImprimirCozinha" />
+          <Property Type="Boolean" Name="impmesa1" />
+          <Property Type="Boolean" Name="impmesa2" />
+          <Property Type="Boolean" Name="impmesa3" />
+          <Property Type="Decimal" Name="vlentrega" Precision="14" Scale="4" />
+          <Property Type="Double" Name="VLMESA" />
+          <Property Type="Int32" Name="LOJA_CAD" />
+          <Property Type="Int32" Name="USUARIO_CAD" />
+          <Property Type="String" Name="ATIVO" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Ingredientes" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Modo_Preparo" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="UsaBalanca" />
+          <Property Type="Decimal" Name="iva_st" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="pfinal_consumidor" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="codtipo_mercadoria" />
+          <Property Type="Decimal" Name="Perc_Comissao" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="PrazoValidade" />
+          <Property Type="Boolean" Name="aplica_servico" />
+          <Property Type="Int32" Name="MVA_COD" Nullable="false" />
+          <Property Type="Int32" Name="ClassFiscal_INC" Nullable="false" />
+          <Property Type="String" Name="CST" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CSTIPI_ID" />
+          <Property Type="Int32" Name="CSTPIS_ID" />
+          <Property Type="Int32" Name="CSTCOFINS_ID" />
+          <Property Type="Boolean" Name="hab_rodizio" />
+          <Property Type="Decimal" Name="vlpmc" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="aVencer" />
+          <Property Type="Decimal" Name="Comissao" Precision="14" Scale="4" />
+          <Property Type="String" Name="id" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="QTDE11" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE12" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE13" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE14" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE15" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE16" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE17" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE18" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE19" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE20" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FALTA11" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FALTA12" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FALTA13" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FALTA14" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FALTA15" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FALTA16" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FALTA17" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FALTA18" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FALTA19" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FALTA20" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_MIN_11" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_MIN_12" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_MIN_13" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_MIN_14" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_MIN_15" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_MIN_16" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_MIN_17" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_MIN_18" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_MIN_19" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_MIN_20" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_DIV11" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_DIV12" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_DIV13" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_DIV14" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_DIV15" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_DIV16" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_DIV17" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_DIV18" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_DIV19" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QTDE_DIV20" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="SUGESTAO11" Nullable="false" />
+          <Property Type="Int32" Name="SUGESTAO12" Nullable="false" />
+          <Property Type="Int32" Name="SUGESTAO13" Nullable="false" />
+          <Property Type="Int32" Name="SUGESTAO14" Nullable="false" />
+          <Property Type="Int32" Name="SUGESTAO15" Nullable="false" />
+          <Property Type="Int32" Name="SUGESTAO16" Nullable="false" />
+          <Property Type="String" Name="CODIGO_BARRAS" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MARCA" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CLASSF_ID" />
+          <Property Type="String" Name="Cod_Fabricante" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CST_COD" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="REGISTRO" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Boolean" Name="Bonificado" Nullable="false" />
+          <Property Type="Int32" Name="Loja_Cad" />
+          <Property Type="Int32" Name="Usuario_Cad" />
+          <Property Type="String" Name="CSOSN" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="modBC" />
+          <Property Type="Int32" Name="modBCST" />
+          <Property Type="Decimal" Name="pRedBC" Precision="9" Scale="2" />
+          <Property Type="Decimal" Name="pRedBCST" Precision="9" Scale="2" />
+          <Property Type="Int32" Name="motDesICMS" />
+          <Property Type="Decimal" Name="vBCSTRet" Precision="14" Scale="2" />
+          <Property Type="Decimal" Name="vICMSSTRet" Precision="14" Scale="2" />
+          <Property Type="Int32" Name="COD_PONTOS" />
+          <Property Type="Int32" Name="VL_PONTOS_FID" />
+        </EntityType>
+        <EntityType Name="Complemento">
+          <Key>
+            <PropertyRef Name="inc_compto" />
+          </Key>
+          <Property Type="Int32" Name="inc_compto" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="des_" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="valor" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="GRUPO_PROD" />
+          <Property Type="Int32" Name="PdvGrupo" />
+          <Property Type="Int32" Name="PRODCOD" />
+          <Property Type="Decimal" Name="QTDEBAIXA" Precision="14" Scale="3" />
+        </EntityType>
+        <EntityType Name="OpMesaPrincipal">
+          <Key>
+            <PropertyRef Name="IdopMesa1" />
+          </Key>
+          <Property Type="Int32" Name="IdopMesa1" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="IdGarcom" />
+          <Property Type="Int32" Name="IdMesa" />
+          <Property Type="DateTime" Name="dthrInicial" />
+          <Property Type="DateTime" Name="dthrFinal" />
+          <Property Type="String" Name="Status" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int16" Name="QtdePessoas" />
+          <Property Type="Decimal" Name="dinheiro" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="CHEQUE" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="CARTAO_DEBITO" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="CARTAO_CREDITO" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TICKET" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TROCO" Precision="14" Scale="4" />
+          <Property Type="Int32" Name="MesaTransf" />
+          <Property Type="String" Name="Garcom" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VENDA_4">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="NROVENDA" />
+          <Property Type="Int32" Name="NROCARTAO" />
+          <Property Type="Int32" Name="PRODCOD" />
+          <Property Type="Int32" Name="COMPCOD" />
+          <Property Type="Int32" Name="SEQLANC" />
+          <Property Type="Decimal" Name="VALOR" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="IDOPMESA1" />
+          <Property Type="Int32" Name="NROPENDENTE" />
+        </EntityType>
+        <EntityType Name="CadGarcom">
+          <Key>
+            <PropertyRef Name="IdGarcom" />
+          </Key>
+          <Property Type="Int32" Name="IdGarcom" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Descricao" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsPadrao" />
+          <Property Type="String" Name="Status" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Senha" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="opMesa1" Relationship="Model.FK__opMesa1__IdGarco__6676DAAC" FromRole="CadGarcom" ToRole="opMesa1" />
+        </EntityType>
+        <Association Name="FK__opMesa1__IdGarco__6676DAAC">
+          <End Type="Model.CadGarcom" Role="CadGarcom" Multiplicity="0..1" />
+          <End Type="Model.opMesa1" Role="opMesa1" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__opMesa1__IdMesa__6582B673">
+          <End Type="Model.CadMesas" Role="CadMesas" Multiplicity="0..1" />
+          <End Type="Model.opMesa1" Role="opMesa1" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__opMesa2__IdopMes__648E923A">
+          <End Type="Model.opMesa1" Role="opMesa1" Multiplicity="0..1" />
+          <End Type="Model.opMesa2" Role="opMesa2" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Auditoria">
+          <Key>
+            <PropertyRef Name="nro" />
+          </Key>
+          <Property Type="Int32" Name="nro" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="DateTime" Name="data" Precision="3" />
+          <Property Type="DateTime" Name="hora" Precision="3" />
+          <Property Type="Int32" Name="loja" />
+          <Property Type="Int32" Name="usuario" />
+          <Property Type="String" Name="ocorrencia" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="cliente" />
+          <Property Type="Decimal" Name="valor" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="maquina" />
+          <Property Type="Int32" Name="Venda" />
+          <Property Type="String" Name="motivo" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="NROCX" />
+        </EntityType>
+        <EntityType Name="SugestaoObs">
+          <Key>
+            <PropertyRef Name="IdSugestao" />
+          </Key>
+          <Property Type="Int32" Name="IdSugestao" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Sugestao" Nullable="false" MaxLength="500" />
+          <Property Type="Decimal" Name="ranking" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MeioMeio">
+          <Key>
+            <PropertyRef Name="IdMeioMeio" />
+            <PropertyRef Name="Quantidade" />
+          </Key>
+          <Property Type="Int32" Name="IdMeioMeio" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Descricao" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="NroOperacao" />
+          <Property Type="String" Name="TipoOperacao" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="IdProduto" />
+          <Property Type="Int32" Name="SeqProduto" />
+          <Property Type="Decimal" Name="ValorVenda" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Quantidade" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="QtdeImpresso" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DataHora" Precision="3" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="CadMesas">
+            <EntityTypeMapping TypeName="Model.CadMesas">
+              <MappingFragment StoreEntitySet="CadMesas">
+                <ScalarProperty Name="IdPraca" ColumnName="IdPraca" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdMesa" ColumnName="IdMesa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRUPO">
+            <EntityTypeMapping TypeName="Model.GRUPO">
+              <MappingFragment StoreEntitySet="GRUPO">
+                <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+                <ScalarProperty Name="DMAX" ColumnName="DMAX" />
+                <ScalarProperty Name="TXT" ColumnName="TXT" />
+                <ScalarProperty Name="ETIQ" ColumnName="ETIQ" />
+                <ScalarProperty Name="COMISSAO" ColumnName="COMISSAO" />
+                <ScalarProperty Name="LUCRO" ColumnName="LUCRO" />
+                <ScalarProperty Name="DES_" ColumnName="DES_" />
+                <ScalarProperty Name="GRUPO1" ColumnName="GRUPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="opMesa1">
+            <EntityTypeMapping TypeName="Model.opMesa1">
+              <MappingFragment StoreEntitySet="opMesa1">
+                <ScalarProperty Name="DINHEIRO" ColumnName="DINHEIRO" />
+                <ScalarProperty Name="MesaTransf" ColumnName="MesaTransf" />
+                <ScalarProperty Name="TROCO" ColumnName="TROCO" />
+                <ScalarProperty Name="TICKET" ColumnName="TICKET" />
+                <ScalarProperty Name="CARTAO_CREDITO" ColumnName="CARTAO_CREDITO" />
+                <ScalarProperty Name="CARTAO_DEBITO" ColumnName="CARTAO_DEBITO" />
+                <ScalarProperty Name="CHEQUE" ColumnName="CHEQUE" />
+                <ScalarProperty Name="QtdePessoas" ColumnName="QtdePessoas" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="dthrFinal" ColumnName="dthrFinal" />
+                <ScalarProperty Name="dthrInicial" ColumnName="dthrInicial" />
+                <ScalarProperty Name="IdMesa" ColumnName="IdMesa" />
+                <ScalarProperty Name="IdGarcom" ColumnName="IdGarcom" />
+                <ScalarProperty Name="IdopMesa1" ColumnName="IdopMesa1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="opMesa2">
+            <EntityTypeMapping TypeName="Model.opMesa2">
+              <MappingFragment StoreEntitySet="opMesa2">
+                <ScalarProperty Name="ESTACAO" ColumnName="ESTACAO" />
+                <ScalarProperty Name="PROD_OBS" ColumnName="PROD_OBS" />
+                <ScalarProperty Name="GPI_IMPRIMIR" ColumnName="GPI_IMPRIMIR" />
+                <ScalarProperty Name="TRANS_MESA" ColumnName="TRANS_MESA" />
+                <ScalarProperty Name="IDPROMOCAO" ColumnName="IDPROMOCAO" />
+                <ScalarProperty Name="DATAHORA" ColumnName="DATAHORA" />
+                <ScalarProperty Name="SEQLANC" ColumnName="SEQLANC" />
+                <ScalarProperty Name="SABOR" ColumnName="SABOR" />
+                <ScalarProperty Name="cod_garcom" ColumnName="cod_garcom" />
+                <ScalarProperty Name="vlunit" ColumnName="vlunit" />
+                <ScalarProperty Name="Meio2" ColumnName="Meio2" />
+                <ScalarProperty Name="Meio1" ColumnName="Meio1" />
+                <ScalarProperty Name="DesProduto" ColumnName="DesProduto" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Qtde" ColumnName="Qtde" />
+                <ScalarProperty Name="CodProduto" ColumnName="CodProduto" />
+                <ScalarProperty Name="IdopMesa1" ColumnName="IdopMesa1" />
+                <ScalarProperty Name="idOpMesa2" ColumnName="idOpMesa2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROD">
+            <EntityTypeMapping TypeName="Model.PROD">
+              <MappingFragment StoreEntitySet="PROD">
+                <ScalarProperty Name="VL_PONTOS_FID" ColumnName="VL_PONTOS_FID" />
+                <ScalarProperty Name="COD_PONTOS" ColumnName="COD_PONTOS" />
+                <ScalarProperty Name="vICMSSTRet" ColumnName="vICMSSTRet" />
+                <ScalarProperty Name="vBCSTRet" ColumnName="vBCSTRet" />
+                <ScalarProperty Name="motDesICMS" ColumnName="motDesICMS" />
+                <ScalarProperty Name="pRedBCST" ColumnName="pRedBCST" />
+                <ScalarProperty Name="pRedBC" ColumnName="pRedBC" />
+                <ScalarProperty Name="modBCST" ColumnName="modBCST" />
+                <ScalarProperty Name="modBC" ColumnName="modBC" />
+                <ScalarProperty Name="CSOSN" ColumnName="CSOSN" />
+                <ScalarProperty Name="Usuario_Cad" ColumnName="Usuario_Cad" />
+                <ScalarProperty Name="Loja_Cad" ColumnName="Loja_Cad" />
+                <ScalarProperty Name="Bonificado" ColumnName="Bonificado" />
+                <ScalarProperty Name="REGISTRO" ColumnName="REGISTRO" />
+                <ScalarProperty Name="hab_rodizio" ColumnName="hab_rodizio" />
+                <ScalarProperty Name="CSTCOFINS_ID" ColumnName="CSTCOFINS_ID" />
+                <ScalarProperty Name="CSTPIS_ID" ColumnName="CSTPIS_ID" />
+                <ScalarProperty Name="CSTIPI_ID" ColumnName="CSTIPI_ID" />
+                <ScalarProperty Name="CST" ColumnName="CST" />
+                <ScalarProperty Name="ClassFiscal_INC" ColumnName="ClassFiscal_INC" />
+                <ScalarProperty Name="MVA_COD" ColumnName="MVA_COD" />
+                <ScalarProperty Name="aplica_servico" ColumnName="aplica_servico" />
+                <ScalarProperty Name="PrazoValidade" ColumnName="PrazoValidade" />
+                <ScalarProperty Name="Perc_Comissao" ColumnName="Perc_Comissao" />
+                <ScalarProperty Name="codtipo_mercadoria" ColumnName="codtipo_mercadoria" />
+                <ScalarProperty Name="pfinal_consumidor" ColumnName="pfinal_consumidor" />
+                <ScalarProperty Name="iva_st" ColumnName="iva_st" />
+                <ScalarProperty Name="UsaBalanca" ColumnName="UsaBalanca" />
+                <ScalarProperty Name="Modo_Preparo" ColumnName="Modo_Preparo" />
+                <ScalarProperty Name="Ingredientes" ColumnName="Ingredientes" />
+                <ScalarProperty Name="ATIVO" ColumnName="ATIVO" />
+                <ScalarProperty Name="VLMESA" ColumnName="VLMESA" />
+                <ScalarProperty Name="vlentrega" ColumnName="vlentrega" />
+                <ScalarProperty Name="impmesa3" ColumnName="impmesa3" />
+                <ScalarProperty Name="impmesa2" ColumnName="impmesa2" />
+                <ScalarProperty Name="impmesa1" ColumnName="impmesa1" />
+                <ScalarProperty Name="ImprimirCozinha" ColumnName="ImprimirCozinha" />
+                <ScalarProperty Name="Fornec" ColumnName="Fornec" />
+                <ScalarProperty Name="Fabricante" ColumnName="Fabricante" />
+                <ScalarProperty Name="Qtde_Div10" ColumnName="Qtde_Div10" />
+                <ScalarProperty Name="Qtde_Div9" ColumnName="Qtde_Div9" />
+                <ScalarProperty Name="Qtde_Div8" ColumnName="Qtde_Div8" />
+                <ScalarProperty Name="Qtde_Div7" ColumnName="Qtde_Div7" />
+                <ScalarProperty Name="Qtde_Div6" ColumnName="Qtde_Div6" />
+                <ScalarProperty Name="Qtde_Div5" ColumnName="Qtde_Div5" />
+                <ScalarProperty Name="Qtde_Div4" ColumnName="Qtde_Div4" />
+                <ScalarProperty Name="Qtde_Div3" ColumnName="Qtde_Div3" />
+                <ScalarProperty Name="Qtde_Div2" ColumnName="Qtde_Div2" />
+                <ScalarProperty Name="Qtde_Div1" ColumnName="Qtde_Div1" />
+                <ScalarProperty Name="Qtde_Max_10" ColumnName="Qtde_Max_10" />
+                <ScalarProperty Name="Qtde_Max_9" ColumnName="Qtde_Max_9" />
+                <ScalarProperty Name="Qtde_Max_8" ColumnName="Qtde_Max_8" />
+                <ScalarProperty Name="Qtde_Max_7" ColumnName="Qtde_Max_7" />
+                <ScalarProperty Name="Qtde_Max_6" ColumnName="Qtde_Max_6" />
+                <ScalarProperty Name="Qtde_Max_5" ColumnName="Qtde_Max_5" />
+                <ScalarProperty Name="Qtde_Max_4" ColumnName="Qtde_Max_4" />
+                <ScalarProperty Name="Qtde_Max_3" ColumnName="Qtde_Max_3" />
+                <ScalarProperty Name="Qtde_Max_2" ColumnName="Qtde_Max_2" />
+                <ScalarProperty Name="Qtde_Max_1" ColumnName="Qtde_Max_1" />
+                <ScalarProperty Name="Qtde_Min_10" ColumnName="Qtde_Min_10" />
+                <ScalarProperty Name="Qtde_Min_9" ColumnName="Qtde_Min_9" />
+                <ScalarProperty Name="Qtde_Min_8" ColumnName="Qtde_Min_8" />
+                <ScalarProperty Name="Qtde_Min_7" ColumnName="Qtde_Min_7" />
+                <ScalarProperty Name="Qtde_Min_6" ColumnName="Qtde_Min_6" />
+                <ScalarProperty Name="Qtde_Min_5" ColumnName="Qtde_Min_5" />
+                <ScalarProperty Name="Qtde_Min_4" ColumnName="Qtde_Min_4" />
+                <ScalarProperty Name="Qtde_Min_3" ColumnName="Qtde_Min_3" />
+                <ScalarProperty Name="Qtde_Min_2" ColumnName="Qtde_Min_2" />
+                <ScalarProperty Name="Qtde_Min_1" ColumnName="Qtde_Min_1" />
+                <ScalarProperty Name="Duracao" ColumnName="Duracao" />
+                <ScalarProperty Name="Continuo" ColumnName="Continuo" />
+                <ScalarProperty Name="vlvenda6" ColumnName="vlvenda6" />
+                <ScalarProperty Name="vlvenda5" ColumnName="vlvenda5" />
+                <ScalarProperty Name="Vlvenda4" ColumnName="Vlvenda4" />
+                <ScalarProperty Name="Psico" ColumnName="Psico" />
+                <ScalarProperty Name="Lista" ColumnName="Lista" />
+                <ScalarProperty Name="falta10" ColumnName="falta10" />
+                <ScalarProperty Name="falta9" ColumnName="falta9" />
+                <ScalarProperty Name="falta8" ColumnName="falta8" />
+                <ScalarProperty Name="falta7" ColumnName="falta7" />
+                <ScalarProperty Name="falta6" ColumnName="falta6" />
+                <ScalarProperty Name="qtde10" ColumnName="qtde10" />
+                <ScalarProperty Name="qtde9" ColumnName="qtde9" />
+                <ScalarProperty Name="qtde8" ColumnName="qtde8" />
+                <ScalarProperty Name="qtde7" ColumnName="qtde7" />
+                <ScalarProperty Name="qtde6" ColumnName="qtde6" />
+                <ScalarProperty Name="vlvenda3" ColumnName="vlvenda3" />
+                <ScalarProperty Name="vlvenda_alt" ColumnName="vlvenda_alt" />
+                <ScalarProperty Name="vlvenda_old" ColumnName="vlvenda_old" />
+                <ScalarProperty Name="Falta5" ColumnName="Falta5" />
+                <ScalarProperty Name="Falta4" ColumnName="Falta4" />
+                <ScalarProperty Name="Falta3" ColumnName="Falta3" />
+                <ScalarProperty Name="Falta2" ColumnName="Falta2" />
+                <ScalarProperty Name="Falta1" ColumnName="Falta1" />
+                <ScalarProperty Name="QTDE5" ColumnName="QTDE5" />
+                <ScalarProperty Name="QTDE4" ColumnName="QTDE4" />
+                <ScalarProperty Name="QTDE3" ColumnName="QTDE3" />
+                <ScalarProperty Name="QTDE2" ColumnName="QTDE2" />
+                <ScalarProperty Name="QTDE1" ColumnName="QTDE1" />
+                <ScalarProperty Name="sel" ColumnName="sel" />
+                <ScalarProperty Name="MES00" ColumnName="MES00" />
+                <ScalarProperty Name="FALTA" ColumnName="FALTA" />
+                <ScalarProperty Name="IMAGEM" ColumnName="IMAGEM" />
+                <ScalarProperty Name="VL_MEDIO" ColumnName="VL_MEDIO" />
+                <ScalarProperty Name="VLULT" ColumnName="VLULT" />
+                <ScalarProperty Name="DTCAD" ColumnName="DTCAD" />
+                <ScalarProperty Name="VLCOMPRA" ColumnName="VLCOMPRA" />
+                <ScalarProperty Name="QTDE_MAX" ColumnName="QTDE_MAX" />
+                <ScalarProperty Name="CODBARRA" ColumnName="CODBARRA" />
+                <ScalarProperty Name="ICMS" ColumnName="ICMS" />
+                <ScalarProperty Name="UNIDADE" ColumnName="UNIDADE" />
+                <ScalarProperty Name="VLVENDA2" ColumnName="VLVENDA2" />
+                <ScalarProperty Name="QTULT" ColumnName="QTULT" />
+                <ScalarProperty Name="DTULT" ColumnName="DTULT" />
+                <ScalarProperty Name="SECAO" ColumnName="SECAO" />
+                <ScalarProperty Name="DEPTO" ColumnName="DEPTO" />
+                <ScalarProperty Name="D_ATUAL" ColumnName="D_ATUAL" />
+                <ScalarProperty Name="MULTIPLO" ColumnName="MULTIPLO" />
+                <ScalarProperty Name="CODIGOP" ColumnName="CODIGOP" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+                <ScalarProperty Name="QTDE_MIN" ColumnName="QTDE_MIN" />
+                <ScalarProperty Name="QTDE" ColumnName="QTDE" />
+                <ScalarProperty Name="VLVENDA" ColumnName="VLVENDA" />
+                <ScalarProperty Name="VLCUSTO" ColumnName="VLCUSTO" />
+                <ScalarProperty Name="GRUPO" ColumnName="GRUPO" />
+                <ScalarProperty Name="DES_" ColumnName="DES_" />
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Complemento">
+            <EntityTypeMapping TypeName="Model.Complemento">
+              <MappingFragment StoreEntitySet="Complemento">
+                <ScalarProperty Name="QTDEBAIXA" ColumnName="QTDEBAIXA" />
+                <ScalarProperty Name="PRODCOD" ColumnName="PRODCOD" />
+                <ScalarProperty Name="PdvGrupo" ColumnName="PdvGrupo" />
+                <ScalarProperty Name="GRUPO_PROD" ColumnName="GRUPO_PROD" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="des_" ColumnName="des_" />
+                <ScalarProperty Name="inc_compto" ColumnName="inc_compto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENDA_4">
+            <EntityTypeMapping TypeName="Model.VENDA_4">
+              <MappingFragment StoreEntitySet="VENDA_4">
+                <ScalarProperty Name="NROPENDENTE" ColumnName="NROPENDENTE" />
+                <ScalarProperty Name="IDOPMESA1" ColumnName="IDOPMESA1" />
+                <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+                <ScalarProperty Name="SEQLANC" ColumnName="SEQLANC" />
+                <ScalarProperty Name="COMPCOD" ColumnName="COMPCOD" />
+                <ScalarProperty Name="PRODCOD" ColumnName="PRODCOD" />
+                <ScalarProperty Name="NROCARTAO" ColumnName="NROCARTAO" />
+                <ScalarProperty Name="NROVENDA" ColumnName="NROVENDA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CadGarcom">
+            <EntityTypeMapping TypeName="Model.CadGarcom">
+              <MappingFragment StoreEntitySet="CadGarcom">
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsPadrao" ColumnName="IsPadrao" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdGarcom" ColumnName="IdGarcom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK__opMesa1__IdGarco__6676DAAC" TypeName="Model.FK__opMesa1__IdGarco__6676DAAC" StoreEntitySet="opMesa1">
+            <EndProperty Name="opMesa1">
+              <ScalarProperty Name="IdopMesa1" ColumnName="IdopMesa1" />
+            </EndProperty>
+            <EndProperty Name="CadGarcom">
+              <ScalarProperty Name="IdGarcom" ColumnName="IdGarcom" />
+            </EndProperty>
+            <Condition ColumnName="IdGarcom" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__opMesa1__IdMesa__6582B673" TypeName="Model.FK__opMesa1__IdMesa__6582B673" StoreEntitySet="opMesa1">
+            <EndProperty Name="opMesa1">
+              <ScalarProperty Name="IdopMesa1" ColumnName="IdopMesa1" />
+            </EndProperty>
+            <EndProperty Name="CadMesas">
+              <ScalarProperty Name="IdMesa" ColumnName="IdMesa" />
+            </EndProperty>
+            <Condition ColumnName="IdMesa" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__opMesa2__IdopMes__648E923A" TypeName="Model.FK__opMesa2__IdopMes__648E923A" StoreEntitySet="opMesa2">
+            <EndProperty Name="opMesa2">
+              <ScalarProperty Name="idOpMesa2" ColumnName="idOpMesa2" />
+            </EndProperty>
+            <EndProperty Name="opMesa1">
+              <ScalarProperty Name="IdopMesa1" ColumnName="IdopMesa1" />
+            </EndProperty>
+            <Condition ColumnName="IdopMesa1" IsNull="false" />
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Auditoria">
+            <EntityTypeMapping TypeName="Model.Auditoria">
+              <MappingFragment StoreEntitySet="Auditoria">
+                <ScalarProperty Name="NROCX" ColumnName="NROCX" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="Venda" ColumnName="Venda" />
+                <ScalarProperty Name="maquina" ColumnName="maquina" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="cliente" ColumnName="cliente" />
+                <ScalarProperty Name="ocorrencia" ColumnName="ocorrencia" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="loja" ColumnName="loja" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="nro" ColumnName="nro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeioMeio">
+            <EntityTypeMapping TypeName="Model.MeioMeio">
+              <MappingFragment StoreEntitySet="MeioMeio">
+                <ScalarProperty Name="DataHora" ColumnName="DataHora" />
+                <ScalarProperty Name="QtdeImpresso" ColumnName="QtdeImpresso" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="ValorVenda" ColumnName="ValorVenda" />
+                <ScalarProperty Name="SeqProduto" ColumnName="SeqProduto" />
+                <ScalarProperty Name="IdProduto" ColumnName="IdProduto" />
+                <ScalarProperty Name="TipoOperacao" ColumnName="TipoOperacao" />
+                <ScalarProperty Name="NroOperacao" ColumnName="NroOperacao" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdMeioMeio" ColumnName="IdMeioMeio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="touch" ZoomLevel="100">
+        <EntityTypeShape EntityType="Model.CadMesas" Width="1.5" PointX="0.75" PointY="0.75" Height="1.787985026041667" />
+        <EntityTypeShape EntityType="Model.GRUPO" Width="1.5" PointX="2.75" PointY="0.75" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="Model.opMesa1" Width="1.5" PointX="6.875" PointY="3.5" Height="3.7109993489583326" />
+        <EntityTypeShape EntityType="Model.opMesa2" Width="1.5" PointX="4.875" PointY="3.5" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="Model.PROD" Width="1.5" PointX="9" PointY="0.75" Height="33.710022786458325" />
+        <EntityTypeShape EntityType="Model.Complemento" Width="1.5" PointX="6.625" PointY="0.75" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="Model.OpMesaPrincipal" Width="1.875" PointX="0.75" PointY="4.75" Height="3.9033007812499996" />
+        <EntityTypeShape EntityType="Model.VENDA_4" Width="1.5" PointX="3.375" PointY="8.75" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="Model.CadGarcom" Width="1.5" PointX="5.375" PointY="8.875" Height="2.1725878906249996" />
+        <AssociationConnector Association="Model.FK__opMesa1__IdGarco__6676DAAC">
+          <ConnectorPoint PointX="6.625" PointY="8.875" />
+          <ConnectorPoint PointX="6.625" PointY="7.7230029296875" />
+          <ConnectorPoint PointX="6.875" PointY="7.7230029296875" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK__opMesa1__IdMesa__6582B673">
+          <ConnectorPoint PointX="2.25" PointY="1.7401432291666668" />
+          <ConnectorPoint PointX="2.5" PointY="1.7401432291666668" />
+          <ConnectorPoint PointX="2.5" PointY="3.5571907552083317" />
+          <ConnectorPoint PointX="4.625" PointY="3.5571907552083317" />
+          <ConnectorPoint PointX="4.625" PointY="3.25" />
+          <ConnectorPoint PointX="7.625" PointY="3.25" />
+          <ConnectorPoint PointX="7.625" PointY="3.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK__opMesa2__IdopMes__648E923A">
+          <ConnectorPoint PointX="6.875" PointY="5.5478011067708328" />
+          <ConnectorPoint PointX="6.375" PointY="5.5478011067708328" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.Auditoria" Width="1.5" PointX="0.75" PointY="9.75" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="Model.SugestaoObs" Width="1.5" PointX="11.75" PointY="4.625" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="Model.MeioMeio" Width="1.5" PointX="10.242313004211669" PointY="14.554444290024435" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

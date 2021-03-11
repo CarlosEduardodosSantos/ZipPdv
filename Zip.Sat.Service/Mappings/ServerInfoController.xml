@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ControllerMapping class="Zip.Sat.Service.Controllers.ServerInfoController">
+  <RequestMapping value="FullServerInfo"/>
+</ControllerMapping>

@@ -1,0 +1,697 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9D1EB2FA-9BF6-4CB7-938C-E2F1C5F41855}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Zip.Pdv</RootNamespace>
+    <AssemblyName>ZipPdv</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LOGO_Z.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FastReport">
+      <HintPath>C:\Projetos\DotNet\SQL Command 2010\SQL Command 2010\Dll\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars">
+      <HintPath>C:\Projetos\DotNet\FastReport\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor">
+      <HintPath>C:\Projetos\DotNet\SQL Command 2010\SQL Command 2010\Dll\FastReport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SimpleInjector, Version=4.7.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.4.7.1\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Component\CupomGrid\CupomGridItemEmpty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\CupomGrid\CupomGridItemEmpty.Designer.cs">
+      <DependentUpon>CupomGridItemEmpty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\CupomGrid\CupomGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\CupomGrid\CupomGridView.Designer.cs">
+      <DependentUpon>CupomGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\CupomGrid\CupomItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\CupomGrid\CupomItem.Designer.cs">
+      <DependentUpon>CupomItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\EntregaGridView\EntregaGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\EntregaGridView\EntregaGridView.Designer.cs">
+      <DependentUpon>EntregaGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\EntregaGridView\EntregaGridViewitem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\EntregaGridView\EntregaGridViewitem.Designer.cs">
+      <DependentUpon>EntregaGridViewitem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\EspeciePagamento\EspecieGridViewItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\EspeciePagamento\EspecieGridViewItem.Designer.cs">
+      <DependentUpon>EspecieGridViewItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\EspeciePagamento\ItemEspecie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\EspeciePagamento\ItemEspecie.designer.cs">
+      <DependentUpon>ItemEspecie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\EspeciePagamento\UcPdvItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\EspeciePagamento\UcPdvItem.designer.cs">
+      <DependentUpon>UcPdvItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\GalleryItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\GalleryItem.designer.cs">
+      <DependentUpon>GalleryItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ImageView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\ImageView.Designer.cs">
+      <DependentUpon>ImageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\PlaceholderTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\ProdutoGridViewItemImage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\ProdutoGridViewItemImage.Designer.cs">
+      <DependentUpon>ProdutoGridViewItemImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ProdutoGridViewItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\ProdutoGridViewItem.Designer.cs">
+      <DependentUpon>ProdutoGridViewItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\GrupoGridViewItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\GrupoGridViewItem.Designer.cs">
+      <DependentUpon>GrupoGridViewItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ProdutoGrid\Model\ProdutoGridModel.cs" />
+    <Compile Include="Component\ProdutoGrid\ProdutoGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\ProdutoGrid\ProdutoGrid.Designer.cs">
+      <DependentUpon>ProdutoGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ProdutoGrid\ProdutoGridItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\ProdutoGrid\ProdutoGridItem.Designer.cs">
+      <DependentUpon>ProdutoGridItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\SplitButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\SplitButton.designer.cs">
+      <DependentUpon>SplitButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\TextBoxDecimal.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\TextBoxDecimal.Designer.cs">
+      <DependentUpon>TextBoxDecimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\TouchMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Component\TouchMessageBox.Designer.cs">
+      <DependentUpon>TouchMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\TouchScrollbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\TouchScrollbar.Designer.cs">
+      <DependentUpon>TouchScrollbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\XButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\XPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Eventos\BarcodeScannedEventArgs.cs" />
+    <Compile Include="Fast\ParameterReportDynamic.cs" />
+    <Compile Include="Fast\RelatorioFastReport.cs" />
+    <Compile Include="FormAbrirCaixa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAbrirCaixa.Designer.cs">
+      <DependentUpon>FormAbrirCaixa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBase.Designer.cs">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuscaProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuscaProduto.Designer.cs">
+      <DependentUpon>FormBuscaProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCaixaFechamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCaixaFechamento.Designer.cs">
+      <DependentUpon>FormCaixaFechamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPdvDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPdvDelivery.Designer.cs">
+      <DependentUpon>FormPdvDelivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCliente.Designer.cs">
+      <DependentUpon>FormCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormComplementos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComplementos.Designer.cs">
+      <DependentUpon>FormComplementos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSolicitaFicha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSolicitaFicha.Designer.cs">
+      <DependentUpon>FormSolicitaFicha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSolicitaCpf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSolicitaCpf.Designer.cs">
+      <DependentUpon>FormSolicitaCpf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesconto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDesconto.Designer.cs">
+      <DependentUpon>FormDesconto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPagamento.Designer.cs">
+      <DependentUpon>FormPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPdv.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormPdv.Designer.cs">
+      <DependentUpon>FormPdv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDeliverySair.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDeliverySair.Designer.cs">
+      <DependentUpon>FrmDeliverySair.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Funcoes.cs" />
+    <Compile Include="GetValueApp.cs" />
+    <Compile Include="Helpers\ColorHelper.cs" />
+    <Compile Include="Helpers\ValidacaoHelper.cs" />
+    <Compile Include="Model\Balanca.cs" />
+    <Compile Include="ModuloBalanca\FormLeituraBalanca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModuloBalanca\FormLeituraBalanca.Designer.cs">
+      <DependentUpon>FormLeituraBalanca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NFce\FrmSolicitaNfce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NFce\FrmSolicitaNfce.Designer.cs">
+      <DependentUpon>FrmSolicitaNfce.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperacoeFiscal.cs" />
+    <Compile Include="Page\PageBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageCaixaMovimentacao.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageCaixaMovimentacao.Designer.cs">
+      <DependentUpon>PageCaixaMovimentacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageConfiguracoes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageConfiguracoes.Designer.cs">
+      <DependentUpon>PageConfiguracoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageDelivery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageDelivery.Designer.cs">
+      <DependentUpon>PageDelivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageMenu.Designer.cs">
+      <DependentUpon>PageMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageOperacoes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageOperacoes.Designer.cs">
+      <DependentUpon>PageOperacoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageProdutoCadastro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageProdutoCadastro.Designer.cs">
+      <DependentUpon>PageProdutoCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ModuloBalanca\BalancaController.cs" />
+    <Compile Include="ModuloBalanca\Leitura.cs" />
+    <Compile Include="ModuloBalanca\PcScale.cs" />
+    <EmbeddedResource Include="Component\CupomGrid\CupomGridItemEmpty.resx">
+      <DependentUpon>CupomGridItemEmpty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\CupomGrid\CupomGridView.resx">
+      <DependentUpon>CupomGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\CupomGrid\CupomItem.resx">
+      <DependentUpon>CupomItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\EntregaGridView\EntregaGridView.resx">
+      <DependentUpon>EntregaGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\EntregaGridView\EntregaGridViewitem.resx">
+      <DependentUpon>EntregaGridViewitem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\EspeciePagamento\EspecieGridViewItem.resx">
+      <DependentUpon>EspecieGridViewItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\EspeciePagamento\ItemEspecie.resx">
+      <DependentUpon>ItemEspecie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\EspeciePagamento\UcPdvItem.resx">
+      <DependentUpon>UcPdvItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\GalleryItem.resx">
+      <DependentUpon>GalleryItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\ImageView.resx">
+      <DependentUpon>ImageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\ProdutoGridViewItemImage.resx">
+      <DependentUpon>ProdutoGridViewItemImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\ProdutoGridViewItem.resx">
+      <DependentUpon>ProdutoGridViewItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\GrupoGridViewItem.resx">
+      <DependentUpon>GrupoGridViewItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\ProdutoGrid\ProdutoGrid.resx">
+      <DependentUpon>ProdutoGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\ProdutoGrid\ProdutoGridItem.resx">
+      <DependentUpon>ProdutoGridItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\SplitButton.resx">
+      <DependentUpon>SplitButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\TouchMessageBox.resx">
+      <DependentUpon>TouchMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAbrirCaixa.resx">
+      <DependentUpon>FormAbrirCaixa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBase.resx">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuscaProduto.resx">
+      <DependentUpon>FormBuscaProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCaixaFechamento.resx">
+      <DependentUpon>FormCaixaFechamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPdvDelivery.resx">
+      <DependentUpon>FormPdvDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCliente.resx">
+      <DependentUpon>FormCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComplementos.resx">
+      <DependentUpon>FormComplementos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSolicitaFicha.resx">
+      <DependentUpon>FormSolicitaFicha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSolicitaCpf.resx">
+      <DependentUpon>FormSolicitaCpf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDesconto.resx">
+      <DependentUpon>FormDesconto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPagamento.resx">
+      <DependentUpon>FormPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPdv.resx">
+      <DependentUpon>FormPdv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDeliverySair.resx">
+      <DependentUpon>FrmDeliverySair.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModuloBalanca\FormLeituraBalanca.resx">
+      <DependentUpon>FormLeituraBalanca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFce\FrmSolicitaNfce.resx">
+      <DependentUpon>FrmSolicitaNfce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageCaixaMovimentacao.resx">
+      <DependentUpon>PageCaixaMovimentacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageConfiguracoes.resx">
+      <DependentUpon>PageConfiguracoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageDelivery.resx">
+      <DependentUpon>PageDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageMenu.resx">
+      <DependentUpon>PageMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageOperacoes.resx">
+      <DependentUpon>PageOperacoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageProdutoCadastro.resx">
+      <DependentUpon>PageProdutoCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TouchscreenKeyboard\TouchscreenKeyboard\TouchscreenKeyboard.csproj">
+      <Project>{94070b1d-6de4-4d45-b2b9-5da09d0e15c9}</Project>
+      <Name>TouchscreenKeyboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eticket.Application\Eticket.Application.csproj">
+      <Project>{61392fb6-988c-4e20-937a-6eb52bbd5138}</Project>
+      <Name>Eticket.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eticket.Infra.CrossCutting.IoC\Eticket.Infra.CrossCutting.IoC.csproj">
+      <Project>{32dfa282-26f9-441b-913d-43e88e00b025}</Project>
+      <Name>Eticket.Infra.CrossCutting.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zip.Sat\Zip.Sat.csproj">
+      <Project>{1b5e04f1-8557-4c1e-89af-bc7d35d43266}</Project>
+      <Name>Zip.Sat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zip.TefDial\Zip.TefDial.csproj">
+      <Project>{7d0d0490-054d-498a-99bd-498ec6c910f8}</Project>
+      <Name>Zip.TefDial</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zip.Utils\Zip.Utils.csproj">
+      <Project>{66d673b1-6415-4c3e-a5be-f5386886120d}</Project>
+      <Name>Zip.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGO_ORIGINAL_220.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next-resultset-icone-3882-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\previous-resultset-icone-6623-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339161281_Transfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339161281_Transfer1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339162290_button_ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339162510_money_dollar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339429847_misc_23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339429847_misc_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1340644254_question_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1340644414_document-properties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Falha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\downarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\downBlack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbMiddle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbSpanBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbSpanTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uparrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_542833.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_configure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Trash_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gtk-delete-icone-8746-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\card-cash-economy-money-finance-chart-icone-5820-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\41OCsvo6rtL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_black_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdv_ini.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client-1295901_960_720.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delivery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg_.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pay_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remover_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pag_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fabrica_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter_38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\obs_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ecf_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgPanel_.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkou_110.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Configure_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go_38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anote_38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comprar_38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desconto_38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client_38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-property-icon-11-256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adicional_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client_110.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\produto_110.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\send_32.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="LOGO_Z.ico" />
+    <None Include="Resources\qrcode_48.png" />
+    <None Include="Resources\fidelidade_48.png" />
+    <None Include="Resources\add24.png" />
+    <None Include="Resources\keyboard_32.png" />
+    <None Include="Resources\refresh_32.png" />
+    <None Include="Resources\ic_checkout.png" />
+    <None Include="Resources\delivery_48.png" />
+    <None Include="Resources\1416378184_document_search.png" />
+    <None Include="Resources\delivery_32.png" />
+    <None Include="Resources\cp0bta.jpg" />
+    <None Include="Resources\nfce.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

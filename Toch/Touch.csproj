@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0D1EF56F-D8FF-46ED-861D-199CA9F17420}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Toch</RootNamespace>
+    <AssemblyName>Toch</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>eTicket.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=4.7.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.7.1\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="clsMesa.cs" />
+    <Compile Include="clsMesaItens.cs" />
+    <Compile Include="Component\XButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\XPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DetailIten.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DetailIten.Designer.cs">
+      <DependentUpon>DetailIten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFixaInicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFixaInicial.Designer.cs">
+      <DependentUpon>FormFixaInicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmClienteFicha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmClienteFicha.Designer.cs">
+      <DependentUpon>FrmClienteFicha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmFechamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFechamento.Designer.cs">
+      <DependentUpon>FrmFechamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMeioMeio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMeioMeio.Designer.cs">
+      <DependentUpon>FrmMeioMeio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLancaFicha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLancaFicha.Designer.cs">
+      <DependentUpon>FormLancaFicha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMesaItens.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMesaItens.Designer.cs">
+      <DependentUpon>FrmMesaItens.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmObservacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmObservacao.Designer.cs">
+      <DependentUpon>FrmObservacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPromocao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPromocao.Designer.cs">
+      <DependentUpon>FrmPromocao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelecionaGarcom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSelecionaGarcom.Designer.cs">
+      <DependentUpon>FrmSelecionaGarcom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTecladoNumerico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTecladoNumerico.Designer.cs">
+      <DependentUpon>FrmTecladoNumerico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTransfereMesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTransfereMesa.Designer.cs">
+      <DependentUpon>FrmTransfereMesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IniFile.cs" />
+    <Compile Include="ListViewDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListViewDetail.Designer.cs">
+      <DependentUpon>ListViewDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelViewDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PanelViewDetail.Designer.cs">
+      <DependentUpon>PanelViewDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Produtos.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextBoxProd.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxProd.Designer.cs">
+      <DependentUpon>TextBoxProd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tipos.cs" />
+    <Compile Include="touch.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>touch.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="TouchMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TouchMessageBox.Designer.cs">
+      <DependentUpon>TouchMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TouchScrollbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TouchScrollbar.Designer.cs">
+      <DependentUpon>TouchScrollbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucListView.Designer.cs">
+      <DependentUpon>ucListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils.cs" />
+    <Compile Include="ViewDatail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ViewDatail.Designer.cs">
+      <DependentUpon>ViewDatail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDetail.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFixaInicial.resx">
+      <DependentUpon>FormFixaInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmClienteFicha.resx">
+      <DependentUpon>FrmClienteFicha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFechamento.resx">
+      <DependentUpon>FrmFechamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMeioMeio.resx">
+      <DependentUpon>FrmMeioMeio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLancaFicha.resx">
+      <DependentUpon>FormLancaFicha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMesaItens.resx">
+      <DependentUpon>FrmMesaItens.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmObservacao.resx">
+      <DependentUpon>FrmObservacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPromocao.resx">
+      <DependentUpon>FrmPromocao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSelecionaGarcom.resx">
+      <DependentUpon>FrmSelecionaGarcom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTecladoNumerico.resx">
+      <DependentUpon>FrmTecladoNumerico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTransfereMesa.resx">
+      <DependentUpon>FrmTransfereMesa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelViewDetail.resx">
+      <DependentUpon>PanelViewDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="TextBoxProd.resx">
+      <DependentUpon>TextBoxProd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TouchMessageBox.resx">
+      <DependentUpon>TouchMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucListView.resx">
+      <DependentUpon>ucListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewDatail.resx">
+      <DependentUpon>ViewDatail.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EntityDeploy Include="touch.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>touch.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1330363843_client_account_template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconeClientes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339161281_Transfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339162290_button_ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339162510_money_dollar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339429847_misc_23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1339429847_misc_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\downarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbMiddle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbSpanBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbSpanTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uparrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\Eticket.Application\Eticket.Application.csproj">
+      <Project>{61392fb6-988c-4e20-937a-6eb52bbd5138}</Project>
+      <Name>Eticket.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\Eticket.Infra.CrossCutting.IoC\Eticket.Infra.CrossCutting.IoC.csproj">
+      <Project>{32dfa282-26f9-441b-913d-43e88e00b025}</Project>
+      <Name>Eticket.Infra.CrossCutting.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TouchscreenKeyboard\TouchscreenKeyboard\TouchscreenKeyboard.csproj">
+      <Project>{94070B1D-6DE4-4D45-B2B9-5DA09D0E15C9}</Project>
+      <Name>TouchscreenKeyboard</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1340644254_question_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1340644414_document-properties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="eTicket.ico" />
+    <None Include="Resources\download.jpg" />
+    <None Include="Resources\01-redwhite.png" />
+    <None Include="Resources\previous-resultset-icone-6623-32.png" />
+    <None Include="Resources\next-resultset-icone-3882-32.png" />
+    <None Include="Resources\accept-check-green-ok-yes-icone-8805-32.png" />
+    <None Include="Resources\SUGESTÕESVIP1.JPG" />
+    <None Include="Resources\logovip.png" />
+    <None Include="Resources\1416378167_document_edit.png" />
+    <None Include="Resources\1416378141_document_add.png" />
+    <None Include="Resources\SUGESTÕESVIP.JPG" />
+    <None Include="Resources\cartao.png" />
+    <None Include="Resources\48_thumbnails_2.png" />
+    <None Include="Resources\windows_8_start_background_by_vin8it-d4rw3ni.jpg" />
+    <None Include="Resources\48_image.png" />
+    <None Include="Resources\48_settings.png" />
+    <None Include="Resources\48_move.png" />
+    <None Include="Resources\Logo.jpg" />
+    <None Include="Resources\48_upload.png" />
+    <None Include="Resources\48_home.png" />
+    <None Include="Resources\64_home.png" />
+    <None Include="Resources\User.png" />
+    <None Include="Resources\User3.png" />
+    <None Include="Resources\BookNote.png" />
+    <None Include="Resources\BookNoteWhite.png" />
+    <None Include="Resources\Confirm.png" />
+    <None Include="Resources\Notes1.png" />
+    <None Include="Resources\Notes.png" />
+    <None Include="Resources\removeBlack3.png" />
+    <None Include="Resources\removeBlack2.png" />
+    <None Include="Resources\removeBlack1.png" />
+    <None Include="Resources\downBlack.png" />
+    <None Include="Resources\UpBlack.png" />
+    <None Include="Resources\removeBlack.png" />
+    <None Include="Resources\AddBlack.png" />
+    <None Include="Resources\up.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\Top.png" />
+    <None Include="Resources\Topo.png" />
+    <None Include="Resources\TelaInicial.png" />
+    <None Include="Resources\Login.bmp" />
+    <None Include="Resources\icoTeclado.png" />
+    <None Include="Resources\1339161281_Transfer1.png" />
+    <None Include="Resources\Falha.png" />
+    <None Include="Resources\Correto.gif" />
+    <None Include="Resources\1343854489_table_furniture.png" />
+    <None Include="Resources\greenColor2.png" />
+    <None Include="Resources\greenColor1.png" />
+    <None Include="Resources\greenColor.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

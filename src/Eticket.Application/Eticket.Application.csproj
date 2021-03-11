@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{61392FB6-988C-4E20-937A-6EB52BBD5138}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eticket.Application</RootNamespace>
+    <AssemblyName>Eticket.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FastMapper, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FastMapper.1.2.0\lib\net40\FastMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CaixaAppService.cs" />
+    <Compile Include="CaixaFechamentoAppService.cs" />
+    <Compile Include="CaixaItemAppService.cs" />
+    <Compile Include="CartaoRequisicaoAppService.cs" />
+    <Compile Include="CartaoRespostaAppService.cs" />
+    <Compile Include="CEPBrasil\ConsultaCepAppService.cs" />
+    <Compile Include="ClienteDeliveryAppService.cs" />
+    <Compile Include="Conversores\EnumBooleanConverter.cs" />
+    <Compile Include="Conversores\EnumParaBool.cs" />
+    <Compile Include="Conversores\EnumParaInteger.cs" />
+    <Compile Include="Conversores\EnumParaString.cs" />
+    <Compile Include="Conversores\InverterBooleanConverter.cs" />
+    <Compile Include="DeliveryAppService.cs" />
+    <Compile Include="EmpresaAppService.cs" />
+    <Compile Include="EspeciePagamentoAppService.cs" />
+    <Compile Include="FabricaRelatorioAppService.cs" />
+    <Compile Include="FichaAppService.cs" />
+    <Compile Include="EntregadorAppService.cs" />
+    <Compile Include="Interface\ICaixaAppService.cs" />
+    <Compile Include="Interface\ICaixaFechamentoAppService.cs" />
+    <Compile Include="Interface\ICaixaItemAppService.cs" />
+    <Compile Include="Interface\ICartaoRequisicaoAppService.cs" />
+    <Compile Include="Interface\ICartaoRespostaAppService.cs" />
+    <Compile Include="Interface\IClienteDeliveryAppService.cs" />
+    <Compile Include="Interface\IDeliveryAppService.cs" />
+    <Compile Include="Interface\IEmpresaAppService.cs" />
+    <Compile Include="Interface\IEntregadorAppService.cs" />
+    <Compile Include="Interface\IEspeciePagamentoAppService.cs" />
+    <Compile Include="Interface\IFabricaRelatorioAppService.cs" />
+    <Compile Include="Interface\INfceServicoAppService.cs" />
+    <Compile Include="Interface\IProdutoComplementoAppService.cs" />
+    <Compile Include="Interface\IProdutoTipoAppService.cs" />
+    <Compile Include="Interface\IRetornoSatAppService.cs" />
+    <Compile Include="Interface\ISatConcentradorAppService.cs" />
+    <Compile Include="Interface\IUnidadeMedidaAppService.cs" />
+    <Compile Include="Interface\IUsuarioAppService.cs" />
+    <Compile Include="Interface\IVendaAppService.cs" />
+    <Compile Include="Interface\IVendaMeioMeioAppService.cs" />
+    <Compile Include="Interface\IVendedorAppService.cs" />
+    <Compile Include="NfceServicoAppService.cs" />
+    <Compile Include="ProdutoComplementoAppService.cs" />
+    <Compile Include="ProdutoTipoAppService.cs" />
+    <Compile Include="RetornoSatAppService.cs" />
+    <Compile Include="UnidadeMedidaAppService.cs" />
+    <Compile Include="UsuarioAppService.cs" />
+    <Compile Include="VendaAppService.cs" />
+    <Compile Include="VendaFichaAppService.cs" />
+    <Compile Include="Interface\IFichaAppService.cs" />
+    <Compile Include="Interface\IVendaFichaAppService.cs" />
+    <Compile Include="Interface\IProdutoAppService.cs" />
+    <Compile Include="Interface\IProdutoGrupoAppService.cs" />
+    <Compile Include="Interface\IVendaComplementoAppService.cs" />
+    <Compile Include="ProdutoAppService.cs" />
+    <Compile Include="ProdutoGrupoAppService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VendaComplementoAppService.cs" />
+    <Compile Include="VendedorAppService.cs" />
+    <Compile Include="ViewModels\CaixaFechamentoViewModel.cs" />
+    <Compile Include="ViewModels\CaixaHistoricoViewModel.cs" />
+    <Compile Include="ViewModels\CaixaItemViewModel.cs" />
+    <Compile Include="ViewModels\CaixaViewModel.cs" />
+    <Compile Include="ViewModels\CartaoRequisicaoViewModel.cs" />
+    <Compile Include="ViewModels\CartaoRespostaParcelaViewModel.cs" />
+    <Compile Include="ViewModels\CartaoRespostaViewModel.cs" />
+    <Compile Include="ViewModels\CartaoTipoOperacaoEnumView.cs" />
+    <Compile Include="ViewModels\CartaoTipoTransacaoEnumView.cs" />
+    <Compile Include="ViewModels\ClienteDeliveryViewModel.cs" />
+    <Compile Include="ViewModels\ClienteFichaViewModel.cs" />
+    <Compile Include="ViewModels\ConfiguracaoInicialViewModel.cs" />
+    <Compile Include="ViewModels\ConsultaCepViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryViewModel.cs" />
+    <Compile Include="ViewModels\DescontoViewResult.cs" />
+    <Compile Include="ViewModels\EmissorFiscalEnumView.cs" />
+    <Compile Include="ViewModels\EmpresaConfiguracaoViewModel.cs" />
+    <Compile Include="ViewModels\EmpresaViewModel.cs" />
+    <Compile Include="ViewModels\EntregadorViewModel.cs" />
+    <Compile Include="ViewModels\EspecieCartaoTipoEnumView.cs" />
+    <Compile Include="ViewModels\EspeciePagamentoViewModel.cs" />
+    <Compile Include="ViewModels\FabricaRelatorioTipoViewEnum.cs" />
+    <Compile Include="ViewModels\FabricaRelatorioViewModel.cs" />
+    <Compile Include="ViewModels\FichaViewModel.cs" />
+    <Compile Include="ViewModels\CaixaPagamentoViewModel.cs" />
+    <Compile Include="ViewModels\InicializacaoViewAux.cs" />
+    <Compile Include="ViewModels\ModeloFiscalEnumView.cs" />
+    <Compile Include="ViewModels\ModeloImpressoraFiscalEnumView.cs" />
+    <Compile Include="ViewModels\ModelParametrosServiceViewModel.cs" />
+    <Compile Include="ViewModels\NfceSituacaoViewModel.cs" />
+    <Compile Include="ViewModels\NFceViewModel.cs" />
+    <Compile Include="ViewModels\ProdutoTipoViewModel.cs" />
+    <Compile Include="ViewModels\ProdutoTributacaoViewModel.cs" />
+    <Compile Include="ViewModels\RetornoSatViewModel.cs" />
+    <Compile Include="ViewModels\SatConcentradorViewModel.cs" />
+    <Compile Include="ViewModels\SatOperacaoEnumView.cs" />
+    <Compile Include="ViewModels\SituacaoCadastroEnuView.cs" />
+    <Compile Include="ViewModels\TipoImpressaoViewEnum.cs" />
+    <Compile Include="ViewModels\UnidadeMedidaViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioViewModel.cs" />
+    <Compile Include="ViewModels\VendaViewModel.cs" />
+    <Compile Include="ViewModels\VendaFichaViewModel.cs" />
+    <Compile Include="ViewModels\ProdutoViewModel.cs" />
+    <Compile Include="ViewModels\ProdutoComplementoViewModel.cs" />
+    <Compile Include="ViewModels\ProdutoGrupoViewModel.cs" />
+    <Compile Include="ViewModels\ProdutoObservacaoViewModel.cs" />
+    <Compile Include="ViewModels\VendaComplementoViewModel.cs" />
+    <Compile Include="ViewModels\VendaItemViewModel.cs" />
+    <Compile Include="ViewModels\VendaMeioMeioViewModel.cs" />
+    <Compile Include="ViewModels\VendedorViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eticket.Domain\Eticket.Domain.csproj">
+      <Project>{d2d611ac-1032-4b54-afbf-e8bfa3c0c93a}</Project>
+      <Name>Eticket.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
