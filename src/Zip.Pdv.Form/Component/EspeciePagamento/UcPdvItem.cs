@@ -43,5 +43,12 @@ namespace Zip.Pdv.Component.EspeciePagamento
             lbValue.Text = vendaComplemento.Valor.ToString("C2");
             btnDeletar.Click += cClick;
         }
+        public void AdicionarComplemento(VendaItemViewModel vendaItem)
+        {
+            CaixaSource = vendaItem;
+            lbDisplay.Text = vendaItem.DescricaoProduto;
+            lbValue.Text = vendaItem.ValorUnitatio.ToString("C2");
+            btnDeletar.Click += cClick;
+        }
     }
 }

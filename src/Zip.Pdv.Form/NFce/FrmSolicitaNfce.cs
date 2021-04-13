@@ -14,6 +14,7 @@ namespace Zip.Pdv.NFce
         private readonly INfceServicoAppService _nfceServicoAppService;
         private readonly int _vendaId;
         private string _xStatus;
+        private DateTime _dateEnvio;
         private bool _cancelar;
         public FrmSolicitaNfce(int vendaId)
         {
@@ -70,6 +71,7 @@ namespace Zip.Pdv.NFce
             _xStatus = "NFCe enviada para o gerenciador.";
             backgroundWorker1.ReportProgress(Convert.ToInt32(2 * 100 / 4));
 
+            _dateEnvio = DateTime.Now;
             bool isOk = false;
             while (!isOk)
             {
@@ -86,11 +88,19 @@ namespace Zip.Pdv.NFce
                         }
                         
                     }
-
+                    
                     var situacao = _nfceServicoAppService.ConsultaSituacao(nfce.NumeroNfce, nfce.Serie, nfce.Modelo, Program.EmpresaView.Cnpj);
 
                     if (situacao == null)
-                        continue;
+                        if (_dateEnvio.AddMinutes(1) <= DateTime.Now)
+                            situacao = new Eticket.Application.ViewModels.NfceSituacaoViewModel()
+                            {
+                                CodigoSituacao = 8,
+                                DataSituacao = DateTime.Now,
+                                SituacaoNfe = "Tempo limite alcançado."
+                            };
+                        else
+                            continue;
 
                     _xStatus = $"NFCe {situacao.SituacaoNfe}";
                     backgroundWorker1.ReportProgress(Convert.ToInt32(3 * 100 / 4));
@@ -117,7 +127,7 @@ namespace Zip.Pdv.NFce
                 }
             }
 
-            _xStatus = $"Operação concluida.";
+            //_xStatus += $"Operação concluida";
             backgroundWorker1.ReportProgress(Convert.ToInt32(4 * 100 / 4));
 
             Thread.Sleep(1000);

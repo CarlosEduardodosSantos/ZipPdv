@@ -83,6 +83,12 @@
     <Compile Include="Component\CupomGrid\CupomItem.Designer.cs">
       <DependentUpon>CupomItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\CupomGrid\UcItemObservacao.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\CupomGrid\UcItemObservacao.designer.cs">
+      <DependentUpon>UcItemObservacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\EntregaGridView\EntregaGridView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -216,6 +222,30 @@
     <Compile Include="FormCaixaFechamento.Designer.cs">
       <DependentUpon>FormCaixaFechamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSolicitaTexto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSolicitaTexto.Designer.cs">
+      <DependentUpon>FormSolicitaTexto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSolicitaSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSolicitaSenha.Designer.cs">
+      <DependentUpon>FormSolicitaSenha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSugestao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSugestao.Designer.cs">
+      <DependentUpon>FormSugestao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormObservacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormObservacao.Designer.cs">
+      <DependentUpon>FormObservacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPdvDelivery.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +315,7 @@
     <Compile Include="Funcoes.cs" />
     <Compile Include="GetValueApp.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
+    <Compile Include="Helpers\TecladoVirtual.cs" />
     <Compile Include="Helpers\ValidacaoHelper.cs" />
     <Compile Include="Model\Balanca.cs" />
     <Compile Include="ModuloBalanca\FormLeituraBalanca.cs">
@@ -353,6 +384,9 @@
     <EmbeddedResource Include="Component\CupomGrid\CupomItem.resx">
       <DependentUpon>CupomItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Component\CupomGrid\UcItemObservacao.resx">
+      <DependentUpon>UcItemObservacao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Component\EntregaGridView\EntregaGridView.resx">
       <DependentUpon>EntregaGridView.cs</DependentUpon>
     </EmbeddedResource>
@@ -406,6 +440,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCaixaFechamento.resx">
       <DependentUpon>FormCaixaFechamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSolicitaTexto.resx">
+      <DependentUpon>FormSolicitaTexto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSolicitaSenha.resx">
+      <DependentUpon>FormSolicitaSenha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSugestao.resx">
+      <DependentUpon>FormSugestao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormObservacao.resx">
+      <DependentUpon>FormObservacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPdvDelivery.resx">
       <DependentUpon>FormPdvDelivery.cs</DependentUpon>
@@ -681,6 +727,8 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="LOGO_Z.ico" />
+    <None Include="Resources\logo-2021-nova-sombra220.png" />
+    <None Include="Resources\logoZip.jpeg" />
     <None Include="Resources\qrcode_48.png" />
     <None Include="Resources\fidelidade_48.png" />
     <None Include="Resources\add24.png" />

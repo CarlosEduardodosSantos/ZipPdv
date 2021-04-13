@@ -18,12 +18,14 @@ namespace Zip.Pdv.Component.EspeciePagamento
                 completedEvent(item, e);
             }
         }
+
         private Color _fixColor;
         public bool Selected { get; set; }
         public EspecieGridViewItem()
         {
             InitializeComponent();
             _fixColor = this.BackColor;
+
 
             lbEspecie.Click += selectItem;
             lbEspecie.MouseEnter += Item_MouseEnter;
@@ -32,12 +34,14 @@ namespace Zip.Pdv.Component.EspeciePagamento
 
         private void EspecieGridViewItem_Load(object sender, EventArgs e)
         {
-
+            
         }
 
+       
         public void AdicionarEspecie(EspeciePagamentoViewModel especiePagamento)
         {
             lbEspecie.Text = especiePagamento.Especie;
+            lbKey.Text = especiePagamento.KeyAtalho;
             Especie = especiePagamento;
         }
         private void Item_MouseEnter(object sender, EventArgs e)

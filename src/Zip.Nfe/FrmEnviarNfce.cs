@@ -98,7 +98,7 @@ namespace Zip.Nfe
                 label = "Assinando Documento XML";
                 bgwNFe.ReportProgress(Convert.ToInt32(1 * 100 / 4));
 
-                var nfe = GetNf(_numero, ModeloDocumento.NFCe, VersaoServico.ve400);
+                var nfe = GetNf(_numero, ModeloDocumento.NFCe, VersaoServico.Versao400);
 
                 nfe.Assina();
 
@@ -222,12 +222,12 @@ namespace Zip.Nfe
 
             infNFe.total = GetTotal(versao, infNFe.det);
 
-            if (infNFe.ide.mod == ModeloDocumento.NFe & (versao == VersaoServico.ve310 || versao == VersaoServico.ve400))
+            if (infNFe.ide.mod == ModeloDocumento.NFe & (versao == VersaoServico.Versao310 || versao == VersaoServico.Versao400))
                 infNFe.cobr = GetCobranca(infNFe.total.ICMSTot); //V3.00 e 4.00 Somente
-            if (infNFe.ide.mod == ModeloDocumento.NFCe || (infNFe.ide.mod == ModeloDocumento.NFe & versao == VersaoServico.ve400))
+            if (infNFe.ide.mod == ModeloDocumento.NFCe || (infNFe.ide.mod == ModeloDocumento.NFe & versao == VersaoServico.Versao400))
                 infNFe.pag = GetPagamento(infNFe.total.ICMSTot, versao); //NFCe Somente  
 
-            if (infNFe.ide.mod == ModeloDocumento.NFCe & versao != VersaoServico.ve400)
+            if (infNFe.ide.mod == ModeloDocumento.NFCe & versao != VersaoServico.Versao400)
                 infNFe.infAdic = new infAdic() { infCpl = "Troco: 10,00" }; //Susgestão para impressão do troco em NFCe
 
             return infNFe;
@@ -239,7 +239,8 @@ namespace Zip.Nfe
 
             var ide = new ide
             {
-                cUF = estado.SiglaParaEstado(_configuracoes.EnderecoEmitente.UF),
+                //cUF = estado.SiglaParaEstado(_configuracoes.EnderecoEmitente.UF),
+                cUF = _configuracoes.EnderecoEmitente.UF,
                 natOp = "VENDA",
                 mod = modelo,
                 serie = 1,
@@ -262,7 +263,7 @@ namespace Zip.Nfe
 
             #region V2.00
 
-            if (versao == VersaoServico.ve200)
+            if (versao == VersaoServico.Versao200)
             {
                 ide.dEmi = DateTime.Today; //Mude aqui para enviar a nfe vinculada ao EPEC, V2.00
                 ide.dSaiEnt = DateTime.Today;
@@ -272,9 +273,9 @@ namespace Zip.Nfe
 
             #region V3.00
 
-            if (versao == VersaoServico.ve200) return ide;
+            if (versao == VersaoServico.Versao200) return ide;
 
-            if (versao == VersaoServico.ve310)
+            if (versao == VersaoServico.Versao310)
             {
                 ide.indPag = IndicadorPagamento.ipVista;
             }
@@ -342,9 +343,9 @@ namespace Zip.Nfe
                 dest.enderDest = GetEnderecoDestinatario(); //Obrigatório para NFe e opcional para NFCe
             }
 
-            //if (versao == VersaoServico.ve200)
+            //if (versao == VersaoServico.Versao200)
             //    dest.IE = "ISENTO";
-            if (versao == VersaoServico.ve200) return dest;
+            if (versao == VersaoServico.Versao200) return dest;
 
             dest.indIEDest = indIEDest.NaoContribuinte; //NFCe: Tem que ser não contribuinte V3.00 Somente
             dest.email = "teste@gmail.com"; //V3.00 Somente
@@ -387,7 +388,7 @@ namespace Zip.Nfe
                         TipoICMS =
                             crt == CRT.SimplesNacional
                                 ? InformarCSOSN(Csosnicms.Csosn102)
-                                : InformarICMS(Csticms.Cst00, VersaoServico.ve310)
+                                : InformarICMS(Csticms.Cst00, VersaoServico.Versao310)
                     },
 
                     //ICMSUFDest = new ICMSUFDest()
@@ -486,7 +487,7 @@ namespace Zip.Nfe
                 vICMS = 0.20m,
                 motDesICMS = MotivoDesoneracaoIcms.MdiTaxi
             };
-            if (versao == VersaoServico.ve310)
+            if (versao == VersaoServico.Versao310)
                 icms20.vICMSDeson = 0.10m; //V3.00 ou maior Somente
 
             switch (CST)
@@ -600,10 +601,10 @@ namespace Zip.Nfe
                 vTotTrib = produtos.Sum(p => p.imposto.vTotTrib ?? 0),
             };
 
-            if (versao == VersaoServico.ve310 || versao == VersaoServico.ve400)
+            if (versao == VersaoServico.Versao310 || versao == VersaoServico.Versao400)
                 icmsTot.vICMSDeson = 0;
 
-            if (versao == VersaoServico.ve400)
+            if (versao == VersaoServico.Versao400)
             {
                 icmsTot.vFCPUFDest = 0;
                 icmsTot.vICMSUFDest = 0;
@@ -693,7 +694,7 @@ namespace Zip.Nfe
         {
             var valorPagto = (icmsTot.vNF / 2).Arredondar(2);
 
-            if (versao != VersaoServico.ve400) // difernte de versão 4 retorna isso
+            if (versao != VersaoServico.Versao400) // difernte de versão 4 retorna isso
             {
                 var p = new List<pag>
                 {

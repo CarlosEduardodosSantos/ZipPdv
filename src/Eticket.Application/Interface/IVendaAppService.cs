@@ -16,5 +16,6 @@ namespace Eticket.Application.Interface
         IEnumerable<VendaViewModel> ObterNroSat(string nroSat);
         int ObterVendaId();
         bool GeraImpressaoFechamento(int vendaId, int tipoOperacao);
+        bool GeraImpressaoItens(int vendaId, int tipoOperacao);
     }
 }

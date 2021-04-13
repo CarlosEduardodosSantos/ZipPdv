@@ -39,5 +39,10 @@ namespace Zip.Pdv.Page
         {
 
         }
+
+        private void btnVendaAdministracao_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1294,6 +1294,7 @@
             this.btnDelivery.Size = new System.Drawing.Size(44, 36);
             this.btnDelivery.TabIndex = 1;
             this.btnDelivery.UseVisualStyleBackColor = true;
+            this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
             // 
             // label2
             // 

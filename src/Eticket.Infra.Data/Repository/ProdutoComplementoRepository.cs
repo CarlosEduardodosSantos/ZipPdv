@@ -14,7 +14,7 @@ namespace Eticket.Infra.Data.Repository
             {
                 var sql = "Select inc_compto as ComplementoId," +
                           "des_ as Descricao," +
-                          "GRUPO_PROD as GrupoId," +
+                          "PDVGRUPO as GrupoId," +
                           "Valor " +
                           "From Complemento Where inc_compto = @id";
 
@@ -32,9 +32,9 @@ namespace Eticket.Infra.Data.Repository
             {
                 var sql = "Select inc_compto as ComplementoId," +
                           "des_ as Descricao," +
-                          "GRUPO_PROD as GrupoId," +
+                          "PDVGRUPO as GrupoId," +
                           "Valor " +
-                          "From Complemento Where GRUPO_PROD = @grupoId";
+                          "From Complemento Where PDVGRUPO = @grupoId";
 
                 cn.Open();
                 var complementos = cn.Query<ProdutoComplemento>(sql, new { grupoId });

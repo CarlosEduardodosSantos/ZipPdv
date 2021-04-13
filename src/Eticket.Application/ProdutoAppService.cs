@@ -57,5 +57,17 @@ namespace Eticket.Application
             _produtoRepository.Dispose();
 
         }
+
+        public IEnumerable<ProdutoObservacaoViewModel> ObterProdutoObservacao(int grupoId)
+        {
+            return TypeAdapter.Adapt<IEnumerable<ProdutoObservacao>, IEnumerable<ProdutoObservacaoViewModel>>(_produtoRepository
+                .ObterProdutoObservacao(grupoId));
+
+        }
+
+        public IEnumerable<ProdutoViewModel> GetSugestaoByGrupoId(int grupoId)
+        {
+            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.GetSugestaoByGrupoId(grupoId));
+        }
     }
 }

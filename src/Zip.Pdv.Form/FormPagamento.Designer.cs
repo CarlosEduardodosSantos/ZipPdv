@@ -490,9 +490,10 @@
             // 
             // lbTroco
             // 
+            this.lbTroco.BackColor = System.Drawing.Color.Snow;
             this.lbTroco.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTroco.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTroco.ForeColor = System.Drawing.Color.Red;
+            this.lbTroco.ForeColor = System.Drawing.Color.Black;
             this.lbTroco.Location = new System.Drawing.Point(0, 0);
             this.lbTroco.Name = "lbTroco";
             this.lbTroco.Size = new System.Drawing.Size(130, 27);
@@ -511,7 +512,7 @@
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.BackColor = System.Drawing.Color.Snow;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -702,6 +703,7 @@
             0,
             0,
             0});
+            this.txtValor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValor_KeyDown);
             // 
             // flowLayoutPanel1
             // 
@@ -884,6 +886,7 @@
             this.ClientSize = new System.Drawing.Size(707, 580);
             this.Controls.Add(this.panelFundo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormPagamento";
@@ -893,6 +896,7 @@
             this.Text = "Pagamento";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPagamento_FormClosing);
             this.Load += new System.EventHandler(this.FormPagamento_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormPagamento_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelHistorico.ResumeLayout(false);
             this.panel6.ResumeLayout(false);

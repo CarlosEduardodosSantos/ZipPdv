@@ -24,7 +24,7 @@ namespace Eticket.Infra.Data.Repository
                           "From Prod  left Join  pdvGrupoItens On  CodProduto = Prod.Codigo  Where Prod.Codigo = @id";
 
                 cn.Open();
-                var produto = cn.Query<Produto>(sql, new {id}).FirstOrDefault();
+                var produto = cn.Query<Produto>(sql, new { id }).FirstOrDefault();
                 cn.Close();
 
                 return produto;
@@ -147,7 +147,7 @@ namespace Eticket.Infra.Data.Repository
             using (var conn = Connection)
             {
                 conn.Open();
-                var image = conn.Query<string>(sql, new {produtoId}).FirstOrDefault();
+                var image = conn.Query<string>(sql, new { produtoId }).FirstOrDefault();
                 conn.Close();
 
                 return image;
@@ -178,6 +178,41 @@ namespace Eticket.Infra.Data.Repository
                 conn.Close();
 
                 return tributacao;
+            }
+        }
+
+        public IEnumerable<ProdutoObservacao> ObterProdutoObservacao(int grupoId)
+        {
+            var sql = "select IdObs as ObservacaoId, Observacao as Descricao, Sequencia as Ranking from pdvObservacao Where pdvGrupo = @grupoId Order By sequencia";
+            using (var conn = Connection)
+            {
+                conn.Open();
+                var observacoes = conn.Query<ProdutoObservacao>(sql, new { grupoId });
+                conn.Close();
+
+                return observacoes;
+            }
+        }
+
+        public IEnumerable<Produto> GetSugestaoByGrupoId(int grupoId)
+        {
+            using (var cn = Connection)
+            {
+                var sql = "Select Prod.Codigo as ProdutoId, " +
+                          " Prod.Tipo as ProdutoTipo, " +
+                          " pdvGrupoSugestoes.idPdvGrupo as GrupoId, " +
+                          " Prod.Unidade, " +
+                          " Prod.DES_ as Descricao, " +
+                          " Prod.VLVENDA as ValorVenda, " +
+                          " Prod.VLCUSTO as ValorCusto, " +
+                          " Prod.USABALANCA as ParaBalanca " +
+                          "From pdvGrupoSugestoes Inner Join Prod On  CodProduto = Prod.Codigo  Where idPdvGrupo = @grupoId";
+
+                cn.Open();
+                var produto = cn.Query<Produto>(sql, new { grupoId });
+                cn.Close();
+
+                return produto;
             }
         }
     }

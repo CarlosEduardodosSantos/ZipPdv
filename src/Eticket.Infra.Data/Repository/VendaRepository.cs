@@ -23,11 +23,11 @@ namespace Eticket.Infra.Data.Repository
         public void Adicionar(Venda venda)
         {
             var sql = new StringBuilder();
-            sql.AppendLine("Insert Into Venda_1(NRO, DATA, TIPO, VEND, HORA, COD_CLI, LOJA, VL_COMPRA, pgto, nrocx, pdv, xTELE, xFrete, cpfcnpj, TipoPagamento)");
-            sql.AppendLine("Values(@NRO, @DATA, @TIPO, @VEND, @HORA, @COD_CLI, @LOJA, @VL_COMPRA, @pgto, @nrocx, @pdv, @xTELE, @xFrete, @cpfcnpj, @TipoPagamento)");
+            sql.AppendLine("Insert Into Venda_1(NRO, DATA, TIPO, VEND, HORA, COD_CLI, LOJA, VL_COMPRA, pgto, nrocx, pdv, xTELE, xFrete, cpfcnpj, TipoPagamento, Senha)");
+            sql.AppendLine("Values(@NRO, @DATA, @TIPO, @VEND, @HORA, @COD_CLI, @LOJA, @VL_COMPRA, @pgto, @nrocx, @pdv, @xTELE, @xFrete, @cpfcnpj, @TipoPagamento, @Senha)");
 
             var parms = new DynamicParameters();
-            
+
             parms.Add("@NRO", venda.VendaId);
             parms.Add("@DATA", venda.DataHora.Date);
             parms.Add("@TIPO", venda.Tipo);
@@ -35,7 +35,7 @@ namespace Eticket.Infra.Data.Repository
             parms.Add("@HORA", venda.DataHora.ToString("HH:mm"));
             parms.Add("@COD_CLI", venda.ClienteId);
             parms.Add("@LOJA", venda.Loja);
-            parms.Add("@VL_COMPRA", venda.VendaItens.Sum(t=> t.ValorTotal));
+            parms.Add("@VL_COMPRA", venda.VendaItens.Sum(t => t.ValorTotal));
             parms.Add("@pgto", venda.DataHora);
             parms.Add("@nrocx", venda.CaixaId);
             parms.Add("@pdv", venda.Pdv);
@@ -43,7 +43,8 @@ namespace Eticket.Infra.Data.Repository
             parms.Add("@xFrete", 1);
             parms.Add("@cpfcnpj", venda.Cnpj);
             parms.Add("@TipoPagamento", venda.TipoPagamento);
-            
+            parms.Add("@Senha", ObterSenha());
+
 
             using (var conn = Connection)
             {
@@ -98,7 +99,7 @@ namespace Eticket.Infra.Data.Repository
                             kad_op = "V",
                             kad_nroop = venda.VendaId,
                             kad_prod = vendaVendaItens.ProdutoId,
-                            kad_qtde = (-1)*vendaVendaItens.Quantidade,
+                            kad_qtde = (-1) * vendaVendaItens.Quantidade,
                             kad_obs = "VENDA",
                             quantidade = vendaVendaItens.Quantidade
                         });
@@ -118,6 +119,7 @@ namespace Eticket.Infra.Data.Repository
 
                         conn.Query(sqlCOmplemento.ToString(), complementoParms);
                     }
+
                 }
 
 
@@ -210,7 +212,7 @@ namespace Eticket.Infra.Data.Repository
             using (var conn = Connection)
             {
                 conn.Open();
-                conn.Query(sql.ToString(), new {vendaId = venda.VendaId});
+                conn.Query(sql.ToString(), new { vendaId = venda.VendaId });
 
                 foreach (var vendaVendaIten in venda.VendaItens)
                 {
@@ -363,7 +365,7 @@ namespace Eticket.Infra.Data.Repository
 
                 var identityMap = new Dictionary<int, Venda>();
 
-                var vendas = conn.Query<Venda, VendaItem, Delivery, ClienteDelivery, Venda >(sql,
+                var vendas = conn.Query<Venda, VendaItem, Delivery, ClienteDelivery, Venda>(sql,
                     (v1, v2, d1, d2) =>
                     {
                         Venda master;
@@ -488,7 +490,7 @@ namespace Eticket.Infra.Data.Repository
 
                 conn.Close();
 
-                return vendas.Where(t=> string.IsNullOrEmpty(t.CupomFiscal));
+                return vendas.Where(t => string.IsNullOrEmpty(t.CupomFiscal));
             }
         }
 
@@ -677,11 +679,11 @@ namespace Eticket.Infra.Data.Repository
                         }
                         list.Add(v2);
 
-                        master.Delivery = d1?? new Delivery();
+                        master.Delivery = d1 ?? new Delivery();
                         master.Delivery.ClienteDelivery = d2 ?? new ClienteDelivery();
 
                         return master;
-                    }, new { dataInicio, dataFinal },  splitOn: "VendaId, VendaItemId, DeliveryId, ClienteDeliveryId").Distinct();
+                    }, new { dataInicio, dataFinal }, splitOn: "VendaId, VendaItemId, DeliveryId, ClienteDeliveryId").Distinct();
 
                 conn.Close();
 
@@ -710,6 +712,35 @@ namespace Eticket.Infra.Data.Repository
 
             }
 
+        }
+
+        private int ObterSenha()
+        {
+            var sql = "select valor from configuracoes where variavel like 'senha'";
+
+            using (var conn = Connection)
+            {
+                try
+                {
+                    conn.Open();
+                    var senha = conn.Query<int>(sql).FirstOrDefault();
+
+                    senha += 1;
+
+                    //Incrementa valor
+                    conn.Execute("Update configuracoes Set valor = @novaSenha where variavel like 'senha'", new { novaSenha = senha });
+                    
+                    conn.Close();
+
+
+                    return senha;
+
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
         }
     }
 }

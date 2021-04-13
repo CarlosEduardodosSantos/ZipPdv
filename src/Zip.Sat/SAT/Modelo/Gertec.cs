@@ -13,20 +13,48 @@ namespace SAT.Modelo
         public static extern IntPtr AtivarSAT(int numeroSessao, int subComando, string codigoDeAtivacao, string CNPJ, int cUF);
 
         [DllImport("GERSAT.dll", EntryPoint = "ComunicarCertificadoICPBRASIL", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ComunicarCertificadoICPBRASIL(int numeroSessao, string codigoDeAtivacao, string certificado);        [DllImport("GERSAT.dll", EntryPoint = "EnviarDadosVenda", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr EnviarDadosVenda(int numeroSessao, string codigoDeAtivacao, string dadosVenda);        [DllImport("GERSAT.dll", EntryPoint = "CancelarUltimaVenda", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr CancelarUltimaVenda(int numeroSessao, string codigoDeAtivacao, string chave, string dadosCancelamento);        [DllImport("GERSAT.dll", EntryPoint = "ConsultarSAT", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ConsultarSAT(int numeroSessao);        [DllImport("GERSAT.dll", EntryPoint = "TesteFimAFim", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr TesteFimAFim(int numeroSessao, string codigoDeAtivacao, string dadosVenda);        [DllImport("GERSAT.dll", EntryPoint = "ConsultarStatusOperacional", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr ConsultarStatusOperacional(int numeroSessao, string codigoDeAtivacao);        [DllImport("GERSAT.dll", EntryPoint = "ConsultarNumeroSessao", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ConsultarNumeroSessao(int numeroSessao, string codigoDeAtivacao, int cNumeroDeSessao);        [DllImport("GERSAT.dll", EntryPoint = "ConfigurarInterfaceDeRede", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ConfigurarInterfaceDeRede(int numeroSessao, string codigoDeAtivacao, string dadosConfiguracao);        [DllImport("GERSAT.dll", EntryPoint = "AssociarAssinatura", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr AssociarAssinatura(int numeroSessao, string codigoDeAtivacao, string CNPJvalue, string assinaturaCNPJs);        [DllImport("GERSAT.dll", EntryPoint = "ExtrairLogs", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ExtrairLogs(int numeroSessao, string codigoDeAtivacao);        [DllImport("GERSAT.dll", EntryPoint = " BloquearSAT", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr BloquearSAT(int numeroSessao, string codigoDeAtivacao);        [DllImport("GERSAT.dll", EntryPoint = "DesbloquearSAT", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr DesbloquearSAT(int numeroSessao, string codigoDeAtivacao);        [DllImport("GERSAT.dll", EntryPoint = "TrocarCodigoDeAtivacao", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr TrocarCodigoDeAtivacao(int numeroSessao, string codigoDeAtivacao, int opcao, string novoCodigo, string confNovoCodigo);        [DllImport("GERSAT.dll", EntryPoint = "AtualizarSoftwareSAT", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr AtualizarSoftwareSAT(int numeroSessao, string codigoDeAtivacao);        [DllImport("GERSAT.dll", EntryPoint = "VersaoDllGerSAT", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr ComunicarCertificadoICPBRASIL(int numeroSessao, string codigoDeAtivacao, string certificado);
+
+        [DllImport("GERSAT.dll", EntryPoint = "EnviarDadosVenda", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr EnviarDadosVenda(int numeroSessao, string codigoDeAtivacao, string dadosVenda);
+
+        [DllImport("GERSAT.dll", EntryPoint = "CancelarUltimaVenda", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr CancelarUltimaVenda(int numeroSessao, string codigoDeAtivacao, string chave, string dadosCancelamento);
+
+        [DllImport("GERSAT.dll", EntryPoint = "ConsultarSAT", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr ConsultarSAT(int numeroSessao);
+
+        [DllImport("GERSAT.dll", EntryPoint = "TesteFimAFim", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr TesteFimAFim(int numeroSessao, string codigoDeAtivacao, string dadosVenda);
+
+        [DllImport("GERSAT.dll", EntryPoint = "ConsultarStatusOperacional", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr ConsultarStatusOperacional(int numeroSessao, string codigoDeAtivacao);
+
+        [DllImport("GERSAT.dll", EntryPoint = "ConsultarNumeroSessao", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr ConsultarNumeroSessao(int numeroSessao, string codigoDeAtivacao, int cNumeroDeSessao);
+
+        [DllImport("GERSAT.dll", EntryPoint = "ConfigurarInterfaceDeRede", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr ConfigurarInterfaceDeRede(int numeroSessao, string codigoDeAtivacao, string dadosConfiguracao);
+
+        [DllImport("GERSAT.dll", EntryPoint = "AssociarAssinatura", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr AssociarAssinatura(int numeroSessao, string codigoDeAtivacao, string CNPJvalue, string assinaturaCNPJs);
+
+        [DllImport("GERSAT.dll", EntryPoint = "ExtrairLogs", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr ExtrairLogs(int numeroSessao, string codigoDeAtivacao);
+
+        [DllImport("GERSAT.dll", EntryPoint = " BloquearSAT", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr BloquearSAT(int numeroSessao, string codigoDeAtivacao);
+
+        [DllImport("GERSAT.dll", EntryPoint = "DesbloquearSAT", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr DesbloquearSAT(int numeroSessao, string codigoDeAtivacao);
+
+        [DllImport("GERSAT.dll", EntryPoint = "TrocarCodigoDeAtivacao", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr TrocarCodigoDeAtivacao(int numeroSessao, string codigoDeAtivacao, int opcao, string novoCodigo, string confNovoCodigo);
+
+        [DllImport("GERSAT.dll", EntryPoint = "AtualizarSoftwareSAT", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr AtualizarSoftwareSAT(int numeroSessao, string codigoDeAtivacao);
+
+        [DllImport("GERSAT.dll", EntryPoint = "VersaoDllGerSAT", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr VersaoDllGerSAT();
 
         #endregion

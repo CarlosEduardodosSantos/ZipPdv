@@ -34,7 +34,8 @@ namespace Zip.Pdv
             //splitBtnConfigure.AddDropDownItemAndHandle("Configurações", btnConfiguracao_Click);
 
             OpenMenu();
-
+            if (Program.InicializacaoViewAux.ModoPdv)
+                OpenPdv();
         }
 
         private void btnCaixaMovimentacao_Click(object sender, EventArgs e)
@@ -100,12 +101,28 @@ namespace Zip.Pdv
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            if (panelPages.Controls.Contains(FormPdv.Instance))
+            {
+                if (FormPdv.Instance.VendaView.VendaItens.Count > 0)
+                {
+                    TouchMessageBox.Show("Exite uma venda em andamento!\nFinalize a venda para sair do sistema.", "Operação proibida", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
             Close();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            OpenMenu();
+            if (!Program.InicializacaoViewAux.ModoPdv)
+                OpenMenu();
+            else
+            {
+                TouchMessageBox.Show("Função desabilitada para esse PDV.\nConsulte o administrador.",
+                    "PDV", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void OpenMenu()
@@ -132,7 +149,7 @@ namespace Zip.Pdv
 
         private void Instance_SelectItem(object sender, EventArgs e)
         {
-            var evento = (Button) sender;
+            var evento = (Button)sender;
 
             if (evento.Tag == "FormPdv")
             {
@@ -144,7 +161,7 @@ namespace Zip.Pdv
                 OpePage(page);
             }
 
-            
+
         }
 
         private void OpenPdv()
@@ -191,6 +208,17 @@ namespace Zip.Pdv
         {
             var page = new PageDelivery();
             OpePage(page);
+        }
+
+        private void lbUsuarioNome_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Program.IsFrete = !Program.IsFrete;
+            lbUsuarioNome.ForeColor = Program.IsFrete ? Color.Black : Color.Red;
+        }
+
+        public static void IsFrete()
+        {
+            
         }
     }
 }

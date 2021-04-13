@@ -24,6 +24,7 @@ namespace Eticket.Domain.Entity
         public List<VendaItem> VendaItens { get; set; }
         public Delivery Delivery { get; set; }
         public bool IsDelivery { get; set; }
+        public string ClientePendencia { get; set; }
 
     }
 }

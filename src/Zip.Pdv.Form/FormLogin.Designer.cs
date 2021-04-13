@@ -125,8 +125,9 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::Zip.Pdv.Properties.Resources.LOGO_ORIGINAL_220;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(247)))));
+            this.panel1.BackgroundImage = global::Zip.Pdv.Properties.Resources.logoZip;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";

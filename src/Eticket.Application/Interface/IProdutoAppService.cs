@@ -13,5 +13,7 @@ namespace Eticket.Application.Interface
         IEnumerable<ProdutoViewModel> ObterPorNome(string nome);
         string ObterImageProdutoId(int produtoId);
         ProdutoTributacaoViewModel ObterTributacaoPorProdutoId(int produtoId);
+        IEnumerable<ProdutoObservacaoViewModel>  ObterProdutoObservacao(int grupoId);
+        IEnumerable<ProdutoViewModel> GetSugestaoByGrupoId(int grupoId);
     }
 }

@@ -73,5 +73,10 @@ namespace Eticket.Application
         {
             return _vendaRepository.GeraImpressaoFechamento(vendaId, tipoOperacao);
         }
+
+        public bool GeraImpressaoItens(int vendaId, int tipoOperacao)
+        {
+            return _vendaRepository.GeraImpressaoItens(vendaId, tipoOperacao);
+        }
     }
 }

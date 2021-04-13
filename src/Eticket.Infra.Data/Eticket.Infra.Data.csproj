@@ -54,6 +54,7 @@
     <Compile Include="Repository\CartaoRequisicaoRepository.cs" />
     <Compile Include="Repository\CartaoRespostaRepository.cs" />
     <Compile Include="Repository\ClienteDeliveryRepository.cs" />
+    <Compile Include="Repository\ConfiguracaoSistemaRepository.cs" />
     <Compile Include="Repository\DeliveryRepository.cs" />
     <Compile Include="Repository\EmpresaRepository.cs" />
     <Compile Include="Repository\EntregadorRepository.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Repository\ProdutoGrupoRepository.cs" />
     <Compile Include="Repository\ProdutoRepository.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Repository\VendaPendenteRepository.cs" />
     <Compile Include="Repository\VendaRepository.cs" />
     <Compile Include="Repository\VendedorRepository.cs" />
   </ItemGroup>

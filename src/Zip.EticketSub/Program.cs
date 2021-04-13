@@ -57,7 +57,8 @@ namespace Zip.EticketSub
                             ValorFrete = 8,
                             DescontoMaximo = 5,
                             CedenteId = 4,
-                            EspeciePagamentoDinheiroId = 1
+                            EspeciePagamentoDinheiroId = 1,
+                            ModoPdv = true
                         };
 
                         validacaoChk();

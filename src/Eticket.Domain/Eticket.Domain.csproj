@@ -49,6 +49,7 @@
     <Compile Include="Entity\CartaoResposta.cs" />
     <Compile Include="Entity\ClienteDelivery.cs" />
     <Compile Include="Entity\ClienteFicha.cs" />
+    <Compile Include="Entity\ConfiguracaoSistema.cs" />
     <Compile Include="Entity\Delivery.cs" />
     <Compile Include="Entity\Empresa.cs" />
     <Compile Include="Entity\Entregador.cs" />
@@ -79,12 +80,14 @@
     <Compile Include="Interface\Repository\ICartaoRequisicaoRepository.cs" />
     <Compile Include="Interface\Repository\ICartaoRespostaRepository.cs" />
     <Compile Include="Interface\Repository\IClienteDeliveryRepository.cs" />
+    <Compile Include="Interface\Repository\IConfiguracaoSistemaRepository.cs" />
     <Compile Include="Interface\Repository\IDeliveryRepository.cs" />
     <Compile Include="Interface\Repository\IEmpresaRepository.cs" />
     <Compile Include="Interface\Repository\IEntregadorRepository.cs" />
     <Compile Include="Interface\Repository\IFabricaRelatorioRepository.cs" />
     <Compile Include="Interface\Repository\INfceServicoRepository.cs" />
     <Compile Include="Interface\Repository\IRetornoSatRepository.cs" />
+    <Compile Include="Interface\Repository\IVendaPendenteRepository.cs" />
     <Compile Include="Interface\Repository\IVendaRepository.cs" />
     <Compile Include="Interface\Repository\ICaixaRepository.cs" />
     <Compile Include="Interface\Repository\IEspeciePagamentoRepository.cs" />

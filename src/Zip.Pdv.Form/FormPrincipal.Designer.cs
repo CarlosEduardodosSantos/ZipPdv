@@ -38,26 +38,26 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel25 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel29 = new System.Windows.Forms.Panel();
-            this.splitBtnConfigure = new Zip.Pdv.Component.SplitButton();
             this.panel30 = new System.Windows.Forms.Panel();
             this.splitBtnIfood = new Zip.Pdv.Component.SplitButton();
+            this.panel29 = new System.Windows.Forms.Panel();
+            this.splitBtnConfigure = new Zip.Pdv.Component.SplitButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDelivery = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel28 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnVoltar = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnDelivery = new System.Windows.Forms.Button();
             this.panel26.SuspendLayout();
             this.panel25.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            this.panel29.SuspendLayout();
             this.panel30.SuspendLayout();
+            this.panel29.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel28.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel26
@@ -103,6 +103,7 @@
             this.lbUsuarioNome.Size = new System.Drawing.Size(186, 25);
             this.lbUsuarioNome.TabIndex = 0;
             this.lbUsuarioNome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbUsuarioNome.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbUsuarioNome_MouseDoubleClick);
             // 
             // panelPages
             // 
@@ -150,29 +151,6 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(205, 61);
             this.tableLayoutPanel7.TabIndex = 2;
             // 
-            // panel29
-            // 
-            this.panel29.Controls.Add(this.splitBtnConfigure);
-            this.panel29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel29.Location = new System.Drawing.Point(139, 3);
-            this.panel29.Name = "panel29";
-            this.panel29.Size = new System.Drawing.Size(63, 55);
-            this.panel29.TabIndex = 1;
-            // 
-            // splitBtnConfigure
-            // 
-            this.splitBtnConfigure.BackgroundImage = global::Zip.Pdv.Properties.Resources.Configure_32;
-            this.splitBtnConfigure.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.splitBtnConfigure.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitBtnConfigure.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.splitBtnConfigure.ImageKey = "Normal";
-            this.splitBtnConfigure.Location = new System.Drawing.Point(0, 0);
-            this.splitBtnConfigure.Name = "splitBtnConfigure";
-            this.splitBtnConfigure.Size = new System.Drawing.Size(63, 55);
-            this.splitBtnConfigure.TabIndex = 0;
-            this.splitBtnConfigure.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.splitBtnConfigure.UseVisualStyleBackColor = true;
-            // 
             // panel30
             // 
             this.panel30.Controls.Add(this.splitBtnIfood);
@@ -198,6 +176,51 @@
             this.splitBtnIfood.Text = "10";
             this.splitBtnIfood.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.splitBtnIfood.UseVisualStyleBackColor = true;
+            this.splitBtnIfood.Visible = false;
+            // 
+            // panel29
+            // 
+            this.panel29.Controls.Add(this.splitBtnConfigure);
+            this.panel29.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel29.Location = new System.Drawing.Point(139, 3);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(63, 55);
+            this.panel29.TabIndex = 1;
+            // 
+            // splitBtnConfigure
+            // 
+            this.splitBtnConfigure.BackgroundImage = global::Zip.Pdv.Properties.Resources.Configure_32;
+            this.splitBtnConfigure.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.splitBtnConfigure.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitBtnConfigure.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.splitBtnConfigure.ImageKey = "Normal";
+            this.splitBtnConfigure.Location = new System.Drawing.Point(0, 0);
+            this.splitBtnConfigure.Name = "splitBtnConfigure";
+            this.splitBtnConfigure.Size = new System.Drawing.Size(63, 55);
+            this.splitBtnConfigure.TabIndex = 0;
+            this.splitBtnConfigure.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.splitBtnConfigure.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnDelivery);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(71, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(62, 55);
+            this.panel1.TabIndex = 2;
+            // 
+            // btnDelivery
+            // 
+            this.btnDelivery.BackgroundImage = global::Zip.Pdv.Properties.Resources.delivery_48;
+            this.btnDelivery.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDelivery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDelivery.Location = new System.Drawing.Point(0, 0);
+            this.btnDelivery.Name = "btnDelivery";
+            this.btnDelivery.Size = new System.Drawing.Size(62, 55);
+            this.btnDelivery.TabIndex = 0;
+            this.btnDelivery.UseVisualStyleBackColor = true;
+            this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -246,11 +269,11 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = global::Zip.Pdv.Properties.Resources.LOGO_ORIGINAL_220;
+            this.pictureBox1.BackgroundImage = global::Zip.Pdv.Properties.Resources.logo_2021_nova_sombra220;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(354, 1);
+            this.pictureBox1.Location = new System.Drawing.Point(400, 1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(271, 59);
+            this.pictureBox1.Size = new System.Drawing.Size(196, 59);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -270,27 +293,6 @@
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Visible = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnDelivery);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(71, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(62, 55);
-            this.panel1.TabIndex = 2;
-            // 
-            // btnDelivery
-            // 
-            this.btnDelivery.BackgroundImage = global::Zip.Pdv.Properties.Resources.delivery_48;
-            this.btnDelivery.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDelivery.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDelivery.Location = new System.Drawing.Point(0, 0);
-            this.btnDelivery.Name = "btnDelivery";
-            this.btnDelivery.Size = new System.Drawing.Size(62, 55);
-            this.btnDelivery.TabIndex = 0;
-            this.btnDelivery.UseVisualStyleBackColor = true;
-            this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
             // 
             // FormPrincipal
             // 
@@ -312,12 +314,12 @@
             this.panel26.ResumeLayout(false);
             this.panel25.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
-            this.panel29.ResumeLayout(false);
             this.panel30.ResumeLayout(false);
+            this.panel29.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.panel28.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -17,6 +17,7 @@ namespace Zip.Pdv
         public List<CaixaPagamentoViewModel> Pagamentos;
         public CaixaItemViewModel CaixaItemView;
         private EspeciePagamentoViewModel _especiePagamento;
+        private List<EspeciePagamentoViewModel> _especies;
         public FormPagamento(decimal valorReceber)
         {
             InitializeComponent();
@@ -41,16 +42,32 @@ namespace Zip.Pdv
             
             using (var especieAppService = Program.Container.GetInstance<IEspeciePagamentoAppService>())
             {
-                var especies = especieAppService.ObterTodos();
+                _especies = especieAppService.ObterTodos().ToList();
                 flayoutGrupo.Controls.Clear();
-                foreach (var especiePagamentoViewModel in especies)
+                foreach (var especiePagamentoViewModel in _especies)
                 {
                     var btnEspecie = new EspecieGridViewItem();
+                    btnEspecie.Name = especiePagamentoViewModel.EspeciePagamentoId.ToString();
                     btnEspecie.AdicionarEspecie(especiePagamentoViewModel);
                     btnEspecie.SelectItem += xButton1_Click;
                     btnEspecie.Width = 131;
                     flayoutGrupo.Controls.Add(btnEspecie);
                 }
+            }
+        }
+
+        private void BtnEspecie_SelectKeyDown(object sender, KeyEventArgs e)
+        {
+            var btnPgto = (EspecieGridViewItem)sender;
+            var atalho = btnPgto.Especie.KeyAtalho;
+
+            if (string.IsNullOrEmpty(atalho)) return;
+
+            Keys key = (Keys)Enum.Parse(typeof(Keys), atalho, true);
+
+            if (e.KeyCode == key)
+            {
+                xButton1_Click(btnPgto.Especie, new EventArgs());
             }
         }
 
@@ -284,6 +301,26 @@ namespace Zip.Pdv
             TouchMessageBox.Show("Existe pagamento(s) TEF autorizado!\nÉ necessário efetuar o cancelamento.", "Pagamento", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
             e.Cancel = true;
+        }
+
+        private void FormPagamento_KeyDown(object sender, KeyEventArgs e)
+        {
+            var key = e.KeyCode.ToString();
+            var especie = _especies.Where(t => t.KeyAtalho == key).FirstOrDefault();
+            if (especie == null) return;
+
+
+            var btnEspecie = flayoutGrupo.Controls.Find(especie.EspeciePagamentoId.ToString(), true).FirstOrDefault();
+
+
+            xButton1_Click(btnEspecie, new EventArgs());
+        }
+
+        private void txtValor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+
+            btnLancarPgamento.PerformClick();
         }
     }
 }

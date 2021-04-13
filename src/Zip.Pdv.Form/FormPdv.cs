@@ -40,7 +40,7 @@ namespace Zip.Pdv
         public FormPdv()
         {
             InitializeComponent();
-            
+
             //CheckForIllegalCrossThreadCalls = false;
 
             _produtoAppService = Program.Container.GetInstance<IProdutoAppService>();
@@ -53,7 +53,8 @@ namespace Zip.Pdv
         {
             cupomGridView1.TaskItem += CupomGridView1_TaskItem;
             btnDesconto.Enabled = Program.InicializacaoViewAux.DescontoMaximo > 0;
-            txtPesquisaProduto.Select();
+            //txtPesquisaProduto.Select();
+            IniciaVenda();
         }
 
         private void ScannerListener_BarCodeScanned(object sender, BarcodeScannedEventArgs e)
@@ -118,21 +119,22 @@ namespace Zip.Pdv
         }
         private void CupomGridView1_TaskItem(object sender, EventArgs e)
         {
-            if (VerificaPermissaoExclusao()) return;
+            if (!VerificaPermissaoExclusao()) return;
 
-            var gridItem = (CupomItem) sender;
+            var gridItem = (CupomItem)sender;
             VendaView.VendaItens.RemoveAt(gridItem.Index);
 
             cupomGridView1.Atualizar(VendaView.VendaItens);
 
+            TotalizaCupom();
         }
 
         private void GrupoPaginacao(int page)
         {
-            btnNext.Enabled = false;
-            btnPrevious.Enabled = false;
+            //btnNext.Enabled = false;
+            //btnPrevious.Enabled = false;
 
-            int itens = (flayoutGrupo.Width) / 155 *2;
+            int itens = (flayoutGrupo.Width) / 130 * 2;
 
             var skip = itens * (page - 1);
 
@@ -148,17 +150,25 @@ namespace Zip.Pdv
                 foreach (var t in gruposPadding)
                 {
                     var btnGrupo = new GrupoGridViewItem();
-                    btnGrupo.BackColor = ColorHelper.ObterColor();
+                    btnGrupo.BackColor = string.IsNullOrEmpty(t.GrupoCor) ? ColorHelper.ObterColor() : StringToColor(t.GrupoCor);
                     btnGrupo.ColorText = ColorHelper.ObterColorFonte(btnGrupo.BackColor);
                     btnGrupo.AdiconaDataSource(t);
                     btnGrupo.SelectItem += BtnGrupo_Click;
 
                     flayoutGrupo.Controls.Add(btnGrupo);
                 }
+                flayoutGrupo.Refresh();
             }
             else
                 TouchMessageBox.Show("Grupo do PDV não cadastrado.", "E-Ticket", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+        }
+
+        public static Color StringToColor(string colorStr)
+        {
+            TypeConverter cc = TypeDescriptor.GetConverter(typeof(Color));
+            var result = (Color)cc.ConvertFromString(colorStr);
+            return result;
         }
 
         private void CarregaGrupos()
@@ -187,7 +197,7 @@ namespace Zip.Pdv
 
             var btn = (GrupoGridViewItem)sender;
             btn.BorderStyle = BorderStyle.Fixed3D;
-            
+
             //btn.Theme = Theme.MSOffice2010_Green;
 
             flayoutGrupo.Refresh();
@@ -252,7 +262,7 @@ namespace Zip.Pdv
                     {
                         Index = index
                     };
-                    btnGridItem.SelectItem += BtnGridItem_SelectItem ;
+                    btnGridItem.SelectItem += BtnGridItem_SelectItem;
                     btnGridItem.AdiconaDataSource(t);
                     /*var btnProduto = new XButton
                     {
@@ -285,7 +295,7 @@ namespace Zip.Pdv
         {
 
             var item = (ProdutoGridViewItemImage)sender;
-            var produto = (ProdutoViewModel) item.SelectedItem;
+            var produto = (ProdutoViewModel)item.SelectedItem;
 
             //var balancaPeso = new Leitura();
             var quantidade = produto.ParaBalanca ? (decimal)FormLeituraBalanca.ObterPeso() : (decimal)1;
@@ -295,41 +305,64 @@ namespace Zip.Pdv
                 Funcoes.MensagemError("Produto requer balança configurada.");
                 return;
             }
-            if (VendaView.VendaItens.Any(t => t.ProdutoId == produto.ProdutoId))
+
+            var seqLanc = VendaView.VendaItens.Count + 1;
+            var vendaItem = new VendaItemViewModel()
             {
-                VendaView.VendaItens.FirstOrDefault(t => t.ProdutoId == produto.ProdutoId).Quantidade += quantidade;
+                ProdutoId = produto.ProdutoId,
+                Produto = produto.Descricao,
+                ValorUnitatio = produto.ValorVenda,
+                Quantidade = quantidade,
+                ProdutoViewModel = produto,
+                SeqProduto = seqLanc
+            };
+
+            var complementos = _complementoAppService.ObterPorGrupoId(produto.GrupoId).ToList();
+
+            if (complementos.Any())
+            {
+                using (var form = new FormComplementos(complementos, vendaItem))
+                {
+                    form.ShowDialog();
+                    vendaItem = form.VendaItem;
+
+                    vendaItem.ValorUnitatio += vendaItem.VendaComplementos.Sum(t => t.Valor);
+                }
+
+            }
+            /*
+            if (VendaView.VendaItens.Any(t => t.ProdutoId == produto.ProdutoId && t.VendaComplementos.Count == 0 && string.IsNullOrEmpty(t.Observacao)))
+            {
+                VendaView.VendaItens.FirstOrDefault(t => t.ProdutoId == produto.ProdutoId && t.VendaComplementos.Count == 0 && string.IsNullOrEmpty(t.Observacao)).Quantidade += quantidade;
 
 
                 cupomGridView1.Atualizar(VendaView.VendaItens);
 
             }
-            else
+            */
+
+
+            VendaView.VendaItens.Add(vendaItem);
+
+            cupomGridView1.AddItem(vendaItem);
+
+            //Verifica sugestão para o grupo do produto lançado
+            var sugestoes = _produtoAppService.GetSugestaoByGrupoId(produto.GrupoId).ToList();
+            if (sugestoes.Any())
             {
-                var vendaItem = new VendaItemViewModel()
+                using (var form = new FormSugestao(sugestoes, produto.Descricao))
                 {
-                    ProdutoId = produto.ProdutoId,
-                    Produto = produto.Descricao,
-                    ValorUnitatio = produto.ValorVenda,
-                    Quantidade = quantidade,
-                    ProdutoViewModel = produto
-                };
+                    form.ShowDialog();
+                    var vendaItens = form.VendaSugestaoItens;
 
-                var complementos = _complementoAppService.ObterPorGrupoId(produto.GrupoId).ToList();
-
-                if (complementos.Any())
-                {
-                    using (var form = new FormComplementos(complementos, vendaItem))
+                    foreach (var vendaSugestaoItemItem in vendaItens)
                     {
-                        form.ShowDialog();
-                        vendaItem = form.VendaItem;
+                        vendaSugestaoItemItem.SeqProduto = VendaView.VendaItens.Count + 1;
+                        VendaView.VendaItens.Add(vendaSugestaoItemItem);
 
-                        vendaItem.ValorUnitatio += vendaItem.VendaComplementos.Sum(t => t.Valor);
+                        cupomGridView1.AddItem(vendaSugestaoItemItem);
                     }
                 }
-
-                VendaView.VendaItens.Add(vendaItem);
-
-                cupomGridView1.AddItem(vendaItem);
             }
 
 
@@ -351,7 +384,7 @@ namespace Zip.Pdv
 
         private void TotalizaCupom()
         {
-            lbQtdeProduto.Text = $"{VendaView.VendaItens.Sum(t=> t.Quantidade)}";
+            lbQtdeProduto.Text = $"{VendaView.VendaItens.Sum(t => t.Quantidade)}";
             var subTotal = VendaView.VendaItens.Sum(t => t.ValorUnitatio * t.Quantidade);
             lbSubTotal.Text = $"{subTotal.ToString("C2")}";
 
@@ -388,23 +421,29 @@ namespace Zip.Pdv
 
         private void btnCancelarVenda_Click(object sender, EventArgs e)
         {
-            if (VerificaPermissaoExclusao()) return;
+            if (!VerificaPermissaoExclusao()) return;
 
             IniciarVenda();
         }
 
         private bool VerificaPermissaoExclusao()
         {
-            if (Program.InicializacaoViewAux.HabSenhaExcluirItem)
+            if (!Program.InicializacaoViewAux.HabSenhaExcluirItem)
             {
-                var senha = "";
-                if (Program.InicializacaoViewAux.SenhaExcluirItem != senha)
-                {
-                    TouchMessageBox.Show("Senha invalida! Consulte o supervisor", "Autorização", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return false;
-                }
+                TouchMessageBox.Show("Operação não permitida para esse PDV.", "Autorização", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
             }
+
+            var senha = FormSolicitaSenha.Instace();
+
+            if (Program.InicializacaoViewAux.SenhaExcluirItem != senha)
+            {
+                TouchMessageBox.Show("Senha invalida! Consulte o supervisor", "Autorização", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
             return true;
         }
 
@@ -418,7 +457,13 @@ namespace Zip.Pdv
                     MessageBoxIcon.Information);
                 return;
             }
-            MessageBox.Show(selected.DataSource.Produto);
+            using (var form = new FormObservacao(selected.DataSource))
+            {
+
+                form.ShowDialog();
+                cupomGridView1.Atualizar(VendaView.VendaItens);
+
+            }
         }
 
 
@@ -466,7 +511,7 @@ namespace Zip.Pdv
                 var result = TouchMessageBox.Show("Venda iniciada como Entrega\nDeseja finalizar como venda balção?",
                     "Venda", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                if(result == DialogResult.Cancel)
+                if (result == DialogResult.Cancel)
                     return;
 
                 VendaView.IsDelivery = false;
@@ -487,8 +532,11 @@ namespace Zip.Pdv
                 {
                     var vendaId = vendaApp.ObterVendaId();
                     VendaView.VendaId = int.Parse($"{Program.PdvId}{vendaId}");
-                    
+
                     vendaApp.Adicionar(VendaView);
+
+                    vendaApp.GeraImpressaoItens(VendaView.VendaId, vendaId = 0);
+
                 }
                 //Grava Caixa Itens
                 var caixaItem = form.CaixaItemView;
@@ -538,8 +586,9 @@ namespace Zip.Pdv
                 VendaView.VendaFinalizadora = caixaItem.CaixaPagamentos.ToList();
                 try
                 {
+                    var emissarFiscal = Program.IsFrete ? Program.EmissorFiscal : ModeloFiscalEnumView.None;
                     //Imprime Cupom
-                    switch (Program.EmissorFiscal)
+                    switch (emissarFiscal)
                     {
                         case ModeloFiscalEnumView.None:
                             ImprimeCupomNaoFiscal();
@@ -566,6 +615,8 @@ namespace Zip.Pdv
                             ImprimeComprovanteTef(caixaItem);
                             break;
                     }
+
+                    //Envia GR
                 }
                 catch (Exception exception)
                 {
@@ -613,6 +664,9 @@ namespace Zip.Pdv
             lbClienteDelivery.Text = "VENDA BALÇÃO";
             myListFichas = new List<string>();
 
+            AlteraFrete(Program.GetIsFrete);
+
+
             VendaView = new VendaViewModel()
             {
                 CaixaId = Program.CaixaView.CaixaId,
@@ -643,7 +697,7 @@ namespace Zip.Pdv
                 form.ShowDialog();
 
                 var produto = form.ProdutoView;
-                if(produto == null)return;
+                if (produto == null) return;
 
                 IncluirProdutoPesquisa(produto);
             }
@@ -651,7 +705,15 @@ namespace Zip.Pdv
         private void FormPdv_Resize(object sender, EventArgs e)
         {
             //CarregaGrupos();
-            IniciaVenda();
+            //IniciaVenda();
+            CarregaGrupos();
+
+            _produtos = new List<ProdutoViewModel>();
+            flayoutProduto.Controls.Clear();
+
+            //TotalizaCupom();
+            txtPesquisaProduto.Select();
+
         }
 
         private void btnComplemento_Click(object sender, EventArgs e)
@@ -774,9 +836,9 @@ namespace Zip.Pdv
         {
             var cliente = FormCliente.Instance();
 
-            if(cliente == null)
+            if (cliente == null)
                 return;
-            
+
             lbClienteDelivery.Text = $"VENDA ENTREGA: {cliente.Nome} | {cliente.Endereco}";
 
             VendaView.IsDelivery = true;
@@ -793,8 +855,8 @@ namespace Zip.Pdv
             var valorReceber = VendaView.VendaItens.Sum(t => t.ValorTotal);
             var deliveryView = FormPdvDelivery.Instance(VendaView.Delivery, valorReceber);
 
-            if(deliveryView == null)return;
-            
+            if (deliveryView == null) return;
+
             VendaView.Delivery = deliveryView;
             VendaView.IsDelivery = true;
 
@@ -821,16 +883,16 @@ namespace Zip.Pdv
 
         private void txtPesquisaProduto_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode != Keys.Enter) return;
+            if (e.KeyCode != Keys.Enter) return;
 
             btnBuscarProduto.PerformClick();
-            txtPesquisaProduto.Clear(); 
+            txtPesquisaProduto.Clear();
         }
 
         private void btnCarregaFicha_Click(object sender, EventArgs e)
         {
             var fichaId = FormSolicitaFicha.Instace();
-            if(string.IsNullOrEmpty(fichaId))
+            if (string.IsNullOrEmpty(fichaId))
                 return;
 
             CarregaFicha(fichaId);
@@ -840,7 +902,7 @@ namespace Zip.Pdv
         {
             using (var vendaFichaApp = Program.Container.GetInstance<IVendaFichaAppService>())
             {
-                var vendaFicha =  vendaFichaApp.ObterPorFicha(fichaId).ToList();
+                var vendaFicha = vendaFichaApp.ObterPorFicha(fichaId).ToList();
 
                 if (vendaFicha.Count == 0)
                 {
@@ -870,8 +932,72 @@ namespace Zip.Pdv
                 CarregaVendaItem();
 
             }
-            
-            
+
+
+        }
+
+        private void lbClienteDelivery_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        void AlteraFrete(bool move)
+        {
+            Program.IsFrete = move;
+            lbClienteDelivery.BackColor = Program.IsFrete ? Color.WhiteSmoke : Color.LightSalmon;
+        }
+
+        private void lbClienteDelivery_MouseClick(object sender, MouseEventArgs e)
+        {
+            var value = !Program.IsFrete;
+            AlteraFrete(value);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (VendaView.VendaItens.Count == 0)
+            {
+                TouchMessageBox.Show("Venda não iniciada.", "Venda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var nome = FormSolicitaTexto.Instace("Informe o nome do cliente.");
+            if (string.IsNullOrEmpty(nome)) return;
+
+
+            //Grava pendencia
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                TouchMessageBox.Show("Ocorreu um erro ao inlcuir a venda pendente.", "Venda Pendente");
+            }
+            using (var vendaPendenciaAppService = Program.Container.GetInstance<IVendaPendenteAppService>())
+            {
+                var clienteExists = vendaPendenciaAppService.PendenciaExistente(nome);
+                if (clienteExists)
+                {
+                    var aceitar = TouchMessageBox.Show("Cliente já existente, deseja atribuir os itens para o cliente?", "Venda Pendente", 
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+
+                    if (!aceitar)
+                        return;
+
+                    //Se aceitar criar rotina para adicionar itens no mesmo pendente
+
+
+                }
+                VendaView.ClientePendencia = nome;
+
+                vendaPendenciaAppService.Add(VendaView);
+
+            }
+
+            IniciarVenda();
+
+
         }
     }
 }

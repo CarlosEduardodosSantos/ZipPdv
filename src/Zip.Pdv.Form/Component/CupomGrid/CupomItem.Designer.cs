@@ -35,6 +35,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbQuantidade = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lbPrecoDe = new System.Windows.Forms.Label();
             this.lbValorUnit = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbProduto = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.btnTaskItem = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panelPrincipal = new System.Windows.Forms.Panel();
-            this.lbPrecoDe = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -61,8 +61,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.Controls.Add(this.panel4, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
@@ -140,6 +140,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(90, 43);
             this.panel2.TabIndex = 1;
+            // 
+            // lbPrecoDe
+            // 
+            this.lbPrecoDe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbPrecoDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPrecoDe.ForeColor = System.Drawing.Color.Red;
+            this.lbPrecoDe.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbPrecoDe.Location = new System.Drawing.Point(3, 0);
+            this.lbPrecoDe.Name = "lbPrecoDe";
+            this.lbPrecoDe.Size = new System.Drawing.Size(84, 13);
+            this.lbPrecoDe.TabIndex = 3;
+            this.lbPrecoDe.Text = "0";
+            this.lbPrecoDe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbValorUnit
             // 
@@ -223,19 +236,6 @@
             this.panelPrincipal.Name = "panelPrincipal";
             this.panelPrincipal.Size = new System.Drawing.Size(480, 49);
             this.panelPrincipal.TabIndex = 2;
-            // 
-            // lbPrecoDe
-            // 
-            this.lbPrecoDe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbPrecoDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPrecoDe.ForeColor = System.Drawing.Color.Red;
-            this.lbPrecoDe.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbPrecoDe.Location = new System.Drawing.Point(3, 0);
-            this.lbPrecoDe.Name = "lbPrecoDe";
-            this.lbPrecoDe.Size = new System.Drawing.Size(84, 13);
-            this.lbPrecoDe.TabIndex = 3;
-            this.lbPrecoDe.Text = "0";
-            this.lbPrecoDe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CupomItem
             // 

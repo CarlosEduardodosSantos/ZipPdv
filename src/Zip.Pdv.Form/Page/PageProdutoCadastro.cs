@@ -80,5 +80,10 @@ namespace Zip.Pdv.Page
             flowLayoutPanel1.Controls.Remove(item);
             flowLayoutPanel1.Refresh();
         }
+
+        private void btnDelivery_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

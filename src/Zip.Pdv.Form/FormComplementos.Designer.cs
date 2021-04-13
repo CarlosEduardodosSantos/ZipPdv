@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.lbProdutoNome = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel23 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.panel23.SuspendLayout();
             this.SuspendLayout();
@@ -47,8 +47,20 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 42);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(864, 71);
+            this.panel1.Size = new System.Drawing.Size(864, 110);
             this.panel1.TabIndex = 5;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.AutoScrollMinSize = new System.Drawing.Size(0, 35);
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 23);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(862, 85);
+            this.flowLayoutPanel2.TabIndex = 7;
             // 
             // lbProdutoNome
             // 
@@ -65,9 +77,9 @@
             // 
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 113);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 152);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(864, 382);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(864, 343);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // panel23
@@ -112,15 +124,6 @@
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 23);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(862, 46);
-            this.flowLayoutPanel2.TabIndex = 7;
-            // 
             // FormComplementos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -135,6 +138,7 @@
             this.Text = "FormComplementos";
             this.Load += new System.EventHandler(this.FormComplementos_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel23.ResumeLayout(false);
             this.ResumeLayout(false);
 

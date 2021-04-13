@@ -38,7 +38,7 @@ namespace Zip.Sat
         {
             _vendaView = vendaView;
             InitializeComponent();
-     
+
 
             RetornoSatView = new RetornoSatViewModel();
 
@@ -87,8 +87,9 @@ namespace Zip.Sat
             }
             catch (Exception exception)
             {
-                
-                throw new Exception(exception.Message);
+                RetornoSatView.IsOk = false;
+                RetornoSatView.Mensagem = exception.Message;
+                //throw new Exception(exception.Message);
             }
 
         }
@@ -99,14 +100,23 @@ namespace Zip.Sat
             {
                 Global.Funcoes.MensagemDeErro("Operação cancelada com sucesso.");
             }
-            
+
             Close();
 
         }
 
         private void FrmSolicitaNfce_Load(object sender, System.EventArgs e)
         {
-            backgroundWorker1.RunWorkerAsync();
+            try
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
+            catch (Exception ex)
+            {
+                RetornoSatView.IsOk = false;
+                RetornoSatView.Mensagem = ex.Message;
+                
+            }
         }
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)

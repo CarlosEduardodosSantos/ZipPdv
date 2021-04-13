@@ -200,7 +200,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(754, 39);
             this.label2.TabIndex = 5;
-            this.label2.Text = "CONTROLE DE ENTREGAS";
+            this.label2.Text = "CONTROLE DE DELIVERY";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnVoltar

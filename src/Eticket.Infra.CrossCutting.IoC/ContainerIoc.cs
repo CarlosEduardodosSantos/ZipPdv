@@ -47,6 +47,8 @@ namespace Eticket.Infra.CrossCutting.IoC
             container.Register<IUnidadeMedidaRepository, UnidadeMedidaRepository>();
             container.Register<IProdutoTipoRepository, ProdutoTipoRepository>();
             container.Register<IRetornoSatRepository, RetornoSatRepository>();
+            container.Register<IConfiguracaoSistemaRepository, ConfiguracaoSistemaRepository>();
+            container.Register<IVendaPendenteRepository, VendaPendenteRepository>();
 
 
             //App
@@ -74,6 +76,8 @@ namespace Eticket.Infra.CrossCutting.IoC
             container.Register<IUnidadeMedidaAppService, UnidadeMedidaAppService>();
             container.Register<IProdutoTipoAppService, ProdutoTipoAppService>();
             container.Register<IRetornoSatAppService, RetornoSatAppService>();
+            container.Register<IConfiguracaoSistemaAppService, ConfiguracaoSistemaAppService>();
+            container.Register<IVendaPendenteAppService, VendaPendenteAppService>();
 
             return container;
         }

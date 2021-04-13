@@ -47,7 +47,19 @@ namespace Zip.Pdv.Component
             lbGrupo.Text = grupo.Descricao;
             lbGrupo.ForeColor = ColorText;
             CodigoProduto = grupo.GrupoId;
-            
+
+            if (!string.IsNullOrEmpty(grupo.Imagem))
+            {
+                btnIcom.Image = Funcoes.Base64ToImage(grupo.Imagem);
+                btnIcom.SizeMode = PictureBoxSizeMode.CenterImage;
+            }
+            else
+            {
+                btnIcom.Image = null;
+                btnIcom.Visible = false;
+            }
+
+
         }
 
         private void lbDescricao_MouseEnter(object sender, EventArgs e)

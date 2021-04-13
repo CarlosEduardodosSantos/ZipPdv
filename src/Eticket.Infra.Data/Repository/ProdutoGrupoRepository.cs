@@ -12,7 +12,7 @@ namespace Eticket.Infra.Data.Repository
         {
             using (var cn = Connection)
             {
-                var sql = "Select IdPdvGrupo as GrupoId, Descricao from pdvGrupos Where IdPdvGrupo = @id ";
+                var sql = "Select IdPdvGrupo as GrupoId, Descricao, Grupo_Cor as GrupoCor from pdvGrupos Where IdPdvGrupo = @id ";
 
                 cn.Open();
                 var grupo = cn.Query<ProdutoGrupo>(sql, new { id }).FirstOrDefault();
@@ -26,7 +26,7 @@ namespace Eticket.Infra.Data.Repository
         {
             using (var cn = Connection)
             {
-                var sql = "Select IdPdvGrupo as GrupoId, Descricao from pdvGrupos";
+                var sql = "Select IdPdvGrupo as GrupoId, Descricao, grupo_img as Imagem, Grupo_Cor as GrupoCor from pdvGrupos Order By Sequencia";
 
                 cn.Open();
                 var grupos = cn.Query<ProdutoGrupo>(sql, new {});

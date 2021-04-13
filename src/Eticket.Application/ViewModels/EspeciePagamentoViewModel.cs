@@ -11,5 +11,6 @@
         public string Interno { get; set; }
         public EspecieCartaoTipoEnumView TipoCartao { get; set; }
         public string CodigoFiscal { get; set; }
+        public string KeyAtalho { get; set; }
     }
 }

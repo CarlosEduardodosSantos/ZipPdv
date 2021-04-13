@@ -30,12 +30,14 @@ namespace Eticket.Application.ViewModels
         public string Fidelidade { get; set; }
         public string Observacao { get; set; }
         public string Senha { get; set; }
+        public string NumeroFicha { get; set; }
         public string MenssagemSat { get; set; }
         public List<VendaItemViewModel> VendaItens { get; set; }
         public List<CaixaPagamentoViewModel> VendaFinalizadora { get; set; }
         public ClienteDeliveryViewModel ClienteDelivery { get; set; }
         public DeliveryViewModel Delivery { get; set; }
         public bool IsDelivery { get; set; }
+        public string ClientePendencia { get; set; }
         public decimal ValorTotal {
             get { return VendaItens.Sum(t => t.SubTotal); }
         }

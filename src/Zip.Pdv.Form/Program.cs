@@ -21,32 +21,57 @@ namespace Zip.Pdv
         public static int PdvId = GetValueApp.GetValue<int>("PdvId");
         public static int Loja = GetValueApp.GetValue<int>("Loja");
         public static ModeloFiscalEnumView EmissorFiscal = (ModeloFiscalEnumView)GetValueApp.GetValue<int>("EmissorFiscal");
-
+        public static bool IsFrete = GetValueApp.GetValue<int>("Frete") == 0 ? false : true;
+        public static bool GetIsFrete => GetValueApp.GetValue<int>("Frete") == 0 ? false : true;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            //Inicia IoC
-            Bootstrap();
-
-            CarregarConfiguracaoInicial();
-
-            InicializacaoViewAux = new InicializacaoViewAux()
+            try
             {
-                TipoImpressao = TipoImpressaoViewEnum.Print,
-                CaminhoEssencial = "C:\\NF-Eletronica\\Essencial.exe",
-                ValorFrete = 8,
-                DescontoMaximo = 5,
-                CedenteId = 4,
-                EspeciePagamentoDinheiroId = 1
-            };
+                try
+                {
+                    //Inicia IoC
+                    Bootstrap();
+                }
+                catch (Exception exBoot)
+                {
+
+                    throw new Exception("Erro ao carregar o Bootstrap");
+                }
+
+                try
+                {
+                    CarregarConfiguracaoInicial();
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("Erro ao carregar o CarregarConfiguracaoInicial");
+                }
+                try
+                {
+                    CarregaVariaveis();
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("Erro ao carregar o CarregaVariaveis");
+                }
 
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPrincipal());
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new FormPrincipal());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro encontrado" + ex.Message);
+            }
+
         }
 
         private static void Bootstrap()
@@ -68,26 +93,26 @@ namespace Zip.Pdv
             using (var empresaAppService = Container.GetInstance<IEmpresaAppService>())
             {
                 var empresa = empresaAppService.ObterPorLoja(Loja);
-                
+
 
                 if (Global.ConfiguracaoInicial.SatMarca == "Emulador")
                 {
-                    empresa.Cnpj = "11111111111111";
-                    empresa.Ie = "111111111111";
+                    //empresa.Cnpj = "11111111111111";
+                    //empresa.Ie = "111111111111";
                     empresa.SignAC = "11111111111112222222222222211111111111111222222222222221111111111111122222222222222111111111111112222222222222211111111111111222222222222221111111111111122222222222222111111111111112222222222222211111111111111222222222222221111111111111122222222222222111111111111112222222222222211111111111111222222222222221111111111111122222222222222111111111";
                 }
                 else if (Global.ConfiguracaoInicial.SatMarca == "Nitere")
                 {
-                    empresa.Cnpj = "10261693000120";
-                    empresa.Ie = "111111111111";
+                    //empresa.Cnpj = "10261693000120";
+                    //empresa.Ie = "111111111111";
                     empresa.SignAC = "SGR-SAT SISTEMA DE GESTAO E RETAGUARDA DO SAT";
                     Global.ConfiguracaoInicial.SoftwareHouseCnpj = "16716114000172";
                     Global.ConfiguracaoInicial.SoftwareHouseChaveAtivacao = "12345678";
                 }
                 else if (Global.ConfiguracaoInicial.SatMarca == "Gertec")
                 {
-                    empresa.Cnpj = "03654119000176";
-                    empresa.Ie = "000052619494";
+                    //empresa.Cnpj = "03654119000176";
+                    //empresa.Ie = "000052619494";
                     empresa.SignAC = "SGR-SAT SISTEMA DE GESTAO E RETAGUARDA DO SAT";
                     Global.ConfiguracaoInicial.SoftwareHouseCnpj = "16716114000172";
                     Global.ConfiguracaoInicial.SoftwareHouseChaveAtivacao = "gertec1234";
@@ -122,11 +147,41 @@ namespace Zip.Pdv
 
                 if (Global.ConfiguracaoInicial.SatMarca == "Emulador")
                     Global.ConfiguracaoInicial.SoftwareHouseCnpj = "22222222222222";
+
             }
             catch (Exception)
             {
                 throw;
             }
+        }
+        static void CarregaVariaveis()
+        {
+
+            using (var configuracaoAppService = Container.GetInstance<IConfiguracaoSistemaAppService>())
+            {
+                var descMax = configuracaoAppService.ObterPorVariavel("max_desconto_final");
+                var senhaExcluItem = configuracaoAppService.ObterPorVariavel("SENHA_EXCLUI_ITENS");
+                var taxaEntrega = configuracaoAppService.ObterPorVariavel("TAXA_ENTREGA");
+                var habExcluirItem = configuracaoAppService.ObterPorVariavel("HAB_SENHA_EXCLUI_ITENS");
+                var tipoSenhaAleatoria = configuracaoAppService.ObterPorVariavel("SENHA_ALEATORIA");
+
+
+                InicializacaoViewAux = new InicializacaoViewAux()
+                {
+                    TipoImpressao = TipoImpressaoViewEnum.Print,
+                    CaminhoEssencial = "C:\\NF-Eletronica\\Essencial.exe",
+                    ValorFrete = decimal.Parse(taxaEntrega.Valor),
+                    DescontoMaximo = decimal.Parse(descMax.Valor),
+                    CedenteId = 4,
+                    EspeciePagamentoDinheiroId = 1,
+                    SenhaExcluirItem = senhaExcluItem.Valor,
+                    HabSenhaExcluirItem = habExcluirItem.Valor == "S" ? true : false,
+                    ModoPdv = true
+                };
+
+
+            }
+
         }
     }
 }

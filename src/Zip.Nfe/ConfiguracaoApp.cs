@@ -58,7 +58,7 @@ namespace Zip.Nfe
             Emitente = new emit {CPF = "", CRT = CRT.SimplesNacional};
             EnderecoEmitente = new enderEmit();
             ConfiguracaoEmail = new ConfiguracaoEmail("email@dominio.com", "senha", "Envio de NFE", ResNfe.MensagemHtml, "smtp.dominio.com", 587, true, true);
-            ConfiguracaoCsc = new ConfiguracaoCsc("000001", "");
+            ConfiguracaoCsc = new ConfiguracaoCsc("000001", "8555517A-16B8-4734-9934-2D4F8A20E37B");
             ConfiguracaoDanfeNfce = new ConfiguracaoDanfeNfce(NfceDetalheVendaNormal.UmaLinha, NfceDetalheVendaContigencia.UmaLinha);
         }
 

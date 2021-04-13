@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnVoltar = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tablePanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
@@ -54,15 +51,24 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.cbGrupo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxDecimal1 = new Zip.Pdv.Component.TextBoxDecimal();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.cbModeloFiscal = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPreco = new System.Windows.Forms.TableLayoutPanel();
             this.panel30 = new System.Windows.Forms.Panel();
             this.txtValorVenda = new Zip.Pdv.Component.TextBoxDecimal();
@@ -70,17 +76,10 @@
             this.panel31 = new System.Windows.Forms.Panel();
             this.txtValorCusto = new Zip.Pdv.Component.TextBoxDecimal();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.textBoxDecimal1 = new Zip.Pdv.Component.TextBoxDecimal();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnVoltar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            this.panel23.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tablePanelPrincipal.SuspendLayout();
@@ -89,15 +88,16 @@
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.tableLayoutPreco.SuspendLayout();
             this.panel30.SuspendLayout();
             this.panel31.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panel23.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -110,48 +110,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1144, 624);
             this.panel1.TabIndex = 0;
-            // 
-            // panel23
-            // 
-            this.panel23.BackgroundImage = global::Zip.Pdv.Properties.Resources.bg_;
-            this.panel23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel23.Controls.Add(this.label2);
-            this.panel23.Controls.Add(this.btnVoltar);
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel23.Location = new System.Drawing.Point(0, 0);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(1142, 42);
-            this.panel23.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(246, 1);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(667, 39);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "CONFIGURAÇÕES";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnVoltar
-            // 
-            this.btnVoltar.BackColor = System.Drawing.Color.Transparent;
-            this.btnVoltar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnVoltar.FlatAppearance.BorderSize = 0;
-            this.btnVoltar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVoltar.Image = global::Zip.Pdv.Properties.Resources.back_32;
-            this.btnVoltar.Location = new System.Drawing.Point(0, 0);
-            this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(50, 42);
-            this.btnVoltar.TabIndex = 4;
-            this.btnVoltar.UseVisualStyleBackColor = false;
             // 
             // tabControl1
             // 
@@ -314,7 +272,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(558, 31);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -384,6 +342,30 @@
             this.panel10.Size = new System.Drawing.Size(558, 31);
             this.panel10.TabIndex = 5;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.IntegralHeight = false;
+            this.comboBox1.Location = new System.Drawing.Point(154, 0);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(404, 29);
+            this.comboBox1.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(154, 31);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "C. Custo Padrão";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.cbGrupo);
@@ -427,6 +409,86 @@
             this.panel8.Size = new System.Drawing.Size(558, 31);
             this.panel8.TabIndex = 3;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(558, 31);
+            this.tableLayoutPanel1.TabIndex = 4;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.textBoxDecimal1);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(282, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(273, 25);
+            this.panel2.TabIndex = 1;
+            // 
+            // textBoxDecimal1
+            // 
+            this.textBoxDecimal1.BackColorEnter = System.Drawing.Color.Empty;
+            this.textBoxDecimal1.CasasDecimais = null;
+            this.textBoxDecimal1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxDecimal1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDecimal1.FormatDecimal = "N2";
+            this.textBoxDecimal1.Location = new System.Drawing.Point(107, 0);
+            this.textBoxDecimal1.Multiline = true;
+            this.textBoxDecimal1.Name = "textBoxDecimal1";
+            this.textBoxDecimal1.Size = new System.Drawing.Size(166, 25);
+            this.textBoxDecimal1.TabIndex = 4;
+            this.textBoxDecimal1.Tag = "";
+            this.textBoxDecimal1.Text = "0,00";
+            this.textBoxDecimal1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxDecimal1.ValueNumeric = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 25);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "% Maximo";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.checkBox4);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(273, 25);
+            this.panel3.TabIndex = 0;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.checkBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox4.Location = new System.Drawing.Point(0, 0);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(273, 25);
+            this.checkBox4.TabIndex = 1;
+            this.checkBox4.Text = "Habilita desconto final?";
+            this.checkBox4.UseVisualStyleBackColor = false;
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.cbModeloFiscal);
@@ -436,25 +498,6 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(558, 31);
             this.panel7.TabIndex = 2;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.textBox1);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel6.Location = new System.Drawing.Point(567, 3);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(558, 31);
-            this.panel6.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.tableLayoutPreco);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(558, 31);
-            this.panel5.TabIndex = 0;
             // 
             // cbModeloFiscal
             // 
@@ -479,6 +522,33 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Modelo Fiscal";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.textBox1);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel6.Location = new System.Drawing.Point(567, 3);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(558, 31);
+            this.panel6.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(558, 29);
+            this.textBox1.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.tableLayoutPreco);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(558, 31);
+            this.panel5.TabIndex = 0;
             // 
             // tableLayoutPreco
             // 
@@ -518,13 +588,13 @@
             this.txtValorVenda.Size = new System.Drawing.Size(166, 25);
             this.txtValorVenda.TabIndex = 4;
             this.txtValorVenda.Tag = "";
-            this.txtValorVenda.Text = "1";
+            this.txtValorVenda.Text = "1,00";
             this.txtValorVenda.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorVenda.ValueNumeric = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
-            0});
+            131072});
             // 
             // label7
             // 
@@ -560,13 +630,13 @@
             this.txtValorCusto.Name = "txtValorCusto";
             this.txtValorCusto.Size = new System.Drawing.Size(166, 25);
             this.txtValorCusto.TabIndex = 2;
-            this.txtValorCusto.Text = "1";
+            this.txtValorCusto.Text = "1,00";
             this.txtValorCusto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorCusto.ValueNumeric = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
-            0});
+            131072});
             // 
             // label8
             // 
@@ -580,117 +650,47 @@
             this.label8.Text = "Loja";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // panel23
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(558, 29);
-            this.textBox1.TabIndex = 0;
+            this.panel23.BackgroundImage = global::Zip.Pdv.Properties.Resources.bg_;
+            this.panel23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel23.Controls.Add(this.label2);
+            this.panel23.Controls.Add(this.btnVoltar);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel23.Location = new System.Drawing.Point(0, 0);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(1142, 42);
+            this.panel23.TabIndex = 6;
             // 
-            // tableLayoutPanel1
+            // label2
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(558, 31);
-            this.tableLayoutPanel1.TabIndex = 4;
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(246, 1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(667, 39);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "CONFIGURAÇÕES";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel2
+            // btnVoltar
             // 
-            this.panel2.Controls.Add(this.textBoxDecimal1);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(282, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(273, 25);
-            this.panel2.TabIndex = 1;
-            // 
-            // textBoxDecimal1
-            // 
-            this.textBoxDecimal1.BackColorEnter = System.Drawing.Color.Empty;
-            this.textBoxDecimal1.CasasDecimais = null;
-            this.textBoxDecimal1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxDecimal1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxDecimal1.FormatDecimal = "N2";
-            this.textBoxDecimal1.Location = new System.Drawing.Point(107, 0);
-            this.textBoxDecimal1.Multiline = true;
-            this.textBoxDecimal1.Name = "textBoxDecimal1";
-            this.textBoxDecimal1.Size = new System.Drawing.Size(166, 25);
-            this.textBoxDecimal1.TabIndex = 4;
-            this.textBoxDecimal1.Tag = "";
-            this.textBoxDecimal1.Text = "0";
-            this.textBoxDecimal1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBoxDecimal1.ValueNumeric = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 25);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "% Maximo";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.checkBox4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(273, 25);
-            this.panel3.TabIndex = 0;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.checkBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox4.Location = new System.Drawing.Point(0, 0);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(273, 25);
-            this.checkBox4.TabIndex = 1;
-            this.checkBox4.Text = "Habilita desconto final?";
-            this.checkBox4.UseVisualStyleBackColor = false;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.IntegralHeight = false;
-            this.comboBox1.Location = new System.Drawing.Point(154, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(404, 29);
-            this.comboBox1.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(154, 31);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "C. Custo Padrão";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVoltar.BackColor = System.Drawing.Color.Transparent;
+            this.btnVoltar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnVoltar.FlatAppearance.BorderSize = 0;
+            this.btnVoltar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVoltar.Image = global::Zip.Pdv.Properties.Resources.back_32;
+            this.btnVoltar.Location = new System.Drawing.Point(0, 0);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(50, 42);
+            this.btnVoltar.TabIndex = 4;
+            this.btnVoltar.UseVisualStyleBackColor = false;
             // 
             // PageConfiguracoes
             // 
@@ -700,7 +700,6 @@
             this.Name = "PageConfiguracoes";
             this.Size = new System.Drawing.Size(1144, 624);
             this.panel1.ResumeLayout(false);
-            this.panel23.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tablePanelPrincipal.ResumeLayout(false);
@@ -709,6 +708,11 @@
             this.panel10.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -718,11 +722,7 @@
             this.panel30.PerformLayout();
             this.panel31.ResumeLayout(false);
             this.panel31.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panel23.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

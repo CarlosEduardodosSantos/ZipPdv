@@ -11,5 +11,6 @@
         public decimal DescontoMaximo { get; set; }
         public int EspeciePagamentoDinheiroId { get; set; }
         public int CedenteId { get; set; }
+        public bool ModoPdv { get; set; }
     }
 }

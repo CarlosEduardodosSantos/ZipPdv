@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using Eticket.Application.CEPBrasil;
 using Zip.Pdv.Component;
+using Zip.Pdv.Helpers;
 
 namespace Zip.Pdv
 {
@@ -35,6 +36,7 @@ namespace Zip.Pdv
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
+            TecladoVirtualHelper.Close();
             Close();
         }
 
@@ -63,6 +65,9 @@ namespace Zip.Pdv
                 _cliente = new ClienteDeliveryViewModel();
                 txtNome.Select();
                 return;
+            }
+            else {
+                TecladoVirtualHelper.Close();
             }
             CarregaCliente();
         }
@@ -222,8 +227,8 @@ namespace Zip.Pdv
         private void btnKeyBoard_Click(object sender, EventArgs e)
         {
 
-            //var path = Environment.GetFolderPath(Environment.SpecialFolder.System) + @"\osk.exe";
-            //Process process = Process.Start(path);
+            TecladoVirtualHelper.Open();
+            this.txtFone.Focus();
 
         }
 

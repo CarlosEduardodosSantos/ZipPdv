@@ -14,5 +14,7 @@ namespace Eticket.Domain.Interface.Repository
         IEnumerable<Produto> ObterPorNome(string nome);
         string ObterImageProdutoId(int produtoId);
         ProdutoTributacao ObterTributacaoPorProdutoId(int produtoId);
+        IEnumerable<ProdutoObservacao> ObterProdutoObservacao(int grupoId);
+        IEnumerable<Produto> GetSugestaoByGrupoId(int grupoId);
     }
 }

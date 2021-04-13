@@ -86,6 +86,7 @@
             this.btnVendaAdministracao.TabIndex = 2;
             this.btnVendaAdministracao.Text = "Venda Administração";
             this.btnVendaAdministracao.UseVisualStyleBackColor = false;
+            this.btnVendaAdministracao.Click += new System.EventHandler(this.btnVendaAdministracao_Click);
             // 
             // btnConfiguracoes
             // 

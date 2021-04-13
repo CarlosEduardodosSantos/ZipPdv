@@ -36,6 +36,27 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DFe.Classes, Version=1.0.0.772, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Zeus.Net.NFe.NFCe.1.0.1.1077\lib\net40\DFe.Classes.dll</HintPath>
+    </Reference>
+    <Reference Include="DFe.Utils, Version=1.0.0.772, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Zeus.Net.NFe.NFCe.1.0.1.1077\lib\net40\DFe.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="DFe.Wsdl, Version=1.0.0.772, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Zeus.Net.NFe.NFCe.1.0.1.1077\lib\net40\DFe.Wsdl.dll</HintPath>
+    </Reference>
+    <Reference Include="NFe.Classes, Version=1.0.0.772, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Zeus.Net.NFe.NFCe.1.0.1.1077\lib\net40\NFe.Classes.dll</HintPath>
+    </Reference>
+    <Reference Include="NFe.Servicos, Version=1.0.0.772, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Zeus.Net.NFe.NFCe.1.0.1.1077\lib\net40\NFe.Servicos.dll</HintPath>
+    </Reference>
+    <Reference Include="NFe.Utils, Version=1.0.0.772, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Zeus.Net.NFe.NFCe.1.0.1.1077\lib\net40\NFe.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="NFe.Wsdl, Version=1.0.0.772, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Zeus.Net.NFe.NFCe.1.0.1.1077\lib\net40\NFe.Wsdl.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -89,6 +110,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResNfe.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -655,37 +677,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Eticket.Application\Eticket.Application.csproj">
-      <Project>{61392fb6-988c-4e20-937a-6eb52bbd5138}</Project>
-      <Name>Eticket.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="C:\Projetos\DotNet\NFeAndNFCe\DFe.Classes\DFe.Classes.csproj">
-      <Project>{9984ec15-18e1-4a87-b4db-18ac913dc4e8}</Project>
-      <Name>DFe.Classes</Name>
-    </ProjectReference>
-    <ProjectReference Include="C:\Projetos\DotNet\NFeAndNFCe\DFe.Utils\DFe.Utils.csproj">
-      <Project>{b4e1a7a6-5d66-4326-8a8d-39338e6fc84c}</Project>
-      <Name>DFe.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="C:\Projetos\DotNet\NFeAndNFCe\NFe.Classes\NFe.Classes.csproj">
-      <Project>{29ca1da2-440d-484b-951a-cf1b2eb27984}</Project>
-      <Name>NFe.Classes</Name>
-    </ProjectReference>
-    <ProjectReference Include="C:\Projetos\DotNet\NFeAndNFCe\NFe.Danfe.Base\NFe.Danfe.Base.csproj">
+    <ProjectReference Include="..\..\..\..\..\ProjectMaster\DFe.NET\NFe.Danfe.Base\NFe.Danfe.Base.csproj">
       <Project>{80c6093c-47d5-41a1-9fa0-e218e82fa666}</Project>
       <Name>NFe.Danfe.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Projetos\DotNet\NFeAndNFCe\NFe.Danfe.Fast\NFe.Danfe.Fast.csproj">
+    <ProjectReference Include="..\..\..\..\..\ProjectMaster\DFe.NET\NFe.Danfe.Fast\NFe.Danfe.Fast.csproj">
       <Project>{b7f6a2ff-fd0e-4b44-82b3-371605cd0510}</Project>
       <Name>NFe.Danfe.Fast</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Projetos\DotNet\NFeAndNFCe\NFe.Servicos\NFe.Servicos.csproj">
-      <Project>{ccfdb136-3ee3-4aed-aa69-26abbcb553c6}</Project>
-      <Name>NFe.Servicos</Name>
-    </ProjectReference>
-    <ProjectReference Include="C:\Projetos\DotNet\NFeAndNFCe\NFe.Utils\NFe.Utils.csproj">
-      <Project>{e35e7c4a-5690-4979-8b43-002975b48eaa}</Project>
-      <Name>NFe.Utils</Name>
+    <ProjectReference Include="..\Eticket.Application\Eticket.Application.csproj">
+      <Project>{61392fb6-988c-4e20-937a-6eb52bbd5138}</Project>
+      <Name>Eticket.Application</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

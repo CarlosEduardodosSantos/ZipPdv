@@ -52,11 +52,29 @@ namespace Zip.Pdv.Component.CupomGrid
 
             if (DataSource.VendaComplementos.Any())
             {
+                foreach (var item in DataSource.VendaComplementos)
+                {
+                    this.Height += 20;
+                    //panelPrincipal.Dock = DockStyle.Top;
+
+                    var label = new Label();
+                    label.Text = item.Descricao;
+                    label.Font = Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    label.AutoSize = false;
+                    label.Height = 20;
+                    label.Dock = DockStyle.Bottom;
+                    label.Padding = new Padding(10, 0, 0, 0);
+                    panelPrincipal.Controls.Add(label);
+                }
+
+            }
+            if (!string.IsNullOrEmpty(DataSource.Observacao))
+            {
                 this.Height += 20;
                 //panelPrincipal.Dock = DockStyle.Top;
 
                 var label = new Label();
-                label.Text = DataSource.ComplementoDescricao;
+                label.Text = DataSource.Observacao;
                 label.Font = Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 label.AutoSize = false;
                 label.Height = 20;
@@ -64,7 +82,6 @@ namespace Zip.Pdv.Component.CupomGrid
                 label.Padding = new Padding(10, 0, 0, 0);
                 panelPrincipal.Controls.Add(label);
             }
-
             lbProduto.Text = DataSource.Produto;
             lbValorUnit.Text = (DataSource.ValorUnitatio - DataSource.Desconto).ToString("N2");
             lbQuantidade.Text = DataSource.Quantidade.ToString("N3");
