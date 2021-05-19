@@ -35,8 +35,12 @@
             this.panel23 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.btnPrevProd = new System.Windows.Forms.Button();
+            this.btnNextProd = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel23.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -47,7 +51,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 42);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(864, 110);
+            this.panel1.Size = new System.Drawing.Size(800, 110);
             this.panel1.TabIndex = 5;
             // 
             // flowLayoutPanel2
@@ -59,7 +63,7 @@
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 23);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(862, 85);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(798, 85);
             this.flowLayoutPanel2.TabIndex = 7;
             // 
             // lbProdutoNome
@@ -68,7 +72,7 @@
             this.lbProdutoNome.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbProdutoNome.Location = new System.Drawing.Point(0, 0);
             this.lbProdutoNome.Name = "lbProdutoNome";
-            this.lbProdutoNome.Size = new System.Drawing.Size(862, 23);
+            this.lbProdutoNome.Size = new System.Drawing.Size(798, 23);
             this.lbProdutoNome.TabIndex = 0;
             this.lbProdutoNome.Text = "PRODUTO";
             this.lbProdutoNome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -77,9 +81,11 @@
             // 
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 152);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(68, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(864, 343);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(673, 426);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // panel23
@@ -90,7 +96,7 @@
             this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel23.Location = new System.Drawing.Point(0, 0);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(864, 42);
+            this.panel23.Size = new System.Drawing.Size(800, 42);
             this.panel23.TabIndex = 4;
             // 
             // label2
@@ -103,7 +109,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(72, 1);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(722, 39);
+            this.label2.Size = new System.Drawing.Size(658, 39);
             this.label2.TabIndex = 5;
             this.label2.Text = "COMPLEMENTOS";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -124,12 +130,56 @@
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // btnPrevProd
+            // 
+            this.btnPrevProd.BackColor = System.Drawing.Color.LightGreen;
+            this.btnPrevProd.BackgroundImage = global::Zip.Pdv.Properties.Resources.previous_resultset_icone_6623_32;
+            this.btnPrevProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPrevProd.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnPrevProd.Enabled = false;
+            this.btnPrevProd.FlatAppearance.BorderSize = 0;
+            this.btnPrevProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevProd.Location = new System.Drawing.Point(0, 0);
+            this.btnPrevProd.Name = "btnPrevProd";
+            this.btnPrevProd.Size = new System.Drawing.Size(68, 426);
+            this.btnPrevProd.TabIndex = 7;
+            this.btnPrevProd.UseVisualStyleBackColor = false;
+            this.btnPrevProd.Click += new System.EventHandler(this.btnPrevProd_Click);
+            // 
+            // btnNextProd
+            // 
+            this.btnNextProd.BackColor = System.Drawing.Color.LightGreen;
+            this.btnNextProd.BackgroundImage = global::Zip.Pdv.Properties.Resources.next_resultset_icone_3882_32;
+            this.btnNextProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnNextProd.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnNextProd.Enabled = false;
+            this.btnNextProd.FlatAppearance.BorderSize = 0;
+            this.btnNextProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextProd.Location = new System.Drawing.Point(741, 0);
+            this.btnNextProd.Name = "btnNextProd";
+            this.btnNextProd.Size = new System.Drawing.Size(57, 426);
+            this.btnNextProd.TabIndex = 8;
+            this.btnNextProd.UseVisualStyleBackColor = false;
+            this.btnNextProd.Click += new System.EventHandler(this.btnNextProd_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.flowLayoutPanel1);
+            this.panel2.Controls.Add(this.btnNextProd);
+            this.panel2.Controls.Add(this.btnPrevProd);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 152);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(800, 428);
+            this.panel2.TabIndex = 9;
+            // 
             // FormComplementos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 495);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(800, 580);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel23);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -140,6 +190,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel23.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -153,5 +204,8 @@
         private System.Windows.Forms.Label lbProdutoNome;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button btnPrevProd;
+        private System.Windows.Forms.Button btnNextProd;
+        private System.Windows.Forms.Panel panel2;
     }
 }

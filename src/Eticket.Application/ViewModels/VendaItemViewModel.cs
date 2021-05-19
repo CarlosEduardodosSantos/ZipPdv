@@ -33,7 +33,7 @@ namespace Eticket.Application.ViewModels
             string obs = string.Empty;
             if (VendaComplementos == null) return obs;
             string separator = " + ";
-            return VendaComplementos.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + " ";
+            return VendaComplementos.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + "\n ";
         }
         private string ObterDescricaoProduto()
         {
@@ -41,7 +41,7 @@ namespace Eticket.Application.ViewModels
             if (VendaComplementos.Count == 0) return obs;
 
             var separator = " + ";
-            return VendaComplementos.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + " ";
+            return VendaComplementos.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + "\n";
         }
     }
 }

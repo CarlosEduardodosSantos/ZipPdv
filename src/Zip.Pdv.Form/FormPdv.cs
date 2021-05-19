@@ -868,6 +868,8 @@ namespace Zip.Pdv
 
                 vendaApp.Adicionar(VendaView);
 
+                vendaApp.GeraImpressaoItens(VendaView.VendaId, vendaId = 0);
+
                 ImprimeCupomNaoFiscal();
             }
 

@@ -32,6 +32,7 @@
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.tableLayoutPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.cupomGridView1 = new Zip.Pdv.Component.CupomGrid.CupomGridView();
             this.panelTotalizador = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.tLayoutTotalizador = new System.Windows.Forms.TableLayoutPanel();
@@ -69,14 +70,22 @@
             this.panelBtnPagamento = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel37 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel36 = new System.Windows.Forms.Panel();
+            this.btnDesconto = new System.Windows.Forms.Button();
             this.panel35 = new System.Windows.Forms.Panel();
+            this.btnLimpar = new System.Windows.Forms.Button();
             this.panel34 = new System.Windows.Forms.Panel();
+            this.btnComplemento = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.txtPesquisaProduto = new System.Windows.Forms.PlaceholderTextBox();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.btnNextProd = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
+            this.btnPrevProd = new System.Windows.Forms.Button();
             this.flayoutProduto = new System.Windows.Forms.FlowLayoutPanel();
             this.panelPadding = new System.Windows.Forms.Panel();
             this.tLayoutPadding = new System.Windows.Forms.TableLayoutPanel();
@@ -87,41 +96,32 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.lbClienteDelivery = new System.Windows.Forms.Label();
             this.btnSolicitaCpf = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
             this.flayoutGrupo = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnNext = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.panelCentral = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.btnDelivery = new System.Windows.Forms.Button();
             this.panel39 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel38 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnCarregaFicha = new System.Windows.Forms.Button();
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel21 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnDesconto = new System.Windows.Forms.Button();
-            this.btnLimpar = new System.Windows.Forms.Button();
-            this.btnComplemento = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.btnNextProd = new System.Windows.Forms.Button();
-            this.btnPrevProd = new System.Windows.Forms.Button();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnDelivery = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnCarregaFicha = new System.Windows.Forms.Button();
             this.btnFidelidade = new System.Windows.Forms.Button();
+            this.panel21 = new System.Windows.Forms.Panel();
             this.button26 = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.btnBuscarProduto = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.cupomGridView1 = new Zip.Pdv.Component.CupomGrid.CupomGridView();
-            this.txtPesquisaProduto = new System.Windows.Forms.PlaceholderTextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelPrincipal.SuspendLayout();
             this.tableLayoutPrincipal.SuspendLayout();
             this.panelLeft.SuspendLayout();
@@ -217,6 +217,18 @@
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(396, 733);
             this.panelLeft.TabIndex = 0;
+            // 
+            // cupomGridView1
+            // 
+            this.cupomGridView1.BackColor = System.Drawing.Color.White;
+            this.cupomGridView1.ColorHeader = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
+            this.cupomGridView1.DataSource = null;
+            this.cupomGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cupomGridView1.Location = new System.Drawing.Point(0, 40);
+            this.cupomGridView1.Name = "cupomGridView1";
+            this.cupomGridView1.SelectedItem = null;
+            this.cupomGridView1.Size = new System.Drawing.Size(396, 503);
+            this.cupomGridView1.TabIndex = 6;
             // 
             // panelTotalizador
             // 
@@ -646,6 +658,24 @@
             this.panel37.Size = new System.Drawing.Size(59, 62);
             this.panel37.TabIndex = 3;
             // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = global::Zip.Pdv.Properties.Resources.obs_32;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(59, 62);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Obs.";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolTip1.SetToolTip(this.button2, "Observação para o produto selecionado");
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnObservacao_Click);
+            // 
             // panel36
             // 
             this.panel36.Controls.Add(this.btnDesconto);
@@ -654,6 +684,24 @@
             this.panel36.Name = "panel36";
             this.panel36.Size = new System.Drawing.Size(59, 62);
             this.panel36.TabIndex = 2;
+            // 
+            // btnDesconto
+            // 
+            this.btnDesconto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDesconto.FlatAppearance.BorderSize = 0;
+            this.btnDesconto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDesconto.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDesconto.Image = global::Zip.Pdv.Properties.Resources.desconto_38;
+            this.btnDesconto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDesconto.Location = new System.Drawing.Point(0, 0);
+            this.btnDesconto.Name = "btnDesconto";
+            this.btnDesconto.Size = new System.Drawing.Size(59, 62);
+            this.btnDesconto.TabIndex = 7;
+            this.btnDesconto.Text = "Desc.";
+            this.btnDesconto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolTip1.SetToolTip(this.btnDesconto, "Aplica desconto final.");
+            this.btnDesconto.UseVisualStyleBackColor = true;
+            this.btnDesconto.Click += new System.EventHandler(this.btnDesconto_Click);
             // 
             // panel35
             // 
@@ -664,6 +712,23 @@
             this.panel35.Size = new System.Drawing.Size(59, 62);
             this.panel35.TabIndex = 1;
             // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLimpar.FlatAppearance.BorderSize = 0;
+            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.Image = global::Zip.Pdv.Properties.Resources.remover_32;
+            this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnLimpar.Location = new System.Drawing.Point(0, 0);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(59, 62);
+            this.btnLimpar.TabIndex = 6;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnCancelarVenda_Click);
+            // 
             // panel34
             // 
             this.panel34.Controls.Add(this.btnComplemento);
@@ -672,6 +737,24 @@
             this.panel34.Name = "panel34";
             this.panel34.Size = new System.Drawing.Size(59, 62);
             this.panel34.TabIndex = 0;
+            // 
+            // btnComplemento
+            // 
+            this.btnComplemento.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnComplemento.FlatAppearance.BorderSize = 0;
+            this.btnComplemento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnComplemento.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComplemento.Image = global::Zip.Pdv.Properties.Resources.adicional_32;
+            this.btnComplemento.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnComplemento.Location = new System.Drawing.Point(0, 0);
+            this.btnComplemento.Name = "btnComplemento";
+            this.btnComplemento.Size = new System.Drawing.Size(59, 62);
+            this.btnComplemento.TabIndex = 8;
+            this.btnComplemento.Text = "Compl.";
+            this.btnComplemento.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolTip1.SetToolTip(this.btnComplemento, "Complemento para o produto selecionado");
+            this.btnComplemento.UseVisualStyleBackColor = true;
+            this.btnComplemento.Click += new System.EventHandler(this.btnComplemento_Click);
             // 
             // panel2
             // 
@@ -682,6 +765,25 @@
             this.panel2.Size = new System.Drawing.Size(128, 62);
             this.panel2.TabIndex = 4;
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Image = global::Zip.Pdv.Properties.Resources.pag_48;
+            this.button4.Location = new System.Drawing.Point(0, 0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(128, 62);
+            this.button4.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.button4, "Finaliza o pedido");
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button1_Click);
+            // 
             // panel17
             // 
             this.panel17.Controls.Add(this.txtPesquisaProduto);
@@ -690,6 +792,17 @@
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(396, 40);
             this.panel17.TabIndex = 9;
+            // 
+            // txtPesquisaProduto
+            // 
+            this.txtPesquisaProduto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPesquisaProduto.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPesquisaProduto.Location = new System.Drawing.Point(0, 0);
+            this.txtPesquisaProduto.Name = "txtPesquisaProduto";
+            this.txtPesquisaProduto.PlaceholderText = "Procure o produto pelo código, nome ou codigo de barras";
+            this.txtPesquisaProduto.Size = new System.Drawing.Size(396, 36);
+            this.txtPesquisaProduto.TabIndex = 0;
+            this.txtPesquisaProduto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPesquisaProduto_KeyDown);
             // 
             // panelRight
             // 
@@ -716,6 +829,21 @@
             this.panel14.Size = new System.Drawing.Size(546, 535);
             this.panel14.TabIndex = 3;
             // 
+            // btnNextProd
+            // 
+            this.btnNextProd.BackgroundImage = global::Zip.Pdv.Properties.Resources.next_resultset_icone_3882_32;
+            this.btnNextProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnNextProd.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnNextProd.Enabled = false;
+            this.btnNextProd.FlatAppearance.BorderSize = 0;
+            this.btnNextProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextProd.Location = new System.Drawing.Point(503, 0);
+            this.btnNextProd.Name = "btnNextProd";
+            this.btnNextProd.Size = new System.Drawing.Size(43, 535);
+            this.btnNextProd.TabIndex = 2;
+            this.btnNextProd.UseVisualStyleBackColor = true;
+            this.btnNextProd.Click += new System.EventHandler(this.btnNextProd_Click);
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -726,6 +854,21 @@
             this.label17.Size = new System.Drawing.Size(140, 17);
             this.label17.TabIndex = 2;
             this.label17.Text = "Escolha o produto";
+            // 
+            // btnPrevProd
+            // 
+            this.btnPrevProd.BackgroundImage = global::Zip.Pdv.Properties.Resources.previous_resultset_icone_6623_32;
+            this.btnPrevProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPrevProd.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnPrevProd.Enabled = false;
+            this.btnPrevProd.FlatAppearance.BorderSize = 0;
+            this.btnPrevProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevProd.Location = new System.Drawing.Point(0, 0);
+            this.btnPrevProd.Name = "btnPrevProd";
+            this.btnPrevProd.Size = new System.Drawing.Size(42, 535);
+            this.btnPrevProd.TabIndex = 1;
+            this.btnPrevProd.UseVisualStyleBackColor = true;
+            this.btnPrevProd.Click += new System.EventHandler(this.btnPrevProd_Click);
             // 
             // flayoutProduto
             // 
@@ -842,6 +985,21 @@
             this.btnSolicitaCpf.UseVisualStyleBackColor = false;
             this.btnSolicitaCpf.Click += new System.EventHandler(this.btnSolicitaCpf_Click);
             // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnPrevious.BackgroundImage = global::Zip.Pdv.Properties.Resources.previous_resultset_icone_6623_32;
+            this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPrevious.Enabled = false;
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Location = new System.Drawing.Point(4, 64);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(38, 116);
+            this.btnPrevious.TabIndex = 3;
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
             // flayoutGrupo
             // 
             this.flayoutGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -851,6 +1009,22 @@
             this.flayoutGrupo.Name = "flayoutGrupo";
             this.flayoutGrupo.Size = new System.Drawing.Size(451, 118);
             this.flayoutGrupo.TabIndex = 1;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnNext.BackgroundImage = global::Zip.Pdv.Properties.Resources.next_resultset_icone_3882_32;
+            this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnNext.Enabled = false;
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Location = new System.Drawing.Point(503, 64);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(38, 116);
+            this.btnNext.TabIndex = 2;
+            this.btnNext.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // label16
             // 
@@ -906,6 +1080,25 @@
             this.panel15.Size = new System.Drawing.Size(62, 103);
             this.panel15.TabIndex = 6;
             // 
+            // btnDelivery
+            // 
+            this.btnDelivery.BackColor = System.Drawing.Color.Transparent;
+            this.btnDelivery.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnDelivery.FlatAppearance.BorderSize = 0;
+            this.btnDelivery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelivery.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelivery.Image = global::Zip.Pdv.Properties.Resources.delivery_48;
+            this.btnDelivery.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDelivery.Location = new System.Drawing.Point(0, 28);
+            this.btnDelivery.Name = "btnDelivery";
+            this.btnDelivery.Size = new System.Drawing.Size(62, 75);
+            this.btnDelivery.TabIndex = 12;
+            this.btnDelivery.Text = "Entregar";
+            this.btnDelivery.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolTip1.SetToolTip(this.btnDelivery, "Enviar pedido para monitoramento de entregas.");
+            this.btnDelivery.UseVisualStyleBackColor = false;
+            this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
+            // 
             // panel39
             // 
             this.panel39.Controls.Add(this.panel1);
@@ -932,6 +1125,26 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(62, 98);
             this.panel11.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::Zip.Pdv.Properties.Resources.go_38;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.Location = new System.Drawing.Point(0, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(62, 67);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Retira";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolTip1.SetToolTip(this.button1, "Venda Aguardando retirada do cliente");
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // panel38
             // 
@@ -968,237 +1181,6 @@
             this.panel4.Size = new System.Drawing.Size(62, 98);
             this.panel4.TabIndex = 1;
             // 
-            // panel22
-            // 
-            this.panel22.Controls.Add(this.panel3);
-            this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel22.Location = new System.Drawing.Point(3, 211);
-            this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(62, 98);
-            this.panel22.TabIndex = 2;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.btnFidelidade);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(62, 98);
-            this.panel3.TabIndex = 0;
-            // 
-            // panel21
-            // 
-            this.panel21.Controls.Add(this.button26);
-            this.panel21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel21.Location = new System.Drawing.Point(3, 3);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(62, 98);
-            this.panel21.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.btnBuscarProduto);
-            this.panel5.Controls.Add(this.button10);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 107);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(62, 98);
-            this.panel5.TabIndex = 0;
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::Zip.Pdv.Properties.Resources.obs_32;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(59, 62);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Obs.";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolTip1.SetToolTip(this.button2, "Observação para o produto selecionado");
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnObservacao_Click);
-            // 
-            // btnDesconto
-            // 
-            this.btnDesconto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDesconto.FlatAppearance.BorderSize = 0;
-            this.btnDesconto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDesconto.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDesconto.Image = global::Zip.Pdv.Properties.Resources.desconto_38;
-            this.btnDesconto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDesconto.Location = new System.Drawing.Point(0, 0);
-            this.btnDesconto.Name = "btnDesconto";
-            this.btnDesconto.Size = new System.Drawing.Size(59, 62);
-            this.btnDesconto.TabIndex = 7;
-            this.btnDesconto.Text = "Desc.";
-            this.btnDesconto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolTip1.SetToolTip(this.btnDesconto, "Aplica desconto final.");
-            this.btnDesconto.UseVisualStyleBackColor = true;
-            this.btnDesconto.Click += new System.EventHandler(this.btnDesconto_Click);
-            // 
-            // btnLimpar
-            // 
-            this.btnLimpar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLimpar.FlatAppearance.BorderSize = 0;
-            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpar.Image = global::Zip.Pdv.Properties.Resources.remover_32;
-            this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLimpar.Location = new System.Drawing.Point(0, 0);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(59, 62);
-            this.btnLimpar.TabIndex = 6;
-            this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnLimpar.UseVisualStyleBackColor = true;
-            this.btnLimpar.Click += new System.EventHandler(this.btnCancelarVenda_Click);
-            // 
-            // btnComplemento
-            // 
-            this.btnComplemento.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnComplemento.FlatAppearance.BorderSize = 0;
-            this.btnComplemento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnComplemento.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnComplemento.Image = global::Zip.Pdv.Properties.Resources.adicional_32;
-            this.btnComplemento.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnComplemento.Location = new System.Drawing.Point(0, 0);
-            this.btnComplemento.Name = "btnComplemento";
-            this.btnComplemento.Size = new System.Drawing.Size(59, 62);
-            this.btnComplemento.TabIndex = 8;
-            this.btnComplemento.Text = "Compl.";
-            this.btnComplemento.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolTip1.SetToolTip(this.btnComplemento, "Complemento para o produto selecionado");
-            this.btnComplemento.UseVisualStyleBackColor = true;
-            this.btnComplemento.Click += new System.EventHandler(this.btnComplemento_Click);
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Image = global::Zip.Pdv.Properties.Resources.pag_48;
-            this.button4.Location = new System.Drawing.Point(0, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(128, 62);
-            this.button4.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.button4, "Finaliza o pedido");
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnNextProd
-            // 
-            this.btnNextProd.BackgroundImage = global::Zip.Pdv.Properties.Resources.next_resultset_icone_3882_32;
-            this.btnNextProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnNextProd.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnNextProd.Enabled = false;
-            this.btnNextProd.FlatAppearance.BorderSize = 0;
-            this.btnNextProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNextProd.Location = new System.Drawing.Point(503, 0);
-            this.btnNextProd.Name = "btnNextProd";
-            this.btnNextProd.Size = new System.Drawing.Size(43, 535);
-            this.btnNextProd.TabIndex = 2;
-            this.btnNextProd.UseVisualStyleBackColor = true;
-            this.btnNextProd.Click += new System.EventHandler(this.btnNextProd_Click);
-            // 
-            // btnPrevProd
-            // 
-            this.btnPrevProd.BackgroundImage = global::Zip.Pdv.Properties.Resources.previous_resultset_icone_6623_32;
-            this.btnPrevProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnPrevProd.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnPrevProd.Enabled = false;
-            this.btnPrevProd.FlatAppearance.BorderSize = 0;
-            this.btnPrevProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrevProd.Location = new System.Drawing.Point(0, 0);
-            this.btnPrevProd.Name = "btnPrevProd";
-            this.btnPrevProd.Size = new System.Drawing.Size(42, 535);
-            this.btnPrevProd.TabIndex = 1;
-            this.btnPrevProd.UseVisualStyleBackColor = true;
-            this.btnPrevProd.Click += new System.EventHandler(this.btnPrevProd_Click);
-            // 
-            // btnPrevious
-            // 
-            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnPrevious.BackgroundImage = global::Zip.Pdv.Properties.Resources.previous_resultset_icone_6623_32;
-            this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnPrevious.Enabled = false;
-            this.btnPrevious.FlatAppearance.BorderSize = 0;
-            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrevious.Location = new System.Drawing.Point(4, 64);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(38, 116);
-            this.btnPrevious.TabIndex = 3;
-            this.btnPrevious.UseVisualStyleBackColor = true;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnNext.BackgroundImage = global::Zip.Pdv.Properties.Resources.next_resultset_icone_3882_32;
-            this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnNext.Enabled = false;
-            this.btnNext.FlatAppearance.BorderSize = 0;
-            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNext.Location = new System.Drawing.Point(503, 64);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(38, 116);
-            this.btnNext.TabIndex = 2;
-            this.btnNext.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // btnDelivery
-            // 
-            this.btnDelivery.BackColor = System.Drawing.Color.Transparent;
-            this.btnDelivery.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnDelivery.FlatAppearance.BorderSize = 0;
-            this.btnDelivery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelivery.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelivery.Image = global::Zip.Pdv.Properties.Resources.delivery_48;
-            this.btnDelivery.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDelivery.Location = new System.Drawing.Point(0, 28);
-            this.btnDelivery.Name = "btnDelivery";
-            this.btnDelivery.Size = new System.Drawing.Size(62, 75);
-            this.btnDelivery.TabIndex = 12;
-            this.btnDelivery.Text = "Entregar";
-            this.btnDelivery.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolTip1.SetToolTip(this.btnDelivery, "Enviar pedido para monitoramento de entregas.");
-            this.btnDelivery.UseVisualStyleBackColor = false;
-            this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::Zip.Pdv.Properties.Resources.go_38;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(0, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(62, 67);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Retira";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolTip1.SetToolTip(this.button1, "Venda Aguardando retirada do cliente");
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // btnCarregaFicha
             // 
             this.btnCarregaFicha.BackColor = System.Drawing.Color.Transparent;
@@ -1216,7 +1198,26 @@
             this.btnCarregaFicha.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.toolTip1.SetToolTip(this.btnCarregaFicha, "Ficha ja lançada.");
             this.btnCarregaFicha.UseVisualStyleBackColor = false;
+            this.btnCarregaFicha.Visible = false;
             this.btnCarregaFicha.Click += new System.EventHandler(this.btnCarregaFicha_Click);
+            // 
+            // panel22
+            // 
+            this.panel22.Controls.Add(this.panel3);
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel22.Location = new System.Drawing.Point(3, 211);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(62, 98);
+            this.panel22.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnFidelidade);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(62, 98);
+            this.panel3.TabIndex = 0;
             // 
             // btnFidelidade
             // 
@@ -1237,6 +1238,15 @@
             this.btnFidelidade.UseVisualStyleBackColor = false;
             this.btnFidelidade.Click += new System.EventHandler(this.btnFidelidade_Click);
             // 
+            // panel21
+            // 
+            this.panel21.Controls.Add(this.button26);
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel21.Location = new System.Drawing.Point(3, 3);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(62, 98);
+            this.panel21.TabIndex = 1;
+            // 
             // button26
             // 
             this.button26.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1252,6 +1262,16 @@
             this.button26.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button26.UseVisualStyleBackColor = true;
             this.button26.Click += new System.EventHandler(this.button26_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnBuscarProduto);
+            this.panel5.Controls.Add(this.button10);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 107);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(62, 98);
+            this.panel5.TabIndex = 0;
             // 
             // btnBuscarProduto
             // 
@@ -1288,28 +1308,10 @@
             this.button10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button10.UseVisualStyleBackColor = true;
             // 
-            // cupomGridView1
+            // toolTip1
             // 
-            this.cupomGridView1.BackColor = System.Drawing.Color.White;
-            this.cupomGridView1.ColorHeader = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
-            this.cupomGridView1.DataSource = null;
-            this.cupomGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cupomGridView1.Location = new System.Drawing.Point(0, 40);
-            this.cupomGridView1.Name = "cupomGridView1";
-            this.cupomGridView1.SelectedItem = null;
-            this.cupomGridView1.Size = new System.Drawing.Size(396, 503);
-            this.cupomGridView1.TabIndex = 6;
-            // 
-            // txtPesquisaProduto
-            // 
-            this.txtPesquisaProduto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPesquisaProduto.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPesquisaProduto.Location = new System.Drawing.Point(0, 0);
-            this.txtPesquisaProduto.Name = "txtPesquisaProduto";
-            this.txtPesquisaProduto.PlaceholderText = "Procure o produto pelo código, nome ou codigo de barras";
-            this.txtPesquisaProduto.Size = new System.Drawing.Size(396, 36);
-            this.txtPesquisaProduto.TabIndex = 0;
-            this.txtPesquisaProduto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPesquisaProduto_KeyDown);
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
             // FormPdv
             // 
