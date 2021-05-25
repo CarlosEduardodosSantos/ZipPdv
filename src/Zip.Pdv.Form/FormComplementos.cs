@@ -64,7 +64,6 @@ namespace Zip.Pdv
                     };
                     btnGridItem.SelectItem += Item_SelectItem;
                     btnGridItem.AdiconaComplemento(produtoComplementoViewModel);
-                    btnGridItem.SelectItem += Item_SelectItem;
                     controls[index] = btnGridItem;
 
                     index++;

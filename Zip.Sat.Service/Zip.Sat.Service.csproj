@@ -119,10 +119,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Componente\MobileAppServer\MobileAppServer.csproj">
-      <Project>{8e1334bb-c53b-4b0c-8239-9156251a3aae}</Project>
-      <Name>MobileAppServer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\src\Eticket.Application\Eticket.Application.csproj">
       <Project>{61392fb6-988c-4e20-937a-6eb52bbd5138}</Project>
       <Name>Eticket.Application</Name>

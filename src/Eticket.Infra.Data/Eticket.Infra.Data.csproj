@@ -61,6 +61,7 @@
     <Compile Include="Repository\EspeciePagamentoRepository.cs" />
     <Compile Include="Repository\FabricaRelatorioRepository.cs" />
     <Compile Include="Repository\NfceServicoRepository.cs" />
+    <Compile Include="Repository\ProdutoOpcaoRepository.cs" />
     <Compile Include="Repository\ProdutoTipoRepository.cs" />
     <Compile Include="Repository\RetornoSatRepository.cs" />
     <Compile Include="Repository\UnidadeMedidaRepository.cs" />

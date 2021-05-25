@@ -58,6 +58,7 @@
     <Compile Include="Entity\Ficha.cs" />
     <Compile Include="Entity\NFce.cs" />
     <Compile Include="Entity\NfceSituacao.cs" />
+    <Compile Include="Entity\ProdutoOpcao.cs" />
     <Compile Include="Entity\ProdutoTipo.cs" />
     <Compile Include="Entity\ProdutoTributacao.cs" />
     <Compile Include="Entity\RetornoSat.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Interface\Repository\IEntregadorRepository.cs" />
     <Compile Include="Interface\Repository\IFabricaRelatorioRepository.cs" />
     <Compile Include="Interface\Repository\INfceServicoRepository.cs" />
+    <Compile Include="Interface\Repository\IProdutoOpcaoRepository.cs" />
     <Compile Include="Interface\Repository\IRetornoSatRepository.cs" />
     <Compile Include="Interface\Repository\IVendaPendenteRepository.cs" />
     <Compile Include="Interface\Repository\IVendaRepository.cs" />
