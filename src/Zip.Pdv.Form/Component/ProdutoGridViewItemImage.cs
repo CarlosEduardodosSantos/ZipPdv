@@ -53,6 +53,7 @@ namespace Zip.Pdv.Component
             lbGrupo.Text = produto.Descricao;
             lbGrupo.ForeColor = ColorText;
 
+
             lbValorVenda.Text = produto.ValorVenda.ToString("C2");
             //lbValorVenda.ForeColor = ColorText;
             SelectedItem = produto;

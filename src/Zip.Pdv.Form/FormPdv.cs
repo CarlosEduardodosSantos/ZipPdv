@@ -33,7 +33,6 @@ namespace Zip.Pdv
         //public List<VendaItemViewModel> _vendaItens;
         private int _pageQuantidade;
         private int _currentPage = 1;
-
         private int _pageProdQuantidade;
         private int _currentProdPage = 1;
 
@@ -81,7 +80,6 @@ namespace Zip.Pdv
                 if (updateItem == null) return;
 
                 VendaView.VendaItens.FirstOrDefault(t => t.ProdutoId == produto.ProdutoId).Quantidade += quantidade;
-
                 cupomGridView1.Atualizar(VendaView.VendaItens);
             }
             else
@@ -113,10 +111,7 @@ namespace Zip.Pdv
             //    MessageBox.Show(ScannerListener.BarCodeScanned);
             return res;
         }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
         private void CupomGridView1_TaskItem(object sender, EventArgs e)
         {
             if (!VerificaPermissaoExclusao()) return;
@@ -181,7 +176,6 @@ namespace Zip.Pdv
             }
 
             GrupoPaginacao(1);
-
         }
 
         private void BtnGrupo_Click(object sender, EventArgs e)
@@ -192,7 +186,6 @@ namespace Zip.Pdv
                     continue;
 
                 ((GrupoGridViewItem)flayoutGrupo.Controls[i]).BorderStyle = BorderStyle.None;
-
             }
 
             var btn = (GrupoGridViewItem)sender;
@@ -328,7 +321,6 @@ namespace Zip.Pdv
 
                     vendaItem.ValorUnitatio += vendaItem.VendaComplementos.Sum(t => t.Valor);
                 }
-
             }
             /*
             if (VendaView.VendaItens.Any(t => t.ProdutoId == produto.ProdutoId && t.VendaComplementos.Count == 0 && string.IsNullOrEmpty(t.Observacao)))
@@ -364,18 +356,11 @@ namespace Zip.Pdv
                     }
                 }
             }
-
-
             CarregaVendaItem();
-        }
-
-        private void BtnProd_Click(object sender, MouseEventArgs e)
-        {
         }
 
         private void CarregaVendaItem()
         {
-
             //cupomGridView1.DataSource = _vendaItens;
             //cupomGridView1.CarregaGrid();
 
@@ -465,7 +450,6 @@ namespace Zip.Pdv
 
             }
         }
-
 
         static void StartOSK()
         {
@@ -626,7 +610,6 @@ namespace Zip.Pdv
                 {
                     IniciarVenda();
                 }
-
             }
         }
 
@@ -637,8 +620,8 @@ namespace Zip.Pdv
                 var tipoOperacao = VendaView.IsDelivery ? 5 : 4;
                 vendaApp.GeraImpressaoFechamento(VendaView.VendaId, tipoOperacao);
             }
-
         }
+
         private void ImprimeComprovanteTef(CaixaItemViewModel caixaItem)
         {
             //Imprime Via TEF
@@ -655,7 +638,6 @@ namespace Zip.Pdv
                     report.GerarRelatorio("Imp_ComprovanteTef", parms);
                 }
             }
-
         }
 
         private void IniciarVenda()
@@ -702,6 +684,7 @@ namespace Zip.Pdv
                 IncluirProdutoPesquisa(produto);
             }
         }
+
         private void FormPdv_Resize(object sender, EventArgs e)
         {
             //CarregaGrupos();
@@ -713,7 +696,6 @@ namespace Zip.Pdv
 
             //TotalizaCupom();
             txtPesquisaProduto.Select();
-
         }
 
         private void btnComplemento_Click(object sender, EventArgs e)
@@ -828,7 +810,6 @@ namespace Zip.Pdv
 
         private void IniciaVenda()
         {
-
             IniciarVenda();
         }
 
@@ -870,9 +851,7 @@ namespace Zip.Pdv
 
                 ImprimeCupomNaoFiscal();
             }
-
             IniciarVenda();
-
         }
 
         private void btnFidelidade_Click(object sender, EventArgs e)
@@ -930,15 +909,7 @@ namespace Zip.Pdv
                     cupomGridView1.AddItem(vendaViewVendaIten);
                 }
                 CarregaVendaItem();
-
             }
-
-
-        }
-
-        private void lbClienteDelivery_DoubleClick(object sender, EventArgs e)
-        {
-
         }
 
         void AlteraFrete(bool move)
@@ -996,8 +967,6 @@ namespace Zip.Pdv
             }
 
             IniciarVenda();
-
-
         }
     }
 }

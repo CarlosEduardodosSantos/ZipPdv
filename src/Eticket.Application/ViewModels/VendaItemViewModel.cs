@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Eticket.Application.ViewModels
@@ -9,11 +10,13 @@ namespace Eticket.Application.ViewModels
         {
             VendaComplementos = new List<VendaComplementoViewModel>();
         }
+        public Guid Guid { get; }
         public int VendaItemId { get; set; }
         public int VendaId { get; set; }
         public int SeqProduto { get; set; }
         public int ProdutoId { get; set; }
         public string Produto { get; set; }
+        public ProdutoViewModel ProdutoViewModel { get; set; }
         public decimal ValorUnitatio { get; set; }
         public decimal ValorDe { get; set; }
         public decimal Quantidade { get; set; }
@@ -23,7 +26,6 @@ namespace Eticket.Application.ViewModels
         public decimal SubTotal => (Quantidade * ValorUnitatio);
         public decimal ValorTotal => decimal.Round(((ValorUnitatio * Quantidade) + Adicional )- Desconto, 2);
         public string Observacao { get; set; }
-        public ProdutoViewModel ProdutoViewModel { get; set; }
         public ICollection<VendaComplementoViewModel> VendaComplementos { get; set; }
         public string ComplementoDescricao => ObterComplementoDescricao();
         public string DescricaoProduto => ObterDescricaoProduto();
