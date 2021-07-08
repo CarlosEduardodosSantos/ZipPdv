@@ -40,7 +40,25 @@ namespace Eticket.Application
         {
             return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.ObterPorNome(nome));
         }
+        public IEnumerable<ProdutoViewModel> ObterMaisVendidos()
+        {
+            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.ObterMaisVendidos());
+        }
 
+        public IEnumerable<ProdutoViewModel> ObterAbaixoDoMinimo()
+        {
+            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.ObterAbaixoDoMinimo());
+        }
+
+        public IEnumerable<ProdutoViewModel> ObterEmFalta()
+        {
+            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.ObterEmFalta());
+        }
+
+        public IEnumerable<ProdutoViewModel> ObterEmExesso()
+        {
+            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.ObterEmExesso());
+        }
         public string ObterImageProdutoId(int produtoId)
         {
             return _produtoRepository.ObterImageProdutoId(produtoId);

@@ -30,12 +30,19 @@ namespace Zip.Pdv
             splitBtnConfigure.AddDropDownItemAndHandle("Caixa Abertura", btnCaixaAbertura_Click);
             splitBtnConfigure.AddDropDownItemAndHandle("Caixa Fechamento", btnCaixaFechamento_Click);
             splitBtnConfigure.AddDropDownItemAndHandle("Caixa Movimentacao", btnCaixaMovimentacao_Click);
-            splitBtnConfigure.AddDropDownItemAndHandle("Caixa Lancamentos", btnCaixaMovimentacao_Click);
+            //splitBtnConfigure.AddDropDownItemAndHandle("Caixa Lancamentos", btnCaixaMovimentacao_Click);
             //splitBtnConfigure.AddDropDownItemAndHandle("Configurações", btnConfiguracao_Click);
+            splitBtnConfigure.AddDropDownItemAndHandle("Venda ADM", btnVendaAdm_Click);
 
             OpenMenu();
             if (Program.InicializacaoViewAux.ModoPdv)
+            {
+                //btnDelivery.Visible = false;
+                splitBtnIfood.Visible = false;
+                //splitBtnConfigure.Visible = false;
                 OpenPdv();
+            }
+                
         }
 
         private void btnCaixaMovimentacao_Click(object sender, EventArgs e)
@@ -49,7 +56,11 @@ namespace Zip.Pdv
             var page = new PageConfiguracoes();
             OpePage(page);
         }
-
+        private void btnVendaAdm_Click(object sender, EventArgs e)
+        {
+            var page = new PageVendaAdministracao();
+            OpePage(page);
+        }
         private void OpePage(PageBase page)
         {
             using (var form = new FormBase(page))
@@ -94,9 +105,13 @@ namespace Zip.Pdv
 
             using (var form = new FormCaixaFechamento())
             {
-                form.ShowDialog();
+                var result = form.ShowDialog();
+
+                if (result == DialogResult.OK)
+                    Application.Restart();
             }
-            btnVoltar.PerformClick();
+
+            //btnVoltar.PerformClick();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -168,8 +183,10 @@ namespace Zip.Pdv
         {
             if (Program.CaixaView == null)
             {
-                if (TouchMessageBox.Show("Caixa fechado\nDeseja abrir?", "Caixa", MessageBoxButtons.OKCancel,
-                        MessageBoxIcon.Question) == DialogResult.Yes)
+                var result = TouchMessageBox.Show("Caixa fechado\nDeseja abrir?", "Caixa", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Question) ;
+
+                if (result == DialogResult.OK)
                 {
                     using (var form = new FormAbrirCaixa())
                     {
@@ -185,6 +202,7 @@ namespace Zip.Pdv
             }
 
             btnVoltar.Visible = true;
+            /*
             if (!panelPages.Controls.Contains(FormPdv.Instance))
             {
                 FormPdv.Instance.Dock = DockStyle.Fill;
@@ -193,6 +211,19 @@ namespace Zip.Pdv
             }
             else
                 FormPdv.Instance.BringToFront();
+            */
+            btnVoltar.Visible = false;
+            panel26.Visible = false;
+            btnDelivery.Visible = false;
+            splitBtnConfigure.Visible = false;
+            if (!panelPages.Controls.Contains(FormPdvToten.Instance))
+            {
+                FormPdvToten.Instance.Dock = DockStyle.Fill;
+                panelPages.Controls.Add(FormPdvToten.Instance);
+                FormPdvToten.Instance.BringToFront();
+            }
+            else
+                FormPdvToten.Instance.BringToFront();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {

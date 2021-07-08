@@ -32,7 +32,7 @@ namespace Eticket.Infra.Data.Repository
             parms.Add("@DATA", venda.DataHora.Date);
             parms.Add("@TIPO", venda.Tipo);
             parms.Add("@VEND", venda.UsuarioId);
-            parms.Add("@HORA", venda.DataHora.ToString("HH:mm"));
+            parms.Add("@HORA", venda.DataHora.ToString("HH:mm:ss"));
             parms.Add("@COD_CLI", venda.ClienteId);
             parms.Add("@LOJA", venda.Loja);
             parms.Add("@VL_COMPRA", venda.VendaItens.Sum(t => t.ValorTotal));
@@ -119,7 +119,21 @@ namespace Eticket.Infra.Data.Repository
 
                         conn.Query(sqlCOmplemento.ToString(), complementoParms);
                     }
+                    foreach (var vendaProdutoOpcao in vendaVendaItens.VendaProdutoOpcoes)
+                    {
+                        var sqlCOmplemento = new StringBuilder();
+                        sqlCOmplemento.AppendLine("Insert Into Venda_4(NROVENDA, PRODCOD, COMPCOD, SEQLANC, VALOR)");
+                        sqlCOmplemento.AppendLine("Values(@NROVENDA, @PRODCOD, @COMPCOD, @SEQLANC, @VALOR)");
 
+                        var complementoParms = new DynamicParameters();
+                        complementoParms.Add("@NROVENDA", venda.VendaId);
+                        complementoParms.Add("@PRODCOD", vendaProdutoOpcao.ProdutoId);
+                        complementoParms.Add("@COMPCOD", vendaProdutoOpcao.ProdutosOpcaoTipoId);
+                        complementoParms.Add("@SEQLANC", vendaVendaItens.SeqProduto);
+                        complementoParms.Add("@VALOR", vendaProdutoOpcao.Valor);
+
+                        conn.Query(sqlCOmplemento.ToString(), complementoParms);
+                    }
                 }
 
 
@@ -200,6 +214,24 @@ namespace Eticket.Infra.Data.Repository
             //AtualizaVendaId();
             //var tipoOperacao = venda.IsDelivery ? 5 : 4;
             //GeraImpressaoFechamento(venda.VendaId, tipoOperacao);
+
+        }
+        public void AtualizaFiscal(Venda venda)
+        {
+            var sql = new StringBuilder();
+            sql.AppendLine("Update Venda_1 Set Cupom_Fiscal = @CupomFiscal, ModeloFiscal = @ModeloFiscal Where Nro = @VendaId");
+
+            var parms = new DynamicParameters();
+            parms.Add("@CupomFiscal", venda.CupomFiscal);
+            parms.Add("@ModeloFiscal", venda.ModeloFiscal);
+            parms.Add("@VendaId", venda.VendaId);
+
+            using (var conn = Connection)
+            {
+                conn.Open();
+                conn.Query(sql.ToString(), parms);
+                conn.Close();
+            }
 
         }
 
@@ -382,8 +414,8 @@ namespace Eticket.Infra.Data.Repository
                         }
                         list.Add(v2);
 
-                        master.Delivery = d1;
-                        master.Delivery.ClienteDelivery = d2;
+                        master.Delivery = d1 ?? new Delivery();
+                        master.Delivery.ClienteDelivery = d2 ?? new ClienteDelivery();
 
                         return master;
                     }, splitOn: "VendaId, VendaItemId, DeliveryId, ClienteDeliveryId").Distinct();
@@ -740,6 +772,105 @@ namespace Eticket.Infra.Data.Repository
                 {
                     return 0;
                 }
+            }
+        }
+
+        public Venda ObterPorId(int vendaId)
+        {
+            var sql = @"Select 
+	                            venda.nro as VendaId,
+	                            venda.LOJA as Loja,
+	                            venda.pdv as Pdv,
+	                            venda.nrocx as CaixaId,
+	                            venda.COD_CLI as ClienteId,
+	                            venda.DATA + ' ' + venda.hora as DataHora,
+	                            venda.TIPO as Tipo,
+	                            venda.VEND as UsuarioId,
+	                            venda.VL_COMPRA as ValorCompra,
+	                            venda.cpfcnpj as Cnpj,
+	                            venda.OBS as Observacao,
+                                CupomFiscal = isnull((Select top 1 NUMDOCFISCAL From SAT_TAB Where sat_tab.NROVENDA = venda.NRO Order By dataHora desc),''),
+                                MenssagemSat = isnull((Select top 1 MENSAGEM From SAT_TAB Where sat_tab.NROVENDA = venda.NRO Order By dataHora desc),''),
+	                            venda.Senha as Senha,
+	                            Isnull(venda.xTELE,0) as IsDelivery,
+                                iSNULL(venda.TipoPagamento, '') as TipoPagamento,
+
+	                            --Venda Itens
+	                            vendaItem.INC_VENDA2 as VendaItemId,
+	                            vendaItem.NRO as VendaId,
+	                            vendaItem.SEQLANC as SeqProduto,
+	                            vendaItem.Cod_Prod as ProdutoId,
+	                            vendaItem.Des_ as Produto,
+	                            vendaItem.UNIT as ValorUnitatio,
+	                            vendaItem.QTDE as Quantidade,
+	                            vendaItem.VALOR as ValorTotal,
+	                            vendaItem.PROD_OBS as Observacao,
+
+	                            --Delivery
+	                            delivery.Nro as DeliveryId,
+	                            delivery.Nro_Venda as VendaId,
+	                            delivery.Ped_Data as DataHora,
+                                delivery.Sai_Data as DataHoraSaida,	
+	                            delivery.Ret_Data as DataHoraRetorno, 
+	                            delivery.Cod_Cliente as ClienteDeliveryId,
+                                Isnull(delivery.Troco,0) as Troco,                                
+                                Isnull(delivery.valor,0) as Valor,
+                                Isnull(delivery.Taxa_Adicional,0) as TaxaEntrega,
+                                --Entregador
+	                            delivery.Moto as EntregadorId,
+	                            entregador.Nome as Entregador,
+	                            
+                                --Cliente
+	                            cliente.Codigo as ClienteDeliveryId,
+	                            cliente.Nome,
+	                            cliente.Fone as Telefone,
+	                            cliente.Endereco as Endereco,
+	                            --cliente.Numero as Numero,
+	                            cliente.Bairro as Bairro,
+	                            cliente.Cidade as Cidade,
+	                            cliente.Cidade as Cep,
+	                            cliente.Obs1 as Observacao,
+	                            cliente.UF as Uf
+                                
+                            From Venda_1 venda
+                            Left Join Televenda_1 delivery On venda.NRO = delivery.Nro_Venda
+                            Left Join Televenda_2 cliente On delivery.Cod_Cliente = cliente.Codigo
+                            Left Join Televenda_3 entregador On delivery.Moto = entregador.Codigo
+                            Inner Join Venda_2 vendaItem On venda.NRO = vendaItem.NRO
+                            Where venda.nro = @vendaId";
+
+            using (var conn = Connection)
+            {
+                conn.Open();
+
+                var identityMap = new Dictionary<int, Venda>();
+
+                var vendas = conn.Query<Venda, VendaItem, Delivery, ClienteDelivery, Venda>(sql,
+                    (v1, v2, d1, d2) =>
+                    {
+                        Venda master;
+                        if (!identityMap.TryGetValue(v1.VendaId, out master))
+                        {
+                            identityMap[v1.VendaId] = master = v1;
+                        }
+
+
+                        var list = (List<VendaItem>)master.VendaItens;
+                        if (list == null)
+                        {
+                            master.VendaItens = list = new List<VendaItem>();
+                        }
+                        list.Add(v2);
+
+                        master.Delivery = d1 ?? new Delivery();
+                        master.Delivery.ClienteDelivery = d2 ?? new ClienteDelivery();
+
+                        return master;
+                    }, new { vendaId }, splitOn: "VendaId, VendaItemId, DeliveryId, ClienteDeliveryId").FirstOrDefault();
+
+                conn.Close();
+
+                return vendas;
             }
         }
     }

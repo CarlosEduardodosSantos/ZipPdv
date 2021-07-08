@@ -24,6 +24,7 @@ namespace Zip.Pdv
         public static FormPdv Instance => _instance ?? (_instance = new FormPdv());
 
         private readonly IProdutoAppService _produtoAppService;
+        private readonly IProdutoOpcaoAppService _produtoOpcaoAppService;
         private readonly IProdutoComplementoAppService _complementoAppService;
         private BarCodeListener ScannerListener;
         private List<ProdutoGrupoViewModel> _grupos;
@@ -44,6 +45,7 @@ namespace Zip.Pdv
             //CheckForIllegalCrossThreadCalls = false;
 
             _produtoAppService = Program.Container.GetInstance<IProdutoAppService>();
+            _produtoOpcaoAppService = Program.Container.GetInstance<IProdutoOpcaoAppService>();
             _complementoAppService = Program.Container.GetInstance<IProdutoComplementoAppService>();
             ScannerListener = new BarCodeListener(this.ParentForm);
             ScannerListener.BarCodeScanned += ScannerListener_BarCodeScanned;
@@ -239,8 +241,8 @@ namespace Zip.Pdv
             btnNextProd.Enabled = false;
             btnPrevProd.Enabled = false;
 
-            int qItemW = flayoutProduto.Width / 95;
-            int qItemH = flayoutProduto.Height / 53;
+            int qItemW = flayoutProduto.Width / 110;
+            int qItemH = flayoutProduto.Height / 75;
             int itens = qItemW * qItemH;
 
             var skip = itens * (page - 1);
@@ -316,8 +318,8 @@ namespace Zip.Pdv
                 ProdutoViewModel = produto,
                 SeqProduto = seqLanc
             };
-
-            var complementos = _complementoAppService.ObterPorGrupoId(produto.GrupoId).ToList();
+            /*
+           var complementos = _complementoAppService.ObterPorGrupoId(produto.GrupoId).ToList();
 
             if (complementos.Any())
             {
@@ -342,29 +344,60 @@ namespace Zip.Pdv
             */
 
 
-            VendaView.VendaItens.Add(vendaItem);
 
-            cupomGridView1.AddItem(vendaItem);
-
-            //Verifica sugestão para o grupo do produto lançado
-            var sugestoes = _produtoAppService.GetSugestaoByGrupoId(produto.GrupoId).ToList();
-            if (sugestoes.Any())
+            //ProdutoOpções 
+            var produtosTipoOpoes = _produtoOpcaoAppService.GetByprodutoId(produto.ProdutoId).ToList();
+            if (produtosTipoOpoes.Any())
             {
-                using (var form = new FormSugestao(sugestoes, produto.Descricao))
+                using (var form = new FrmProdutoOpcao(produtosTipoOpoes, vendaItem))
                 {
-                    form.ShowDialog();
-                    var vendaItens = form.VendaSugestaoItens;
+                    var reult = form.ShowDialog();
+                    if (reult != DialogResult.OK)
+                        return;
 
-                    foreach (var vendaSugestaoItemItem in vendaItens)
-                    {
-                        vendaSugestaoItemItem.SeqProduto = VendaView.VendaItens.Count + 1;
-                        VendaView.VendaItens.Add(vendaSugestaoItemItem);
+                    vendaItem = form.VendaItem;
+                    vendaItem.ValorUnitatio += vendaItem.VendaProdutoOpcoes.Sum(t => t.Valor);
 
-                        cupomGridView1.AddItem(vendaSugestaoItemItem);
-                    }
                 }
             }
 
+            if (VendaView.VendaItens.Any(t => t.ProdutoId == produto.ProdutoId && t.VendaProdutoOpcoes.Count == 0 && t.VendaComplementos.Count == 0 && string.IsNullOrEmpty(t.Observacao)))
+            {
+                VendaView.VendaItens.FirstOrDefault(t => t.ProdutoId == produto.ProdutoId && t.VendaProdutoOpcoes.Count == 0 && t.VendaComplementos.Count == 0 && string.IsNullOrEmpty(t.Observacao)).Quantidade += quantidade;
+
+
+                cupomGridView1.Atualizar(VendaView.VendaItens);
+
+            }
+            else
+            {
+                VendaView.VendaItens.Add(vendaItem);
+
+                cupomGridView1.AddItem(vendaItem);
+            }
+
+
+
+            //Verifica sugestão para o grupo do produto lançado
+            /*     var sugestoes = _produtoAppService.GetSugestaoByGrupoId(produto.GrupoId).ToList();
+             if (sugestoes.Any())
+             {
+
+                 using (var form = new FormSugestao(sugestoes, produto.Descricao))
+                 {
+                     form.ShowDialog();
+                     var vendaItens = form.VendaSugestaoItens;
+
+                     foreach (var vendaSugestaoItemItem in vendaItens)
+                     {
+                         vendaSugestaoItemItem.SeqProduto = VendaView.VendaItens.Count + 1;
+                         VendaView.VendaItens.Add(vendaSugestaoItemItem);
+
+                         cupomGridView1.AddItem(vendaSugestaoItemItem);
+                     }
+                 }
+             }
+            */
 
             CarregaVendaItem();
         }
@@ -508,7 +541,7 @@ namespace Zip.Pdv
             }
             if (VendaView.IsDelivery)
             {
-                var result = TouchMessageBox.Show("Venda iniciada como Entrega\nDeseja finalizar como venda balção?",
+                var result = TouchMessageBox.Show("Venda iniciada como Entrega\nDeseja finalizar como venda balcão?",
                     "Venda", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Cancel)
@@ -616,6 +649,9 @@ namespace Zip.Pdv
                             break;
                     }
 
+                    //Atualiza o modelo Fiscal
+                    VendaView.ModeloFiscal = emissarFiscal;
+
                     //Envia GR
                 }
                 catch (Exception exception)
@@ -624,6 +660,12 @@ namespace Zip.Pdv
                 }
                 finally
                 {
+                    //Atualiza Cupom Fiscal
+                    using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
+                    {
+
+                        vendaApp.AtualizaFiscal(VendaView);
+                    }
                     IniciarVenda();
                 }
 
@@ -661,7 +703,7 @@ namespace Zip.Pdv
         private void IniciarVenda()
         {
             btnSolicitaCpf.Text = "CPF na nota?";
-            lbClienteDelivery.Text = "VENDA BALÇÃO";
+            lbClienteDelivery.Text = "VENDA BALCÃO";
             myListFichas = new List<string>();
 
             AlteraFrete(Program.GetIsFrete);
@@ -742,6 +784,7 @@ namespace Zip.Pdv
                 }
                 VendaView.VendaItens[gridItem.Index] = vendaItem;
                 cupomGridView1.Atualizar(VendaView.VendaItens);
+                CarregaVendaItem();
             }
             else
             {
@@ -981,7 +1024,7 @@ namespace Zip.Pdv
                 var clienteExists = vendaPendenciaAppService.PendenciaExistente(nome);
                 if (clienteExists)
                 {
-                    var aceitar = TouchMessageBox.Show("Cliente já existente, deseja atribuir os itens para o cliente?", "Venda Pendente", 
+                    var aceitar = TouchMessageBox.Show("Cliente já existente, deseja atribuir os itens para o cliente?", "Venda Pendente",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
 
                     if (!aceitar)
@@ -1000,6 +1043,30 @@ namespace Zip.Pdv
             IniciarVenda();
 
 
+        }
+
+        private void btnMais1_Click(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            var qtde = int.Parse(btn.Tag.ToString());
+
+            var gridItem = cupomGridView1.SelectedItem;
+            if (gridItem == null)
+            {
+                TouchMessageBox.Show("Nenhum produto selecionado", "Venda PDV", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
+            var vendaItem = gridItem.DataSource;
+
+            if ((vendaItem.Quantidade + qtde) <= 0)
+                vendaItem.Quantidade = 1;
+            else
+                vendaItem.Quantidade += qtde;
+
+            cupomGridView1.Atualizar(VendaView.VendaItens);
+            CarregaVendaItem();
         }
     }
 }

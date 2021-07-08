@@ -7,6 +7,7 @@ using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
 using Zip.Pdv.Component;
 using Zip.Pdv.Component.EspeciePagamento;
+using Zip.Pdv.Fast;
 
 namespace Zip.Pdv
 {
@@ -162,6 +163,7 @@ namespace Zip.Pdv
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -219,10 +221,18 @@ namespace Zip.Pdv
             /*
              Imprime Fechamento do caixa
              */
+            var parms = new ParameterReportDynamic();
+            parms.Add("caixaId", caixaView.CaixaId);
+
+            var report = new RelatorioFastReport();
+            report.GerarRelatorio("Imp_FechamentoCaixa", parms);
 
 
             TouchMessageBox.Show("Caixa fechado com sucesso!", "Fechamento de caixa", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+
+            this.DialogResult = DialogResult.OK;
+
             Close();
         }
     }

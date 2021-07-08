@@ -27,6 +27,7 @@ namespace Zip.Pdv.Component
             }
         }
         public object SelectedItem { get; set; }
+        public decimal Quantidade { get; set; }
         public int Index { get; set; }
         [DefaultValue(false)]
         public bool HideValorVenda { get; set; }
@@ -36,7 +37,7 @@ namespace Zip.Pdv.Component
         {
             InitializeComponent();
             lbGrupo.Text = String.Empty;
-
+            Quantidade = 1;
 
             lbGrupo.Click += selectItem;
             lbGrupo.MouseEnter += lbDescricao_MouseEnter;

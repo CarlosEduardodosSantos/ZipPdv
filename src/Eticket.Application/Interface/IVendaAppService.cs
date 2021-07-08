@@ -7,6 +7,7 @@ namespace Eticket.Application.Interface
     public interface IVendaAppService : IDisposable
     {
         void Adicionar(VendaViewModel vendaView);
+        void AtualizaFiscal(VendaViewModel vendaView);
         void Cancelar(VendaViewModel vendaView);
         VendaViewModel ObterPorId(int id);
         IEnumerable<VendaViewModel> ObterEntregaPendentes();

@@ -239,7 +239,7 @@ namespace Zip.TefDial
 
                 #region Comprovante
 
-                if (herader == "028-001")
+                if (herader == "028-000")
                 {
                     var valor = line.ToRegistroValor();
 
@@ -255,6 +255,8 @@ namespace Zip.TefDial
                     var linha = int.Parse(herader.Substring(4, 3));
 
                     var valor = line.ToRegistroValor();
+                    if (string.IsNullOrEmpty(valor)) continue;
+
                     if (linha <= linhaComprovante)
                     {
                         cartaoRespostaView.Comprovantes[0].Comprovante += $"{valor.Replace("\"", "")}{Environment.NewLine}";

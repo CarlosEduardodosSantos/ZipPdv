@@ -34,14 +34,14 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="MobileAppServerClient">
+      <HintPath>..\..\Dlls\MobileAppServerClient.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SocketAppServer, Version=2.0.41.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MobileAppServer.2.0.41\lib\net45\SocketAppServer.dll</HintPath>
-    </Reference>
-    <Reference Include="SocketAppServerClient, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SocketAppServer.Client.2.1.7\lib\net45\SocketAppServerClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -100,6 +100,7 @@
     <Compile Include="SAT\Modelo\Dimep.cs" />
     <Compile Include="SAT\Modelo\Elgin.cs" />
     <Compile Include="SAT\Modelo\Emulador.cs" />
+    <Compile Include="SAT\Modelo\ControliD.cs" />
     <Compile Include="SAT\Modelo\Gertec.cs" />
     <Compile Include="SAT\Modelo\Kryptus.cs" />
     <Compile Include="SAT\Modelo\Nitere.cs" />

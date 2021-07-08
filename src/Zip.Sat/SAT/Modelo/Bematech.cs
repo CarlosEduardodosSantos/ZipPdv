@@ -8,54 +8,54 @@ namespace SAT.Modelo
     public class Bematech : ISat
     {
         #region Declaracao dll
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ConsultarStatusOperacional(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr AtivarSAT(int numeroSessao, int subComando, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao,
         [MarshalAs(UnmanagedType.LPStr)] string CNPJ, int cUF);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ComunicarCertificadoICPBRASIL(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao,
         [MarshalAs(UnmanagedType.LPStr)] string certificado);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr EnviarDadosVenda(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao,
         [MarshalAs(UnmanagedType.LPStr)] string dadosVenda);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr CancelarUltimaVenda(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao, [MarshalAs(UnmanagedType.LPStr)] string chave, [MarshalAs(UnmanagedType.LPStr)] string dadosCancelamento);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ConsultarSAT(int numeroSessao);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr TesteFimAFim(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao,
         [MarshalAs(UnmanagedType.LPStr)] string dadosVenda);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ConsultarNumeroSessao(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao, int cNumeroDeSessao);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ConfigurarInterfaceDeRede(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao,
         [MarshalAs(UnmanagedType.LPStr)] string dadosConfiguracao);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr AssociarAssinatura(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao, [MarshalAs(UnmanagedType.LPStr)] string CNPJvalue, [MarshalAs(UnmanagedType.LPStr)] string assinaturaCNPJs);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr AtualizarSoftwareSAT(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ExtrairLogs(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr BloquearSAT(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr DesbloquearSAT(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao);
 
-        [DllImport("BEMATECH-SAT.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("BemaSAT.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr TrocarCodigoDeAtivacao(int numeroSessao, [MarshalAs(UnmanagedType.LPStr)] string codigoDeAtivacao, [MarshalAs(UnmanagedType.LPStr)] string opcao, [MarshalAs(UnmanagedType.LPStr)] string novoCodigo, [MarshalAs(UnmanagedType.LPStr)] string confNovoCodigo);
         #endregion
 

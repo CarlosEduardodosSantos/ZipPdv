@@ -24,6 +24,7 @@ namespace Zip.Pdv.Component
             }
         }
         public int CodigoProduto { get; set; }
+        public string Descricao => lbGrupo.Text;
         public Color ColorText { get; set; }
         private Color _fixColor;
         public GrupoGridViewItem()

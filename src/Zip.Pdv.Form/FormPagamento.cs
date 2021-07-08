@@ -237,8 +237,13 @@ namespace Zip.Pdv
             var valorPago = Pagamentos.Sum(t => t.Valor);
             if (valorPago < _valorReceber)
             {
+                if (txtValor.ValueNumeric == _valorReceber)
+                    btnLancarPgamento.PerformClick();
+                else
                 TouchMessageBox.Show("Valor pago insufisiente para continuar", "Pagamento", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                
+                
                 return;
 
             }

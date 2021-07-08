@@ -15,6 +15,24 @@ namespace Zip.Pdv.Page
                 completedEvent(item, e);
             }
         }
+        public event EventHandler<EventArgs> SelectedItem;
+        protected void selectedItem(object sender, EventArgs e)
+        {
+            var completedEvent = SelectedItem;
+            if (completedEvent != null)
+            {
+                var item = sender;
+                completedEvent(item, e);
+            }
+        }
 
+        public virtual void Atualizar()
+        {
+            //
+        }
+        public virtual void Inicia()
+        {
+            //
+        }
     }
 }

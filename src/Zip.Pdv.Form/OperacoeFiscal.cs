@@ -14,6 +14,7 @@ namespace Zip.Pdv
             }
         }
 
+        
         public static void ImprimeNfce(VendaViewModel vendaView)
         {
             using (var formNfce = new FrmSolicitaNfce(vendaView.VendaId))

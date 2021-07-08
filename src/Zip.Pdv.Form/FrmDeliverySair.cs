@@ -99,7 +99,7 @@ namespace Zip.Pdv
         {
             if (_entregadorView == null)
             {
-                TouchMessageBox.Show("Selecione o entregado.", "Entrega", MessageBoxButtons.OK,
+                TouchMessageBox.Show("Selecione o entregador.", "Entrega", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 return;
             }

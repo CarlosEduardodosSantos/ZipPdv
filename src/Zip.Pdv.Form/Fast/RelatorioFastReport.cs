@@ -14,7 +14,7 @@ namespace Zip.Pdv.Fast
 {
     public class RelatorioFastReport
     {
-        private readonly TipoImpressaoViewEnum _tipoImpressaoViewEnum;
+        private TipoImpressaoViewEnum _tipoImpressaoViewEnum;
         private readonly string _connectionString;
         public RelatorioFastReport()
         {
@@ -26,7 +26,6 @@ namespace Zip.Pdv.Fast
         public void GerarRelatorio(string nameFrx, ParameterReportDynamic parameterReport)
         {
             var report = new FastReport.Report();
-
 
             var reportPropriedade = new EnvironmentSettings
             {
@@ -97,7 +96,16 @@ namespace Zip.Pdv.Fast
                                                         PreviewButtons.Zoom |
                                                         PreviewButtons.Save;
 
-            report.LoadFromString(LoadFileReportDb(nameFrx));
+            var file = LoadFileReportDb(nameFrx);
+            if (File.Exists(file))
+            {
+                report.LoadFromString(file);
+                report.Prepare();
+            }
+            else
+                _tipoImpressaoViewEnum = TipoImpressaoViewEnum.Design;
+
+            
             if (report.Dictionary.Connections.Count > 0)
             {
                 report.Dictionary.Connections[0].ConnectionString = _connectionString;

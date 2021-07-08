@@ -132,7 +132,7 @@
             // 
             // btnPrevProd
             // 
-            this.btnPrevProd.BackColor = System.Drawing.Color.LightGreen;
+            this.btnPrevProd.BackColor = System.Drawing.Color.Orange;
             this.btnPrevProd.BackgroundImage = global::Zip.Pdv.Properties.Resources.previous_resultset_icone_6623_32;
             this.btnPrevProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnPrevProd.Dock = System.Windows.Forms.DockStyle.Left;
@@ -148,7 +148,7 @@
             // 
             // btnNextProd
             // 
-            this.btnNextProd.BackColor = System.Drawing.Color.LightGreen;
+            this.btnNextProd.BackColor = System.Drawing.Color.Orange;
             this.btnNextProd.BackgroundImage = global::Zip.Pdv.Properties.Resources.next_resultset_icone_3882_32;
             this.btnNextProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnNextProd.Dock = System.Windows.Forms.DockStyle.Right;

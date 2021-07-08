@@ -64,7 +64,7 @@ namespace Zip.TefDial
             srvFile.AppendLine($"001-000 = {_cartaoRequisicao.Requisicao}"); //Indica o número de controle da solicitação que está sendo feita (IdPedido)
             srvFile.AppendLine($"002-000 = {_cartaoRequisicao.Vinculado}"); //Numero Cupom Fiscal
             srvFile.AppendLine($"003-000 = {_cartaoRequisicao.Valor.ToString("N2").Replace(",", "")}"); //Valor da transação
-            var cartaoCredito = _cartaoRequisicao.TipoCartao == EspecieCartaoTipoEnumView.CartaoCredito ? 1 : 0; 
+            var cartaoCredito = _cartaoRequisicao.TipoCartao == EspecieCartaoTipoEnumView.CartaoCredito ? 0 : 1; 
             srvFile.AppendLine($"800-001 = {cartaoCredito}");
             srvFile.AppendLine($"800-002 = 0");
             srvFile.AppendLine($"999-999 = 0"); //Finaliza

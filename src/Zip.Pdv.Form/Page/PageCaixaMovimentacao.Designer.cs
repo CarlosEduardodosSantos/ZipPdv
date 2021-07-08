@@ -30,12 +30,12 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -44,6 +44,7 @@
             this.tabDetalhe = new System.Windows.Forms.TabPage();
             this.dgvHistCaixa = new System.Windows.Forms.DataGridView();
             this.tabResumo = new System.Windows.Forms.TabPage();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabOperacoes = new System.Windows.Forms.TabPage();
@@ -58,6 +59,9 @@
             this.txtVendaVista = new Zip.Pdv.Component.TextBoxDecimal();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.txtValorInicial = new Zip.Pdv.Component.TextBoxDecimal();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.txtvPagamentos = new Zip.Pdv.Component.TextBoxDecimal();
             this.label17 = new System.Windows.Forms.Label();
@@ -78,6 +82,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabEspecie = new System.Windows.Forms.TabPage();
             this.dgvEspecies = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel14 = new System.Windows.Forms.Panel();
             this.txtdthFechamento = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -94,23 +100,18 @@
             this.panel23 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.clInOperacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clTipoOperacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clHistorico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtValorInicial = new Zip.Pdv.Component.TextBoxDecimal();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabDetalhe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistCaixa)).BeginInit();
             this.tabResumo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabOperacoes.SuspendLayout();
@@ -119,6 +120,7 @@
             this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -129,8 +131,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspecies)).BeginInit();
             this.panel14.SuspendLayout();
             this.panel23.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -236,6 +236,21 @@
             this.tabResumo.TabIndex = 1;
             this.tabResumo.Text = "Resumo";
             this.tabResumo.UseVisualStyleBackColor = true;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            legend1.Title = "Espécies";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(3, 3);
+            this.chart1.Name = "chart1";
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
+            this.chart1.Size = new System.Drawing.Size(710, 464);
+            this.chart1.TabIndex = 1;
+            this.chart1.Text = "Grafico Resumo";
             // 
             // panel2
             // 
@@ -426,6 +441,48 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Operações";
             // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.txtValorInicial);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Location = new System.Drawing.Point(7, 26);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(254, 30);
+            this.panel4.TabIndex = 24;
+            // 
+            // txtValorInicial
+            // 
+            this.txtValorInicial.BackColor = System.Drawing.SystemColors.Info;
+            this.txtValorInicial.BackColorEnter = System.Drawing.Color.Empty;
+            this.txtValorInicial.CasasDecimais = "C2";
+            this.txtValorInicial.Dock = System.Windows.Forms.DockStyle.Right;
+            this.txtValorInicial.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorInicial.FormatDecimal = null;
+            this.txtValorInicial.Location = new System.Drawing.Point(125, 0);
+            this.txtValorInicial.Multiline = true;
+            this.txtValorInicial.Name = "txtValorInicial";
+            this.txtValorInicial.Size = new System.Drawing.Size(127, 28);
+            this.txtValorInicial.TabIndex = 15;
+            this.txtValorInicial.Text = "R$ 0,00";
+            this.txtValorInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtValorInicial.ValueNumeric = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 21);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "[+] Valor Inicial";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // panel12
             // 
             this.panel12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -576,7 +633,7 @@
             this.txtvVendas.Name = "txtvVendas";
             this.txtvVendas.Size = new System.Drawing.Size(127, 28);
             this.txtvVendas.TabIndex = 15;
-            this.txtvVendas.Text = "0,00";
+            this.txtvVendas.Text = "R$ 0,00";
             this.txtvVendas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtvVendas.ValueNumeric = new decimal(new int[] {
             0,
@@ -723,6 +780,36 @@
             this.dgvEspecies.ShowRowErrors = false;
             this.dgvEspecies.Size = new System.Drawing.Size(270, 470);
             this.dgvEspecies.TabIndex = 3;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Especie";
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewTextBoxColumn3.Frozen = true;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Espécie";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Valor";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = "0,00";
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Valor";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // panel14
             // 
@@ -904,51 +991,6 @@
             this.btnVoltar.TabIndex = 4;
             this.btnVoltar.UseVisualStyleBackColor = false;
             // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Especie";
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTextBoxColumn3.Frozen = true;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Espécie";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Valor";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.Format = "C2";
-            dataGridViewCellStyle7.NullValue = "0,00";
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Valor";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            legend1.Title = "Espécies";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(3, 3);
-            this.chart1.Name = "chart1";
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            this.chart1.Size = new System.Drawing.Size(710, 464);
-            this.chart1.TabIndex = 1;
-            this.chart1.Text = "Grafico Resumo";
-            // 
             // clInOperacao
             // 
             this.clInOperacao.DataPropertyName = "VendaId";
@@ -965,16 +1007,14 @@
             this.clTipoOperacao.HeaderText = "Operação";
             this.clTipoOperacao.Name = "clTipoOperacao";
             this.clTipoOperacao.ReadOnly = true;
-            this.clTipoOperacao.Width = 110;
             // 
             // clHistorico
             // 
+            this.clHistorico.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clHistorico.DataPropertyName = "Historico";
-            this.clHistorico.Frozen = true;
             this.clHistorico.HeaderText = "Historico";
             this.clHistorico.Name = "clHistorico";
             this.clHistorico.ReadOnly = true;
-            this.clHistorico.Width = 300;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -983,7 +1023,6 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn1.Frozen = true;
             this.dataGridViewTextBoxColumn1.HeaderText = "Espécie";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -992,7 +1031,6 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "Valor";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
@@ -1005,48 +1043,7 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // txtValorInicial
-            // 
-            this.txtValorInicial.BackColor = System.Drawing.SystemColors.Info;
-            this.txtValorInicial.BackColorEnter = System.Drawing.Color.Empty;
-            this.txtValorInicial.CasasDecimais = "C2";
-            this.txtValorInicial.Dock = System.Windows.Forms.DockStyle.Right;
-            this.txtValorInicial.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorInicial.FormatDecimal = null;
-            this.txtValorInicial.Location = new System.Drawing.Point(125, 0);
-            this.txtValorInicial.Multiline = true;
-            this.txtValorInicial.Name = "txtValorInicial";
-            this.txtValorInicial.Size = new System.Drawing.Size(127, 28);
-            this.txtValorInicial.TabIndex = 15;
-            this.txtValorInicial.Text = "0,00";
-            this.txtValorInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtValorInicial.ValueNumeric = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.txtValorInicial);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Location = new System.Drawing.Point(7, 26);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(254, 30);
-            this.panel4.TabIndex = 24;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 21);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "[+] Valor Inicial";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dataGridViewTextBoxColumn2.Width = 129;
             // 
             // PageCaixaMovimentacao
             // 
@@ -1062,6 +1059,7 @@
             this.tabDetalhe.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistCaixa)).EndInit();
             this.tabResumo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabOperacoes.ResumeLayout(false);
@@ -1073,6 +1071,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             this.panel11.ResumeLayout(false);
@@ -1090,9 +1090,6 @@
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
             this.panel23.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1158,13 +1155,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Panel panel4;
+        private Component.TextBoxDecimal txtValorInicial;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clInOperacao;
         private System.Windows.Forms.DataGridViewTextBoxColumn clTipoOperacao;
         private System.Windows.Forms.DataGridViewTextBoxColumn clHistorico;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.Panel panel4;
-        private Component.TextBoxDecimal txtValorInicial;
-        private System.Windows.Forms.Label label1;
     }
 }

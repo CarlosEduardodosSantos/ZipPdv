@@ -8,6 +8,7 @@ namespace Eticket.Application.ViewModels
         public VendaItemViewModel()
         {
             VendaComplementos = new List<VendaComplementoViewModel>();
+            VendaProdutoOpcoes = new List<VendaProdutoOpcaoViewModel>();
         }
         public int VendaItemId { get; set; }
         public int VendaId { get; set; }
@@ -25,6 +26,7 @@ namespace Eticket.Application.ViewModels
         public string Observacao { get; set; }
         public ProdutoViewModel ProdutoViewModel { get; set; }
         public ICollection<VendaComplementoViewModel> VendaComplementos { get; set; }
+        public ICollection<VendaProdutoOpcaoViewModel> VendaProdutoOpcoes { get; set; }
         public string ComplementoDescricao => ObterComplementoDescricao();
         public string DescricaoProduto => ObterDescricaoProduto();
 
@@ -38,10 +40,19 @@ namespace Eticket.Application.ViewModels
         private string ObterDescricaoProduto()
         {
             var obs = Produto;
-            if (VendaComplementos.Count == 0) return obs;
+            //if (VendaComplementos.Count == 0 && VendaProdutoOpcoes.Count == 0) return obs;
 
             var separator = " + ";
-            return VendaComplementos.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + "\n";
+            if (VendaComplementos.Count() > 0)
+                obs = VendaComplementos.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + "\n";
+
+            if (VendaProdutoOpcoes.Count() > 0)
+                obs = VendaProdutoOpcoes.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + "\n";
+
+            if (!string.IsNullOrEmpty(Observacao))
+                obs += $" {Observacao}";
+
+            return obs;
         }
     }
 }

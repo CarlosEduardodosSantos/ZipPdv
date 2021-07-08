@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/02/2021 11:53:14" ReportInfo.Modified="07/05/2021 11:19:00" ReportInfo.CreatorVersion="2019.2.6.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8a9Zzsjsq4XoqPC6EGdETekbmmRADBoQrQNTBUFa/l7j5vGLHkl755WJrJpS4Y6QnEpi/KTUJ+vNqkJ14tMwQsL4Bsq9nWyW0mvgWb2nXt3M">
+      <TableDataSource Name="Table" Alias="caixa" DataType="System.Int32" Enabled="true" SelectCommand="select * from caixa_1 where nrocx = @caixaId">
+        <Column Name="NROCX" DataType="System.Int32"/>
+        <Column Name="LOJA" DataType="System.Int32"/>
+        <Column Name="PDV" DataType="System.Int32"/>
+        <Column Name="USUARIO" DataType="System.String"/>
+        <Column Name="DATA" DataType="System.DateTime"/>
+        <Column Name="HORA" DataType="System.DateTime"/>
+        <Column Name="INICIAL" DataType="System.Double"/>
+        <Column Name="FIM_DATA" DataType="System.DateTime"/>
+        <Column Name="FIM_HORA" DataType="System.DateTime"/>
+        <Column Name="FIM_USUARIO" DataType="System.String"/>
+        <Column Name="FIM_LOJA" DataType="System.Int32"/>
+        <Column Name="DATAF" DataType="System.DateTime"/>
+        <Column Name="COMANDA_INI" DataType="System.Int32"/>
+        <Column Name="COMANDA_FIM" DataType="System.Int32"/>
+        <Column Name="DIVERGENCIA" DataType="System.Decimal"/>
+        <Column Name="Div1" DataType="System.Decimal"/>
+        <Column Name="Div2" DataType="System.Decimal"/>
+        <Column Name="Div3" DataType="System.Decimal"/>
+        <Column Name="Div4" DataType="System.Decimal"/>
+        <Column Name="Div5" DataType="System.Decimal"/>
+        <Column Name="Div6" DataType="System.Decimal"/>
+        <Column Name="imp" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="DIV7" DataType="System.Decimal"/>
+        <Column Name="Troco_Final" DataType="System.Double"/>
+        <Column Name="COD_CEDENTE" DataType="System.Int32"/>
+        <Column Name="conferido" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="Div8" DataType="System.Decimal"/>
+        <Column Name="Div9" DataType="System.Decimal"/>
+        <CommandParameter Name="@caixaId" DataType="8" Expression="[caixaId]" DefaultValue="0"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" Alias="caixaItens" DataType="System.Int32" Enabled="true" SelectCommand="Select * from caixa_2 where nrocx = @caixaId">
+        <Column Name="NROCX" DataType="System.Int32"/>
+        <Column Name="NROVENDA" DataType="System.String"/>
+        <Column Name="NROCOB" DataType="System.String"/>
+        <Column Name="ESP1" DataType="System.Double"/>
+        <Column Name="ESP2" DataType="System.Double"/>
+        <Column Name="ESP3" DataType="System.Double"/>
+        <Column Name="ESP4" DataType="System.Double"/>
+        <Column Name="ESP5" DataType="System.Double"/>
+        <Column Name="VALOR" DataType="System.Double"/>
+        <Column Name="HISTORICO" DataType="System.String"/>
+        <Column Name="ESP6" DataType="System.Double"/>
+        <Column Name="TipoLancto" DataType="System.String"/>
+        <Column Name="Prod_Relacao" DataType="System.Int32"/>
+        <Column Name="Especies" DataType="System.String"/>
+        <Column Name="Troco" DataType="System.Double"/>
+        <Column Name="ESP7" DataType="System.Double"/>
+        <Column Name="COD_USUARIO" DataType="System.Int32"/>
+        <Column Name="IdopMesa1" DataType="System.Int32"/>
+        <Column Name="NRO_PGTO" DataType="System.Int32"/>
+        <Column Name="ESP8" DataType="System.Double"/>
+        <Column Name="ESP9" DataType="System.Double"/>
+        <Column Name="Nro_CartaoPrePago" DataType="System.Int32"/>
+        <Column Name="Estorno" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="DataHora" DataType="System.DateTime"/>
+        <Column Name="Esp10" DataType="System.Double"/>
+        <Column Name="CaixaItemID" DataType="System.Guid"/>
+        <CommandParameter Name="@caixaId" DataType="8" Expression="[caixaId]" DefaultValue="0"/>
+      </TableDataSource>
+      <TableDataSource Name="Table2" Alias="caixaPagamentos" DataType="System.Int32" Enabled="true" SelectCommand="Select&#13;&#10;Especie,&#13;&#10;Sum(Valor) as Valor&#13;&#10;from CaixaPagamentos Where caixaId = @caixaId&#13;&#10;Group By Especie">
+        <Column Name="Especie" DataType="System.String"/>
+        <Column Name="Valor" DataType="System.Decimal"/>
+        <CommandParameter Name="@caixaId" DataType="8" Expression="[caixaId]" DefaultValue="0"/>
+      </TableDataSource>
+      <TableDataSource Name="Table3" Alias="fechamento" DataType="System.Int32" Enabled="true" SelectCommand="Select&#13;&#10;Especie,&#13;&#10;Sum(Valor) as Valor,&#13;&#10;Sum(Divergencia) as Divergencia&#13;&#10;From CaixaFechamentos Where caixaId = @caixaId&#13;&#10;Group By Especie">
+        <Column Name="Especie" DataType="System.String"/>
+        <Column Name="Valor" DataType="System.Decimal"/>
+        <Column Name="Divergencia" DataType="System.Decimal"/>
+        <CommandParameter Name="@caixaId" DataType="8" Expression="[caixaId]" DefaultValue="0"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="caixaId" DataType="System.Int32"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="80" LeftMargin="5" RightMargin="5" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="264.6" Height="75.6" Border.Lines="Bottom">
+      <TextObject Name="Text3" Width="226.8" Height="18.9" Text="Fechamento de Caixa" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Top="28.35" Width="113.4" Height="18.9" Text="Caixa Nº: [caixa.NROCX]" Font="Arial, 8pt"/>
+      <TextObject Name="Text4" Left="113.4" Top="28.35" Width="151.2" Height="18.9" Text="Data Aber.: [caixa.DATA]" Format="Date" Format.Format="d" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text2" Top="47.25" Width="113.4" Height="18.9" Text="Usuário: [caixa.FIM_USUARIO]" Font="Arial, 8pt"/>
+      <TextObject Name="Text5" Left="113.4" Top="47.25" Width="151.2" Height="18.9" Text="Dta. Fech: [caixa.FIM_DATA]" Format="Date" Format.Format="d" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="78.93" Width="264.6" Height="28.35">
+      <TextObject Name="Text9" Top="9.45" Width="179.55" Height="18.9" Text="Histórico" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text10" Left="179.55" Top="9.45" Width="85.05" Height="18.9" Text="Valor" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="110.62" Width="264.6" Height="18.9" DataSource="Table1">
+      <TextObject Name="Text6" Width="179.55" Height="18.9" Text="[caixaItens.HISTORICO]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text7" Left="179.55" Width="85.05" Height="18.9" Text="[caixaItens.VALOR]" Format="Number" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+    </DataBand>
+    <DataBand Name="Data2" Top="164.53" Width="264.6" Height="18.9" DataSource="Table2">
+      <TextObject Name="Text8" Width="160.65" Height="18.9" Text="[caixaPagamentos.Especie]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text12" Left="170.1" Width="94.5" Height="18.9" Text="[caixaPagamentos.Valor]" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <DataHeaderBand Name="DataHeader1" Top="132.85" Width="264.6" Height="28.35" Border.Lines="Top">
+        <TextObject Name="Text11" Top="9.45" Width="160.65" Height="18.9" Text="Especie" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text13" Left="170.1" Top="9.45" Width="94.5" Height="18.9" Text="Valor" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+    <DataBand Name="Data3" Top="227.9" Width="264.6" Height="18.9" DataSource="Table3">
+      <TextObject Name="Text14" Width="113.4" Height="18.9" Text="[fechamento.Especie]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text16" Left="113.4" Width="66.15" Height="18.9" Text="[fechamento.Valor]" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text18" Left="189" Width="75.6" Height="18.9" Text="[fechamento.Divergencia]" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <DataHeaderBand Name="DataHeader2" Top="186.77" Width="264.6" Height="37.8" Border.Lines="Top">
+        <TextObject Name="Text15" Top="18.9" Width="94.5" Height="18.9" Text="Especie" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text17" Left="113.4" Top="18.9" Width="66.15" Height="18.9" Text="Valor" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text19" Left="189" Top="18.9" Width="75.6" Height="18.9" Text="Divergencia" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="250.13" Width="264.6" Height="18.9"/>
+  </ReportPage>
+</Report>

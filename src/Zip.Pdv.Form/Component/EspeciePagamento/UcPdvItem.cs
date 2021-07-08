@@ -50,5 +50,13 @@ namespace Zip.Pdv.Component.EspeciePagamento
             lbValue.Text = vendaItem.ValorUnitatio.ToString("C2");
             btnDeletar.Click += cClick;
         }
+
+        public void AdicionarProdutoOpcoes(VendaProdutoOpcaoViewModel vendaProdutoOpcaoView)
+        {
+            CaixaSource = vendaProdutoOpcaoView;
+            lbDisplay.Text = vendaProdutoOpcaoView.Descricao;
+            lbValue.Text = vendaProdutoOpcaoView.Valor.ToString("C2");
+            btnDeletar.Click += cClick;
+        }
     }
 }

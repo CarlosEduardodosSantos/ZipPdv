@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Zip.Pdv.Cadastro;
 using Zip.Pdv.Page;
 
 namespace Zip.Pdv
@@ -12,6 +13,15 @@ namespace Zip.Pdv
             this.Height = page.Height;
             page.Dock = DockStyle.Fill;
             page.CloseForm += Page_CloseForm;
+            panelPrincipal.Controls.Add(page);
+        }
+        public FormBase(CadastroBase page)
+        {
+            InitializeComponent();
+            this.Width = page.Width;
+            this.Height = page.Height;
+            page.Dock = DockStyle.Fill;
+            //ge.CloseForm += Page_CloseForm;
             panelPrincipal.Controls.Add(page);
         }
 

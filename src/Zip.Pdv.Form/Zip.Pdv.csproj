@@ -36,14 +36,20 @@
     <ApplicationIcon>LOGO_Z.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FastReport">
-      <HintPath>C:\Projetos\DotNet\SQL Command 2010\SQL Command 2010\Dll\FastReport.dll</HintPath>
+    <Reference Include="Bunifu_UI_v1.52">
+      <HintPath>..\..\Dlls\Bunifu_UI_v1.52.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport.Bars">
-      <HintPath>C:\Projetos\DotNet\FastReport\FastReport.Bars.dll</HintPath>
+    <Reference Include="FastReport, Version=2017.4.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport.Editor">
-      <HintPath>C:\Projetos\DotNet\SQL Command 2010\SQL Command 2010\Dll\FastReport.Editor.dll</HintPath>
+    <Reference Include="FastReport.Bars, Version=2017.4.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor, Version=2017.4.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.Editor.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="SimpleInjector, Version=4.7.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
@@ -53,6 +59,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -65,6 +72,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cadastro\CadastroBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\CadastroBase.Designer.cs">
+      <DependentUpon>CadastroBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\Model\ResultValidModel.cs" />
+    <Compile Include="Cadastro\Produto\CadastroProduto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\Produto\CadastroProduto.Designer.cs">
+      <DependentUpon>CadastroProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\Venda\VendaDetalhe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\Venda\VendaDetalhe.Designer.cs">
+      <DependentUpon>VendaDetalhe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\CupomGrid\CupomGridItemEmpty.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,6 +115,11 @@
     <Compile Include="Component\CupomGrid\UcItemObservacao.designer.cs">
       <DependentUpon>UcItemObservacao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\CustomTab\KRBTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\CustomTab\Win32\Enum.cs" />
+    <Compile Include="Component\CustomTab\Win32\User32.cs" />
     <Compile Include="Component\EntregaGridView\EntregaGridView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -125,6 +156,12 @@
     <Compile Include="Component\GalleryItem.designer.cs">
       <DependentUpon>GalleryItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\GrupoGridViewTotenItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\GrupoGridViewTotenItem.Designer.cs">
+      <DependentUpon>GrupoGridViewTotenItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\ImageView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -133,6 +170,12 @@
     </Compile>
     <Compile Include="Component\PlaceholderTextBox.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\ProdutoGridToten.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\ProdutoGridToten.Designer.cs">
+      <DependentUpon>ProdutoGridToten.cs</DependentUpon>
     </Compile>
     <Compile Include="Component\ProdutoGridViewItemImage.cs">
       <SubType>UserControl</SubType>
@@ -165,11 +208,20 @@
     <Compile Include="Component\ProdutoGrid\ProdutoGridItem.Designer.cs">
       <DependentUpon>ProdutoGridItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\ProdutoListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\ProdutoListView.Designer.cs">
+      <DependentUpon>ProdutoListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\SplitButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Component\SplitButton.designer.cs">
       <DependentUpon>SplitButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\TablessControl.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Component\TextBoxDecimal.cs">
       <SubType>Component</SubType>
@@ -221,6 +273,18 @@
     </Compile>
     <Compile Include="FormCaixaFechamento.Designer.cs">
       <DependentUpon>FormCaixaFechamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPagamentoToten.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPagamentoToten.Designer.cs">
+      <DependentUpon>FormPagamentoToten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPdvToten.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormPdvToten.Designer.cs">
+      <DependentUpon>FormPdvToten.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSolicitaTexto.cs">
       <SubType>Form</SubType>
@@ -306,6 +370,12 @@
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormVideoPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVideoPlayer.Designer.cs">
+      <DependentUpon>FormVideoPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDeliverySair.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,6 +385,7 @@
     <Compile Include="Funcoes.cs" />
     <Compile Include="GetValueApp.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
+    <Compile Include="Helpers\ImportExterno.cs" />
     <Compile Include="Helpers\TecladoVirtual.cs" />
     <Compile Include="Helpers\ValidacaoHelper.cs" />
     <Compile Include="Model\Balanca.cs" />
@@ -370,11 +441,74 @@
     <Compile Include="Page\PageProdutoCadastro.Designer.cs">
       <DependentUpon>PageProdutoCadastro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Page\PageResumoGeral.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageResumoGeral.designer.cs">
+      <DependentUpon>PageResumoGeral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageShare\PageSharePdvProduto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageShare\PageSharePdvProduto.Designer.cs">
+      <DependentUpon>PageSharePdvProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageShare\PageSharePdvProdutoTouch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageShare\PageSharePdvProdutoTouch.Designer.cs">
+      <DependentUpon>PageSharePdvProdutoTouch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageShare\PageShareProduto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageShare\PageShareProduto.Designer.cs">
+      <DependentUpon>PageShareProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageShare\PageShareResumoVenda.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageShare\PageShareResumoVenda.Designer.cs">
+      <DependentUpon>PageShareResumoVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageShare\PageShareVenda.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageShare\PageShareVenda.Designer.cs">
+      <DependentUpon>PageShareVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PageVendaAdministracao.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PageVendaAdministracao.designer.cs">
+      <DependentUpon>PageVendaAdministracao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProdutoWinzard\FrmProdutoOpcao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProdutoWinzard\FrmProdutoOpcao.Designer.cs">
+      <DependentUpon>FrmProdutoOpcao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModuloBalanca\BalancaController.cs" />
     <Compile Include="ModuloBalanca\Leitura.cs" />
     <Compile Include="ModuloBalanca\PcScale.cs" />
+    <Compile Include="Teste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teste.Designer.cs">
+      <DependentUpon>Teste.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Cadastro\CadastroBase.resx">
+      <DependentUpon>CadastroBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\Produto\CadastroProduto.resx">
+      <DependentUpon>CadastroProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\Venda\VendaDetalhe.resx">
+      <DependentUpon>VendaDetalhe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Component\CupomGrid\CupomGridItemEmpty.resx">
       <DependentUpon>CupomGridItemEmpty.cs</DependentUpon>
     </EmbeddedResource>
@@ -405,8 +539,14 @@
     <EmbeddedResource Include="Component\GalleryItem.resx">
       <DependentUpon>GalleryItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Component\GrupoGridViewTotenItem.resx">
+      <DependentUpon>GrupoGridViewTotenItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Component\ImageView.resx">
       <DependentUpon>ImageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\ProdutoGridToten.resx">
+      <DependentUpon>ProdutoGridToten.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\ProdutoGridViewItemImage.resx">
       <DependentUpon>ProdutoGridViewItemImage.cs</DependentUpon>
@@ -422,6 +562,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Component\ProdutoGrid\ProdutoGridItem.resx">
       <DependentUpon>ProdutoGridItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\ProdutoListView.resx">
+      <DependentUpon>ProdutoListView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\SplitButton.resx">
       <DependentUpon>SplitButton.cs</DependentUpon>
@@ -440,6 +583,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCaixaFechamento.resx">
       <DependentUpon>FormCaixaFechamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPagamentoToten.resx">
+      <DependentUpon>FormPagamentoToten.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPdvToten.resx">
+      <DependentUpon>FormPdvToten.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSolicitaTexto.resx">
       <DependentUpon>FormSolicitaTexto.cs</DependentUpon>
@@ -483,6 +632,9 @@
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormVideoPlayer.resx">
+      <DependentUpon>FormVideoPlayer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDeliverySair.resx">
       <DependentUpon>FrmDeliverySair.cs</DependentUpon>
     </EmbeddedResource>
@@ -510,6 +662,30 @@
     <EmbeddedResource Include="Page\PageProdutoCadastro.resx">
       <DependentUpon>PageProdutoCadastro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageResumoGeral.resx">
+      <DependentUpon>PageResumoGeral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageShare\PageSharePdvProduto.resx">
+      <DependentUpon>PageSharePdvProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageShare\PageSharePdvProdutoTouch.resx">
+      <DependentUpon>PageSharePdvProdutoTouch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageShare\PageShareProduto.resx">
+      <DependentUpon>PageShareProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageShare\PageShareResumoVenda.resx">
+      <DependentUpon>PageShareResumoVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageShare\PageShareVenda.resx">
+      <DependentUpon>PageShareVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PageVendaAdministracao.resx">
+      <DependentUpon>PageVendaAdministracao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProdutoWinzard\FrmProdutoOpcao.resx">
+      <DependentUpon>FrmProdutoOpcao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -520,6 +696,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Teste.resx">
+      <DependentUpon>Teste.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -727,6 +906,53 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="LOGO_Z.ico" />
+    <Content Include="Zip.TefDial.dll" />
+    <Content Include="ZipPdv.exe" />
+    <None Include="Resources\filter_381.png" />
+    <None Include="Resources\FundoCinza.png" />
+    <None Include="Resources\fundobtnsalvar.png" />
+    <None Include="Resources\fundobtndesc.png" />
+    <None Include="Resources\fundobtndenger.png" />
+    <None Include="Resources\fundobtn.png" />
+    <None Include="Resources\fundo_menu.jpg" />
+    <None Include="Resources\bg_2.jpg" />
+    <None Include="Resources\UpArrow.ico" />
+    <None Include="Resources\DownArrow.ico" />
+    <None Include="Resources\Upload.png" />
+    <None Include="Resources\TabPressed.png" />
+    <None Include="Resources\TabNormal.png" />
+    <None Include="Resources\TabHover.png" />
+    <None Include="Resources\RightNormalOfficeSilver.png" />
+    <None Include="Resources\RightNormalOfficeOlive.png" />
+    <None Include="Resources\RightNormalOfficeBlue.png" />
+    <None Include="Resources\RightNormalKRBBlue.png" />
+    <None Include="Resources\RightNormalBlackGlass.png" />
+    <None Include="Resources\RightHoverOfficeSilver.png" />
+    <None Include="Resources\RightHoverOfficeOlive.png" />
+    <None Include="Resources\RightHoverOfficeBlue.png" />
+    <None Include="Resources\RightHoverKRBBlue.png" />
+    <None Include="Resources\RightHoverBlackGlass.png" />
+    <None Include="Resources\RightDownOfficeSilver.png" />
+    <None Include="Resources\RightDownOfficeOlive.png" />
+    <None Include="Resources\RightDownOfficeBlue.png" />
+    <None Include="Resources\RightDownKRBBlue.png" />
+    <None Include="Resources\RightDownBlackGlass.png" />
+    <None Include="Resources\LeftNormalOfficeSilver.png" />
+    <None Include="Resources\LeftNormalOfficeOlive.png" />
+    <None Include="Resources\LeftNormalOfficeBlue.png" />
+    <None Include="Resources\LeftNormalKRBBlue.png" />
+    <None Include="Resources\LeftNormalBlackGlass.png" />
+    <None Include="Resources\LeftHoverOfficeSilver.png" />
+    <None Include="Resources\LeftHoverOfficeOlive.png" />
+    <None Include="Resources\LeftHoverOfficeBlue.png" />
+    <None Include="Resources\LeftHoverKRBBlue.png" />
+    <None Include="Resources\LeftHoverBlackGlass.png" />
+    <None Include="Resources\LeftDownOfficeSilver.png" />
+    <None Include="Resources\LeftDownOfficeOlive.png" />
+    <None Include="Resources\LeftDownOfficeBlue.png" />
+    <None Include="Resources\LeftDownKRBBlue.png" />
+    <None Include="Resources\LeftDownBlackGlass.png" />
+    <None Include="Resources\Expand.png" />
     <None Include="Resources\logo-2021-nova-sombra220.png" />
     <None Include="Resources\logoZip.jpeg" />
     <None Include="Resources\qrcode_48.png" />

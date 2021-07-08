@@ -12,6 +12,10 @@ namespace Eticket.Domain.Interface.Repository
         IEnumerable<Produto> GetByMeioMeio();
         IEnumerable<Produto> ObterPorEan(string ean);
         IEnumerable<Produto> ObterPorNome(string nome);
+        IEnumerable<Produto> ObterMaisVendidos();
+        IEnumerable<Produto> ObterAbaixoDoMinimo();
+        IEnumerable<Produto> ObterEmFalta();
+        IEnumerable<Produto> ObterEmExesso();
         string ObterImageProdutoId(int produtoId);
         ProdutoTributacao ObterTributacaoPorProdutoId(int produtoId);
         IEnumerable<ProdutoObservacao> ObterProdutoObservacao(int grupoId);

@@ -11,6 +11,10 @@ namespace Eticket.Application.Interface
         IEnumerable<ProdutoViewModel> ObterMeioMeio();
         IEnumerable<ProdutoViewModel> ObterPorEan(string ean);
         IEnumerable<ProdutoViewModel> ObterPorNome(string nome);
+        IEnumerable<ProdutoViewModel> ObterMaisVendidos();
+        IEnumerable<ProdutoViewModel> ObterAbaixoDoMinimo();
+        IEnumerable<ProdutoViewModel> ObterEmFalta();
+        IEnumerable<ProdutoViewModel> ObterEmExesso();
         string ObterImageProdutoId(int produtoId);
         ProdutoTributacaoViewModel ObterTributacaoPorProdutoId(int produtoId);
         IEnumerable<ProdutoObservacaoViewModel>  ObterProdutoObservacao(int grupoId);

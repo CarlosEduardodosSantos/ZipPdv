@@ -1,6 +1,6 @@
 ﻿using Eticket.Application.ViewModels;
+using MobileAppServerClient;
 using SAT.Interface;
-using SocketAppServerClient;
 using System;
 using System.Data;
 using System.Drawing;
@@ -596,15 +596,10 @@ namespace SAT
                 string servidor = Global.ConfiguracaoInicial.SatServidor;
                 int porta = Global.ConfiguracaoInicial.PortaServidor;
 
-                Client.Configure(servidor, porta, Encoding.UTF8, 3);
-                
+                Client.Configure(servidor, porta, ((4096 * 100) * 1000));
                 Client client = new Client();
-                //client.ByteBuffer = 38000;
+                client.ByteBuffer = 38000;
 
-                SocketConnectionFactory.SetDefaultSettings(new SocketClientSettings(
-                        "localhost", 7001,
-                        Encoding.UTF8, 3
-                    ));
 
                 RequestBody rb = RequestBody.Create("NotaFiscalController", "EmiteNF")
                     .AddParameter("parametros.Parametro", "vendaJson")
@@ -638,10 +633,11 @@ namespace SAT
                 string servidor = Global.ConfiguracaoInicial.SatServidor;
                 int porta = Global.ConfiguracaoInicial.PortaServidor;
 
-                Client.Configure(servidor, porta, Encoding.UTF8, 3);
 
+                Client.Configure(servidor, porta, ((4096 * 100) * 1000));
                 Client client = new Client();
-                //client.ByteBuffer = 38000;
+                client.ByteBuffer = 38000;
+
 
                 
                 RequestBody rb = RequestBody.Create("NotaFiscalController", "CancelarSat")

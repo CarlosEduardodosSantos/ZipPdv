@@ -132,12 +132,13 @@ namespace Zip.Pdv
                 Global.ConfiguracaoInicial.SoftwareHouseChaveAtivacao = ConfigurationManager.AppSettings["SOFTWAREHOUSECHAVEATICACAO"];
                 Global.ConfiguracaoInicial.CaixaNumero = Global.Funcoes.ConvertToInt32(ConfigurationManager.AppSettings["CAIXA"], 1);
                 Global.ConfiguracaoInicial.SatServidor = ConfigurationManager.AppSettings["SATSERVIDOR"];
+                Global.ConfiguracaoInicial.PortaServidor = Global.Funcoes.ConvertToInt32(ConfigurationManager.AppSettings["PORTASERVIDOR"], 4000);
                 Global.ConfiguracaoInicial.SatPorta = Global.Funcoes.ConvertToInt32(ConfigurationManager.AppSettings["SATPORTA"], 9999);
                 Global.ConfiguracaoInicial.SatImpressora = ConfigurationManager.AppSettings["SATIMPRESSORA"];
                 Global.ConfiguracaoInicial.SatTextoRodape = ConfigurationManager.AppSettings["SATTEXTORODAPE"];
                 Global.ConfiguracaoInicial.SalvarArquivosEm = ConfigurationManager.AppSettings["SALVARARQUIVOS"];
                 Global.ConfiguracaoInicial.SatMarca = ConfigurationManager.AppSettings["SATMARCA"];
-                Global.ConfiguracaoInicial.SatLayoutVersao = "0.06";
+                Global.ConfiguracaoInicial.SatLayoutVersao = "0.07";
 
                 if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["SATLAYOUTVERSAO"]))
                     Global.ConfiguracaoInicial.SatLayoutVersao = ConfigurationManager.AppSettings["SATLAYOUTVERSAO"];

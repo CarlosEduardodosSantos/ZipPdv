@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Eticket.Application.CEPBrasil;
 using Zip.Pdv.Component;
 using Zip.Pdv.Helpers;
+using System.Net;
 
 namespace Zip.Pdv
 {
@@ -18,6 +19,8 @@ namespace Zip.Pdv
         private static ClienteDeliveryViewModel _cliente;
         public FormPdvDelivery(DeliveryViewModel deliveryView, decimal valorReceber)
         {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             _valorReceber = valorReceber;
             InitializeComponent();
 
@@ -220,8 +223,7 @@ namespace Zip.Pdv
         private void txtTaxAdic_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             txtValorTotal.ValueNumeric = _valorReceber + txtTaxAdic.ValueNumeric;
-
-            txtValorTroco.ValueNumeric = txtTrocoPara.ValueNumeric - txtValorTotal.ValueNumeric;
+            txtValorTroco.ValueNumeric = txtTrocoPara.ValueNumeric > txtValorTotal.ValueNumeric ? txtTrocoPara.ValueNumeric - txtValorTotal.ValueNumeric : 0;
         }
 
         private void btnKeyBoard_Click(object sender, EventArgs e)

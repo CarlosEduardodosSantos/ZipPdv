@@ -36,7 +36,7 @@ namespace Eticket.Application
 
         public VendaViewModel ObterPorId(int id)
         {
-            throw new System.NotImplementedException();
+            return TypeAdapter.Adapt<Venda, VendaViewModel>(_vendaRepository.ObterPorId(id));
         }
 
         public IEnumerable<VendaViewModel> ObterEntregaPendentes()
@@ -77,6 +77,12 @@ namespace Eticket.Application
         public bool GeraImpressaoItens(int vendaId, int tipoOperacao)
         {
             return _vendaRepository.GeraImpressaoItens(vendaId, tipoOperacao);
+        }
+
+        public void AtualizaFiscal(VendaViewModel vendaView)
+        {
+            var venda = TypeAdapter.Adapt<VendaViewModel, Venda>(vendaView);
+            _vendaRepository.AtualizaFiscal(venda);
         }
     }
 }

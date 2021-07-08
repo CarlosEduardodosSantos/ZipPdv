@@ -8,5 +8,6 @@ namespace Eticket.Application.Interface
     {
         void Adicionar(RetornoSatViewModel retornoSatView);
         RetornoSatViewModel ObterPorVendaId(string vendaId);
-        IEnumerable<RetornoSatViewModel> ObterPorData(DateTime dataInicio, DateTime dataFinal);}
+        IEnumerable<RetornoSatViewModel> ObterPorData(DateTime dataInicio, DateTime dataFinal);
+    }
 }

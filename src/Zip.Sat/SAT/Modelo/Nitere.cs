@@ -36,7 +36,8 @@ namespace SAT.Modelo
         [DllImport("NITERE-SAT.DLL", CallingConvention = CallingConvention.StdCall)]
         private static extern IntPtr TesteFimAFim(int numeroSessao, string codigoAtivacao, string dadosVenda);
         [DllImport("NITERE-SAT.DLL", CallingConvention = CallingConvention.StdCall)]
-        private static extern IntPtr TrocarCodigoDeAtivacao(int numeroSessao, string codigoAtivacao, string novoCodigo, string confNovoCodigo);
+        private static extern IntPtr TrocarCodigoDeAtivacao(int numeroSessao, string codigoAtivacao, string novoCodigo, string confNovoCodigo);
+
         #endregion
 
         string ISat.IConsultarSAT(int NumeroSessao)

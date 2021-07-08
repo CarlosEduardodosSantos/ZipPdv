@@ -27,6 +27,7 @@ namespace Eticket.Application.ViewModels
         public decimal ValorCompra { get; set; }
         public string Cnpj { get; set; }
         public string CupomFiscal { get; set; }
+        public ModeloFiscalEnumView ModeloFiscal { get; set; }
         public string Fidelidade { get; set; }
         public string Observacao { get; set; }
         public string Senha { get; set; }

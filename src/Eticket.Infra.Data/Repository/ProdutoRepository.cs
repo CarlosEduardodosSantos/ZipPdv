@@ -140,7 +140,95 @@ namespace Eticket.Infra.Data.Repository
                 return produto;
             }
         }
+        public IEnumerable<Produto> ObterMaisVendidos()
+        {
+            using (var cn = Connection)
+            {
+                var sql = SelectBase() +
+                          " Where Prod.codigo in (select top 24 COD_PROD from venda_2 Inner Join pdvGrupoItens On venda_2.COD_PROD = pdvGrupoItens.CodProduto group by venda_2.COD_PROD order by sum(qtde) desc)";
 
+                cn.Open();
+                var produto = cn.Query<Produto>(sql);
+                cn.Close();
+
+                return produto;
+            }
+        }
+
+        public IEnumerable<Produto> ObterAbaixoDoMinimo()
+        {
+            using (var cn = Connection)
+            {
+                var sql = SelectBase() +
+                          " Where Isnull(QTDE1,0) > 0 And Isnull(QTDE1,0) < Isnull(QTDE_MIN,0)";
+
+                cn.Open();
+                var produto = cn.Query<Produto>(sql);
+                cn.Close();
+
+                return produto;
+            }
+        }
+
+        public IEnumerable<Produto> ObterEmFalta()
+        {
+            using (var cn = Connection)
+            {
+                var sql = SelectBase() +
+                          " Where Isnull(QTDE1,0) <= 0";
+
+                cn.Open();
+                var produto = cn.Query<Produto>(sql);
+                cn.Close();
+
+                return produto;
+            }
+        }
+
+        public IEnumerable<Produto> ObterEmExesso()
+        {
+            using (var cn = Connection)
+            {
+                var sql = SelectBase() +
+                          "Where Isnull(QTDE1,0) > Isnull(Qtde_Max_1,0)";
+
+                cn.Open();
+                var produto = cn.Query<Produto>(sql);
+                cn.Close();
+
+                return produto;
+            }
+        }
+
+        private static string SelectBase()
+        {
+            return "Select Prod.Codigo as ProdutoId, " +
+                        " Prod.Tipo as ProdutoTipo, " +
+                        " Prod.DES_ as Descricao, " +
+                        " Prod.Qtde1 as Estoque, " +
+                        " Situacao = Case When Isnull(Prod.Ativo,'N') = 'S' Then 1 Else 2 End, " +
+                        " Prod.Grupo as GrupoId, " +
+                        " 0 as GrupoPdvId, " +
+                        " Prod.DEPTO as DeptoId, " +
+                        " Prod.SECAO as SecaoId, " +
+                        " Prod.Unidade, " +
+                        " Prod.VLVENDA as ValorVenda, " +
+                        " Isnull(Prod.VLCUSTO,0) as ValorCusto, " +
+                        " Isnull(pontos.PONTOS,0) as Pontos, " +
+                        " Isnull(Prod.USABALANCA, 0) as UsaBalanca," +
+                        " Isnull(Prod.Qtde_Min, 0) as EstoqueMin," +
+                        " Isnull(Prod.Qtde_Max, 0) as EstoqueMax," +
+                        " Isnull(Prod.ValorFidelidade, 0) as ValorFidelidade," +
+                        " Isnull(Prod.VLVENDA2, 0) as ValorPromocao," +
+                        " Isnull(Prod.Fornec, 0) as FornecedorId," +
+                        " TributacaoId as TributacaoId," +
+                        " ProdutoGuid," +
+                        " IsPos," +
+                        " DTCAD as DataCadastro," +
+                        " REGISTRO as Id " +
+                        " From Prod  " +
+                        " Left Join pontos On prod.COD_PONTOS = pontos.CODIGO ";
+        }
         public string ObterImageProdutoId(int produtoId)
         {
             var sql = "Select prod_img From Prod Where Codigo = @produtoId";

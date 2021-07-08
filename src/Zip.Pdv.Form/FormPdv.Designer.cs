@@ -33,6 +33,16 @@
             this.tableLayoutPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.cupomGridView1 = new Zip.Pdv.Component.CupomGrid.CupomGridView();
+            this.panel33 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel43 = new System.Windows.Forms.Panel();
+            this.btnMais1 = new System.Windows.Forms.Button();
+            this.panel42 = new System.Windows.Forms.Panel();
+            this.btnMais10 = new System.Windows.Forms.Button();
+            this.panel41 = new System.Windows.Forms.Panel();
+            this.btnMenos10 = new System.Windows.Forms.Button();
+            this.panel40 = new System.Windows.Forms.Panel();
+            this.btnMenos1 = new System.Windows.Forms.Button();
             this.panelTotalizador = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.tLayoutTotalizador = new System.Windows.Forms.TableLayoutPanel();
@@ -125,6 +135,12 @@
             this.panelPrincipal.SuspendLayout();
             this.tableLayoutPrincipal.SuspendLayout();
             this.panelLeft.SuspendLayout();
+            this.panel33.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            this.panel43.SuspendLayout();
+            this.panel42.SuspendLayout();
+            this.panel41.SuspendLayout();
+            this.panel40.SuspendLayout();
             this.panelTotalizador.SuspendLayout();
             this.panel6.SuspendLayout();
             this.tLayoutTotalizador.SuspendLayout();
@@ -209,6 +225,7 @@
             // 
             this.panelLeft.BackColor = System.Drawing.Color.White;
             this.panelLeft.Controls.Add(this.cupomGridView1);
+            this.panelLeft.Controls.Add(this.panel33);
             this.panelLeft.Controls.Add(this.panelTotalizador);
             this.panelLeft.Controls.Add(this.panelBtnPagamento);
             this.panelLeft.Controls.Add(this.panel17);
@@ -227,8 +244,130 @@
             this.cupomGridView1.Location = new System.Drawing.Point(0, 40);
             this.cupomGridView1.Name = "cupomGridView1";
             this.cupomGridView1.SelectedItem = null;
-            this.cupomGridView1.Size = new System.Drawing.Size(396, 503);
+            this.cupomGridView1.Size = new System.Drawing.Size(396, 467);
             this.cupomGridView1.TabIndex = 6;
+            // 
+            // panel33
+            // 
+            this.panel33.BackColor = System.Drawing.Color.Beige;
+            this.panel33.Controls.Add(this.tableLayoutPanel9);
+            this.panel33.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel33.Location = new System.Drawing.Point(0, 507);
+            this.panel33.Name = "panel33";
+            this.panel33.Size = new System.Drawing.Size(396, 36);
+            this.panel33.TabIndex = 10;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel9.ColumnCount = 4;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel9.Controls.Add(this.panel43, 3, 0);
+            this.tableLayoutPanel9.Controls.Add(this.panel42, 2, 0);
+            this.tableLayoutPanel9.Controls.Add(this.panel41, 1, 0);
+            this.tableLayoutPanel9.Controls.Add(this.panel40, 0, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(396, 36);
+            this.tableLayoutPanel9.TabIndex = 0;
+            // 
+            // panel43
+            // 
+            this.panel43.Controls.Add(this.btnMais1);
+            this.panel43.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel43.Location = new System.Drawing.Point(298, 4);
+            this.panel43.Name = "panel43";
+            this.panel43.Size = new System.Drawing.Size(94, 28);
+            this.panel43.TabIndex = 3;
+            // 
+            // btnMais1
+            // 
+            this.btnMais1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMais1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMais1.ForeColor = System.Drawing.Color.Blue;
+            this.btnMais1.Location = new System.Drawing.Point(0, 0);
+            this.btnMais1.Name = "btnMais1";
+            this.btnMais1.Size = new System.Drawing.Size(94, 28);
+            this.btnMais1.TabIndex = 2;
+            this.btnMais1.Tag = "1";
+            this.btnMais1.Text = "+1";
+            this.btnMais1.UseVisualStyleBackColor = true;
+            this.btnMais1.Click += new System.EventHandler(this.btnMais1_Click);
+            // 
+            // panel42
+            // 
+            this.panel42.Controls.Add(this.btnMais10);
+            this.panel42.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel42.Location = new System.Drawing.Point(200, 4);
+            this.panel42.Name = "panel42";
+            this.panel42.Size = new System.Drawing.Size(91, 28);
+            this.panel42.TabIndex = 2;
+            // 
+            // btnMais10
+            // 
+            this.btnMais10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMais10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMais10.ForeColor = System.Drawing.Color.Blue;
+            this.btnMais10.Location = new System.Drawing.Point(0, 0);
+            this.btnMais10.Name = "btnMais10";
+            this.btnMais10.Size = new System.Drawing.Size(91, 28);
+            this.btnMais10.TabIndex = 1;
+            this.btnMais10.Tag = "10";
+            this.btnMais10.Text = "+10";
+            this.btnMais10.UseVisualStyleBackColor = true;
+            this.btnMais10.Click += new System.EventHandler(this.btnMais1_Click);
+            // 
+            // panel41
+            // 
+            this.panel41.Controls.Add(this.btnMenos10);
+            this.panel41.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel41.Location = new System.Drawing.Point(102, 4);
+            this.panel41.Name = "panel41";
+            this.panel41.Size = new System.Drawing.Size(91, 28);
+            this.panel41.TabIndex = 1;
+            // 
+            // btnMenos10
+            // 
+            this.btnMenos10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMenos10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenos10.ForeColor = System.Drawing.Color.Red;
+            this.btnMenos10.Location = new System.Drawing.Point(0, 0);
+            this.btnMenos10.Name = "btnMenos10";
+            this.btnMenos10.Size = new System.Drawing.Size(91, 28);
+            this.btnMenos10.TabIndex = 1;
+            this.btnMenos10.Tag = "-10";
+            this.btnMenos10.Text = "-10";
+            this.btnMenos10.UseVisualStyleBackColor = true;
+            this.btnMenos10.Click += new System.EventHandler(this.btnMais1_Click);
+            // 
+            // panel40
+            // 
+            this.panel40.Controls.Add(this.btnMenos1);
+            this.panel40.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel40.Location = new System.Drawing.Point(4, 4);
+            this.panel40.Name = "panel40";
+            this.panel40.Size = new System.Drawing.Size(91, 28);
+            this.panel40.TabIndex = 0;
+            // 
+            // btnMenos1
+            // 
+            this.btnMenos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMenos1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenos1.ForeColor = System.Drawing.Color.Red;
+            this.btnMenos1.Location = new System.Drawing.Point(0, 0);
+            this.btnMenos1.Name = "btnMenos1";
+            this.btnMenos1.Size = new System.Drawing.Size(91, 28);
+            this.btnMenos1.TabIndex = 0;
+            this.btnMenos1.Tag = "-1";
+            this.btnMenos1.Text = "-1";
+            this.btnMenos1.UseVisualStyleBackColor = true;
+            this.btnMenos1.Click += new System.EventHandler(this.btnMais1_Click);
             // 
             // panelTotalizador
             // 
@@ -1326,6 +1465,12 @@
             this.panelPrincipal.ResumeLayout(false);
             this.tableLayoutPrincipal.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);
+            this.panel33.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.panel43.ResumeLayout(false);
+            this.panel42.ResumeLayout(false);
+            this.panel41.ResumeLayout(false);
+            this.panel40.ResumeLayout(false);
             this.panelTotalizador.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.tLayoutTotalizador.ResumeLayout(false);
@@ -1478,5 +1623,15 @@
         private System.Windows.Forms.Button btnCarregaFicha;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel33;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.Panel panel43;
+        private System.Windows.Forms.Button btnMais1;
+        private System.Windows.Forms.Panel panel42;
+        private System.Windows.Forms.Button btnMais10;
+        private System.Windows.Forms.Panel panel41;
+        private System.Windows.Forms.Button btnMenos10;
+        private System.Windows.Forms.Panel panel40;
+        private System.Windows.Forms.Button btnMenos1;
     }
 }

@@ -69,6 +69,22 @@ namespace Zip.Pdv.Component
 
         }
 
+        public void AdiconaProdutoOpcoes(ProdutoOpcaoViewModel produtoOpcao)
+        {
+            lbGrupo.Text = produtoOpcao.Nome;
+            lbGrupo.ForeColor = ColorText;
+
+            lbValorVenda.Text = produtoOpcao.Valor.ToString("C2");
+            //lbValorVenda.ForeColor = ColorText;
+            SelectedItem = produtoOpcao;
+
+            if (HideValorVenda)
+            {
+                lbValorVenda.Visible = false;
+            }
+
+        }
+
         private void lbDescricao_MouseEnter(object sender, EventArgs e)
         {
             _fixColor = this.BackColor;

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
+using Zip.Pdv.Cadastro;
+using Zip.Pdv.Cadastro.Venda;
 using Zip.Pdv.Component.EntregaGridView;
 
 namespace Zip.Pdv.Page
@@ -25,7 +28,7 @@ namespace Zip.Pdv.Page
             timer1.Interval = 80000;
             timer1.Start();
 
-            
+
         }
 
         private void EntregaGridView2OnDetalheItem(object sender, EventArgs eventArgs)
@@ -33,8 +36,27 @@ namespace Zip.Pdv.Page
             timer1.Stop();
             var item = (EntregaGridViewitem)sender;
             var data = (VendaViewModel)item.DataSource;
-
+            using (var frm = new PageVendaAdministracao(data))
+            {
+                OpePage(frm);
+            }
             timer1.Start();
+        }
+
+        private void OpePage(PageBase page)
+        {
+            using (var form = new FormBase(page))
+            {
+                form.Width = this.Width - 100;
+                form.Height = this.Height - 50;
+                form.StartPosition = FormStartPosition.CenterScreen;
+                /*form.Location = new Point()
+                {
+                    X = this.Location.X + 5,
+                    Y = this.Location.Y + 5
+                };*/
+                form.ShowDialog();
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -63,7 +85,7 @@ namespace Zip.Pdv.Page
         {
             timer1.Stop();
             var item = (EntregaGridViewitem)sender;
-            var vendaView = (VendaViewModel) item.DataSource;
+            var vendaView = (VendaViewModel)item.DataSource;
 
 
             var valorReceber = vendaView.Delivery.Valor + vendaView.Delivery.Troco;
@@ -123,7 +145,7 @@ namespace Zip.Pdv.Page
 
                 CarregaEntregas();
             }
-            
+
             //MessageBox.Show($"Sair : {data.Delivery.ClienteDelivery.Nome}");
             timer1.Start();
         }

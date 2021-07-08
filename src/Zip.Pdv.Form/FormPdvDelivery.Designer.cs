@@ -99,7 +99,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(393, 63);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.TabIndex = 4;
             // 
             // panel4
             // 
@@ -143,6 +143,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(190, 57);
             this.btnCancelar.TabIndex = 0;
+            this.btnCancelar.TabStop = false;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -337,7 +338,6 @@
             this.txtTaxAdic.FormatDecimal = null;
             this.txtTaxAdic.Location = new System.Drawing.Point(10, 64);
             this.txtTaxAdic.Name = "txtTaxAdic";
-            this.txtTaxAdic.ReadOnly = true;
             this.txtTaxAdic.Size = new System.Drawing.Size(167, 37);
             this.txtTaxAdic.TabIndex = 0;
             this.txtTaxAdic.Text = "0,00";
@@ -672,7 +672,7 @@
             this.label2.Location = new System.Drawing.Point(56, 1);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(678, 39);
-            this.label2.TabIndex = 5;
+            this.label2.TabIndex = 0;
             this.label2.Text = "FINALIZAR ENTREGA";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -688,7 +688,7 @@
             this.btnVoltar.Location = new System.Drawing.Point(0, 0);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(50, 42);
-            this.btnVoltar.TabIndex = 4;
+            this.btnVoltar.TabIndex = 1;
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click_1);
             // 
