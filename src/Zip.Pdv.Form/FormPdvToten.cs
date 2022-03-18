@@ -654,9 +654,8 @@ namespace Zip.Pdv
                     var vendaId = vendaApp.ObterVendaId();
                     VendaView.VendaId = int.Parse($"{Program.PdvId}{vendaId}");
 
-                    TryRetry.Do(() => vendaApp.Adicionar(VendaView), TimeSpan.FromSeconds(3));
+                    vendaApp.Adicionar(VendaView);
 
-                    //vendaApp.Adicionar(VendaView);
                     vendaApp.GeraImpressaoItens(VendaView.VendaId, 0);
 
                 }

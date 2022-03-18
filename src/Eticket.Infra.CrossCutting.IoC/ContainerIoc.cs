@@ -1,5 +1,6 @@
 ﻿using CommonServiceLocator.SimpleInjectorAdapter;
 using Eticket.Application;
+using Eticket.Application.CartaoConsumo;
 using Eticket.Application.Interface;
 using Eticket.Domain.Interface;
 using Eticket.Domain.Interface.Repository;

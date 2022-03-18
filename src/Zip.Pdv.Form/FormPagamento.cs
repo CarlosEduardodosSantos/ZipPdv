@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Eticket.Application.CartaoConsumo;
 using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
 using Zip.Pdv.Component;
@@ -138,6 +139,7 @@ namespace Zip.Pdv
 
         private void btnLancarPgamento_Click(object sender, EventArgs e)
         {
+            btnLancarPgamento.Enabled = false;
             if (_especiePagamento == null)
             {
                 TouchMessageBox.Show("Informe a espécie de pagamento", "Finalizar", MessageBoxButtons.OK);
@@ -145,6 +147,7 @@ namespace Zip.Pdv
             }
             var valor = txtValor.ValueNumeric;
 
+            
             if (_especiePagamento.Tef && Program.HabilitaTef)
             {
                 var pdv = Program.InicializacaoViewAux.PdvTef;
@@ -156,6 +159,7 @@ namespace Zip.Pdv
                 if (!cartaoResposta.Autorizado)
                 {
                     TouchMessageBox.Show(cartaoResposta.Menssagem, "Autoatendimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnLancarPgamento.Enabled = true;
                     return;
                 }
                 Pagamentos.Add(new CaixaPagamentoViewModel()
@@ -172,6 +176,42 @@ namespace Zip.Pdv
 
 
                 CaixaItemView.CartaoRespostas.Add(cartaoResposta);
+            }
+            else if (_especiePagamento.Vaucher)
+            {
+                var restauranteId = Program.InicializacaoViewAux.RestauranteId;
+                if (restauranteId == 0)
+                {
+                    TouchMessageBox.Show("Restaurante não associado.\nEntre em contato com nosso suporte.", "Cartão Consumo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnLancarPgamento.Enabled = true;
+                    return;
+                }
+
+                var numeroCartao = FormSolicitaTexto.Instace("Informe o número do cartão");
+                if (string.IsNullOrEmpty(numeroCartao))
+                {
+                    TouchMessageBox.Show("Número de cartão não informado.", "Cartão Consumo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnLancarPgamento.Enabled = true;
+                    return;
+                }
+                var tipoOp = 2; //Debto
+                var resposta = CartaoConsumoAppService.AutorizarMovimentacao(restauranteId, numeroCartao, valor, "Venda PDV", tipoOp);
+                if (!resposta.Aproved)
+                {
+                    TouchMessageBox.Show(resposta.Mensage, "Cartão Consumo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnLancarPgamento.Enabled = true;
+                    return;
+                }
+                Pagamentos.Add(new CaixaPagamentoViewModel()
+                {
+                    CaixaId = Program.CaixaView.CaixaId,
+                    CaixaItemId = CaixaItemView.CaixaItemId,
+                    EspeciePagamentoId = _especiePagamento.EspeciePagamentoId,
+                    Especie = _especiePagamento.Especie,
+                    Valor = valor,
+                    Interno = _especiePagamento.Interno,
+                    CodigoFiscal = _especiePagamento.CodigoFiscal
+                });
             }
             else
             {

@@ -18,6 +18,6 @@
         public string Cnpj { get; set; }
         public string Pdv { get; set; }
         public string PdvTef { get; set; }
-
+        public int RestauranteId { get; set; }
     }
 }

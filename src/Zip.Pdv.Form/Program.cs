@@ -212,8 +212,9 @@ namespace Zip.Pdv
                     Pdv = Pdv.ToString(),
                     PdvTef = PdvTef,
                     CodigoLoja = GetValueApp.GetValue<string>("CodigoLojaTef"),
-                    Cnpj =EmpresaView.Cnpj
-                };
+                    Cnpj =EmpresaView.Cnpj,
+                    RestauranteId = GetValueApp.GetValue<int>("RestauranteId")
+            };
 
 
             }

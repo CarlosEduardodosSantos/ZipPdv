@@ -47,15 +47,15 @@ namespace Eticket.Infra.Data.Repository
             parms.Add("@Estacao", Environment.MachineName);
             parms.Add("@NRO_CARTAO", venda.FichaId);
             parms.Add("@OBS", venda.Observacao);
-
             var senha = !string.IsNullOrEmpty(venda.Senha) ? venda.Senha : ObterSenha();
             parms.Add("@Senha", senha);
 
-
             using (var conn = Connection)
             {
+
                 TryRetry.Do(() => conn.Open(), TimeSpan.FromSeconds(5));
-                conn.Query(sql.ToString(), parms);
+                TryRetry.Do(() => conn.Query(sql.ToString(), parms), TimeSpan.FromSeconds(5));
+
 
                 foreach (var vendaVendaItens in venda.VendaItens)
                 {
@@ -346,7 +346,7 @@ namespace Eticket.Infra.Data.Repository
 
                 //Grava auditoria
                 var histtorico = $"[EXCLUSAO] [VENDA\\COMPLETO Nº: {venda.VendaId} - {DateTime.Now}]";
-                var sqlAudit = "insert into auditoria (Data,Hora,Loja,Usuario,Cliente,Valor,maquina,Ocorrencia,Motivo,Nrocx) "+
+                var sqlAudit = "insert into auditoria (Data,Hora,Loja,Usuario,Cliente,Valor,maquina,Ocorrencia,Motivo,Nrocx) " +
                     "Values (@Data,@Hora,@Loja,@Usuario,@Cliente,@Valor,@maquina,@Ocorrencia,@Motivo,@Nrocx)";
 
                 conn.Query(sqlAudit,
@@ -380,7 +380,7 @@ namespace Eticket.Infra.Data.Repository
                 var sequencia = conn.Query<int>(sql).FirstOrDefault();
                 conn.Close();
 
-                
+
                 return sequencia + 1;
 
             }
@@ -858,11 +858,11 @@ namespace Eticket.Infra.Data.Repository
         private string ObterSenha()
         {
             var sql = "select Cast(Isnull(valor,0) as Int) from configuracoes where variavel like 'senha'";
-
-            using (var conn = Connection)
+            try
             {
-                try
+                using (var conn = Connection)
                 {
+
                     conn.Open();
                     var senha = conn.Query<int>(sql).FirstOrDefault();
 
@@ -877,10 +877,11 @@ namespace Eticket.Infra.Data.Repository
                     return senha.ToString();
 
                 }
-                catch
-                {
-                    return "0";
-                }
+
+            }
+            catch
+            {
+                return "0";
             }
         }
 

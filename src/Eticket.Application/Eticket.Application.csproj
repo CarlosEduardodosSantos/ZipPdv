@@ -43,6 +43,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -52,6 +53,7 @@
     <Compile Include="CaixaAppService.cs" />
     <Compile Include="CaixaFechamentoAppService.cs" />
     <Compile Include="CaixaItemAppService.cs" />
+    <Compile Include="CartaoConsumo\CartaoConsumoAppService.cs" />
     <Compile Include="CartaoRequisicaoAppService.cs" />
     <Compile Include="CartaoRespostaAppService.cs" />
     <Compile Include="CEPBrasil\ConsultaCepAppService.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Interface\ICaixaAppService.cs" />
     <Compile Include="Interface\ICaixaFechamentoAppService.cs" />
     <Compile Include="Interface\ICaixaItemAppService.cs" />
+    <Compile Include="Interface\ICartaoConsumoAppService.cs" />
     <Compile Include="Interface\ICartaoRequisicaoAppService.cs" />
     <Compile Include="Interface\ICartaoRespostaAppService.cs" />
     <Compile Include="Interface\IClienteDeliveryAppService.cs" />
@@ -126,6 +129,9 @@
     <Compile Include="ViewModels\CaixaHistoricoViewModel.cs" />
     <Compile Include="ViewModels\CaixaItemViewModel.cs" />
     <Compile Include="ViewModels\CaixaViewModel.cs" />
+    <Compile Include="ViewModels\CartaoConsumoMov.cs" />
+    <Compile Include="ViewModels\CartaoConsumoMovRespViewModel.cs" />
+    <Compile Include="ViewModels\CartaoConsumoViewModel.cs" />
     <Compile Include="ViewModels\CartaoRequisicaoViewModel.cs" />
     <Compile Include="ViewModels\CartaoRespostaParcelaViewModel.cs" />
     <Compile Include="ViewModels\CartaoRespostaViewModel.cs" />
