@@ -11,6 +11,7 @@ namespace Zip.TefDial
         {
             using (var form = new FormProcessandoGlobal(tipoOperacao, valorReceber, numeroDocumento, tipoCartao))
             {
+
                 form.ShowDialog();
                 return form.CartaoRespostaView;
             }
@@ -27,6 +28,7 @@ namespace Zip.TefDial
 
             var fileSts = $"{MultiPlus.DiretorioResp}/{MultiPlus.NameFileRespTemp}";
             var fileAtivo = $"{MultiPlus.DiretorioResp}/{MultiPlus.NameFileAtivo}";
+            Thread.Sleep(7000);
 
             bool a = true;
             bool esperou = false;
@@ -48,7 +50,7 @@ namespace Zip.TefDial
                     return false;
                 }
 
-                Thread.Sleep(7000);
+                //Thread.Sleep(7000);
                 esperou = true;
             }
             return false;

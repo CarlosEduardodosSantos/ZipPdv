@@ -53,6 +53,7 @@ namespace Zip.Pdv.Component
             lbProduto.Text = produto.Descricao;
             //lbProduto.ForeColor = ColorText;
 
+            lbValorVenda.Visible = Program.TotemHabPreco;
             lbValorVenda.Text = produto.ValorVenda.ToString("C2");
             //lbValorVenda.ForeColor = ColorText;
             SelectedItem = produto;
@@ -61,7 +62,7 @@ namespace Zip.Pdv.Component
             {
                 lbValorVenda.Visible = false;
             }
-            GetImageAsync(produto.ProdutoId);
+            GetImageAsync(produto);
 
         }
         private void lbDescricao_MouseEnter(object sender, EventArgs e)
@@ -74,13 +75,20 @@ namespace Zip.Pdv.Component
         {
             this.BackColor = _fixColor;
         }
-        public void GetImageAsync(int produtoId)
+        public void GetImageAsync(ProdutoViewModel produto)
         {
+            var produtoId = produto.ProdutoId;
             var operation = AsyncOperationManager.CreateOperation(null);
             var thread = new Thread(new ThreadStart(delegate ()
             {
                 try
                 {
+                    if (!produto.Visivel)
+                    {
+                        imageProd.Image = Properties.Resources.produto_indisponivel;
+                        return;
+                    }
+
                     using (var produtoAppService = Program.Container.GetInstance<IProdutoAppService>())
                     {
                         var imagem = produtoAppService.ObterImageProdutoId(produtoId);

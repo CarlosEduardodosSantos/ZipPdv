@@ -14,8 +14,6 @@ namespace Zip.Pdv.Cadastro.Venda
         {
             InitializeComponent();
 
-           
-
         }
 
         public override void ClassToObjeto(object objeto)
@@ -82,6 +80,11 @@ namespace Zip.Pdv.Cadastro.Venda
                     if (!retorno.IsOk)
                     {
                         Funcoes.MensagemError(retorno.Mensagem);
+                        break;
+                    }
+                    using (var retornoSatAppService = Program.Container.GetInstance<IRetornoSatAppService>())
+                    {
+                        retornoSatAppService.Adicionar(retorno);
                     }
                     break;
                 case ModeloFiscalEnumView.NFCe:
@@ -94,8 +97,103 @@ namespace Zip.Pdv.Cadastro.Venda
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                using (var usuarioAppService = Program.Container.GetInstance<IUsuarioAppService>())
+                {
+                    var podeProceguir = usuarioAppService.VerificaPrivilegio("AdmVendas1", Program.Usuario.UsuarioId);
+                    if (!podeProceguir)
+                    {
+                        Funcoes.MensagemInformation("Você não possui direitos para esta operação!");
+                        return;
+                    }
+                }
+                if (!string.IsNullOrEmpty(_vendaView.CupomFiscal))
+                {
+                    var retorno = OperacoeFiscal.CancelaSat(_vendaView);
+                    if (!retorno.IsOk)
+                    {
+                        Funcoes.MensagemError($"{retorno.Mensagem}\nVenda não pode ser cancelada. Consulte o suporte para mais informações.");
+                        return;
+                    }
+                }
 
+                var motivo = FormSolicitaTexto.Instace("Informe o motivo da exclusão", 5);
+
+
+
+                //Verifica se tem TEF
+                using (var cartaoRespostaAppService = Program.Container.GetInstance<ICartaoRespostaAppService>())
+                {
+                    var cartaoResposta = cartaoRespostaAppService.ObterPorVendaId(_vendaView.VendaId);
+                    if (cartaoResposta != null)
+                    {
+                        if (cartaoResposta.Autorizado)
+                        {
+                            var pdv = Program.InicializacaoViewAux.Pdv;
+                            var codLoja = Program.InicializacaoViewAux.CodigoLoja;
+                            var cnpj = Program.InicializacaoViewAux.Cnpj;
+
+                            var respostaCancelamento = TefTotem.AutomacaoTef.Cancelamento(cartaoResposta, pdv, codLoja, cnpj);
+                            if (!respostaCancelamento.Autorizado)
+                            {
+                                TouchMessageBox.Show(respostaCancelamento.Menssagem, "Cancelamento de operação",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return;
+                            }
+                        }
+                    }
+                }
+
+                using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
+                {
+                    vendaApp.Cancelar(_vendaView, motivo);
+                }
+
+                Funcoes.MensagemInformation("Venda cancelada com sucesso.");
+                LimparTudo();
+            }
+            catch (Exception ex)
+            {
+                Funcoes.MensagemInformation("Ocorreu um erro ao excluir a venda!\nConsulte o log para mais informações.");
+                Program.GravaLog(ex.Message);
+            }
+            
         }
+
+        public override void LimparTudo()
+        {
+            splitContainer1.Panel2Collapsed = true;
+
+            txtNome.Clear();
+            txtEndereco.Clear();
+            txtNumero.Clear();
+            txtCep.Clear();
+            txtBairro.Clear();
+            txtCidade.Clear();
+            txtUf.Clear();
+
+            txtDataHoraSaida.Clear();
+            txtDataHoraRetorno.Clear();
+            lbVendaId.Text = string.Empty;
+            lbCaixaId.Text = string.Empty;
+            lbPdv.Text = string.Empty;
+
+            lbDataHora.Text = string.Empty;
+            lbTipoVenda.Text = string.Empty;
+            lbFiscal.Text = string.Empty;
+
+            lbDesconto.Text = string.Empty;
+            lbTaxa.Text = string.Empty;
+            lbValorTotal.Text = string.Empty;
+
+
+            dgvVendaItens.AutoGenerateColumns = false;
+            dgvVendaItens.DataSource = null;
+            btnCancelar.Enabled = false;
+            splitButton1.Enabled = false;
+        }
+
 
         private void imprimirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -122,7 +220,9 @@ namespace Zip.Pdv.Cadastro.Venda
                     if (!retorno.IsOk)
                     {
                         Funcoes.MensagemError(retorno.Mensagem);
+                        break;
                     }
+                    _vendaView.CupomFiscal = retorno.CfeSatNumeroNf.ToString();
                     break;
                 case ModeloFiscalEnumView.NFCe:
                     OperacoeFiscal.ImprimeNfce(_vendaView);
@@ -130,6 +230,14 @@ namespace Zip.Pdv.Cadastro.Venda
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            //Atualiza Cupom Fiscal
+            using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
+            {
+
+                vendaApp.AtualizaFiscal(_vendaView);
+            }
+
         }
 
         private void imprimirGerencialToolStripMenuItem_Click(object sender, EventArgs e)

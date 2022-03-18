@@ -138,6 +138,7 @@ namespace Zip.Pdv.Component
 	        }
             newMessageBox.Text = caption;
             newMessageBox.lbText.Text = text;
+            newMessageBox.TopMost = true;
             if (newMessageBox.ShowDialog() == DialogResult.OK)
                 return DialogResult.OK;
             else

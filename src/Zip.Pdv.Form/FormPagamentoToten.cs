@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
@@ -147,16 +146,22 @@ namespace Zip.Pdv
                 return;
             }
             var valor =_valorReceber;
+            var codLoja = Program.InicializacaoViewAux.CodigoLoja;
+            var pdv = Program.InicializacaoViewAux.PdvTef;
+            var cnpj = Program.InicializacaoViewAux.Cnpj;
 
             if (_especiePagamento.Tef)
             {
-                var cartaoResposta = TefDial.AutomacaoTef.AcionaTef(CartaoTipoOperacaoEnumView.CRT, valor, "1", _especiePagamento.TipoCartao);
+                var cartaoResposta = TefTotem.AutomacaoTef.AcionaTef(CartaoTipoOperacaoEnumView.CRT, valor, "1", 
+                    _especiePagamento.TipoCartao, pdv, codLoja, cnpj);
                 if (!cartaoResposta.Autorizado)
                 {
-
+                    Program.GravaLog($"TEF não autorizado {cartaoResposta.Menssagem}");
+                    TouchMessageBox.Show(cartaoResposta.Menssagem, "Autoatendimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 Pagamentos.Add(new CaixaPagamentoViewModel()
+
                 {
                     CaixaId = Program.CaixaView.CaixaId,
                     EspeciePagamentoId = _especiePagamento.EspeciePagamentoId,

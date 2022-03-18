@@ -31,6 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAbrir = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -46,12 +47,11 @@
             this.txtpdv = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.keyboardNum1 = new KeyboardClassLibrary.Num.KeyboardNum();
             this.panel23 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.keyboardNum1 = new KeyboardClassLibrary.Num.KeyboardNum();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -99,6 +99,19 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(237, 62);
             this.panel3.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(237, 62);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "CANCELAR";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
@@ -166,13 +179,13 @@
             this.txtValorInicial.Name = "txtValorInicial";
             this.txtValorInicial.Size = new System.Drawing.Size(314, 30);
             this.txtValorInicial.TabIndex = 0;
-            this.txtValorInicial.Text = "0";
+            this.txtValorInicial.Text = "R$ 0,00";
             this.txtValorInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorInicial.ValueNumeric = new decimal(new int[] {
             0,
             0,
             0,
-            0});
+            131072});
             // 
             // panel8
             // 
@@ -273,6 +286,14 @@
             this.label1.Text = "Pdv";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // keyboardNum1
+            // 
+            this.keyboardNum1.Location = new System.Drawing.Point(170, 120);
+            this.keyboardNum1.Name = "keyboardNum1";
+            this.keyboardNum1.Size = new System.Drawing.Size(314, 245);
+            this.keyboardNum1.TabIndex = 6;
+            this.keyboardNum1.UserKeyPressed += new KeyboardClassLibrary.Num.KeyboardNumDelegate(this.keyboardNum1_UserKeyPressed);
+            // 
             // panel23
             // 
             this.panel23.BackgroundImage = global::Zip.Pdv.Properties.Resources.bg_;
@@ -326,27 +347,6 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(489, 480);
             this.panel10.TabIndex = 3;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(237, 62);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "CANCELAR";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // keyboardNum1
-            // 
-            this.keyboardNum1.Location = new System.Drawing.Point(170, 120);
-            this.keyboardNum1.Name = "keyboardNum1";
-            this.keyboardNum1.Size = new System.Drawing.Size(314, 245);
-            this.keyboardNum1.TabIndex = 6;
-            this.keyboardNum1.UserKeyPressed += new KeyboardClassLibrary.Num.KeyboardNumDelegate(this.keyboardNum1_UserKeyPressed);
             // 
             // FormAbrirCaixa
             // 

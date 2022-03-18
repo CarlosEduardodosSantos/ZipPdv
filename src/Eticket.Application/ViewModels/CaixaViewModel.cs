@@ -14,7 +14,8 @@ namespace Eticket.Application.ViewModels
         public int Pdv { get; set; }
         public int UsuarioId { get; set; }
         public DateTime DataInicio { get; set; }
-        public int UsuarioFinal { get; set; }
+        public int UsuarioFinalId { get; set; }
+        public string UsuarioFinal { get; set; }
         public DateTime DataFinal { get; set; }
         public decimal ValorAbertura { get; set; }
         public int CedenteId { get; set; }

@@ -47,25 +47,26 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(318, 431);
+            this.panel1.Size = new System.Drawing.Size(430, 480);
             this.panel1.TabIndex = 0;
             // 
             // txtCpf
             // 
             this.txtCpf.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCpf.Location = new System.Drawing.Point(11, 54);
-            this.txtCpf.Mask = "000,000,00099";
             this.txtCpf.Name = "txtCpf";
-            this.txtCpf.Size = new System.Drawing.Size(294, 39);
+            this.txtCpf.Size = new System.Drawing.Size(406, 39);
             this.txtCpf.TabIndex = 164;
             this.txtCpf.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCpf_KeyDown);
+            this.txtCpf.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCpf_KeyUp);
+            this.txtCpf.Validated += new System.EventHandler(this.txtCpf_Validated);
             // 
             // keyboardNum1
             // 
             this.keyboardNum1.Location = new System.Drawing.Point(11, 99);
             this.keyboardNum1.Name = "keyboardNum1";
-            this.keyboardNum1.Size = new System.Drawing.Size(293, 324);
+            this.keyboardNum1.Size = new System.Drawing.Size(406, 376);
             this.keyboardNum1.TabIndex = 163;
             this.keyboardNum1.UserKeyPressed += new KeyboardClassLibrary.Num.KeyboardNumDelegate(this.keyboardcontrol1_UserKeyPressed);
             // 
@@ -77,7 +78,7 @@
             this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel23.Location = new System.Drawing.Point(0, 0);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(316, 42);
+            this.panel23.Size = new System.Drawing.Size(428, 42);
             this.panel23.TabIndex = 5;
             // 
             // label2
@@ -88,11 +89,11 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(56, 1);
+            this.label2.Location = new System.Drawing.Point(51, 1);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(249, 39);
+            this.label2.Size = new System.Drawing.Size(378, 39);
             this.label2.TabIndex = 5;
-            this.label2.Text = "INFORME O CPF";
+            this.label2.Text = "INFORME SEU CPF/CNPJ !";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnVoltar
@@ -115,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 431);
+            this.ClientSize = new System.Drawing.Size(430, 480);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;

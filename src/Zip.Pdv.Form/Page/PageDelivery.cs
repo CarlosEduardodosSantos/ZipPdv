@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -97,16 +98,71 @@ namespace Zip.Pdv.Page
 
                 if (!isPago) return;
 
-                //Grava Caixa Itens
-                var caixaItem = form.CaixaItemView;
-                caixaItem.CaixaPagamentos = form.Pagamentos;
+
 
                 using (var caixaApp = Program.Container.GetInstance<ICaixaItemAppService>())
                 {
+                    var caixaItem = form.CaixaItemView;
+
+                    if (vendaView.Delivery.Troco > 0)
+                    {
+                        var caixaItemTroco = new CaixaItemViewModel()
+                        {
+                            CaixaId = Program.CaixaView.CaixaId,
+                            VendaId = vendaView.VendaId,
+                            UsuarioId = Program.Usuario.UsuarioId,
+                            DataHora = DateTime.Now,
+                            Valor = vendaView.Delivery.Troco,
+                            TipoLancamento = "TEL",
+                            Historico = $"TROCO RET Nº {vendaView.VendaId} [CX:{caixaItem.CaixaId}]"
+                        };
+
+
+                        using (var especieAppService = Program.Container.GetInstance<IEspeciePagamentoAppService>())
+                        {
+                            var especie = especieAppService.ObterTodos().FirstOrDefault(t => t.Interno == "ESP1");
+
+                            caixaItemTroco.CaixaPagamentos.Add(new CaixaPagamentoViewModel()
+                            {
+                                Especie = especie.Especie,
+                                Valor = caixaItemTroco.Valor,
+                                EspeciePagamentoId = especie.EspeciePagamentoId,
+                                Interno = especie.Interno,
+                                CodigoFiscal = especie.CodigoFiscal,
+                                CaixaId = caixaItemTroco.CaixaId,
+                                CaixaItemId = caixaItemTroco.CaixaItemId
+                            });
+                        }
+
+                        caixaApp.Adicionar(caixaItemTroco);
+                    }
+                   
+                    //Grava Caixa Itens
+
+                    caixaItem.CaixaPagamentos = form.Pagamentos;
                     caixaItem.VendaId = vendaView.VendaId;
                     caixaItem.UsuarioId = Program.Usuario.UsuarioId;
-                    caixaItem.Historico = $"VENDA ENTREGA Nº {vendaView.VendaId}";
+                    caixaItem.Historico = $"TELEVENDAS Nº {vendaView.VendaId}";
                     caixaItem.TipoLancamento = "TEL";
+                    caixaItem.Valor -= vendaView.Delivery.Troco;
+                    using (var especieAppService = Program.Container.GetInstance<IEspeciePagamentoAppService>())
+                    {
+                        var espInterno = caixaItem.CaixaPagamentos.Count > 0 ? caixaItem.CaixaPagamentos.FirstOrDefault().Interno : "ESP1";
+                        var especie =  especieAppService.ObterTodos().FirstOrDefault(t => t.Interno == espInterno);
+                        caixaItem.CaixaPagamentos = new List<CaixaPagamentoViewModel>();
+
+                        caixaItem.CaixaPagamentos.Add(new CaixaPagamentoViewModel()
+                        {
+                            Especie = especie.Especie,
+                            Valor = caixaItem.Valor,
+                            EspeciePagamentoId = especie.EspeciePagamentoId,
+                            Interno = especie.Interno,
+                            CodigoFiscal = especie.CodigoFiscal,
+                            CaixaId = caixaItem.CaixaId,
+                            CaixaItemId = caixaItem.CaixaItemId
+                        });
+                    }
+
 
                     caixaApp.Adicionar(caixaItem);
                 }

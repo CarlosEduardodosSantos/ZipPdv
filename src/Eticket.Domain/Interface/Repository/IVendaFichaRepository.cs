@@ -8,8 +8,11 @@ namespace Eticket.Domain.Interface.Repository
     {
         void Add(VendaFicha vendaFicha);
         void Remover(VendaFicha vendaFicha);
-        IEnumerable<VendaFicha> ObterPorFicha(string ficha);
+        IEnumerable<VendaFicha> ObterPorFicha(int[] ficha);
         int ObterUltimaSequencia(string ficha);
         void ImprimeFichaGr(string ficha);
+        void FinalizaFicha(string fichaId);
+        bool FicheExiste(int fichaId);
+        VendaFicha ObterFichaByGuid(string fichaGuid);
     }
 }

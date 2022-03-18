@@ -32,9 +32,15 @@
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.tableLayoutPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.panelRight = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.lbGrupo = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.flayoutProduto = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCentral = new System.Windows.Forms.Panel();
             this.flayoutGrupo = new System.Windows.Forms.FlowLayoutPanel();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.cupomGridView1 = new Zip.Pdv.Component.CupomGrid.CupomGridView(false);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.panelTotalizador = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -45,25 +51,19 @@
             this.label15 = new System.Windows.Forms.Label();
             this.panelBtnPagamento = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel37 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel34 = new System.Windows.Forms.Panel();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.flayoutProduto = new System.Windows.Forms.FlowLayoutPanel();
-            this.lbGrupo = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.cupomGridView1 = new Zip.Pdv.Component.CupomGrid.CupomGridView();
             this.timerPrincipal = new System.Windows.Forms.Timer(this.components);
             this.panelPrincipal.SuspendLayout();
             this.tableLayoutPrincipal.SuspendLayout();
             this.panelRight.SuspendLayout();
+            this.panel14.SuspendLayout();
             this.panelCentral.SuspendLayout();
             this.panelLeft.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panelTotalizador.SuspendLayout();
             this.panel9.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -71,11 +71,8 @@
             this.panel32.SuspendLayout();
             this.panelBtnPagamento.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel37.SuspendLayout();
             this.panel34.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel14.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelPrincipal
@@ -100,8 +97,8 @@
             this.tableLayoutPrincipal.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPrincipal.Name = "tableLayoutPrincipal";
             this.tableLayoutPrincipal.RowCount = 2;
-            this.tableLayoutPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.tableLayoutPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.36806F));
+            this.tableLayoutPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.63194F));
             this.tableLayoutPrincipal.Size = new System.Drawing.Size(1022, 739);
             this.tableLayoutPrincipal.TabIndex = 2;
             this.tableLayoutPrincipal.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
@@ -113,8 +110,42 @@
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRight.Location = new System.Drawing.Point(3, 3);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(1016, 474);
+            this.panelRight.Size = new System.Drawing.Size(1016, 380);
             this.panelRight.TabIndex = 1;
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.White;
+            this.panel14.Controls.Add(this.lbGrupo);
+            this.panel14.Controls.Add(this.flayoutProduto);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel14.Location = new System.Drawing.Point(161, 0);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(855, 380);
+            this.panel14.TabIndex = 3;
+            // 
+            // lbGrupo
+            // 
+            this.lbGrupo.AutoSize = true;
+            this.lbGrupo.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGrupo.Location = new System.Drawing.Point(6, 8);
+            this.lbGrupo.Name = "lbGrupo";
+            this.lbGrupo.Size = new System.Drawing.Size(102, 33);
+            this.lbGrupo.TabIndex = 4;
+            this.lbGrupo.Text = "GRUPO";
+            // 
+            // flayoutProduto
+            // 
+            this.flayoutProduto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flayoutProduto.AutoScroll = true;
+            this.flayoutProduto.BackColor = System.Drawing.Color.White;
+            this.flayoutProduto.Location = new System.Drawing.Point(0, 45);
+            this.flayoutProduto.Name = "flayoutProduto";
+            this.flayoutProduto.Padding = new System.Windows.Forms.Padding(30, 15, 30, 15);
+            this.flayoutProduto.Size = new System.Drawing.Size(848, 332);
+            this.flayoutProduto.TabIndex = 3;
             // 
             // panelCentral
             // 
@@ -123,7 +154,7 @@
             this.panelCentral.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelCentral.Location = new System.Drawing.Point(0, 0);
             this.panelCentral.Name = "panelCentral";
-            this.panelCentral.Size = new System.Drawing.Size(161, 474);
+            this.panelCentral.Size = new System.Drawing.Size(161, 380);
             this.panelCentral.TabIndex = 10;
             // 
             // flayoutGrupo
@@ -135,7 +166,7 @@
             this.flayoutGrupo.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.flayoutGrupo.Name = "flayoutGrupo";
             this.flayoutGrupo.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.flayoutGrupo.Size = new System.Drawing.Size(161, 474);
+            this.flayoutGrupo.Size = new System.Drawing.Size(161, 380);
             this.flayoutGrupo.TabIndex = 1;
             // 
             // panelLeft
@@ -145,10 +176,46 @@
             this.panelLeft.Controls.Add(this.panel1);
             this.panelLeft.Controls.Add(this.panelBtnPagamento);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLeft.Location = new System.Drawing.Point(3, 483);
+            this.panelLeft.Location = new System.Drawing.Point(3, 389);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(1016, 253);
+            this.panelLeft.Size = new System.Drawing.Size(1016, 347);
             this.panelLeft.TabIndex = 0;
+            // 
+            // cupomGridView1
+            // 
+            this.cupomGridView1.BackColor = System.Drawing.Color.White;
+            this.cupomGridView1.ColorHeader = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
+            this.cupomGridView1.DataSource = null;
+            this.cupomGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cupomGridView1.Location = new System.Drawing.Point(0, 41);
+            this.cupomGridView1.Name = "cupomGridView1";
+            this.cupomGridView1.SelectedItem = null;
+            this.cupomGridView1.Size = new System.Drawing.Size(1016, 207);
+            this.cupomGridView1.TabIndex = 6;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.panel1.Controls.Add(this.bunifuCustomLabel1);
+            this.panel1.Controls.Add(this.panelTotalizador);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1016, 41);
+            this.panel1.TabIndex = 9;
+            // 
+            // bunifuCustomLabel1
+            // 
+            this.bunifuCustomLabel1.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.bunifuCustomLabel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.bunifuCustomLabel1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel1.ForeColor = System.Drawing.Color.White;
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(0, 0);
+            this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
+            this.bunifuCustomLabel1.Size = new System.Drawing.Size(388, 41);
+            this.bunifuCustomLabel1.TabIndex = 5;
+            this.bunifuCustomLabel1.Text = "MEU PEDIDO";
+            this.bunifuCustomLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panelTotalizador
             // 
@@ -248,63 +315,34 @@
             this.panelBtnPagamento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelBtnPagamento.Controls.Add(this.tableLayoutPanel1);
             this.panelBtnPagamento.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBtnPagamento.Location = new System.Drawing.Point(0, 190);
+            this.panelBtnPagamento.Location = new System.Drawing.Point(0, 248);
             this.panelBtnPagamento.Name = "panelBtnPagamento";
-            this.panelBtnPagamento.Size = new System.Drawing.Size(1016, 63);
+            this.panelBtnPagamento.Size = new System.Drawing.Size(1016, 99);
             this.panelBtnPagamento.TabIndex = 8;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.85714F));
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.panel37, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel34, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel34, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1014, 61);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1014, 97);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // panel37
-            // 
-            this.panel37.Controls.Add(this.button2);
-            this.panel37.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel37.Location = new System.Drawing.Point(3, 3);
-            this.panel37.Name = "panel37";
-            this.panel37.Size = new System.Drawing.Size(283, 55);
-            this.panel37.TabIndex = 3;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::Zip.Pdv.Properties.Resources.obs_32;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(283, 55);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "OBSERVAÇÃO";
-            this.toolTip1.SetToolTip(this.button2, "Observação para o produto selecionado");
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnObservacao_Click);
             // 
             // panel34
             // 
             this.panel34.Controls.Add(this.btnLimpar);
             this.panel34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel34.Location = new System.Drawing.Point(292, 3);
+            this.panel34.Location = new System.Drawing.Point(3, 3);
             this.panel34.Name = "panel34";
-            this.panel34.Size = new System.Drawing.Size(283, 55);
+            this.panel34.Size = new System.Drawing.Size(501, 91);
             this.panel34.TabIndex = 0;
             // 
             // btnLimpar
@@ -318,7 +356,7 @@
             this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLimpar.Location = new System.Drawing.Point(0, 0);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(283, 55);
+            this.btnLimpar.Size = new System.Drawing.Size(501, 91);
             this.btnLimpar.TabIndex = 6;
             this.btnLimpar.Text = "CANCELAR PEDIDO";
             this.btnLimpar.UseVisualStyleBackColor = false;
@@ -328,9 +366,9 @@
             // 
             this.panel2.Controls.Add(this.button4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(581, 3);
+            this.panel2.Location = new System.Drawing.Point(510, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(430, 55);
+            this.panel2.Size = new System.Drawing.Size(501, 91);
             this.panel2.TabIndex = 4;
             // 
             // button4
@@ -346,7 +384,7 @@
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button4.Location = new System.Drawing.Point(0, 0);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(430, 55);
+            this.button4.Size = new System.Drawing.Size(501, 91);
             this.button4.TabIndex = 5;
             this.button4.Text = "FINALIZAR PEDIDO";
             this.toolTip1.SetToolTip(this.button4, "Finaliza o pedido");
@@ -357,76 +395,6 @@
             // 
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
-            // flayoutProduto
-            // 
-            this.flayoutProduto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flayoutProduto.AutoScroll = true;
-            this.flayoutProduto.BackColor = System.Drawing.Color.White;
-            this.flayoutProduto.Location = new System.Drawing.Point(0, 45);
-            this.flayoutProduto.Name = "flayoutProduto";
-            this.flayoutProduto.Padding = new System.Windows.Forms.Padding(30, 15, 30, 15);
-            this.flayoutProduto.Size = new System.Drawing.Size(848, 428);
-            this.flayoutProduto.TabIndex = 3;
-            // 
-            // lbGrupo
-            // 
-            this.lbGrupo.AutoSize = true;
-            this.lbGrupo.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGrupo.Location = new System.Drawing.Point(6, 8);
-            this.lbGrupo.Name = "lbGrupo";
-            this.lbGrupo.Size = new System.Drawing.Size(102, 33);
-            this.lbGrupo.TabIndex = 4;
-            this.lbGrupo.Text = "GRUPO";
-            // 
-            // panel14
-            // 
-            this.panel14.BackColor = System.Drawing.Color.White;
-            this.panel14.Controls.Add(this.lbGrupo);
-            this.panel14.Controls.Add(this.flayoutProduto);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel14.Location = new System.Drawing.Point(161, 0);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(855, 474);
-            this.panel14.TabIndex = 3;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this.panel1.Controls.Add(this.bunifuCustomLabel1);
-            this.panel1.Controls.Add(this.panelTotalizador);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1016, 41);
-            this.panel1.TabIndex = 9;
-            // 
-            // bunifuCustomLabel1
-            // 
-            this.bunifuCustomLabel1.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this.bunifuCustomLabel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.bunifuCustomLabel1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel1.ForeColor = System.Drawing.Color.White;
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(0, 0);
-            this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
-            this.bunifuCustomLabel1.Size = new System.Drawing.Size(388, 41);
-            this.bunifuCustomLabel1.TabIndex = 5;
-            this.bunifuCustomLabel1.Text = "MEU PEDIDO";
-            this.bunifuCustomLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cupomGridView1
-            // 
-            this.cupomGridView1.BackColor = System.Drawing.Color.White;
-            this.cupomGridView1.ColorHeader = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
-            this.cupomGridView1.DataSource = null;
-            this.cupomGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cupomGridView1.Location = new System.Drawing.Point(0, 41);
-            this.cupomGridView1.Name = "cupomGridView1";
-            this.cupomGridView1.SelectedItem = null;
-            this.cupomGridView1.Size = new System.Drawing.Size(1016, 149);
-            this.cupomGridView1.TabIndex = 6;
             // 
             // FormPdvToten
             // 
@@ -441,8 +409,11 @@
             this.panelPrincipal.ResumeLayout(false);
             this.tableLayoutPrincipal.ResumeLayout(false);
             this.panelRight.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
             this.panelCentral.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.panelTotalizador.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
@@ -450,12 +421,8 @@
             this.panel32.ResumeLayout(false);
             this.panelBtnPagamento.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel37.ResumeLayout(false);
             this.panel34.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -479,8 +446,6 @@
         private System.Windows.Forms.Panel panel32;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel37;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel34;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Panel panel2;

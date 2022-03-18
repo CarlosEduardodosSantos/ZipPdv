@@ -8,8 +8,11 @@ namespace Eticket.Application.Interface
     {
         void Add(IEnumerable<VendaFichaViewModel> vendaFichaView);
         void Remover(VendaFichaViewModel vendaFichaView);
-        IEnumerable<VendaFichaViewModel> ObterPorFicha(string ficha);
+        IEnumerable<VendaFichaViewModel> ObterPorFicha(int[] ficha);
+        bool FicheExiste(int fichaId);
+        VendaFichaViewModel ObterFichaByGuid(string fichaGuid);
         int ObterUltimaSequencia(string ficha);
         void ImprimeFichaGr(string ficha);
+        void FinalizaFicha(string fichaId);
     }
 }

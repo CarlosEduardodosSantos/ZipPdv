@@ -33,6 +33,8 @@ namespace Eticket.Application.ViewModels
         public string Senha { get; set; }
         public string NumeroFicha { get; set; }
         public string MenssagemSat { get; set; }
+        public string FichaId { get; set; }
+        public int[] Fichas { get; set; }
         public List<VendaItemViewModel> VendaItens { get; set; }
         public List<CaixaPagamentoViewModel> VendaFinalizadora { get; set; }
         public ClienteDeliveryViewModel ClienteDelivery { get; set; }

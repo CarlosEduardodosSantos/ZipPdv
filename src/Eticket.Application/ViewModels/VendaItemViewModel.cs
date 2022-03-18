@@ -18,6 +18,7 @@ namespace Eticket.Application.ViewModels
         public decimal ValorUnitatio { get; set; }
         public decimal ValorDe { get; set; }
         public decimal Quantidade { get; set; }
+        public decimal PesoQuantidadeFixo { get; set; }
         public decimal Desconto { get; set; }
         public decimal DescontoPercentual { get; set; }
         public decimal Adicional { get; set; }
@@ -42,12 +43,12 @@ namespace Eticket.Application.ViewModels
             var obs = Produto;
             //if (VendaComplementos.Count == 0 && VendaProdutoOpcoes.Count == 0) return obs;
 
-            var separator = " + ";
+            var separator = "\n + ";
             if (VendaComplementos.Count() > 0)
                 obs = VendaComplementos.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + "\n";
 
             if (VendaProdutoOpcoes.Count() > 0)
-                obs = VendaProdutoOpcoes.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + "\n";
+                obs = VendaProdutoOpcoes.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + System.Environment.NewLine;
 
             if (!string.IsNullOrEmpty(Observacao))
                 obs += $" {Observacao}";

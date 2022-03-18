@@ -325,9 +325,9 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(66, 41);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 20);
+            this.label8.Size = new System.Drawing.Size(104, 20);
             this.label8.TabIndex = 12;
-            this.label8.Text = "Taxa Adicional";
+            this.label8.Text = "Taxa Entrega";
             // 
             // txtTaxAdic
             // 

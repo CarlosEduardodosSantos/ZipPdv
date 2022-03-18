@@ -9,7 +9,7 @@ namespace Eticket.Domain.Interface
     {
         void Adicionar(Venda venda);
         void AtualizaFiscal(Venda venda);
-        void Cancelar(Venda venda);
+        void Cancelar(Venda venda, string motivo);
         int VendaId();
         bool GeraImpressaoItens(int vendaId, int tipoOperacao);
         bool GeraImpressaoFechamento(int vendaId, int tipoOperacao);

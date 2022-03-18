@@ -28,10 +28,10 @@ namespace Eticket.Application
             _vendaRepository.Adicionar(venda);
         }
 
-        public void Cancelar(VendaViewModel vendaView)
+        public void Cancelar(VendaViewModel vendaView, string motivo)
         {
             var venda = TypeAdapter.Adapt<VendaViewModel, Venda>(vendaView);
-            _vendaRepository.Cancelar(venda);
+            _vendaRepository.Cancelar(venda, motivo);
         }
 
         public VendaViewModel ObterPorId(int id)

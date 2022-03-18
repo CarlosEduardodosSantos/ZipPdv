@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
+using Zip.Pdv.Fast;
 
 namespace Zip.Pdv.Page
 {
@@ -30,23 +31,26 @@ namespace Zip.Pdv.Page
             txtDthCaixa.Text = caixaView.DataInicio.ToString();
             txtOperador.Text = Program.Usuario.Nome;
 
+            txtdthFechamento.Text = caixaView.DataFinal.ToString();
+            txtoperadorPechamento.Text = caixaView.UsuarioFinal;
+
             using (var caixaItemAppService = Program.Container.GetInstance<ICaixaItemAppService>())
             {
                 _itemViewModels = caixaItemAppService.ObterPorCaixaId(caixaView.CaixaId).ToList();
 
-                txtValorInicial.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "INI").Sum(t => t.Valor+t.Troco);
+                txtValorInicial.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "INI").Sum(t => t.Valor + t.Troco);
                 txtvVendas.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "VDA" || t.TipoLancamento == "TEL").Sum(t => t.Valor + t.Troco);
 
                 txtSuprimentos.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "SU").Sum(t => t.Valor);
                 txtSangrias.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "SA").Sum(t => t.Valor); ;
 
-                
+
                 txtvTotalCaixa.ValueNumeric = _itemViewModels.Sum(t => t.Valor + t.Troco);
 
                 txtVendaVista.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "VDA" || t.TipoLancamento == "TEL").Sum(t => t.Valor + t.Troco);
                 txtvendaPrazo.ValueNumeric = 0;
                 txtTotalVendasCancelada.ValueNumeric = 0;
-                
+
                 txtTotalRecebimentos.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "REC").Sum(t => t.Valor + t.Troco);
                 txtvPagamentos.ValueNumeric = 0;
 
@@ -114,5 +118,34 @@ namespace Zip.Pdv.Page
             }
         }
 
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            var caixaView = FormCaixaPesquisa.RetornaCaixaPesquisa();
+            if (caixaView == null)
+                return;
+
+
+            CarregaCaixa(caixaView);
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtdthFechamento.Text))
+            {
+
+            }
+            int caixaId;
+            if (int.TryParse(txtnCaixa.Text, out caixaId))
+            {
+                
+            var parms = new ParameterReportDynamic();
+                parms.Add("caixaId", caixaId);
+
+                var report = new RelatorioFastReport();
+                report.GerarRelatorio("Imp_FechamentoCaixa", parms);
+            }
+
+
+        }
     }
 }

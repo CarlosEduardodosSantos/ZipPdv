@@ -6,5 +6,6 @@ namespace Eticket.Application.Interface
     public interface IClienteDeliveryAppService : IDisposable
     {
         ClienteDeliveryViewModel ObterPorFone(string fone);
+        decimal TaxaPorBairro(string bairro);
     }
 }

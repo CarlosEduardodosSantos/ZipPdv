@@ -55,7 +55,7 @@ namespace Eticket.Infra.Data.Repository
 
             sql = new StringBuilder();
             sql.AppendLine("IF NOT EXISTS(SELECT NAME FROM SYSCOLUMNS WHERE NAME = 'MSG_SAT' AND ID IN (SELECT ID FROM SYSOBJECTS WHERE NAME = 'VENDA_1'))");
-            sql.AppendLine("ALTER TABLE VENDA_1 ADD MSG_SAT VARCHAR(100)");
+            sql.AppendLine("ALTER TABLE VENDA_1 ADD MSG_SAT VARCHAR(500)");
             using (var conn = Connection)
             {
                 conn.Open();

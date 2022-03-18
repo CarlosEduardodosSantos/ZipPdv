@@ -20,7 +20,9 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.DES_ as Descricao, " +
                           " Prod.VLVENDA as ValorVenda, " +
                           " Prod.VLCUSTO as ValorCusto, " +
-                          " Prod.USABALANCA as ParaBalanca " +
+                          " Prod.USABALANCA as ParaBalanca, " +
+                          " Prod.QuantidadeFixo as QuantidadeFixo, " +
+                          " pdvGrupoItens.HabProd as Visivel " +
                           "From Prod  left Join  pdvGrupoItens On  CodProduto = Prod.Codigo  Where Prod.Codigo = @id";
 
                 cn.Open();
@@ -42,7 +44,9 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.DES_ as Descricao, " +
                           " Prod.VLVENDA as ValorVenda, " +
                           " Prod.VLCUSTO as ValorCusto, " +
-                          " Prod.USABALANCA as ParaBalanca " +
+                          " Prod.USABALANCA as ParaBalanca, " +
+                          " Prod.QuantidadeFixo as QuantidadeFixo, " +
+                          " pdvGrupoItens.HabProd as Visivel " +
                           "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo ";
 
                 cn.Open();
@@ -64,7 +68,9 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.DES_ as Descricao, " +
                           " Prod.VLVENDA as ValorVenda, " +
                           " Prod.VLCUSTO as ValorCusto, " +
-                          " Prod.USABALANCA as ParaBalanca " +
+                          " Prod.USABALANCA as ParaBalanca, " +
+                          " Prod.QuantidadeFixo as QuantidadeFixo, " +
+                          " pdvGrupoItens.HabProd as Visivel " +
                           "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  Where idPdvGrupo = @grupoId";
 
                 cn.Open();
@@ -107,7 +113,9 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.DES_ as Descricao, " +
                           " Prod.VLVENDA as ValorVenda, " +
                           " Prod.VLCUSTO as ValorCusto, " +
-                          " Prod.USABALANCA as ParaBalanca " +
+                          " Prod.USABALANCA as ParaBalanca, " +
+                          " Prod.QuantidadeFixo as QuantidadeFixo, " +
+                          " pdvGrupoItens.HabProd as Visivel " +
                           "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  Where Prod.Codigo In (" +
                           "Select COD_PRODUTO From PROD_BARRA Where COD_BARRA = @ean)";
 
@@ -130,7 +138,9 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.DES_ as Descricao, " +
                           " Prod.VLVENDA as ValorVenda, " +
                           " Prod.VLCUSTO as ValorCusto, " +
-                          " Prod.USABALANCA as ParaBalanca " +
+                          " Prod.USABALANCA as ParaBalanca, " +
+                          " Prod.QuantidadeFixo as QuantidadeFixo, " +
+                          " pdvGrupoItens.HabProd as Visivel " +
                           "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  Where Prod.DES_ Like '%'+ @nome + '%'";
 
                 cn.Open();
@@ -293,7 +303,9 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.DES_ as Descricao, " +
                           " Prod.VLVENDA as ValorVenda, " +
                           " Prod.VLCUSTO as ValorCusto, " +
-                          " Prod.USABALANCA as ParaBalanca " +
+                          " Prod.USABALANCA as ParaBalanca, " +
+                          " Prod.QuantidadeFixo as QuantidadeFixo, " +
+                          " pdvGrupoItens.HabProd as Visivel " +
                           "From pdvGrupoSugestoes Inner Join Prod On  CodProduto = Prod.Codigo  Where idPdvGrupo = @grupoId";
 
                 cn.Open();

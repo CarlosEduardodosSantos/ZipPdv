@@ -125,6 +125,18 @@
     <value>C:\TEF_DIAL\RESP\</value>
     <comment>Diretório de Resposta padrão para TEF MultiPlus</comment>
   </data>
+  <data name="FinalizaProcesso" xml:space="preserve">
+    <value>000-000 = CRT
+001-000 = 307
+002-000 = 1
+003-000 = 500
+009-000 = 255
+028-000 = 0
+030-000 = CANCELADO POR INDISPONIBILIDADE DE REDE. AGUARDE E TENTE NOVAMENTE.
+800-000 = v1.0.415
+999-999 = 0</value>
+    <comment>Arquivo para finalizar processo do tef</comment>
+  </data>
   <data name="NameFileAtivo" xml:space="preserve">
     <value>Ativo.001</value>
     <comment>Nome padrao do arquivo de atividade</comment>

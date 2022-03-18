@@ -189,7 +189,7 @@ namespace SAT
                         sb.Append("<qCom>" + qtde.ToString("N4").Replace(".", "#").Replace(",", ".").Replace("#", "") + "</qCom>");
                         sb.Append("<vUnCom>" + valorComDesconto.ToString("N2").Replace(".", "#").Replace(",", ".").Replace("#", "") + "</vUnCom>");
                         sb.Append("<indRegra>A</indRegra>");
-
+                        
                         if (r.IcmsCstCsosn == "60" || r.IcmsCstCsosn == "500")
                         {
                             if (string.IsNullOrEmpty(r.CestCodigo))
@@ -379,12 +379,17 @@ namespace SAT
                     sb.Append("</pgto>");
 
                     sb.Append("<infAdic>");
-                    mMsg = "CLIENTE: " + _venda.ClienteNome.Trim();
+                    
+                    mMsg = string.Empty;
+
+                    if (!string.IsNullOrEmpty(_venda.SenhaPainel))
+                        mMsg = "SENHA: " + _venda.SenhaPainel.Trim();
+                    mMsg += "CLIENTE: " + _venda.ClienteNome.Trim();
                     mMsg += "|Venda: " + _venda.VendaID.ToString();
                     mMsg += "|ICMS a ser recolhido conforme LC 123/2006";
                     mMsg += "|Simples Nacional";
                     mMsg += "|Trib aprox R$" + impostoIbptFederalTotal.ToString("N2").Replace(".", "#").Replace(",", ".").Replace("#", "") + " Federal e R$" + impostoIbptEstadualTotal.ToString("N2").Replace(".", "#").Replace(",", ".").Replace("#", "") + " Estadual|Fonte IBPT ca7gi3";
-                    if (Global.ConfiguracaoInicial.SatMarca == "Gertec")
+                    if (Global.ConfiguracaoInicial.SatMarca == "Gertec" || Global.ConfiguracaoInicial.SatMarca == "Sweda")
                         mMsg = mMsg.Replace("|", ";");
                     if (Global.ConfiguracaoInicial.SatMarca == "Emulador")
                         sb.Append("<infCpl>Trib aprox R$" + impostoIbptFederalTotal.ToString("N2").Replace(".", "#").Replace(",", ".").Replace("#", "") + " Federal e R$" + impostoIbptEstadualTotal.ToString("N2").Replace(".", "#").Replace(",", ".").Replace("#", "") + " Estadual - Fonte IBPT ca7gi3</infCpl>");
@@ -410,7 +415,7 @@ namespace SAT
             _venda.Modelo = "59";
             string retorno = "";
             
-            retornoModel.Secao = rdn.Next(999999); ;
+            retornoModel.Secao = rdn.Next(999999);
             retornoModel.DataHora = DateTime.Now;
             retornoModel.Funcao = _satOperacao == SatOperacaoEnum.Enviar ? "VIP_EnviarDadosVenda" : "VIP_CancelarUltimaVenda";
 
@@ -468,10 +473,10 @@ namespace SAT
                 }
                 catch (Exception e)
                 {
-                    //Global.Funcoes.MensagemDeInformacao(e.Message);
+                    new LogWriter(e.Message);
                 }
             }
-            //retorno = sat.ICancelarUltimaVenda(retornoModel.Secao, _venda.ChaveEletronicaCFeSATNFce.ToUpper().Replace("CFE", ""), (Global.ConfiguracaoInicial.SatMarca == "Emulador" ? "00000000000000" : Global.ConfiguracaoInicial.SoftwareHouseCnpj), _venda.ClienteCpf.Trim(), Global.ConfiguracaoInicial.CaixaNumero.ToString("000"), Global.Empresa.SignAC);
+            
             try
             {
                 if (!string.IsNullOrEmpty(retorno))
@@ -495,9 +500,10 @@ namespace SAT
                         return retornoModel;
                     }
 
-                    if (vetorRetorno != null && vetorRetorno[3].Length > 3 &&
+                    if (vetorRetorno != null && vetorRetorno[3].Length >= 3 &&
                         (vetorRetorno[3].ToLower().Contains("emitido com sucesso") ||
-                         vetorRetorno[3].ToLower().Contains("cancelado com sucesso")))
+                         vetorRetorno[3].ToLower().Contains("cancelado com sucesso") ||
+                         vetorRetorno[3].ToLower().Contains("leiaute do arquivo de entrada".ToLower())))
                     {
                         retornoModel.Mensagem = (vetorRetorno != null && vetorRetorno[3].Length > 3 ? vetorRetorno[3] : "");
 

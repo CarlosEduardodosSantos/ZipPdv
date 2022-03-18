@@ -12,5 +12,6 @@
         public string Cep { get; set; }
         public string Observacao { get; set; }
         public string Uf { get; set; }
+        public decimal UltimaTaxa { get; set; }
     }
 }

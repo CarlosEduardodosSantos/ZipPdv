@@ -1103,7 +1103,7 @@
             this.lbClienteDelivery.Location = new System.Drawing.Point(0, 0);
             this.lbClienteDelivery.Name = "lbClienteDelivery";
             this.lbClienteDelivery.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.lbClienteDelivery.Size = new System.Drawing.Size(385, 40);
+            this.lbClienteDelivery.Size = new System.Drawing.Size(333, 40);
             this.lbClienteDelivery.TabIndex = 1;
             this.lbClienteDelivery.Text = "ENTREGA";
             this.lbClienteDelivery.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1115,9 +1115,9 @@
             this.btnSolicitaCpf.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSolicitaCpf.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnSolicitaCpf.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSolicitaCpf.Location = new System.Drawing.Point(385, 0);
+            this.btnSolicitaCpf.Location = new System.Drawing.Point(333, 0);
             this.btnSolicitaCpf.Name = "btnSolicitaCpf";
-            this.btnSolicitaCpf.Size = new System.Drawing.Size(161, 40);
+            this.btnSolicitaCpf.Size = new System.Drawing.Size(213, 40);
             this.btnSolicitaCpf.TabIndex = 2;
             this.btnSolicitaCpf.Text = "Solicitar CPF";
             this.btnSolicitaCpf.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1337,7 +1337,6 @@
             this.btnCarregaFicha.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.toolTip1.SetToolTip(this.btnCarregaFicha, "Ficha ja lançada.");
             this.btnCarregaFicha.UseVisualStyleBackColor = false;
-            this.btnCarregaFicha.Visible = false;
             this.btnCarregaFicha.Click += new System.EventHandler(this.btnCarregaFicha_Click);
             // 
             // panel22

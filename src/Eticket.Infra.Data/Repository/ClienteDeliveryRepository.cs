@@ -31,6 +31,7 @@ namespace Eticket.Infra.Data.Repository
             sql.AppendLine("Cep,");
             sql.AppendLine("Numero,");
             sql.AppendLine("UF as Uf,");
+            sql.AppendLine("ULTIMA_TAXA_ENTREGA as UltimaTaxa,");
             sql.AppendLine("Obs1 as Observacao");
             sql.AppendLine("From Televenda_2 Where Fone Like @fone");
 
@@ -41,6 +42,19 @@ namespace Eticket.Infra.Data.Repository
                 conn.Close();
 
                 return cliente;
+            }
+        }
+
+        public decimal TaxaPorBairro(string bairro)
+        {
+            var sql = "select Isnull(Max(be_taxa), 0) from bairroentrega Where be_nome like @bairro";
+            using (var conn = Connection)
+            {
+                conn.Open();
+                var taxa = conn.Query<decimal>(sql, new { bairro }).FirstOrDefault();
+                conn.Close();
+
+                return taxa;
             }
         }
     }

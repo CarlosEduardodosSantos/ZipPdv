@@ -9,5 +9,6 @@ namespace Eticket.Domain.Interface.Repository
         Usuario GetById(int id);
         IEnumerable<Usuario> GetAll();
         Usuario GetAutenticacao(string senha);
+        bool VerificaPrivilegio(string privilegio, int id);
     }
 }

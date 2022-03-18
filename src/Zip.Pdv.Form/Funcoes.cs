@@ -87,5 +87,10 @@ namespace Zip.Pdv
             return image;
 
         }
+
+        public static string OnlyNumeric(string texto)
+        {
+            return String.Join("", System.Text.RegularExpressions.Regex.Split(texto, @"[^\d]"));
+        }
     }
 }

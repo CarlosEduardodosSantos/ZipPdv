@@ -64,7 +64,7 @@ namespace Zip.Sat
             using (var retornoSatAppService = ServiceLocator.Current.GetInstance<IRetornoSatAppService>())
             {
                 var resultado = retornoSatAppService.ObterPorVendaId(_vendaView.VendaId.ToString());
-                if (string.IsNullOrEmpty(resultado.ChaveEletronicaCFeSATNFce))
+                if (string.IsNullOrEmpty(resultado?.ChaveEletronicaCFeSATNFce))
                 {
                     RetornoSatView = new RetornoSatViewModel()
                     {

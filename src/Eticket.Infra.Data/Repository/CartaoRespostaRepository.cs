@@ -88,5 +88,22 @@ namespace Eticket.Infra.Data.Repository
                 return cartao;
             }
         }
+
+        public CartaoResposta ObterPorVendaId(int vendaId)
+        {
+            using (var conn = Connection)
+            {
+                var sql = new StringBuilder();
+                sql.AppendLine("Select * from CaixaPagamentos");
+                sql.AppendLine("Inner Join Caixa_2 On CaixaPagamentos.CaixaItemId = Caixa_2.CaixaItemID");
+                sql.AppendLine("Left Join CartaoRespostas On CaixaPagamentos.CartaoRespostaGuid = CartaoRespostas.CartaoRespostaGuid");
+                sql.AppendLine("Where NroVenda = @vendaId ");
+                conn.Open();
+                var cartao = conn.Query<CartaoResposta>(sql.ToString(), new { vendaId }).FirstOrDefault();
+                conn.Close();
+
+                return cartao;
+            }
+        }
     }
 }

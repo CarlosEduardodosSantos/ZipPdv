@@ -24,10 +24,10 @@ namespace Eticket.Infra.Data.Repository
         {
             var sql = new StringBuilder();
             sql.AppendLine("Insert Into Caixa_2(CaixaItemId, NROCX, NROVENDA, VALOR, HISTORICO, Troco, COD_USUARIO, ESP1, ESP2, ESP3,");
-            sql.AppendLine("ESP4, ESP5, ESP6, ESP7, ESP8, ESP9, TipoLancto)");
+            sql.AppendLine("ESP4, ESP5, ESP6, ESP7, ESP8, ESP9, TipoLancto, Especies)");
 
             sql.AppendLine("Values(@CaixaItemId, @NROCX, @NROVENDA, @VALOR, @HISTORICO, @Troco, @COD_USUARIO, @ESP1, @ESP2, @ESP3,");
-            sql.AppendLine("@ESP4, @ESP5, @ESP6, @ESP7, @ESP8, @ESP9, @TipoLancto)");
+            sql.AppendLine("@ESP4, @ESP5, @ESP6, @ESP7, @ESP8, @ESP9, @TipoLancto, @Especies)");
 
             var parms = new DynamicParameters();
             parms.Add("@CaixaItemId", caixaItem.CaixaItemId);
@@ -56,6 +56,14 @@ namespace Eticket.Infra.Data.Repository
             var vEsp9 = caixaItem.CaixaPagamentos.Where(t => t.Interno == "ESP9").Sum(t => t.Valor);
             parms.Add("@ESP9", vEsp9);
             parms.Add("@TipoLancto", caixaItem.TipoLancamento);
+
+            var especieDescricao = string.Empty;
+
+            foreach (var especieCaixa in caixaItem.CaixaPagamentos)
+            {
+                especieDescricao += $"{especieCaixa.Especie}: {especieCaixa.Valor} ";
+            }
+            parms.Add("@Especies", especieDescricao.Trim());
 
             using (var conn = Connection)
             {

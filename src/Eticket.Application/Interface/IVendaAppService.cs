@@ -8,7 +8,7 @@ namespace Eticket.Application.Interface
     {
         void Adicionar(VendaViewModel vendaView);
         void AtualizaFiscal(VendaViewModel vendaView);
-        void Cancelar(VendaViewModel vendaView);
+        void Cancelar(VendaViewModel vendaView, string motivo);
         VendaViewModel ObterPorId(int id);
         IEnumerable<VendaViewModel> ObterEntregaPendentes();
         IEnumerable<VendaViewModel> ObterEntregaAguardandoRetorno();

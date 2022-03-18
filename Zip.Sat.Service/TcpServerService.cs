@@ -30,7 +30,7 @@ namespace Zip.Sat.Service
             // TODO: Add any initialization after the InitComponent call
 
             _server = new Server();
-            _server.Port = 4500;
+            _server.Port = 3103;
 
             /* O BufferSize é usado para
              * determinar o tamanho limite de alocação

@@ -14,7 +14,14 @@ namespace Zip.Pdv
             }
         }
 
-        
+        public static RetornoSatViewModel CancelaSat(VendaViewModel vendaView)
+        {
+            using (var formSat = new Sat.FrmCancelaSat(vendaView))
+            {
+                formSat.ShowDialog();
+                return formSat.RetornoSatView;
+            }
+        }
         public static void ImprimeNfce(VendaViewModel vendaView)
         {
             using (var formNfce = new FrmSolicitaNfce(vendaView.VendaId))

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -47,6 +47,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel19 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitButton1 = new Zip.Pdv.Component.SplitButton();
             this.panel18 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel17 = new System.Windows.Forms.Panel();
@@ -108,7 +109,6 @@
             this.impremirFiscalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reimprimirComprovanteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitButton1 = new Zip.Pdv.Component.SplitButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -193,8 +193,8 @@
             this.dgvVendaItens.AllowUserToDeleteRows = false;
             this.dgvVendaItens.AllowUserToResizeColumns = false;
             this.dgvVendaItens.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.dgvVendaItens.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvVendaItens.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvVendaItens.BackgroundColor = System.Drawing.Color.White;
             this.dgvVendaItens.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvVendaItens.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -217,8 +217,8 @@
             this.dgvVendaItens.RowHeadersVisible = false;
             this.dgvVendaItens.RowHeadersWidth = 30;
             this.dgvVendaItens.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvVendaItens.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvVendaItens.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvVendaItens.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvVendaItens.RowTemplate.Height = 25;
             this.dgvVendaItens.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -273,13 +273,13 @@
             // 
             this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.dataGridViewTextBoxColumn6.DataPropertyName = "ValorTotal";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.Format = "C2";
-            dataGridViewCellStyle11.NullValue = "0,00";
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = "0,00";
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn6.HeaderText = "TOTAL";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
@@ -336,6 +336,20 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(322, 55);
             this.tableLayoutPanel5.TabIndex = 4;
             // 
+            // splitButton1
+            // 
+            this.splitButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.splitButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.splitButton1.ImageKey = "Normal";
+            this.splitButton1.Location = new System.Drawing.Point(164, 3);
+            this.splitButton1.Name = "splitButton1";
+            this.splitButton1.Size = new System.Drawing.Size(155, 49);
+            this.splitButton1.TabIndex = 2;
+            this.splitButton1.Text = "Impressão";
+            this.splitButton1.UseVisualStyleBackColor = true;
+            // 
             // panel18
             // 
             this.panel18.Controls.Add(this.tableLayoutPanel6);
@@ -382,7 +396,6 @@
             this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Excluir";
             this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Visible = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // panelCabecalho
@@ -1039,20 +1052,6 @@
             this.reimprimirComprovanteToolStripMenuItem.Name = "reimprimirComprovanteToolStripMenuItem";
             this.reimprimirComprovanteToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.reimprimirComprovanteToolStripMenuItem.Text = "Reimprimir comprovante";
-            // 
-            // splitButton1
-            // 
-            this.splitButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.splitButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.splitButton1.ImageKey = "Normal";
-            this.splitButton1.Location = new System.Drawing.Point(164, 3);
-            this.splitButton1.Name = "splitButton1";
-            this.splitButton1.Size = new System.Drawing.Size(155, 49);
-            this.splitButton1.TabIndex = 2;
-            this.splitButton1.Text = "Impressão";
-            this.splitButton1.UseVisualStyleBackColor = true;
             // 
             // VendaDetalhe
             // 

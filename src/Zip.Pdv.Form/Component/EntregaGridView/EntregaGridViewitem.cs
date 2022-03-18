@@ -57,7 +57,7 @@ namespace Zip.Pdv.Component.EntregaGridView
         public void CarrregaItem(VendaViewModel vendaView, EntregaSituacao situacao)
         {
             lbNome.Text = $"{vendaView.Delivery.ClienteDelivery.Nome}";
-            lbEndereco.Text = $"{vendaView.Delivery.ClienteDelivery.Endereco}, {vendaView.Delivery.ClienteDelivery.Numero} | {vendaView.Delivery.ClienteDelivery.Bairro}";
+            lbEndereco.Text = $"{vendaView.Delivery.ClienteDelivery.Endereco} | {vendaView.Delivery.ClienteDelivery.Bairro}";
             lbFone.Text = $"Fone:{vendaView.Delivery.ClienteDelivery.Telefone}";
             lbVendaId.Text = $"N.{vendaView.VendaId}";
             lbValor.Text = $"Vlr. {vendaView.ValorTotal.ToString("N2")}";

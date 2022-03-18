@@ -8,5 +8,6 @@ namespace Eticket.Application.Interface
         void Adicionar(CartaoRespostaViewModel cartaoRespostaView);
         CartaoRespostaViewModel ObterPorRequisicao(int requisicao);
         CartaoRespostaViewModel ObterPorGuid(Guid cartaoRespostaGuid);
+        CartaoRespostaViewModel ObterPorVendaId(int vendaId);
     }
 }

@@ -13,6 +13,7 @@ namespace Zip.Pdv
     public partial class FormPagamento : Form
     {
         public bool IsPago;
+        public string CpfCnpj;
         private readonly decimal _valorReceber;
         public List<CaixaPagamentoViewModel> Pagamentos;
         public CaixaItemViewModel CaixaItemView;
@@ -24,13 +25,13 @@ namespace Zip.Pdv
             txtValor.CasasDecimais = "C2";
 
             _valorReceber = valorReceber;
-            
+
             Pagamentos = new List<CaixaPagamentoViewModel>();
             CaixaItemView = new CaixaItemViewModel()
             {
                 CaixaId = Program.CaixaView.CaixaId,
                 Valor = _valorReceber,
-                
+
             };
             CaixaItemView.CaixaId = Program.CaixaView.CaixaId;
             CaixaItemView.Valor = _valorReceber;
@@ -39,7 +40,7 @@ namespace Zip.Pdv
 
         private void CarregaEspecies()
         {
-            
+
             using (var especieAppService = Program.Container.GetInstance<IEspeciePagamentoAppService>())
             {
                 _especies = especieAppService.ObterTodos().ToList();
@@ -76,11 +77,11 @@ namespace Zip.Pdv
 
             ResetControls();
 
-            var btnPgto = (EspecieGridViewItem) sender;
+            var btnPgto = (EspecieGridViewItem)sender;
             btnPgto.Selecionar();
 
             _especiePagamento = btnPgto.Especie;
-            
+
 
             flayoutGrupo.Refresh();
             var valorPago = Pagamentos.Sum(t => t.Valor);
@@ -117,19 +118,20 @@ namespace Zip.Pdv
             lbTroco.Text = troco >= 0 ? troco.ToString("C2") : "R$ 0,00";
             CaixaItemView.Troco = troco > 0 ? troco : 0;
 
-            if(_valorReceber <= valorPago)
+            if (_valorReceber <= valorPago && troco == 0)
                 btnPagar.PerformClick();
         }
 
         private void xButton12_Click(object sender, EventArgs e)
         {
-            var btnValor = (Button) sender;
+            var btnValor = (Button)sender;
 
             txtValor.Text = btnValor.Text == "=" ? _valorReceber.ToString("C2") : decimal.Parse(btnValor.Text).ToString("C2");
         }
 
         private void FormPagamento_Load(object sender, EventArgs e)
         {
+            btnSolicitaCpf.Text = !string.IsNullOrEmpty(CpfCnpj) ? $"CPF/CNPJ: {CpfCnpj}" : "Informar CPF/CNPJ?";
             CarregaEspecies();
             TotalizaPagamento();
         }
@@ -143,12 +145,17 @@ namespace Zip.Pdv
             }
             var valor = txtValor.ValueNumeric;
 
-            if (_especiePagamento.Tef)
+            if (_especiePagamento.Tef && Program.HabilitaTef)
             {
-                var cartaoResposta = TefDial.AutomacaoTef.AcionaTef(CartaoTipoOperacaoEnumView.CRT, valor, "1", _especiePagamento.TipoCartao);
+                var pdv = Program.InicializacaoViewAux.PdvTef;
+                var codLoja = Program.InicializacaoViewAux.CodigoLoja;
+                var cnpj = Program.InicializacaoViewAux.Cnpj;
+
+                var cartaoResposta = TefTotem.AutomacaoTef.AcionaTef(CartaoTipoOperacaoEnumView.CRT, valor, "1",
+                    _especiePagamento.TipoCartao, pdv, codLoja, cnpj);
                 if (!cartaoResposta.Autorizado)
                 {
-
+                    TouchMessageBox.Show(cartaoResposta.Menssagem, "Autoatendimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 Pagamentos.Add(new CaixaPagamentoViewModel()
@@ -170,17 +177,17 @@ namespace Zip.Pdv
             {
                 if (Pagamentos.Any(t => t.Especie == _especiePagamento.Especie))
                     Pagamentos.FirstOrDefault(t => t.Especie == _especiePagamento.Especie).Valor += valor;
-
-                Pagamentos.Add(new CaixaPagamentoViewModel()
-                {
-                    CaixaId = Program.CaixaView.CaixaId,
-                    CaixaItemId = CaixaItemView.CaixaItemId,
-                    EspeciePagamentoId = _especiePagamento.EspeciePagamentoId,
-                    Especie = _especiePagamento.Especie,
-                    Valor = valor,
-                    Interno = _especiePagamento.Interno,
-                    CodigoFiscal = _especiePagamento.CodigoFiscal
-                });
+                else
+                    Pagamentos.Add(new CaixaPagamentoViewModel()
+                    {
+                        CaixaId = Program.CaixaView.CaixaId,
+                        CaixaItemId = CaixaItemView.CaixaItemId,
+                        EspeciePagamentoId = _especiePagamento.EspeciePagamentoId,
+                        Especie = _especiePagamento.Especie,
+                        Valor = valor,
+                        Interno = _especiePagamento.Interno,
+                        CodigoFiscal = _especiePagamento.CodigoFiscal
+                    });
             }
 
 
@@ -216,7 +223,11 @@ namespace Zip.Pdv
             {
                 if (pagamento.CartaoResposta.Autorizado)
                 {
-                    var respostaCancelamento = TefDial.AutomacaoTef.Cancelamento(pagamento.CartaoResposta.Requisicao);
+                    var pdv = Program.InicializacaoViewAux.Pdv;
+                    var codLoja = Program.InicializacaoViewAux.CodigoLoja;
+                    var cnpj = Program.InicializacaoViewAux.Cnpj;
+
+                    var respostaCancelamento = TefTotem.AutomacaoTef.Cancelamento(pagamento.CartaoResposta, pdv, codLoja, cnpj);
                     if (!respostaCancelamento.Autorizado)
                     {
                         TouchMessageBox.Show(respostaCancelamento.Menssagem, "Cancelamento de operação",
@@ -240,10 +251,10 @@ namespace Zip.Pdv
                 if (txtValor.ValueNumeric == _valorReceber)
                     btnLancarPgamento.PerformClick();
                 else
-                TouchMessageBox.Show("Valor pago insufisiente para continuar", "Pagamento", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                
-                
+                    TouchMessageBox.Show("Valor pago insufisiente para continuar", "Pagamento", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+
                 return;
 
             }
@@ -275,7 +286,7 @@ namespace Zip.Pdv
             {
                 if (!string.IsNullOrEmpty(e.KeyboardKeyPressed))
                 {
-                    if(txtValor.SelectionLength > 0)
+                    if (txtValor.SelectionLength > 0)
                         txtValor.Clear();
 
                     var str = new StringBuilder();
@@ -283,7 +294,7 @@ namespace Zip.Pdv
                     if (e.KeyboardKeyPressed == "{BACKSPACE}")
                     {
                         str.Append(int.Parse(txtValor.ValueNumeric.ToString().Replace(",", "")));
-                        str.Remove(str.Length-1, 1);
+                        str.Remove(str.Length - 1, 1);
                     }
                     else
                     {
@@ -291,9 +302,9 @@ namespace Zip.Pdv
                         str.Append(e.KeyboardKeyPressed);
                     }
 
-                    txtValor.ValueNumeric = str.Length > 0 ? decimal.Parse(str.ToString())/100 : 0;
+                    txtValor.ValueNumeric = str.Length > 0 ? decimal.Parse(str.ToString()) / 100 : 0;
                 }
-                
+
             }
             txtValor.SelectionStart = txtValor.Text.Length;
         }
@@ -326,6 +337,14 @@ namespace Zip.Pdv
             if (e.KeyCode != Keys.Enter) return;
 
             btnLancarPgamento.PerformClick();
+        }
+
+        private void btnSolicitaCpf_Click(object sender, EventArgs e)
+        {
+            var cpf = FormSolicitaCpf.Instace();
+            CpfCnpj = Funcoes.OnlyNumeric(cpf);
+            if (!string.IsNullOrEmpty(CpfCnpj))
+                btnSolicitaCpf.Text = $"CPF/CNPJ: {cpf}";
         }
     }
 }

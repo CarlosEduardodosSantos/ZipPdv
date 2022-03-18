@@ -12,5 +12,6 @@
         public int TipoCartao { get; set; }
         public string CodigoFiscal { get; set; }
         public string KeyAtalho { get; set; }
+        
     }
 }

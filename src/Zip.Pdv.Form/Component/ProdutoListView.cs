@@ -39,7 +39,7 @@ namespace Zip.Pdv.Component
             btnNextProd.Enabled = false;
             btnPrevProd.Enabled = false;
 
-            int qItemW = flayoutProduto.Width / 110;
+            int qItemW = flayoutProduto.Width / 150;
             int qItemH = flayoutProduto.Height / 90;
             int itens = qItemW * qItemH;
 

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Eticket.Application.Interface;
+using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Zip.Pdv.Component;
 using Zip.Pdv.Page;
@@ -40,9 +42,42 @@ namespace Zip.Pdv
                 //btnDelivery.Visible = false;
                 splitBtnIfood.Visible = false;
                 //splitBtnConfigure.Visible = false;
-                OpenPdv();
+
+                if (Program.CaixaView == null)
+                {
+                    var result = TouchMessageBox.Show("Caixa fechado\nDeseja abrir?", "Caixa", MessageBoxButtons.OKCancel,
+                            MessageBoxIcon.Question);
+
+                    if (result == DialogResult.OK)
+                    {
+                        using (var form = new FormAbrirCaixa())
+                        {
+                            form.ShowDialog();
+                            if (Program.CaixaView == null)
+                                return;
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                switch (Program.TipoPdv)
+                {
+                    case Eticket.Application.ViewModels.ModoPdvEnumView.Pedido:
+                        OpenPdv();
+                        break;
+                    case Eticket.Application.ViewModels.ModoPdvEnumView.TotemMenu:
+                        OpenMenuTotem();
+                        //OpenPdvToten();
+                        break;
+                    default:
+                        OpenPdv();
+                        break;
+                }
             }
-                
+
         }
 
         private void btnCaixaMovimentacao_Click(object sender, EventArgs e)
@@ -77,6 +112,63 @@ namespace Zip.Pdv
             }
         }
 
+        private void OpenTotemPedido()
+        {
+            btnVoltar.Visible = true;
+            btnVoltar.Visible = false;
+            panel26.Visible = false;
+            btnDelivery.Visible = false;
+            splitBtnConfigure.Visible = false;
+
+            if (!panelPages.Controls.Contains(FormPdvToten.Instance))
+            {
+                FormPdvToten.Instance.Dock = DockStyle.Fill;
+                panelPages.Controls.Add(FormPdvToten.Instance);
+                FormPdvToten.Instance.BringToFront();
+            }
+            else
+                FormPdv.Instance.BringToFront();
+
+        }
+        private void OpenTotemPagamento()
+        {
+            btnVoltar.Visible = true;
+            btnVoltar.Visible = false;
+            panel26.Visible = false;
+            btnDelivery.Visible = false;
+            splitBtnConfigure.Visible = false;
+
+            if (!panelPages.Controls.Contains(PagePagamento.Instance))
+            {
+                PagePagamento.Instance.Dock = DockStyle.Fill;
+                panelPages.Controls.Add(PagePagamento.Instance);
+                PagePagamento.Instance.BringToFront();
+            }
+            else
+                PagePagamento.Instance.BringToFront();
+        }
+        private void OpenMenuTotem()
+        {
+            btnVoltar.Visible = true;
+
+            btnVoltar.Visible = false;
+            panel26.Visible = false;
+            btnDelivery.Visible = false;
+            splitBtnConfigure.Visible = false;
+
+           
+            if (!panelPages.Controls.Contains(PagePrincipalTotem.Instance))
+            {
+                PagePrincipalTotem.Instance.Dock = DockStyle.Fill;
+                panelPages.Controls.Add(PagePrincipalTotem.Instance);
+                PagePrincipalTotem.Instance.SelectItem += Instance_SelectItem;
+                PagePrincipalTotem.Instance.BringToFront();
+            }
+            else
+                PagePrincipalTotem.Instance.BringToFront();
+
+        }
+
         private void btnCaixaAbertura_Click(object sender, EventArgs e)
         {
             if (Program.CaixaView != null)
@@ -102,6 +194,16 @@ namespace Zip.Pdv
 
                 return;
             }
+            using (var vendaAppService = Program.Container.GetInstance<IVendaAppService>())
+            {
+                var televendaPendentes = vendaAppService.ObterEntregaPendentes().Count();
+                if (televendaPendentes > 0)
+                {
+                    TouchMessageBox.Show("Existe televendas pendente de saída/retorno\nVerifique as pendências e tente novamente, efetuar o fechamento do caixa.", "Finalizar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnDelivery.PerformClick();
+                    return;
+                }
+            }
 
             using (var form = new FormCaixaFechamento())
             {
@@ -125,13 +227,26 @@ namespace Zip.Pdv
                     return;
                 }
             }
-
+            var senha = FormSolicitaSenha.Instace();
+            if (senha != Program.Usuario.Senha)
+            {
+                TouchMessageBox.Show("Senha incorreta.\nVerifique e tente novamente.", "Operação proibida", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
             Close();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            if (!Program.InicializacaoViewAux.ModoPdv)
+            if (Program.TipoPdv == Eticket.Application.ViewModels.ModoPdvEnumView.TotemMenu)
+            {
+                btnVoltar.Visible = false;
+                timer1.Stop();
+
+                OpenMenuTotem();
+            }
+            else if (!Program.InicializacaoViewAux.ModoPdv)
                 OpenMenu();
             else
             {
@@ -170,21 +285,46 @@ namespace Zip.Pdv
             {
                 OpenPdv();
             }
+            else if (evento.Tag == "FormPdvToten")
+            {
+                btnVoltar.Visible = true;
+                OpenPdvToten();
+            }
             else if (evento.Tag == "ProdutoCad")
             {
                 var page = new PageProdutoCadastro();
                 OpePage(page);
             }
+            else if (evento.Tag == "PagePagamento")
+            {
+                btnVoltar.Visible = true;
+                OpenPagamentoToten();
+            }
 
 
         }
-
         private void OpenPdv()
+        {
+            
+
+            btnVoltar.Visible = true;
+
+            if (!panelPages.Controls.Contains(FormPdv.Instance))
+            {
+                FormPdv.Instance.Dock = DockStyle.Fill;
+                panelPages.Controls.Add(FormPdv.Instance);
+                FormPdv.Instance.BringToFront();
+            }
+            else
+                FormPdv.Instance.BringToFront();
+
+        }
+        private void OpenPdvToten()
         {
             if (Program.CaixaView == null)
             {
                 var result = TouchMessageBox.Show("Caixa fechado\nDeseja abrir?", "Caixa", MessageBoxButtons.OKCancel,
-                        MessageBoxIcon.Question) ;
+                        MessageBoxIcon.Question);
 
                 if (result == DialogResult.OK)
                 {
@@ -201,30 +341,41 @@ namespace Zip.Pdv
                 }
             }
 
-            btnVoltar.Visible = true;
-            /*
-            if (!panelPages.Controls.Contains(FormPdv.Instance))
+            var page = new FormPdvToten();
+
+
+            if (panelPages.Controls.Contains(page))
             {
-                FormPdv.Instance.Dock = DockStyle.Fill;
-                panelPages.Controls.Add(FormPdv.Instance);
-                FormPdv.Instance.BringToFront();
+                panelPages.Controls.Remove(page);
             }
-            else
-                FormPdv.Instance.BringToFront();
-            */
-            btnVoltar.Visible = false;
-            panel26.Visible = false;
-            btnDelivery.Visible = false;
-            splitBtnConfigure.Visible = false;
-            if (!panelPages.Controls.Contains(FormPdvToten.Instance))
-            {
-                FormPdvToten.Instance.Dock = DockStyle.Fill;
-                panelPages.Controls.Add(FormPdvToten.Instance);
-                FormPdvToten.Instance.BringToFront();
-            }
-            else
-                FormPdvToten.Instance.BringToFront();
+            page.Dock = DockStyle.Fill;
+            panelPages.Controls.Add(page);
+            page.BringToFront();
+
         }
+
+        private void OpenPagamentoToten()
+        {
+            if (Program.CaixaView == null)
+            {
+                var result = TouchMessageBox.Show("Caixa fechado\nProcure um funcionário para ajudar.", "Caixa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (panelPages.Controls.Contains(PagePagamento.Instance))
+            {
+                PagePagamento.Instance.Dispose();
+            }
+
+            var page = new PagePagamento();
+            if (panelPages.Controls.Contains(page))
+            {
+                panelPages.Controls.Remove(page);
+            }
+            page.Dock = DockStyle.Fill;
+            panelPages.Controls.Add(page);
+            page.BringToFront();
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             CarregaIfood();
@@ -249,7 +400,7 @@ namespace Zip.Pdv
 
         public static void IsFrete()
         {
-            
+
         }
     }
 }

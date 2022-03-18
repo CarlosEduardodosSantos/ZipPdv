@@ -28,6 +28,8 @@ namespace Zip.Pdv
         }
         private void FormCaixaFechamento_Load(object sender, System.EventArgs e)
         {
+            
+
             CarregaEspecies();
             TotalizaPagamento();
         }
@@ -55,14 +57,6 @@ namespace Zip.Pdv
 
             var valorPago = Pagamentos.Sum(t => t.Valor);
             lbValorPago.Text = valorPago.ToString("C2");
-            //var saldoPagar = (_valorReceber - valorPago);
-            //lbSaldoPagar.Text = saldoPagar >= 0 ? saldoPagar.ToString("C2") : "R$ 0,00";
-            //var troco = (valorPago - _valorReceber);
-            //lbTroco.Text = troco >= 0 ? troco.ToString("C2") : "R$ 0,00";
-           //CaixaItemView.Troco = troco > 0 ? troco : 0;
-
-            //if(_valorReceber <= valorPago)
-            //    btnPagar.PerformClick();
         }
 
         private void xButton1_Click(object sender, EventArgs e)
@@ -209,31 +203,46 @@ namespace Zip.Pdv
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            using (var caixAppService = Program.Container.GetInstance<ICaixaAppService>())
+            try
             {
-                caixaView.CaixaFechamentos = Pagamentos;
-                caixaView.UsuarioFinal = Program.Usuario.UsuarioId;
+                btnPagar.Enabled = false;
+                using (var caixAppService = Program.Container.GetInstance<ICaixaAppService>())
+                {
+                    caixaView.CaixaFechamentos = Pagamentos;
 
-                caixAppService.Fechar(caixaView);
+                    caixaView.UsuarioFinalId = Program.Usuario.UsuarioId;
+
+                    caixAppService.Fechar(caixaView);
+                }
+
+
+                /*
+                 Imprime Fechamento do caixa
+                 */
+                var parms = new ParameterReportDynamic();
+                parms.Add("caixaId", caixaView.CaixaId);
+
+                var report = new RelatorioFastReport();
+                report.GerarRelatorio("Imp_FechamentoCaixa", parms);
+
+
+                TouchMessageBox.Show("Caixa fechado com sucesso!", "Fechamento de caixa", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                this.DialogResult = DialogResult.OK;
+
+                Close();
             }
+            catch (Exception ex)
+            {
 
+                TouchMessageBox.Show("Erro ao fechar o caixa.\nPara mais informações consulte o suporte!", "Fechamento de caixa", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Program.GravaLog(ex.Message);
 
-            /*
-             Imprime Fechamento do caixa
-             */
-            var parms = new ParameterReportDynamic();
-            parms.Add("caixaId", caixaView.CaixaId);
-
-            var report = new RelatorioFastReport();
-            report.GerarRelatorio("Imp_FechamentoCaixa", parms);
-
-
-            TouchMessageBox.Show("Caixa fechado com sucesso!", "Fechamento de caixa", MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-
-            this.DialogResult = DialogResult.OK;
-
-            Close();
+                btnPagar.Enabled = true;
+            }
+                       
         }
     }
 }

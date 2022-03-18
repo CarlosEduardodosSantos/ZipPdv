@@ -1,4 +1,5 @@
 ﻿using Eticket.Domain.Entity;
+using System;
 
 namespace Eticket.Domain.Interface.Repository
 {
@@ -6,6 +7,7 @@ namespace Eticket.Domain.Interface.Repository
     {
         void Abrir(Caixa caixa);
         void Fechar(Caixa caixa);
-        Caixa ObterCaixaAberto(int pdv);
+        Caixa ObterCaixaAberto(int loja, int pdv);
+        Caixa ObterCaixaData(DateTime dtCaixa);
     }
 }

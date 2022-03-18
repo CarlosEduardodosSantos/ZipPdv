@@ -25,5 +25,10 @@ namespace Eticket.Application
             return TypeAdapter.Adapt<ClienteDelivery, ClienteDeliveryViewModel>(
                 _clienteDeliveryRepository.ObterPorFone(fone));
         }
+
+        public decimal TaxaPorBairro(string bairro)
+        {
+            return _clienteDeliveryRepository.TaxaPorBairro(bairro);
+        }
     }
 }

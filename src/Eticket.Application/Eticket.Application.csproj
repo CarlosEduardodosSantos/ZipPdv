@@ -157,6 +157,7 @@
     <Compile Include="ViewModels\ModeloFiscalEnumView.cs" />
     <Compile Include="ViewModels\ModeloImpressoraFiscalEnumView.cs" />
     <Compile Include="ViewModels\ModelParametrosServiceViewModel.cs" />
+    <Compile Include="ViewModels\ModoPdvEnumView.cs" />
     <Compile Include="ViewModels\NfceSituacaoViewModel.cs" />
     <Compile Include="ViewModels\NFceViewModel.cs" />
     <Compile Include="ViewModels\ProdutoDeptoViewModel.cs" />

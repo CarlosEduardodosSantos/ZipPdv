@@ -32,8 +32,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxCancelar = new System.Windows.Forms.PictureBox();
             this.lbStatus = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCancelar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // backgroundWorker1
@@ -44,26 +46,27 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::Zip.Sat.Properties.Resources._sat;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.pictureBoxCancelar);
             this.panel1.Controls.Add(this.lbStatus);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(309, 285);
+            this.panel1.Size = new System.Drawing.Size(688, 285);
             this.panel1.TabIndex = 0;
             // 
             // pictureBoxCancelar
             // 
             this.pictureBoxCancelar.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxCancelar.Image = global::Zip.Sat.Properties.Resources.close_black_32;
-            this.pictureBoxCancelar.Location = new System.Drawing.Point(275, 3);
+            this.pictureBoxCancelar.Location = new System.Drawing.Point(654, 3);
             this.pictureBoxCancelar.Name = "pictureBoxCancelar";
             this.pictureBoxCancelar.Size = new System.Drawing.Size(29, 29);
             this.pictureBoxCancelar.TabIndex = 1;
             this.pictureBoxCancelar.TabStop = false;
+            this.pictureBoxCancelar.WaitOnLoad = true;
             this.pictureBoxCancelar.Click += new System.EventHandler(this.pictureBoxCancelar_Click);
             // 
             // lbStatus
@@ -76,16 +79,27 @@
             this.lbStatus.ForeColor = System.Drawing.Color.Black;
             this.lbStatus.Location = new System.Drawing.Point(11, 210);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(288, 65);
+            this.lbStatus.Size = new System.Drawing.Size(667, 65);
             this.lbStatus.TabIndex = 0;
-            this.lbStatus.Text = "Aguarde a impressão do documento fiscal";
+            this.lbStatus.Text = "Aguarde a impressão do seu comprovante";
             this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::Zip.Sat.Properties.Resources.print;
+            this.pictureBox1.Location = new System.Drawing.Point(231, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(233, 188);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // FrmSolicitaSat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 285);
+            this.ClientSize = new System.Drawing.Size(688, 285);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmSolicitaSat";
@@ -96,6 +110,7 @@
             this.Load += new System.EventHandler(this.FrmSolicitaNfce_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCancelar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -106,5 +121,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbStatus;
         private System.Windows.Forms.PictureBox pictureBoxCancelar;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

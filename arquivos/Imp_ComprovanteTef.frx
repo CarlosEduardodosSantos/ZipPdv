@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/06/2021 16:25:36" ReportInfo.Modified="08/18/2021 14:47:15" ReportInfo.CreatorVersion="2019.2.6.0">
+  <Dictionary>
+    <Parameter Name="Comprovante" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="80" LeftMargin="5" RightMargin="5" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="264.6" Height="340.2">
+      <TextObject Name="Text1" Width="264.6" Height="340.2" Dock="Fill" Text="[Comprovante]" AutoShrink="FontSize" Font="Arial, 7.5pt"/>
+    </ReportTitleBand>
+  </ReportPage>
+</Report>

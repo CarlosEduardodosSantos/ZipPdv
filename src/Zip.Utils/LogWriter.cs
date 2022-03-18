@@ -7,22 +7,21 @@ namespace Zip.Utils
     public class LogWriter
     {
         private string m_exePath = string.Empty;
+
         public LogWriter(string logMessage)
-        {
-            LogWrite(logMessage);
-        }
-        public void LogWrite(string logMessage)
         {
             m_exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             try
             {
-                using (StreamWriter w = File.AppendText(m_exePath + "\\" + "log.txt"))
+                var file = $"{m_exePath}\\Log\\logPDV_{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}.txt";
+                using (StreamWriter w = File.AppendText(file))
                 {
                     Log(logMessage, w);
                 }
             }
-            catch (Exception ex)
+            catch
             {
+                //ignore
             }
         }
 

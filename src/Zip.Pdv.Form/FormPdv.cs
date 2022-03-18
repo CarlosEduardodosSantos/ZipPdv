@@ -14,12 +14,21 @@ using Zip.Pdv.Component.CupomGrid;
 using Zip.Pdv.Eventos;
 using Zip.Pdv.Fast;
 using Zip.Pdv.ModuloBalanca;
-
+using Zip.Utils;
 
 namespace Zip.Pdv
 {
     public partial class FormPdv : UserControl
     {
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handeleParams = base.CreateParams;
+                handeleParams.ExStyle = 0x02000000;
+                return handeleParams;
+            }
+        }
         private static FormPdv _instance;
         public static FormPdv Instance => _instance ?? (_instance = new FormPdv());
 
@@ -61,23 +70,92 @@ namespace Zip.Pdv
 
         private void ScannerListener_BarCodeScanned(object sender, BarcodeScannedEventArgs e)
         {
-            var produto = _produtoAppService.ObterPorEan(e.ScannedText).FirstOrDefault();
+            BuscaProdutoBarCode(e.ScannedText);
+        }
+
+        private void BuscaProdutoBarCode(string codigo)
+        {
+            var valor = 0;
+            var quantidade = 0;
+            var valorDecimal = decimal.Zero;
+            var produtoEtiqueta = 0;
+            ProdutoViewModel produto;
+            if (codigo.Length == 13 && codigo.StartsWith("2"))
+            {
+
+                int.TryParse(codigo.Substring(1, 4), out produtoEtiqueta);
+                int.TryParse(codigo.Substring(6, 5), out valor);
+                int.TryParse(codigo.Substring(6, 5), out quantidade);
+
+
+
+                produto = produtoEtiqueta > 0
+                    ? _produtoAppService.ObterPorId(produtoEtiqueta)
+                    : _produtoAppService.ObterPorEan(codigo).FirstOrDefault();
+
+                if (produto == null)
+                {
+                    txtPesquisaProduto.Clear();
+                    return;
+                }
+
+                if (quantidade > 0)
+                    produto.PesoQuantidadeFixo = (valor / (decimal)100.00);
+
+                produto.BalancaEtiqueta = true;
+                produto.ValorUnitBalanca = produto.PesoQuantidadeFixo * produto.ValorVenda;
+    
+
+
+            }
+            else
+            {
+                using (var form = new FormBuscaProduto(codigo))
+                {
+                    form.ShowDialog();
+
+                    produto = form.ProdutoView;
+                    if (produto == null) return;
+
+                    IncluirProdutoPesquisa(produto);
+                }
+
+            }
+
             IncluirProdutoPesquisa(produto);
+
         }
 
         private void IncluirProdutoPesquisa(ProdutoViewModel produto)
         {
+            var quantidade = decimal.Zero;
+            var valorUnit = decimal.Zero;
             if (produto == null)
             {
                 TouchMessageBox.Show("Produto não encontrado!", "Leitura Ean", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                txtPesquisaProduto.Clear();
                 return;
             }
 
             var balancaPeso = new Leitura();
 
-            var quantidade = produto.ParaBalanca ? (decimal)balancaPeso.ObterPeso() : (decimal)1;
-            if (VendaView.VendaItens.Any(t => t.ProdutoId == produto.ProdutoId))
+            if (produto.BalancaEtiqueta)
+            {
+                if (produto.QuantidadeFixo)
+                    quantidade = 1;
+                else
+                    quantidade = produto.PesoQuantidadeFixo;
+
+            }
+            else
+            {
+                quantidade = produto.ParaBalanca
+                    ? (decimal)balancaPeso.ObterPeso()
+                    : (decimal)1;
+            }
+            /*
+            if (VendaView.VendaItens.Any(t => t.ProdutoId == produto.ProdutoId && !produto.BalancaEtiqueta))
             {
                 var updateItem = VendaView.VendaItens.FirstOrDefault(t => t.ProdutoId == produto.ProdutoId);
                 if (updateItem == null) return;
@@ -85,7 +163,19 @@ namespace Zip.Pdv
                 VendaView.VendaItens.FirstOrDefault(t => t.ProdutoId == produto.ProdutoId).Quantidade += quantidade;
 
                 cupomGridView1.Atualizar(VendaView.VendaItens);
+            }*/
+
+
+
+            if (VendaView.VendaItens.Any(t => t.ProdutoId == produto.ProdutoId && t.VendaProdutoOpcoes.Count == 0 && t.VendaComplementos.Count == 0 && string.IsNullOrEmpty(t.Observacao) && !produto.BalancaEtiqueta))
+            {
+                VendaView.VendaItens.FirstOrDefault(t => t.ProdutoId == produto.ProdutoId && t.VendaProdutoOpcoes.Count == 0 && t.VendaComplementos.Count == 0 && string.IsNullOrEmpty(t.Observacao) && !produto.BalancaEtiqueta).Quantidade += quantidade;
+
+
+                cupomGridView1.Atualizar(VendaView.VendaItens);
+
             }
+
             else
             {
                 var vendaItem = new VendaItemViewModel()
@@ -94,13 +184,36 @@ namespace Zip.Pdv
                     Produto = produto.Descricao,
                     ValorUnitatio = produto.ValorVenda,
                     Quantidade = quantidade,
+                    PesoQuantidadeFixo = produto.PesoQuantidadeFixo,
                     ProdutoViewModel = produto
                 };
                 VendaView.VendaItens.Add(vendaItem);
+
+                //ProdutoOpções 
+                var produtoAuxiliares = new List<VendaItemViewModel>();
+                var produtosTipoOpoes = _produtoOpcaoAppService.GetByprodutoId(produto.ProdutoId).ToList();
+                if (produtosTipoOpoes.Any())
+                {
+                    using (var form = new FrmProdutoOpcao(produtosTipoOpoes, vendaItem))
+                    {
+                        var reult = form.ShowDialog();
+                        if (reult != DialogResult.OK)
+                            return;
+
+                        vendaItem = form.VendaItem;
+                        produtoAuxiliares = form.VendaItensAdicionais;
+
+                        vendaItem.ValorUnitatio += vendaItem.VendaProdutoOpcoes.Sum(t => t.Valor);
+
+                    }
+                }
+
+
                 cupomGridView1.AddItem(vendaItem);
             }
 
             TotalizaCupom();
+            txtPesquisaProduto.Clear();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -136,7 +249,7 @@ namespace Zip.Pdv
             //btnNext.Enabled = false;
             //btnPrevious.Enabled = false;
 
-            int itens = (flayoutGrupo.Width) / 130 * 2;
+            int itens = (flayoutGrupo.Width) / 150 * 2;
 
             var skip = itens * (page - 1);
 
@@ -146,7 +259,7 @@ namespace Zip.Pdv
 
             var gruposPadding = _grupos.Skip(skip).Take(itens).ToList();
 
-            if (_grupos.Count > 0)
+            if (gruposPadding.Count > 0)
             {
                 flayoutGrupo.Controls.Clear();
                 foreach (var t in gruposPadding)
@@ -175,8 +288,6 @@ namespace Zip.Pdv
 
         private void CarregaGrupos()
         {
-
-
             using (var appServer = Program.Container.GetInstance<IProdutoGrupoAppService>())
             {
                 _grupos = appServer.ObterTodos().ToList();
@@ -232,7 +343,7 @@ namespace Zip.Pdv
             {
                 _produtos = appServer.ObterPorGrupoId(int.Parse(grupoId.ToString())).ToList();
             }
-
+            _currentProdPage = 1;
             ProdutoPaginacao(1);
         }
 
@@ -241,7 +352,7 @@ namespace Zip.Pdv
             btnNextProd.Enabled = false;
             btnPrevProd.Enabled = false;
 
-            int qItemW = flayoutProduto.Width / 110;
+            int qItemW = flayoutProduto.Width / 140;
             int qItemH = flayoutProduto.Height / 75;
             int itens = qItemW * qItemH;
 
@@ -300,7 +411,11 @@ namespace Zip.Pdv
             var produto = (ProdutoViewModel)item.SelectedItem;
 
             //var balancaPeso = new Leitura();
-            var quantidade = produto.ParaBalanca ? (decimal)FormLeituraBalanca.ObterPeso() : (decimal)1;
+
+            var quantidade = produto.ParaBalanca
+                ? Program.InicializacaoViewAux.BalancaDigitada
+                    ? (decimal)FormSolicitaQuantidade.Instace("INFORME O PESO", true) 
+                    : (decimal)FormLeituraBalanca.ObterPeso() : (decimal)1;
 
             if (quantidade == 0)
             {
@@ -346,6 +461,7 @@ namespace Zip.Pdv
 
 
             //ProdutoOpções 
+            var produtoAuxiliares = new List<VendaItemViewModel>();
             var produtosTipoOpoes = _produtoOpcaoAppService.GetByprodutoId(produto.ProdutoId).ToList();
             if (produtosTipoOpoes.Any())
             {
@@ -356,6 +472,8 @@ namespace Zip.Pdv
                         return;
 
                     vendaItem = form.VendaItem;
+                    produtoAuxiliares = form.VendaItensAdicionais;
+
                     vendaItem.ValorUnitatio += vendaItem.VendaProdutoOpcoes.Sum(t => t.Valor);
 
                 }
@@ -375,7 +493,12 @@ namespace Zip.Pdv
 
                 cupomGridView1.AddItem(vendaItem);
             }
+            foreach (var itemAuxiliar in produtoAuxiliares)
+            {
+                VendaView.VendaItens.Add(itemAuxiliar);
 
+                cupomGridView1.AddItem(itemAuxiliar);
+            }
 
 
             //Verifica sugestão para o grupo do produto lançado
@@ -463,9 +586,9 @@ namespace Zip.Pdv
         {
             if (!Program.InicializacaoViewAux.HabSenhaExcluirItem)
             {
-                TouchMessageBox.Show("Operação não permitida para esse PDV.", "Autorização", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return false;
+                /*TouchMessageBox.Show("Operação não permitida para esse PDV.", "Autorização", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);*/
+                return true;
             }
 
             var senha = FormSolicitaSenha.Instace();
@@ -554,11 +677,26 @@ namespace Zip.Pdv
             var valorReceber = VendaView.VendaItens.Sum(t => t.ValorTotal);
             using (var form = new FormPagamento(valorReceber))
             {
+                form.CpfCnpj = VendaView.Cnpj;
                 form.ShowDialog();
 
                 var isPago = form.IsPago;
 
                 if (!isPago) return;
+
+                VendaView.Cnpj = form.CpfCnpj;
+
+                //Verifica se pede numero do pager
+                if (Program.InicializacaoViewAux.HabSenhaPager)
+                {
+                    //var senhaPager = FormSolicitaNumeric.Instace("INFORME O NÚMERO DO PAGER", true);
+
+                    //VendaView.Senha = senhaPager;
+
+                    var opcaoObs = FormSolicitaPergunta.Instace("SELECIONE UMA OPÇÃO", true);
+                    VendaView.Observacao += opcaoObs;
+                }
+
 
                 //Grava venda
                 using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
@@ -566,9 +704,11 @@ namespace Zip.Pdv
                     var vendaId = vendaApp.ObterVendaId();
                     VendaView.VendaId = int.Parse($"{Program.PdvId}{vendaId}");
 
-                    vendaApp.Adicionar(VendaView);
+                    //vendaApp.Adicionar(VendaView);
 
-                    vendaApp.GeraImpressaoItens(VendaView.VendaId, vendaId = 0);
+                    TryRetry.Do(() => vendaApp.Adicionar(VendaView), TimeSpan.FromSeconds(3));
+
+                    vendaApp.GeraImpressaoItens(VendaView.VendaId, 0);
 
                 }
                 //Grava Caixa Itens
@@ -614,6 +754,18 @@ namespace Zip.Pdv
                     {
                         caixaApp.Adicionar(caixaItemTroco);
                     }
+
+                }
+                using (var fichaApp = Program.Container.GetInstance<IVendaFichaAppService>())
+                {
+                    if (VendaView.Fichas != null)
+                    {
+                        foreach (var ficha in VendaView.Fichas)
+                        {
+                            fichaApp.FinalizaFicha(ficha.ToString());
+                        }
+                    }
+
                 }
 
                 VendaView.VendaFinalizadora = caixaItem.CaixaPagamentos.ToList();
@@ -634,14 +786,20 @@ namespace Zip.Pdv
                             if (!retorno.IsOk)
                             {
                                 Funcoes.MensagemError(retorno.Mensagem);
-
-                                var result = Funcoes.MensagemQuestao("Desenja imprimir o cupom \"Não Fiscal\"");
-                                if (result == DialogResult.OK)
-                                {
-                                    ImprimeCupomNaoFiscal();
-                                }
+                                break;
                             }
+                            using (var retornoSatAppService = Program.Container.GetInstance<IRetornoSatAppService>())
+                            {
+                                retornoSatAppService.Adicionar(retorno);
+                            }
+                            //VendaView.CupomFiscal = retorno.CfeSatNumeroNf.ToString();
                             ImprimeComprovanteTef(caixaItem);
+
+                            var result = Funcoes.MensagemQuestao("Desenja imprimir o cupom nao fiscal vinculado?");
+                            if (result == DialogResult.OK)
+                            {
+                                ImprimeCupomNaoFiscal();
+                            }
                             break;
                         case ModeloFiscalEnumView.NFCe:
                             OperacoeFiscal.ImprimeNfce(VendaView);
@@ -650,9 +808,14 @@ namespace Zip.Pdv
                     }
 
                     //Atualiza o modelo Fiscal
-                    VendaView.ModeloFiscal = emissarFiscal;
+                    //VendaView.ModeloFiscal = emissarFiscal;
 
-                    //Envia GR
+                    //Atualiza Cupom Fiscal
+                    /*using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
+                    {
+
+                        vendaApp.AtualizaFiscal(VendaView);
+                    }*/
                 }
                 catch (Exception exception)
                 {
@@ -660,12 +823,7 @@ namespace Zip.Pdv
                 }
                 finally
                 {
-                    //Atualiza Cupom Fiscal
-                    using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
-                    {
 
-                        vendaApp.AtualizaFiscal(VendaView);
-                    }
                     IniciarVenda();
                 }
 
@@ -702,6 +860,9 @@ namespace Zip.Pdv
 
         private void IniciarVenda()
         {
+            if (Program.CaixaView == null)
+                return;
+
             btnSolicitaCpf.Text = "CPF na nota?";
             lbClienteDelivery.Text = "VENDA BALCÃO";
             myListFichas = new List<string>();
@@ -723,6 +884,7 @@ namespace Zip.Pdv
 
             cupomGridView1.Atualizar(VendaView.VendaItens);
 
+            _currentPage = 1;
             CarregaGrupos();
 
             _produtos = new List<ProdutoViewModel>();
@@ -734,7 +896,11 @@ namespace Zip.Pdv
 
         private void btnBuscarProduto_Click(object sender, EventArgs e)
         {
-            using (var form = new FormBuscaProduto(txtPesquisaProduto.Text))
+            if (string.IsNullOrEmpty(txtPesquisaProduto.Text)) return;
+
+            BuscaProdutoBarCode(txtPesquisaProduto.Text);
+
+            /*using (var form = new FormBuscaProduto(txtPesquisaProduto.Text))
             {
                 form.ShowDialog();
 
@@ -742,7 +908,7 @@ namespace Zip.Pdv
                 if (produto == null) return;
 
                 IncluirProdutoPesquisa(produto);
-            }
+            }*/
         }
         private void FormPdv_Resize(object sender, EventArgs e)
         {
@@ -864,9 +1030,9 @@ namespace Zip.Pdv
         private void btnSolicitaCpf_Click(object sender, EventArgs e)
         {
             var cpf = FormSolicitaCpf.Instace();
-            VendaView.Cnpj = cpf.Replace(".", "").Replace("-", "");
+            VendaView.Cnpj = Funcoes.OnlyNumeric(cpf);
             if (!string.IsNullOrEmpty(VendaView.Cnpj))
-                btnSolicitaCpf.Text = $"CPF: {cpf}";
+                btnSolicitaCpf.Text = $"CPF/CNPJ: {cpf}";
         }
 
         private void IniciaVenda()
@@ -930,20 +1096,21 @@ namespace Zip.Pdv
         {
             if (e.KeyCode != Keys.Enter) return;
 
+
             btnBuscarProduto.PerformClick();
             txtPesquisaProduto.Clear();
         }
 
         private void btnCarregaFicha_Click(object sender, EventArgs e)
         {
-            var fichaId = FormSolicitaFicha.Instace();
-            if (string.IsNullOrEmpty(fichaId))
+            var fichaId = FormSolicitaFicha.Instace("INFORME Nº DA FICHA");
+            if (fichaId == null)
                 return;
 
             CarregaFicha(fichaId);
         }
 
-        private void CarregaFicha(string fichaId)
+        private void CarregaFicha(int[] fichaId)
         {
             using (var vendaFichaApp = Program.Container.GetInstance<IVendaFichaAppService>())
             {
@@ -951,7 +1118,7 @@ namespace Zip.Pdv
 
                 if (vendaFicha.Count == 0)
                 {
-                    Funcoes.MensagemError($"Ficha Nº {fichaId} não encontrada.");
+                    Funcoes.MensagemError($"Ficha(S) { string.Join(",", fichaId)} não encontrada.");
                     return;
                 }
                 if (VendaView.VendaItens.Count > 0)
@@ -962,9 +1129,10 @@ namespace Zip.Pdv
                         return;
                 }
 
-                myListFichas.Add(fichaId);
 
-                lbClienteDelivery.Text = $"FINALIZAR FICHA(S) { string.Join(",", myListFichas)}";
+                lbClienteDelivery.Text = $"FINALIZAR FICHA(S) { string.Join(",", fichaId)}";
+                VendaView.Fichas = fichaId;
+
                 foreach (var vendaFichaItem in vendaFicha)
                 {
                     VendaView.AdicionarFichaItemToVendaItem(vendaFichaItem);

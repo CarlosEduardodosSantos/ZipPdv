@@ -97,17 +97,32 @@
     <Compile Include="Component\CupomGrid\CupomGridItemEmpty.Designer.cs">
       <DependentUpon>CupomGridItemEmpty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\CupomGrid\CupomGridTotemView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\CupomGrid\CupomGridTotemView.Designer.cs">
+      <DependentUpon>CupomGridTotemView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\CupomGrid\CupomGridView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Component\CupomGrid\CupomGridView.Designer.cs">
       <DependentUpon>CupomGridView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\CupomGrid\CupomItemTotem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\CupomGrid\CupomItemTotem.Designer.cs">
+      <DependentUpon>CupomItemTotem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\CupomGrid\CupomItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Component\CupomGrid\CupomItem.Designer.cs">
       <DependentUpon>CupomItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\CupomGrid\CupomItemBase.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Component\CupomGrid\UcItemObservacao.cs">
       <SubType>UserControl</SubType>
@@ -150,6 +165,7 @@
     <Compile Include="Component\EspeciePagamento\UcPdvItem.designer.cs">
       <DependentUpon>UcPdvItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\FlowLayoutPanelTouch.cs" />
     <Compile Include="Component\GalleryItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -250,6 +266,12 @@
     <Compile Include="Eventos\BarcodeScannedEventArgs.cs" />
     <Compile Include="Fast\ParameterReportDynamic.cs" />
     <Compile Include="Fast\RelatorioFastReport.cs" />
+    <Compile Include="FormCaixaPesquisa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCaixaPesquisa.Designer.cs">
+      <DependentUpon>FormCaixaPesquisa.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAbrirCaixa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +307,24 @@
     </Compile>
     <Compile Include="FormPdvToten.Designer.cs">
       <DependentUpon>FormPdvToten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSolicitaQuantidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSolicitaQuantidade.Designer.cs">
+      <DependentUpon>FormSolicitaQuantidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSolicitaPergunta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSolicitaPergunta.Designer.cs">
+      <DependentUpon>FormSolicitaPergunta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSolicitaNumeric.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSolicitaNumeric.Designer.cs">
+      <DependentUpon>FormSolicitaNumeric.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSolicitaTexto.cs">
       <SubType>Form</SubType>
@@ -435,6 +475,18 @@
     <Compile Include="Page\PageOperacoes.Designer.cs">
       <DependentUpon>PageOperacoes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Page\PagePagamento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PagePagamento.Designer.cs">
+      <DependentUpon>PagePagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PagePrincipalTotem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PagePrincipalTotem.Designer.cs">
+      <DependentUpon>PagePrincipalTotem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Page\PageProdutoCadastro.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -483,6 +535,12 @@
     <Compile Include="Page\PageVendaAdministracao.designer.cs">
       <DependentUpon>PageVendaAdministracao.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProdutoWinzard\FrmProdutoOpcaoToten.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProdutoWinzard\FrmProdutoOpcaoToten.Designer.cs">
+      <DependentUpon>FrmProdutoOpcaoToten.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProdutoWinzard\FrmProdutoOpcao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -494,6 +552,11 @@
     <Compile Include="ModuloBalanca\BalancaController.cs" />
     <Compile Include="ModuloBalanca\Leitura.cs" />
     <Compile Include="ModuloBalanca\PcScale.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Teste.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -512,8 +575,14 @@
     <EmbeddedResource Include="Component\CupomGrid\CupomGridItemEmpty.resx">
       <DependentUpon>CupomGridItemEmpty.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Component\CupomGrid\CupomGridTotemView.resx">
+      <DependentUpon>CupomGridTotemView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Component\CupomGrid\CupomGridView.resx">
       <DependentUpon>CupomGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\CupomGrid\CupomItemTotem.resx">
+      <DependentUpon>CupomItemTotem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\CupomGrid\CupomItem.resx">
       <DependentUpon>CupomItem.cs</DependentUpon>
@@ -572,6 +641,9 @@
     <EmbeddedResource Include="Component\TouchMessageBox.resx">
       <DependentUpon>TouchMessageBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCaixaPesquisa.resx">
+      <DependentUpon>FormCaixaPesquisa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAbrirCaixa.resx">
       <DependentUpon>FormAbrirCaixa.cs</DependentUpon>
     </EmbeddedResource>
@@ -589,6 +661,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPdvToten.resx">
       <DependentUpon>FormPdvToten.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSolicitaQuantidade.resx">
+      <DependentUpon>FormSolicitaQuantidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSolicitaPergunta.resx">
+      <DependentUpon>FormSolicitaPergunta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSolicitaNumeric.resx">
+      <DependentUpon>FormSolicitaNumeric.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSolicitaTexto.resx">
       <DependentUpon>FormSolicitaTexto.cs</DependentUpon>
@@ -659,6 +740,12 @@
     <EmbeddedResource Include="Page\PageOperacoes.resx">
       <DependentUpon>PageOperacoes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Page\PagePagamento.resx">
+      <DependentUpon>PagePagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PagePrincipalTotem.resx">
+      <DependentUpon>PagePrincipalTotem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Page\PageProdutoCadastro.resx">
       <DependentUpon>PageProdutoCadastro.cs</DependentUpon>
     </EmbeddedResource>
@@ -683,19 +770,17 @@
     <EmbeddedResource Include="Page\PageVendaAdministracao.resx">
       <DependentUpon>PageVendaAdministracao.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProdutoWinzard\FrmProdutoOpcaoToten.resx">
+      <DependentUpon>FrmProdutoOpcaoToten.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProdutoWinzard\FrmProdutoOpcao.resx">
       <DependentUpon>FrmProdutoOpcao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Teste.resx">
       <DependentUpon>Teste.cs</DependentUpon>
     </EmbeddedResource>
@@ -735,6 +820,10 @@
     <ProjectReference Include="..\Zip.TefDial\Zip.TefDial.csproj">
       <Project>{7d0d0490-054d-498a-99bd-498ec6c910f8}</Project>
       <Name>Zip.TefDial</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zip.TefTotem\Zip.TefTotem.csproj">
+      <Project>{c95393f0-6f0d-41f3-a5de-cc6f49af3afa}</Project>
+      <Name>Zip.TefTotem</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zip.Utils\Zip.Utils.csproj">
       <Project>{66d673b1-6415-4c3e-a5be-f5386886120d}</Project>
@@ -906,6 +995,18 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="LOGO_Z.ico" />
+    <None Include="Resources\logofazendinha.png" />
+    <None Include="Resources\fundo.jpg" />
+    <None Include="Resources\logofazendinha2.png" />
+    <None Include="Resources\visao.png" />
+    <None Include="Resources\Print.png" />
+    <None Include="Resources\326501_add_circle_icon.png" />
+    <None Include="Resources\326491_circle_remove_icon.png" />
+    <None Include="Resources\21-----doner_kebab____generated.jpg" />
+    <None Include="Resources\produto-indisponivel.jpg" />
+    <None Include="Resources\Fundo1.jpg" />
+    <None Include="Resources\FundoFazendinha.jpg" />
+    <None Include="Resources\FundoBotao.png" />
     <Content Include="Zip.TefDial.dll" />
     <Content Include="ZipPdv.exe" />
     <None Include="Resources\filter_381.png" />

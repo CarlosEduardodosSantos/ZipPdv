@@ -8,5 +8,6 @@ namespace Eticket.Domain.Interface.Repository
         void Adicionar(CartaoResposta cartaoResposta);
         CartaoResposta ObterPorRequisicao(int requisicao);
         CartaoResposta ObterPorGuid(Guid cartaoRespostaGuid);
+        CartaoResposta ObterPorVendaId(int vendaId);
     }
 }

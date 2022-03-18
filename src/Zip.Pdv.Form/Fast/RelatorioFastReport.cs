@@ -16,11 +16,11 @@ namespace Zip.Pdv.Fast
     {
         private TipoImpressaoViewEnum _tipoImpressaoViewEnum;
         private readonly string _connectionString;
-        public RelatorioFastReport()
+        public RelatorioFastReport(TipoImpressaoViewEnum tipoImpressaoViewEnum = TipoImpressaoViewEnum.Print)
         {
             _connectionString = ConfigurationManager.ConnectionStrings["MyContext"].ConnectionString;
             //_tipoImpressaoViewEnum = Program.InicializacaoViewAux.TipoImpressao;
-            _tipoImpressaoViewEnum = TipoImpressaoViewEnum.Print;
+            _tipoImpressaoViewEnum = tipoImpressaoViewEnum;
         }
 
         public void GerarRelatorio(string nameFrx, ParameterReportDynamic parameterReport)
@@ -38,13 +38,33 @@ namespace Zip.Pdv.Fast
                                                         PreviewButtons.Zoom |
                                                         PreviewButtons.Save;
 
-            report.LoadFromString(LoadFileReportDb(nameFrx));
-
-            if (report.Dictionary.Connections.Count > 0)
+            var localFile = $"{AppDomain.CurrentDomain.BaseDirectory}{nameFrx}.frx";
+            if (File.Exists(localFile))
             {
-                report.Dictionary.Connections[0].ConnectionString = _connectionString;
-                report.Prepare();
+                report.Load(localFile);
+                if (report.Dictionary.Connections.Count > 0)
+                {
+                    report.Dictionary.Connections[0].ConnectionString = _connectionString;
+                    report.Prepare();
+                }
             }
+            else
+            {
+                var file = LoadFileReportDb(nameFrx);
+                if (!string.IsNullOrEmpty(file))
+                {
+                    report.LoadFromString(LoadFileReportDb(nameFrx));
+
+                    if (report.Dictionary.Connections.Count > 0)
+                    {
+                        report.Dictionary.Connections[0].ConnectionString = _connectionString;
+                        report.Prepare();
+                    }
+                }
+                else
+                    _tipoImpressaoViewEnum = TipoImpressaoViewEnum.Design;
+            }
+
 
             for (int i = 0; i < parameterReport.ListParameters.Count; i++)
             {
@@ -57,22 +77,22 @@ namespace Zip.Pdv.Fast
             switch (_tipoImpressaoViewEnum)
             {
                 case TipoImpressaoViewEnum.PopUp:
-                {
-                    report.Show();
-                    break;
-                }
+                    {
+                        report.Show();
+                        break;
+                    }
                 case TipoImpressaoViewEnum.Print:
-                {
-                    report.PrintSettings.ShowDialog = false;
-                    report.Print();
-                    break;
-                }
+                    {
+                        report.PrintSettings.ShowDialog = false;
+                        report.Print();
+                        break;
+                    }
                 case TipoImpressaoViewEnum.Design:
-                {
-                    report.Design();
-                    UpdateFileReportDb(nameFrx, report.ReportResourceString);
-                    break;
-                }
+                    {
+                        report.Design();
+                        UpdateFileReportDb(nameFrx, report.ReportResourceString);
+                        break;
+                    }
                 default:
                     break;
             }
@@ -105,7 +125,7 @@ namespace Zip.Pdv.Fast
             else
                 _tipoImpressaoViewEnum = TipoImpressaoViewEnum.Design;
 
-            
+
             if (report.Dictionary.Connections.Count > 0)
             {
                 report.Dictionary.Connections[0].ConnectionString = _connectionString;
@@ -123,22 +143,22 @@ namespace Zip.Pdv.Fast
             switch (_tipoImpressaoViewEnum)
             {
                 case TipoImpressaoViewEnum.PopUp:
-                {
-                    report.Show();
-                    break;
-                }
+                    {
+                        report.Show();
+                        break;
+                    }
                 case TipoImpressaoViewEnum.Print:
-                {
-                    report.PrintSettings.ShowDialog = false;
-                    report.Print();
-                    break;
-                }
+                    {
+                        report.PrintSettings.ShowDialog = false;
+                        report.Print();
+                        break;
+                    }
                 case TipoImpressaoViewEnum.Design:
-                {
-                    report.Design();
-                    UpdateFileReportDb(nameFrx, report.ReportResourceString);
-                    break;
-                }
+                    {
+                        report.Design();
+                        UpdateFileReportDb(nameFrx, report.ReportResourceString);
+                        break;
+                    }
                 default:
                     break;
             }
@@ -180,22 +200,22 @@ namespace Zip.Pdv.Fast
             switch (_tipoImpressaoViewEnum)
             {
                 case TipoImpressaoViewEnum.PopUp:
-                {
-                    report.Show();
-                    break;
-                }
+                    {
+                        report.Show();
+                        break;
+                    }
                 case TipoImpressaoViewEnum.Print:
-                {
-                    report.PrintSettings.ShowDialog = false;
-                    report.Print();
-                    break;
-                }
+                    {
+                        report.PrintSettings.ShowDialog = false;
+                        report.Print();
+                        break;
+                    }
                 case TipoImpressaoViewEnum.Design:
-                {
-                    report.Design();
-                    UpdateFileReportDb(nameFrx, report.ReportResourceString);
-                    break;
-                }
+                    {
+                        report.Design();
+                        UpdateFileReportDb(nameFrx, report.ReportResourceString);
+                        break;
+                    }
                 default:
                     break;
             }

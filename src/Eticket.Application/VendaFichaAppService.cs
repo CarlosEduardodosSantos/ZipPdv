@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
@@ -38,7 +39,7 @@ namespace Eticket.Application
             _vendaFichaRepository.Remover(fichaItem);
         }
 
-        public IEnumerable<VendaFichaViewModel> ObterPorFicha(string ficha)
+        public IEnumerable<VendaFichaViewModel> ObterPorFicha(int[] ficha)
         {
             return
                 TypeAdapter.Adapt<IEnumerable<VendaFicha>, IEnumerable<VendaFichaViewModel>>(
@@ -53,6 +54,23 @@ namespace Eticket.Application
         public void ImprimeFichaGr(string ficha)
         {
             _vendaFichaRepository.ImprimeFichaGr(ficha);
+        }
+
+        public void FinalizaFicha(string fichaId)
+        {
+            _vendaFichaRepository.FinalizaFicha(fichaId);
+        }
+
+        public bool FicheExiste(int fichaId)
+        {
+            return _vendaFichaRepository.FicheExiste(fichaId);
+        }
+
+        public VendaFichaViewModel ObterFichaByGuid(string fichaGuid)
+        {
+            return
+                TypeAdapter.Adapt<VendaFicha, VendaFichaViewModel>(
+                    _vendaFichaRepository.ObterFichaByGuid(fichaGuid));
         }
     }
 }

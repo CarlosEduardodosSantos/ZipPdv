@@ -69,8 +69,8 @@
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
             this.tableLayoutPanel9.Controls.Add(this.panel42, 3, 0);
             this.tableLayoutPanel9.Controls.Add(this.panel41, 2, 0);
             this.tableLayoutPanel9.Controls.Add(this.panel40, 1, 0);
@@ -90,7 +90,7 @@
             this.panel42.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel42.Location = new System.Drawing.Point(427, 3);
             this.panel42.Name = "panel42";
-            this.panel42.Size = new System.Drawing.Size(69, 35);
+            this.panel42.Size = new System.Drawing.Size(75, 35);
             this.panel42.TabIndex = 3;
             // 
             // label20
@@ -100,9 +100,9 @@
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(0, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(69, 35);
+            this.label20.Size = new System.Drawing.Size(75, 35);
             this.label20.TabIndex = 1;
-            this.label20.Text = "$ Total";
+            this.label20.Text = "Total R$";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel41
@@ -123,7 +123,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(69, 35);
             this.label19.TabIndex = 1;
-            this.label19.Text = "Qtde.";
+            this.label19.Text = "Qtde";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel40
@@ -144,7 +144,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(110, 35);
             this.label18.TabIndex = 1;
-            this.label18.Text = "$ Unitário";
+            this.label18.Text = "Unitário R$";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel39
@@ -172,9 +172,9 @@
             // 
             this.panel12.Controls.Add(this.pictureBox1);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(502, 3);
+            this.panel12.Location = new System.Drawing.Point(508, 3);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(78, 35);
+            this.panel12.Size = new System.Drawing.Size(72, 35);
             this.panel12.TabIndex = 4;
             // 
             // pictureBox1

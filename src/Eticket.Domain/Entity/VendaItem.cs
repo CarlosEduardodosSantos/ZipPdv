@@ -14,7 +14,9 @@ namespace Eticket.Domain.Entity
         public int ProdutoId { get; set; }
         public string Produto { get; set; }
         public decimal ValorUnitatio { get; set; }
+        public decimal ValorCusto { get; set; }
         public decimal Quantidade { get; set; }
+        public decimal PesoQuantidadeFixo { get; set; }
         public decimal Desconto { get; set; }
         public decimal Adicional { get; set; }
         public decimal ValorTotal { get; set; }

@@ -57,6 +57,7 @@ namespace Zip.Pdv.Component
             this.btnNextProd.Size = new System.Drawing.Size(57, 472);
             this.btnNextProd.TabIndex = 11;
             this.btnNextProd.UseVisualStyleBackColor = false;
+            this.btnNextProd.Click += new System.EventHandler(this.btnNextProd_Click);
             // 
             // btnPrevProd
             // 
@@ -72,6 +73,7 @@ namespace Zip.Pdv.Component
             this.btnPrevProd.Size = new System.Drawing.Size(68, 472);
             this.btnPrevProd.TabIndex = 10;
             this.btnPrevProd.UseVisualStyleBackColor = false;
+            this.btnPrevProd.Click += new System.EventHandler(this.btnPrevProd_Click);
             // 
             // ProdutoListView
             // 

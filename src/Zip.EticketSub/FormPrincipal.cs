@@ -112,7 +112,7 @@ namespace Zip.EticketSub
                 var result = formSat.RetornoSatView;
                 if (result.IsOk)
                 {
-                    _vendaAppService.Cancelar(vendaView);
+                    _vendaAppService.Cancelar(vendaView, "");
                     CarregaVendas();
                 }
                 MessageBox.Show(result.Mensagem);

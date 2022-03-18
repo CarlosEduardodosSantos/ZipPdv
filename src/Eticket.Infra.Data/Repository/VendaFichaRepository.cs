@@ -54,7 +54,7 @@ namespace Eticket.Infra.Data.Repository
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<VendaFicha> ObterPorFicha(string ficha)
+        public IEnumerable<VendaFicha> ObterPorFicha(int[] ficha)
         {
             using (var cn = Connection)
             {
@@ -70,7 +70,7 @@ namespace Eticket.Infra.Data.Repository
                           " SEQLANC as Sequencia, " +
                           " DATAHORA as DataHora," +
                           " ClienteFichaId " +
-                          "From Venda_3 Where Nro = @ficha";
+                          "From Venda_3 Where Nro In @ficha";
 
                 cn.Open();
                 var fichaItens = cn.Query<VendaFicha>(sql, new {ficha});
@@ -106,6 +106,59 @@ namespace Eticket.Infra.Data.Repository
                 cn.Close();
 
 
+            }
+        }
+
+        public void FinalizaFicha(string fichaId)
+        {
+            var sql = "Delete From Venda_3 Where Nro = @fichaId";
+            using (var cn = Connection)
+            {
+                cn.Open();
+                cn.Query<VendaFicha>(sql, new { fichaId });
+                cn.Close();
+            }
+
+        }
+
+        public bool FicheExiste(int fichaId)
+        {
+            using (var cn = Connection)
+            {
+                var sql = "Select 1 From Venda_3 Where Nro = @fichaId ";
+
+                cn.Open();
+                var existe = cn.Query<int>(sql, new { fichaId }).Any();
+                cn.Close();
+
+                return existe;
+
+            }
+        }
+
+        public VendaFicha ObterFichaByGuid(string fichaGuid)
+        {
+            using (var cn = Connection)
+            {
+                var sql = "Select Inc_venda2 as FichaItemId, " +
+                          " Nro as Ficha, " +
+                          " Loja, " +
+                          " Cod_prod as ProdutoId, " +
+                          " Des_ as NomeProduto, " +
+                          " Qtde as Quantidade, " +
+                          " Unit as ValorUnitatio, " +
+                          " Total as ValorTotal, " +
+                          " Vend as VendedorId, " +
+                          " SEQLANC as Sequencia, " +
+                          " DATAHORA as DataHora," +
+                          " ClienteFichaId " +
+                          "From Venda_3 Where ComandaID = @fichaGuid";
+
+                cn.Open();
+                var fichaItens = cn.Query<VendaFicha>(sql, new { fichaGuid }).FirstOrDefault();
+                cn.Close();
+
+                return fichaItens;
             }
         }
     }

@@ -13,6 +13,7 @@ namespace Zip.Pdv
     public partial class FormPdvDelivery : Form
     {
         private readonly decimal _valorReceber;
+        private decimal _valorTaxa;
         private readonly IClienteDeliveryAppService _clienteDeliveryAppService;
 
         private static DeliveryViewModel _deliveryView;
@@ -30,13 +31,19 @@ namespace Zip.Pdv
             _cliente = deliveryView.ClienteDelivery;
             CarregaCliente();
 
-            txtTaxAdic.ValueNumeric = Program.InicializacaoViewAux.ValorFrete;
-            txtValorTotal.ValueNumeric = _valorReceber + txtTaxAdic.ValueNumeric;
+
+            _valorTaxa = Program.InicializacaoViewAux.ValorFrete;
+            Totalizar();
 
             txtFone.Select();
 
         }
 
+        private void Totalizar()
+        {
+            txtTaxAdic.ValueNumeric = _valorTaxa;
+            txtValorTotal.ValueNumeric = _valorReceber + _valorTaxa;
+        }
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             TecladoVirtualHelper.Close();
@@ -69,7 +76,8 @@ namespace Zip.Pdv
                 txtNome.Select();
                 return;
             }
-            else {
+            else
+            {
                 TecladoVirtualHelper.Close();
             }
             CarregaCliente();
@@ -86,8 +94,33 @@ namespace Zip.Pdv
             txtCep.Text = _cliente.Cep;
             txtUf.Text = _cliente.Uf;
             txtObservacao.Text = _cliente.Observacao;
+
+
+            CarregaTaxa();
         }
 
+        private void CarregaTaxa()
+        {
+            if (string.IsNullOrEmpty(txtBairro.Text)) return;
+
+            var valorTax = _clienteDeliveryAppService.TaxaPorBairro(txtBairro.Text);
+            var ultimaTaxa = _cliente.UltimaTaxa;
+            if (ultimaTaxa > valorTax)
+            {
+                var resultFiscal = TouchMessageBox.Show(
+                    $"Taxa de entrega menor que a ultima taxa paga pelo cliente, que foi de {ultimaTaxa.ToString("C2")}.\nDeseja manter o valor atual de {valorTax.ToString("C2")}?", 
+                    "Entrega", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question);
+                if (resultFiscal == DialogResult.Cancel) 
+                {
+                    _valorTaxa = ultimaTaxa;
+                }
+            }
+            else
+                _valorTaxa = valorTax > 0 ? valorTax : txtTaxAdic.ValueNumeric;
+
+            Totalizar();
+        }
         private void Limpar()
         {
             txtCep.Clear();
@@ -101,10 +134,11 @@ namespace Zip.Pdv
 
         private void btnSelecionar_Click(object sender, EventArgs e)
         {
+            var num = txtEndereco.Text.IndexOf(txtNumero.Text) == -1 ? $", {txtNumero.Text}" : "";
             _cliente.Telefone = txtFone.Text;
             _cliente.Nome = txtNome.Text;
             _cliente.Cep = txtCep.Text;
-            _cliente.Endereco = txtEndereco.Text;
+            _cliente.Endereco = $"{txtEndereco.Text} {num}";
             _cliente.Numero = txtNumero.Text;
             _cliente.Bairro = txtBairro.Text;
             _cliente.Cidade = txtCidade.Text;
@@ -117,6 +151,7 @@ namespace Zip.Pdv
                 Troco = txtValorTroco.ValueNumeric,
                 Valor = txtValorTotal.ValueNumeric,
                 TaxaEntrega = txtTaxAdic.ValueNumeric,
+
                 ClienteDelivery = _cliente,
                 EmpresaId = Program.EmpresaView.EmpresaId
             };
@@ -127,7 +162,7 @@ namespace Zip.Pdv
 
         private void txtValor_Leave(object sender, EventArgs e)
         {
-           // txtValorTroco.ValueNumeric = txtTrocoPara.ValueNumeric - txtValorTotal.ValueNumeric;
+            // txtValorTroco.ValueNumeric = txtTrocoPara.ValueNumeric - txtValorTotal.ValueNumeric;
         }
 
         private void keyboardNum1_UserKeyPressed(object sender, KeyboardClassLibrary.Num.KeyboardNumEventArgs e)
@@ -194,7 +229,7 @@ namespace Zip.Pdv
                 e.Handled = true;
                 return;
             }
-            
+
 
             if (txtCep.Text.Length != 7) return;
 
@@ -211,6 +246,8 @@ namespace Zip.Pdv
                 txtCidade.Text = consultaCepView.Localidade;
                 txtUf.Text = consultaCepView.Uf;
                 //txtIbge.Text = consultaCepView.Ibge;
+
+                CarregaTaxa();
 
                 txtNumero.Select();
             }

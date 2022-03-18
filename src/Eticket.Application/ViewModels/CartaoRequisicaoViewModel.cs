@@ -20,6 +20,8 @@ namespace Eticket.Application.ViewModels
         public bool ParceladaLoja { get; set; }
         public int QuantidadeParcela { get; set; }
         public string EmpresaCnpj { get; set; }
+        public string Pdv { get; set; }
+        public string CodigoLoja { get; set; }
         public EspecieCartaoTipoEnumView TipoCartao { get; set; }
     }
 }

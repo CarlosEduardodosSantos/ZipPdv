@@ -35,5 +35,10 @@ namespace Eticket.Application
         {
             return TypeAdapter.Adapt<Usuario, UsuarioViewModel>(_usuarioRepository.GetAutenticacao(senha));
         }
+
+        public bool VerificaPrivilegio(string privilegio, int id)
+        {
+            return _usuarioRepository.VerificaPrivilegio(privilegio, id);
+        }
     }
 }

@@ -59,6 +59,7 @@ namespace Toch
 
         private void CarregaHistoricoFicha()
         {
+            /*
             using (var appFichaItem = Program.Container.GetInstance<IVendaFichaAppService>())
             {
                 var listFichaHistorico = appFichaItem.ObterPorFicha(_fichaView.FichaNumero).ToList();
@@ -73,7 +74,7 @@ namespace Toch
                 dgvItensMesa.DataSource = listFichaHistorico;
                 //lbValorMesaTotal.Text = "R$ " + listFichaHistorico.Sum(p => p.ValorTotal).ToString("N2");
 
-            }
+            }*/
         }
 
         public void Refresh(object sender, EventArgs e)

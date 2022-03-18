@@ -19,7 +19,7 @@ namespace Zip.TefDial {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class MultiPlus {
@@ -75,6 +75,23 @@ namespace Zip.TefDial {
         internal static string DiretorioResp {
             get {
                 return ResourceManager.GetString("DiretorioResp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 000-000 = CRT
+        ///001-000 = 307
+        ///002-000 = 1
+        ///003-000 = 500
+        ///009-000 = 255
+        ///028-000 = 0
+        ///030-000 = CANCELADO POR INDISPONIBILIDADE DE REDE. AGUARDE E TENTE NOVAMENTE.
+        ///800-000 = v1.0.415
+        ///999-999 = 0.
+        /// </summary>
+        internal static string FinalizaProcesso {
+            get {
+                return ResourceManager.GetString("FinalizaProcesso", resourceCulture);
             }
         }
         

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Eticket.Infra.Data</RootNamespace>
     <AssemblyName>Eticket.Infra.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -86,6 +86,10 @@
     <ProjectReference Include="..\Eticket.Domain\Eticket.Domain.csproj">
       <Project>{d2d611ac-1032-4b54-afbf-e8bfa3c0c93a}</Project>
       <Name>Eticket.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zip.Utils\Zip.Utils.csproj">
+      <Project>{66d673b1-6415-4c3e-a5be-f5386886120d}</Project>
+      <Name>Zip.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

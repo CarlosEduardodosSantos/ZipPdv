@@ -6,34 +6,9 @@ using Eticket.Application.ViewModels;
 
 namespace Zip.Pdv.Component.CupomGrid
 {
-    public partial class CupomItem : UserControl
+    public partial class CupomItem : CupomItemBase
     {
-        public event EventHandler<EventArgs> TaskItem;
-        public event EventHandler<EventArgs> SelectItem;
-
-        void taskItem(object sender, EventArgs e)
-        {
-            var completedEvent = TaskItem;
-            if (completedEvent != null)
-            {
-                var item = (CupomItem)this;
-                completedEvent(item, e);
-            }
-        }
-
-        void selectItem(object sender, EventArgs e)
-        {
-            var completedEvent = SelectItem;
-            if (completedEvent != null)
-            {
-                var item = (CupomItem)this;
-                completedEvent(item, e);
-            }
-        }
-
-        public VendaItemViewModel DataSource { get; set; }
-        public bool Selected { get; set; }
-        public int Index { get; set; }
+      
         public CupomItem()
         {
             InitializeComponent();
@@ -46,9 +21,11 @@ namespace Zip.Pdv.Component.CupomGrid
             //CarregaItem();
         }
 
-        public void CarregaItem()
+        public override void  CarregaItem(bool disableExcluir = false)
         {
             if (DataSource == null) return;
+
+            btnTaskItem.Visible = !disableExcluir;
 
             if (DataSource.VendaComplementos.Any())
             {

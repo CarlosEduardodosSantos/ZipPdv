@@ -9,5 +9,6 @@ namespace Eticket.Application.Interface
         UsuarioViewModel GetById(int id);
         IEnumerable<UsuarioViewModel> GetAll();
         UsuarioViewModel GetAutenticacao(string senha);
+        bool VerificaPrivilegio(string privilegio, int id);
     }
 }

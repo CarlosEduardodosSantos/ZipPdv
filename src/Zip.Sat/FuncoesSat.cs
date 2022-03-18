@@ -290,6 +290,7 @@ namespace Zip.Sat
                 vendaSat.Cliente.Cpf = venda.Cnpj;
                 vendaSat.EmpresaId = venda.Loja;
                 vendaSat.Pdv = venda.Pdv;
+                vendaSat.SenhaPainel = venda.Senha;
 
 
                 foreach (var vendaItemViewModel in venda.VendaItens)
@@ -310,7 +311,7 @@ namespace Zip.Sat
                             new VendaItemSatModel()
                             {
                                 ProdutoID = vendaItemViewModel.ProdutoId,
-                                Produto = new ProdutoSatModel() { Descricao = vendaItemViewModel.Produto, Unidade = produto.Unidade },
+                                Produto = new ProdutoSatModel() { Descricao = Utils.Funcoes.RemoveAccents( vendaItemViewModel.Produto), Unidade = produto.Unidade },
                                 Qtde = vendaItemViewModel.Quantidade,
                                 Valor = vendaItemViewModel.ValorUnitatio,
                                 ValorItem = vendaItemViewModel.ValorUnitatio,

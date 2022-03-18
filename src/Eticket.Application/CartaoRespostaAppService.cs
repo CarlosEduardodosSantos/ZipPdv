@@ -38,5 +38,11 @@ namespace Eticket.Application
             return TypeAdapter.Adapt<CartaoResposta, CartaoRespostaViewModel>(_cartaoRespostaRepository
                 .ObterPorGuid(cartaoRespostaGuid));
         }
+
+        public CartaoRespostaViewModel ObterPorVendaId(int vendaId)
+        {
+            return TypeAdapter.Adapt<CartaoResposta, CartaoRespostaViewModel>(_cartaoRespostaRepository
+                .ObterPorVendaId(vendaId));
+        }
     }
 }

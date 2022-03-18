@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dapper;
 using Eticket.Domain.Entity;
 using Eticket.Domain.Interface.Repository;
+using Zip.Utils;
 
 namespace Eticket.Infra.Data.Repository
 {
@@ -18,7 +20,7 @@ namespace Eticket.Infra.Data.Repository
                           "Senha " +
                           "from Recep  Where CODIGO = @id";
 
-                cn.Open();
+                TryRetry.Do(() => cn.Open(), TimeSpan.FromSeconds(5));
                 var usuario = cn.Query<Usuario>(sql, new { id }).FirstOrDefault();
                 cn.Close();
 
@@ -36,7 +38,7 @@ namespace Eticket.Infra.Data.Repository
                           "Senha " +
                           "from Recep Where ATIVO = 'SIM'";
 
-                cn.Open();
+                TryRetry.Do(() => cn.Open(), TimeSpan.FromSeconds(5));
                 var usuarios = cn.Query<Usuario>(sql, new { });
                 cn.Close();
 
@@ -54,8 +56,24 @@ namespace Eticket.Infra.Data.Repository
                           "Senha " +
                           "from Recep  Where Senha = @senha";
 
-                cn.Open();
+                TryRetry.Do(() => cn.Open(), TimeSpan.FromSeconds(5));
                 var usuario = cn.Query<Usuario>(sql, new { senha }).FirstOrDefault();
+                cn.Close();
+
+                return usuario;
+            }
+        }
+
+        public bool VerificaPrivilegio(string privilegio, int id)
+        {
+            using (var cn = Connection)
+            {
+                var sql = "select * from privilegios " +
+                          "inner join privusers on privusers.codprivilegio = privilegios.codprivilegio " +
+                          "where privilegios.nomeobj = @privilegio and codUser = @id";
+
+                TryRetry.Do(() => cn.Open(), TimeSpan.FromSeconds(5));
+                var usuario = cn.Query<Usuario>(sql, new { privilegio, id }).Any();
                 cn.Close();
 
                 return usuario;

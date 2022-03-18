@@ -52,7 +52,7 @@ namespace Zip.Pdv.Component
             if (!string.IsNullOrEmpty(grupo.Imagem))
             {
                 btnIcom.Image = Funcoes.Base64ToImage(grupo.Imagem);
-                btnIcom.SizeMode = PictureBoxSizeMode.CenterImage;
+                btnIcom.SizeMode = PictureBoxSizeMode.StretchImage;
             }
             else
             {

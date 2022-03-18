@@ -16,6 +16,7 @@ namespace Zip.Pdv
     public partial class FrmProdutoOpcao : Form
     {
         public VendaItemViewModel VendaItem;
+        public List<VendaItemViewModel> VendaItensAdicionais;
         private readonly List<ProdutoOpcaoTipoVewModel> _produtosTipoOpoes;
         private string[] _tabs;
         private int _tabindex;
@@ -24,6 +25,7 @@ namespace Zip.Pdv
             InitializeComponent();
             _produtosTipoOpoes = produtosTipoOpoes;
             VendaItem = vendaItem;
+            VendaItensAdicionais = new List<VendaItemViewModel>();
         }
 
         private void FormBase_Load(object sender, EventArgs e)
@@ -78,15 +80,32 @@ namespace Zip.Pdv
                 }
             }
 
-            VendaItem.VendaProdutoOpcoes.Add(new VendaProdutoOpcaoViewModel()
+            if (!string.IsNullOrEmpty(produtoOpcao.ProdutoPdv) && produtoOpcao.Valor > 0)
             {
-                ProdutosOpcaoId = produtoOpcao.ProdutosOpcaoId,
-                ProdutosOpcaoTipoId = produtoOpcao.ProdutosOpcaoTipoId,
-                ProdutoId = VendaItem.ProdutoId,
-                Sequencia = VendaItem.SeqProduto,
-                Valor = produtoOpcao.Valor,
-                Descricao = produtoOpcao.Nome
-            });
+                var seq = VendaItensAdicionais.Any() ? VendaItensAdicionais.Max(t => t.SeqProduto) + 1 : VendaItem.SeqProduto + 1;
+                VendaItensAdicionais.Add(new VendaItemViewModel()
+                {
+                    Produto = produtoOpcao.Nome,
+                    ValorUnitatio = produtoOpcao.Valor,
+                    ProdutoId = int.Parse(produtoOpcao.ProdutoPdv),
+                    Quantidade = 1,
+                    SeqProduto = seq
+
+                });
+            }
+            else
+            {
+                VendaItem.VendaProdutoOpcoes.Add(new VendaProdutoOpcaoViewModel()
+                {
+                    ProdutosOpcaoId = produtoOpcao.ProdutosOpcaoId,
+                    ProdutosOpcaoTipoId = produtoOpcao.ProdutosOpcaoTipoId,
+                    ProdutoId = VendaItem.ProdutoId,
+                    Sequencia = VendaItem.SeqProduto,
+                    Valor = produtoOpcao.Valor,
+                    Descricao = produtoOpcao.Nome
+                });
+            }
+
             CarregaDescricao();
 
         }
@@ -98,6 +117,15 @@ namespace Zip.Pdv
             {
                 var item = new UcPdvItem();
                 item.AdicionarProdutoOpcoes(vendaItemVendaProdutoOpcoes);
+                item.Click += Item_Click;
+                flowLayoutPanel2.Controls.Add(item);
+                //btn.Anchor = AnchorStyles.None;
+            }
+
+            foreach (var vendaItemVendaProdutoOpcoes in VendaItensAdicionais)
+            {
+                var item = new UcPdvItem();
+                item.AdicionarComplemento(vendaItemVendaProdutoOpcoes);
                 item.Click += Item_Click;
                 flowLayoutPanel2.Controls.Add(item);
                 //btn.Anchor = AnchorStyles.None;

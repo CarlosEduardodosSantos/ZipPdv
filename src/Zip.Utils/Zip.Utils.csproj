@@ -46,6 +46,7 @@
     <Compile Include="LogWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetryHelper.cs" />
+    <Compile Include="TryRetry.cs" />
     <Compile Include="ValidaCpfCnpj.cs" />
     <Compile Include="XmlHelpers.cs" />
   </ItemGroup>

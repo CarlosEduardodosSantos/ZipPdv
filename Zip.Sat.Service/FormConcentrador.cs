@@ -44,7 +44,7 @@ namespace Zip.Sat.Service
 
         private void FormConcentrador_Load(object sender, EventArgs e)
         {
-            _server.Port = 4500;
+            _server.Port = 3103;
 
             /* O BufferSize é usado para
              * determinar o tamanho limite de alocação
@@ -171,7 +171,7 @@ namespace Zip.Sat.Service
                 StatusSat();
                 _timerServico.Start();
             }
-            catch (Exception exception)
+            catch 
             {
                 Program.WriteToFile(String.Format("{0}: Erro ao consultar o SAT", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")));
             }

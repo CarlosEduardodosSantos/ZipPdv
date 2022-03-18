@@ -7,6 +7,8 @@ namespace Eticket.Application.Interface
     {
         void Abrir(CaixaViewModel caixaView);
         void Fechar(CaixaViewModel caixaView);
-        CaixaViewModel ObterCaixaAberto(int pdv);
+        CaixaViewModel ObterCaixaAberto(int loja, int pdv);
+        CaixaViewModel ObterCaixaId(int caixaId);
+        CaixaViewModel ObterCaixaData(DateTime dtCaixa);
     }
 }

@@ -43,7 +43,7 @@ Alter table Caixa_2 Add CaixaItemId uniqueidentifier
 GO
 
 
-ALTER Procedure PROC_INSERT_NFCE  
+ALTER Procedure [dbo].[PROC_INSERT_NFCE]  
  @VendaId Int  
 AS  
 BEGIN  
@@ -134,7 +134,7 @@ BEGIN
  Begin  
   Declare @vendaItemId int = (Select vendaItemId From @table Where id = @Inicio)  
   Declare @produtoId int = (Select Cod_prod From Venda_2 Where INC_VENDA2 = @vendaItemId)  
-  Declare @Quantidade int = (Select QTDE From Venda_2 Where INC_VENDA2 = @vendaItemId)  
+  Declare @Quantidade decimal(14,3) = (Select QTDE From Venda_2 Where INC_VENDA2 = @vendaItemId)  
   Declare @Unitario decimal(18,6) = (Select UNIT From Venda_2 Where INC_VENDA2 = @vendaItemId)  
   Declare @Total decimal(18,2) = (Select (UNIT*QTDE) From Venda_2 Where INC_VENDA2 = @vendaItemId)  
   Declare @ValorDesconto decimal(18,4)  = (Select (UNIT*QTDE)- TOTAL From Venda_2 Where INC_VENDA2 = @vendaItemId)

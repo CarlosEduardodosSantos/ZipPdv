@@ -35,6 +35,7 @@ namespace Zip.Pdv
             txtNumero.Text = _vendaView.Delivery.ClienteDelivery.Numero;
             txtFone.Text = _vendaView.Delivery.ClienteDelivery.Telefone;
             txtBairro.Text = _vendaView.Delivery.ClienteDelivery.Bairro;
+            txtObservacao.Text = _vendaView.Delivery.ClienteDelivery.Observacao;
 
             if (_vendaView.Delivery.Troco > 0)
                 txtTrocoPara.ValueNumeric = _vendaView.Delivery.Valor + _vendaView.Delivery.Troco;
@@ -116,7 +117,7 @@ namespace Zip.Pdv
                         DataHora = DateTime.Now,
                         Valor = -1*(_vendaView.Delivery.Troco),
                         TipoLancamento = "TEL",
-                        Historico = $"TROCO SAI VENDA ENTREGA Nº {_vendaView.Delivery.VendaId}"
+                        Historico = $"TROCO SAI Nº {_vendaView.Delivery.VendaId} [CX: {Program.CaixaView.CaixaId}]"
                     };
 
                     using (var especieAppService = Program.Container.GetInstance<IEspeciePagamentoAppService>())
@@ -132,10 +133,9 @@ namespace Zip.Pdv
                             CodigoFiscal = especie.CodigoFiscal
                         });
 
-                        caixaApp.Adicionar(caixaItem);
                     }
-                    
-   
+                    caixaApp.Adicionar(caixaItem);
+
                 }
             }
 

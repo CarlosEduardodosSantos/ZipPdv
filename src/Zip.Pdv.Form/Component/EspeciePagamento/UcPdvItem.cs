@@ -58,5 +58,13 @@ namespace Zip.Pdv.Component.EspeciePagamento
             lbValue.Text = vendaProdutoOpcaoView.Valor.ToString("C2");
             btnDeletar.Click += cClick;
         }
+        public void AdicionarFicha(int ficha)
+        {
+            this.Width = 240;
+            CaixaSource = ficha;
+            lbDisplay.Text = $"FICHA: {ficha}";
+            lbValue.Visible = false;
+            btnDeletar.Click += cClick;
+        }
     }
 }

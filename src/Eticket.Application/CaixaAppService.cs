@@ -3,6 +3,7 @@ using Eticket.Application.ViewModels;
 using Eticket.Domain.Entity;
 using Eticket.Domain.Interface.Repository;
 using FastMapper;
+using System;
 
 namespace Eticket.Application
 {
@@ -32,9 +33,19 @@ namespace Eticket.Application
             _caixaRepository.Fechar(caixa);
         }
 
-        public CaixaViewModel ObterCaixaAberto(int pdv)
+        public CaixaViewModel ObterCaixaAberto(int loja, int pdv)
         {
-            return TypeAdapter.Adapt<Caixa, CaixaViewModel>(_caixaRepository.ObterCaixaAberto(pdv));
+            return TypeAdapter.Adapt<Caixa, CaixaViewModel>(_caixaRepository.ObterCaixaAberto(loja, pdv));
+        }
+
+        public CaixaViewModel ObterCaixaId(int caixaId)
+        {
+            return TypeAdapter.Adapt<Caixa, CaixaViewModel>(_caixaRepository.GetById(caixaId));
+        }
+
+        public CaixaViewModel ObterCaixaData(DateTime dtCaixa)
+        {
+            return TypeAdapter.Adapt<Caixa, CaixaViewModel>(_caixaRepository.ObterCaixaData(dtCaixa));
         }
     }
 }

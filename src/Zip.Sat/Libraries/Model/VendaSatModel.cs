@@ -67,6 +67,7 @@ namespace Zip.Sat.Libraries.Model
         public string CfeSatNumeroExtrato { get; set; }
         public int EmpresaID { get; set; }
         public int Comanda { get; set; }
+        public string SenhaPainel { get; set; }
         public string ClienteNome { get { return (string.IsNullOrEmpty(Cliente.Nome) ? "" : Cliente.Nome); } }
         public string ClienteCpf { get { return (string.IsNullOrEmpty(Cliente.Cpf) ? "" : Cliente.Cpf); } }
     }
