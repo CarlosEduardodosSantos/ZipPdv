@@ -231,7 +231,7 @@ namespace Zip.Pdv
             }
 
 
-
+            btnLancarPgamento.Enabled = true;
             LancarPagamento();
         }
 

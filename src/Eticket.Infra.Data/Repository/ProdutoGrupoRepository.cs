@@ -22,11 +22,15 @@ namespace Eticket.Infra.Data.Repository
             }
         }
 
-        public IEnumerable<ProdutoGrupo> GetAll()
+        public IEnumerable<ProdutoGrupo> GetAll(int loja)
         {
             using (var cn = Connection)
             {
-                var sql = "Select IdPdvGrupo as GrupoId, Descricao, grupo_img as Imagem, Grupo_Cor as GrupoCor, IsPadrao, HabTotem, HabElisa, HabPdv from pdvGrupos Order By Sequencia";
+                var sql = "Select IdPdvGrupo as GrupoId, Descricao, grupo_img as Imagem, " +
+                    "Grupo_Cor as GrupoCor, IsPadrao, HabTotem, HabElisa, HabPdv " +
+                    "from pdvGrupos " +
+                    "Where hab_loja" + loja+" = 1" +
+                    "Order By Sequencia";
 
                 cn.Open();
                 var grupos = cn.Query<ProdutoGrupo>(sql, new {});

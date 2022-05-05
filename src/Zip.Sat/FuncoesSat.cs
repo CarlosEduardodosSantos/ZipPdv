@@ -291,7 +291,7 @@ namespace Zip.Sat
                 vendaSat.EmpresaId = venda.Loja;
                 vendaSat.Pdv = venda.Pdv;
                 vendaSat.SenhaPainel = venda.Senha;
-
+                vendaSat.DataVenda = venda.DataHora;
 
                 foreach (var vendaItemViewModel in venda.VendaItens)
                 {

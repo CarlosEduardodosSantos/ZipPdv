@@ -7,6 +7,6 @@ namespace Eticket.Application.Interface
     public interface IProdutoGrupoAppService : IDisposable
     {
         ProdutoGrupoViewModel ObterPorId(int id);
-        IEnumerable<ProdutoGrupoViewModel> ObterTodos();
+        IEnumerable<ProdutoGrupoViewModel> ObterTodos(int loja);
     }
 }

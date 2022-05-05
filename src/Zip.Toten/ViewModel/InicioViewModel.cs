@@ -169,19 +169,21 @@ namespace Zip.Toten.ViewModel
         }
 
         private void BuscaGrupos()
-        { 
+        {
+            var loja = 1;
             using (var appServer = App.Container.GetInstance<IProdutoGrupoAppService>())
             {
-                Grupos = appServer.ObterTodos().ToList();
+                Grupos = appServer.ObterTodos(loja).ToList();
                 RaiseChange("Grupos");
             }
         }
 
         private void CarregaProdutos(int grupoId)
         {
+            var loja = 1;
             using (var appServer = App.Container.GetInstance<IProdutoAppService>())
             {                
-                Produtos = appServer.ObterPorGrupoId(int.Parse(grupoId.ToString())).ToList();
+                Produtos = appServer.ObterPorGrupoId(loja, int.Parse(grupoId.ToString())).ToList();
             }
             ProdFiltrados = Produtos;
             RaiseChange("Produtos");

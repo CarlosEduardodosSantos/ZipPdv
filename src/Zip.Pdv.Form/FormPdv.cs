@@ -88,10 +88,10 @@ namespace Zip.Pdv
                 int.TryParse(codigo.Substring(6, 5), out quantidade);
 
 
-
+                var loja = Program.Loja;
                 produto = produtoEtiqueta > 0
                     ? _produtoAppService.ObterPorId(produtoEtiqueta)
-                    : _produtoAppService.ObterPorEan(codigo).FirstOrDefault();
+                    : _produtoAppService.ObterPorEan(loja, codigo).FirstOrDefault();
 
                 if (produto == null)
                 {
@@ -290,7 +290,8 @@ namespace Zip.Pdv
         {
             using (var appServer = Program.Container.GetInstance<IProdutoGrupoAppService>())
             {
-                _grupos = appServer.ObterTodos().ToList();
+                var loja = Program.Loja;
+                _grupos = appServer.ObterTodos(loja).ToList();
             }
 
             GrupoPaginacao(1);
@@ -339,9 +340,10 @@ namespace Zip.Pdv
 
         private void CarregaProdutos(int grupoId)
         {
+            var loja = Program.Loja;
             using (var appServer = Program.Container.GetInstance<IProdutoAppService>())
             {
-                _produtos = appServer.ObterPorGrupoId(int.Parse(grupoId.ToString())).ToList();
+                _produtos = appServer.ObterPorGrupoId(loja, int.Parse(grupoId.ToString())).ToList();
             }
             _currentProdPage = 1;
             ProdutoPaginacao(1);

@@ -7,11 +7,11 @@ namespace Eticket.Domain.Interface.Repository
     public interface IProdutoRepository : IDisposable
     {
         Produto GetById(int id);
-        IEnumerable<Produto> GetAll();
-        IEnumerable<Produto> GetByGrupoId(int grupoId);
+        IEnumerable<Produto> GetAll(int loja);
+        IEnumerable<Produto> GetByGrupoId(int loja, int grupoId);
         IEnumerable<Produto> GetByMeioMeio();
-        IEnumerable<Produto> ObterPorEan(string ean);
-        IEnumerable<Produto> ObterPorNome(string nome);
+        IEnumerable<Produto> ObterPorEan(int loja, string ean);
+        IEnumerable<Produto> ObterPorNome(int loja, string nome);
         IEnumerable<Produto> ObterMaisVendidos();
         IEnumerable<Produto> ObterAbaixoDoMinimo();
         IEnumerable<Produto> ObterEmFalta();

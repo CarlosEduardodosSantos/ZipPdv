@@ -49,7 +49,8 @@ namespace Zip.Pdv.Page.PageShare
 
             using (var appServer = Program.Container.GetInstance<IProdutoGrupoAppService>())
             {
-                _grupos = appServer.ObterTodos().Where(t=> t.IsPos).ToList();
+                var loja = Program.Loja;
+                _grupos = appServer.ObterTodos(loja).Where(t=> t.IsPos).ToList();
             }
 
             GrupoPaginacao(1);
@@ -114,9 +115,10 @@ namespace Zip.Pdv.Page.PageShare
 
         private void CarregaProdutos(int grupoId)
         {
+            var loja = Program.Loja;
             using (var appServer = Program.Container.GetInstance<IProdutoAppService>())
             {
-                _produtos = appServer.ObterPorGrupoId(int.Parse(grupoId.ToString())).ToList();
+                _produtos = appServer.ObterPorGrupoId(loja, int.Parse(grupoId.ToString())).ToList();
             }
 
             ProdutoPaginacao(1);

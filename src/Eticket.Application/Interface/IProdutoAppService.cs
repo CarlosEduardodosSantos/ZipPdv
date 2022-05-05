@@ -7,10 +7,10 @@ namespace Eticket.Application.Interface
     public interface IProdutoAppService : IDisposable
     {
         ProdutoViewModel ObterPorId(int id);
-        IEnumerable<ProdutoViewModel> ObterPorGrupoId(int grupoId);
+        IEnumerable<ProdutoViewModel> ObterPorGrupoId(int loja, int grupoId);
         IEnumerable<ProdutoViewModel> ObterMeioMeio();
-        IEnumerable<ProdutoViewModel> ObterPorEan(string ean);
-        IEnumerable<ProdutoViewModel> ObterPorNome(string nome);
+        IEnumerable<ProdutoViewModel> ObterPorEan(int loja, string ean);
+        IEnumerable<ProdutoViewModel> ObterPorNome(int loja, string nome);
         IEnumerable<ProdutoViewModel> ObterMaisVendidos();
         IEnumerable<ProdutoViewModel> ObterAbaixoDoMinimo();
         IEnumerable<ProdutoViewModel> ObterEmFalta();

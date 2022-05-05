@@ -34,7 +34,8 @@ namespace Zip.Pdv.Cadastro.Produto
 
             using (var grupoAppService = Program.Container.GetInstance<IProdutoGrupoAppService>())
             {
-                var grupos = grupoAppService.ObterTodos().ToList();
+                var loja = Program.Loja;
+                var grupos = grupoAppService.ObterTodos(loja).ToList();
                 cbGrupo.DataSource = grupos;
                 cbGrupo.DisplayMember = "Descricao";
                 cbGrupo.ValueMember = "GrupoId";

@@ -21,9 +21,9 @@ namespace Eticket.Application
             return TypeAdapter.Adapt<ProdutoGrupo, ProdutoGrupoViewModel>(_produtoGrupoRepository.GetById(id));
         }
 
-        public IEnumerable<ProdutoGrupoViewModel> ObterTodos()
+        public IEnumerable<ProdutoGrupoViewModel> ObterTodos(int loja)
         {
-            return TypeAdapter.Adapt<IEnumerable<ProdutoGrupo>, IEnumerable<ProdutoGrupoViewModel>>(_produtoGrupoRepository.GetAll());
+            return TypeAdapter.Adapt<IEnumerable<ProdutoGrupo>, IEnumerable<ProdutoGrupoViewModel>>(_produtoGrupoRepository.GetAll(loja));
         }
 
         public void Dispose()

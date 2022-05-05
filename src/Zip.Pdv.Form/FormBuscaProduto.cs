@@ -57,14 +57,14 @@ namespace Zip.Pdv
         {
             using (var produtoApp = Program.Container.GetInstance<IProdutoAppService>())
             {
-                
+                var loja = Program.Loja;
                 if (txtBuscarProduto.Text.IsNumeric())
                 {
-                    _produtos = txtBuscarProduto.Text.ValidarEan13() ? produtoApp.ObterPorEan(txtBuscarProduto.Text).Take(30).ToList() : produtoApp.ObterPorEan(txtBuscarProduto.Text).Take(30).ToList();
+                    _produtos = txtBuscarProduto.Text.ValidarEan13() ? produtoApp.ObterPorEan(loja, txtBuscarProduto.Text).Take(30).ToList() : produtoApp.ObterPorEan(loja, txtBuscarProduto.Text).Take(30).ToList();
                 }
                 else
                 {
-                    _produtos = produtoApp.ObterPorNome(txtBuscarProduto.Text).Take(30).ToList();
+                    _produtos = produtoApp.ObterPorNome(loja, txtBuscarProduto.Text).Take(30).ToList();
                 }
                 if (_produtos.Count == 1)
                 {
