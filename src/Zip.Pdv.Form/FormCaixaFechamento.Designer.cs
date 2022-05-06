@@ -366,6 +366,7 @@
             this.btnCancelar.TabIndex = 17;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // panel2
             // 
@@ -467,13 +468,13 @@
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(376, 45);
             this.txtValor.TabIndex = 8;
-            this.txtValor.Text = "0";
+            this.txtValor.Text = "R$ 0,00";
             this.txtValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValor.ValueNumeric = new decimal(new int[] {
             0,
             0,
             0,
-            0});
+            131072});
             // 
             // panel24
             // 

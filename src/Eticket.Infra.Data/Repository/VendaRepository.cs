@@ -6,11 +6,13 @@ using Dapper;
 using Eticket.Domain.Entity;
 using Eticket.Domain.Interface;
 using Zip.Utils;
+using System.Configuration;
+
 
 namespace Eticket.Infra.Data.Repository
 {
     public class VendaRepository : RepositoryBase, IVendaRepository
-    {
+    {   
         public Venda GetById(int id)
         {
             throw new System.NotImplementedException();
@@ -28,6 +30,7 @@ namespace Eticket.Infra.Data.Repository
             sql.AppendLine("Values(@NRO, @DATA, @TIPO, @VEND, @HORA, @COD_CLI, @LOJA, @VL_COMPRA, @pgto, @nrocx, @pdv, @xTELE, @xFrete, @cpfcnpj, @TipoPagamento, @Senha, @Estacao, @NRO_CARTAO, @OBS)");
 
             var parms = new DynamicParameters();
+            int estacao = Convert.ToInt32(ConfigurationManager.AppSettings["EstacaoFicha"]);
 
             parms.Add("@NRO", venda.VendaId);
             parms.Add("@DATA", venda.DataHora.Date);
@@ -44,7 +47,12 @@ namespace Eticket.Infra.Data.Repository
             parms.Add("@xFrete", 1);
             parms.Add("@cpfcnpj", venda.Cnpj);
             parms.Add("@TipoPagamento", venda.TipoPagamento);
+            if(estacao == 1 && FichaGlobal.telaficha == true) {
+                parms.Add ("@Estacao", "Zimmer");
+                FichaGlobal.telaficha = false;
+            }else { 
             parms.Add("@Estacao", Environment.MachineName);
+            }
             parms.Add("@NRO_CARTAO", venda.FichaId);
             parms.Add("@OBS", venda.Observacao);
             var senha = !string.IsNullOrEmpty(venda.Senha) ? venda.Senha : ObterSenha();

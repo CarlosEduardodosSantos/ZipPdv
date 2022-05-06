@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.imageProd = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbUnitario = new System.Windows.Forms.Label();
@@ -42,13 +43,12 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.btnIncluir = new System.Windows.Forms.Button();
-            this.imageProd = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageProd)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageProd)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -79,6 +79,14 @@
             this.panel4.Size = new System.Drawing.Size(541, 431);
             this.panel4.TabIndex = 7;
             // 
+            // imageProd
+            // 
+            this.imageProd.Location = new System.Drawing.Point(363, 254);
+            this.imageProd.Name = "imageProd";
+            this.imageProd.Size = new System.Drawing.Size(150, 150);
+            this.imageProd.TabIndex = 10;
+            this.imageProd.TabStop = false;
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -91,8 +99,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::Zip.Pdv.Properties.Resources.LOGO_ORIGINAL_220;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.BackgroundImage = global::Zip.Pdv.Properties.Resources.logo_2021_nova_sombra220;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
@@ -218,14 +226,6 @@
             this.btnIncluir.UseVisualStyleBackColor = true;
             this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
             // 
-            // imageProd
-            // 
-            this.imageProd.Location = new System.Drawing.Point(363, 254);
-            this.imageProd.Name = "imageProd";
-            this.imageProd.Size = new System.Drawing.Size(150, 150);
-            this.imageProd.TabIndex = 10;
-            this.imageProd.TabStop = false;
-            // 
             // PageSharePdvProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,10 +236,10 @@
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageProd)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageProd)).EndInit();
             this.ResumeLayout(false);
 
         }

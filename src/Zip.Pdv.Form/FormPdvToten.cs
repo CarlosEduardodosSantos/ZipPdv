@@ -76,8 +76,7 @@ namespace Zip.Pdv
 
         private void ScannerListener_BarCodeScanned(object sender, BarcodeScannedEventArgs e)
         {
-            var loja = Program.Loja;
-            var produto = _produtoAppService.ObterPorEan(loja, e.ScannedText).FirstOrDefault();
+            var produto = _produtoAppService.ObterPorEan(e.ScannedText).FirstOrDefault();
             IncluirProdutoPesquisa(produto);
         }
 
@@ -230,8 +229,7 @@ namespace Zip.Pdv
 
             using (var appServer = Program.Container.GetInstance<IProdutoGrupoAppService>())
             {
-                var loja = Program.Loja;
-                _grupos = appServer.ObterTodos(loja).Where(t => t.HabTotem).ToList();
+                _grupos = appServer.ObterTodos().Where(t => t.HabTotem).ToList();
             }
 
             GrupoPaginacao(1);
@@ -283,10 +281,9 @@ namespace Zip.Pdv
 
         private void CarregaProdutos(int grupoId)
         {
-            var loja = Program.Loja;
             using (var appServer = Program.Container.GetInstance<IProdutoAppService>())
             {
-                _produtos = appServer.ObterPorGrupoId(loja, int.Parse(grupoId.ToString())).ToList();
+                _produtos = appServer.ObterPorGrupoId(int.Parse(grupoId.ToString())).ToList();
             }
 
             ProdutoPaginacao(1);

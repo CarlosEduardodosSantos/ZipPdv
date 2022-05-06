@@ -38,11 +38,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.keyboardNum1 = new KeyboardClassLibrary.Num.KeyboardNum();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtNroCaixa = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.dtpCaixa = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNroCaixa = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.keyboardNum1 = new KeyboardClassLibrary.Num.KeyboardNum();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -96,6 +96,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "CANCELAR";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // panel2
             // 
@@ -178,31 +179,16 @@
             this.panel10.Size = new System.Drawing.Size(470, 480);
             this.panel10.TabIndex = 3;
             // 
-            // keyboardNum1
+            // dtpCaixa
             // 
-            this.keyboardNum1.Location = new System.Drawing.Point(11, 150);
-            this.keyboardNum1.Name = "keyboardNum1";
-            this.keyboardNum1.Size = new System.Drawing.Size(440, 245);
-            this.keyboardNum1.TabIndex = 7;
-            this.keyboardNum1.UserKeyPressed += new KeyboardClassLibrary.Num.KeyboardNumDelegate(this.keyboardNum1_UserKeyPressed);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 65);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 20);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Por número do caixa";
-            // 
-            // txtNroCaixa
-            // 
-            this.txtNroCaixa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNroCaixa.Location = new System.Drawing.Point(15, 88);
-            this.txtNroCaixa.Name = "txtNroCaixa";
-            this.txtNroCaixa.Size = new System.Drawing.Size(225, 29);
-            this.txtNroCaixa.TabIndex = 9;
+            this.dtpCaixa.Checked = false;
+            this.dtpCaixa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpCaixa.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpCaixa.Location = new System.Drawing.Point(251, 88);
+            this.dtpCaixa.Name = "dtpCaixa";
+            this.dtpCaixa.ShowCheckBox = true;
+            this.dtpCaixa.Size = new System.Drawing.Size(200, 29);
+            this.dtpCaixa.TabIndex = 11;
             // 
             // label3
             // 
@@ -214,16 +200,31 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Por data";
             // 
-            // dtpCaixa
+            // txtNroCaixa
             // 
-            this.dtpCaixa.Checked = false;
-            this.dtpCaixa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpCaixa.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpCaixa.Location = new System.Drawing.Point(251, 88);
-            this.dtpCaixa.Name = "dtpCaixa";
-            this.dtpCaixa.ShowCheckBox = true;
-            this.dtpCaixa.Size = new System.Drawing.Size(200, 29);
-            this.dtpCaixa.TabIndex = 11;
+            this.txtNroCaixa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNroCaixa.Location = new System.Drawing.Point(15, 88);
+            this.txtNroCaixa.Name = "txtNroCaixa";
+            this.txtNroCaixa.Size = new System.Drawing.Size(225, 29);
+            this.txtNroCaixa.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(11, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(153, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Por número do caixa";
+            // 
+            // keyboardNum1
+            // 
+            this.keyboardNum1.Location = new System.Drawing.Point(11, 150);
+            this.keyboardNum1.Name = "keyboardNum1";
+            this.keyboardNum1.Size = new System.Drawing.Size(440, 245);
+            this.keyboardNum1.TabIndex = 7;
+            this.keyboardNum1.UserKeyPressed += new KeyboardClassLibrary.Num.KeyboardNumDelegate(this.keyboardNum1_UserKeyPressed);
             // 
             // FormCaixaPesquisa
             // 

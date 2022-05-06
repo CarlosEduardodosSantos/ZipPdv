@@ -69,12 +69,13 @@ namespace Eticket.Infra.Data.Repository
                           " Vend as VendedorId, " +
                           " SEQLANC as Sequencia, " +
                           " DATAHORA as DataHora," +
+                          " ESTACAO as Estacao, " +
                           " ClienteFichaId " +
                           "From Venda_3 Where Nro In @ficha";
 
                 cn.Open();
-                var fichaItens = cn.Query<VendaFicha>(sql, new {ficha});
-                cn.Close();
+                var fichaItens = cn.Query<VendaFicha>(sql, new { ficha });
+                cn.Close();               
 
                 return fichaItens;
             }
