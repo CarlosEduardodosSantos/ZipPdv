@@ -20,6 +20,7 @@ namespace Zip.Pdv
 {
     public partial class FormPdv : UserControl
     {
+        
         protected override CreateParams CreateParams
         {
             get
@@ -88,10 +89,10 @@ namespace Zip.Pdv
                 int.TryParse(codigo.Substring(6, 5), out quantidade);
 
 
-                var loja = Program.Loja;
+
                 produto = produtoEtiqueta > 0
                     ? _produtoAppService.ObterPorId(produtoEtiqueta)
-                    : _produtoAppService.ObterPorEan(loja, codigo).FirstOrDefault();
+                    : _produtoAppService.ObterPorEan(codigo).FirstOrDefault();
 
                 if (produto == null)
                 {
@@ -290,8 +291,7 @@ namespace Zip.Pdv
         {
             using (var appServer = Program.Container.GetInstance<IProdutoGrupoAppService>())
             {
-                var loja = Program.Loja;
-                _grupos = appServer.ObterTodos(loja).ToList();
+                _grupos = appServer.ObterTodos().ToList();
             }
 
             GrupoPaginacao(1);
@@ -340,10 +340,9 @@ namespace Zip.Pdv
 
         private void CarregaProdutos(int grupoId)
         {
-            var loja = Program.Loja;
             using (var appServer = Program.Container.GetInstance<IProdutoAppService>())
             {
-                _produtos = appServer.ObterPorGrupoId(loja, int.Parse(grupoId.ToString())).ToList();
+                _produtos = appServer.ObterPorGrupoId(int.Parse(grupoId.ToString())).ToList();
             }
             _currentProdPage = 1;
             ProdutoPaginacao(1);
@@ -1110,10 +1109,11 @@ namespace Zip.Pdv
                 return;
 
             CarregaFicha(fichaId);
-        }
+        }           
 
-        private void CarregaFicha(int[] fichaId)
-        {
+        private void CarregaFicha(int[] fichaId)       
+        {     
+
             using (var vendaFichaApp = Program.Container.GetInstance<IVendaFichaAppService>())
             {
                 var vendaFicha = vendaFichaApp.ObterPorFicha(fichaId).ToList();

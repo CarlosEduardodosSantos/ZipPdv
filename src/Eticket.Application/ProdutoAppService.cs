@@ -21,9 +21,9 @@ namespace Eticket.Application
             return TypeAdapter.Adapt<Produto, ProdutoViewModel>(_produtoRepository.GetById(id));
         }
 
-        public IEnumerable<ProdutoViewModel> ObterPorGrupoId(int loja, int grupoId)
+        public IEnumerable<ProdutoViewModel> ObterPorGrupoId(int grupoId)
         {
-            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.GetByGrupoId(loja, grupoId));
+            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.GetByGrupoId(grupoId));
         }
 
         public IEnumerable<ProdutoViewModel> ObterMeioMeio()
@@ -31,14 +31,14 @@ namespace Eticket.Application
             return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.GetByMeioMeio());
         }
 
-        public IEnumerable<ProdutoViewModel> ObterPorEan(int loja, string ean)
+        public IEnumerable<ProdutoViewModel> ObterPorEan(string ean)
         {
-            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.ObterPorEan(loja, ean));
+            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.ObterPorEan(ean));
         }
 
-        public IEnumerable<ProdutoViewModel> ObterPorNome(int loja, string nome)
+        public IEnumerable<ProdutoViewModel> ObterPorNome(string nome)
         {
-            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.ObterPorNome(loja, nome));
+            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.ObterPorNome(nome));
         }
         public IEnumerable<ProdutoViewModel> ObterMaisVendidos()
         {

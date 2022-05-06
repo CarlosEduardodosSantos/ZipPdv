@@ -61,6 +61,7 @@
     <Compile Include="Repository\EntregadorRepository.cs" />
     <Compile Include="Repository\EspeciePagamentoRepository.cs" />
     <Compile Include="Repository\FabricaRelatorioRepository.cs" />
+    <Compile Include="Repository\FichaGlobal.cs" />
     <Compile Include="Repository\FornecedorRepository.cs" />
     <Compile Include="Repository\NfceServicoRepository.cs" />
     <Compile Include="Repository\ProdutoDeptoRepository.cs" />

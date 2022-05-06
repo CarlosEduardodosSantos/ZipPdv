@@ -33,7 +33,7 @@ namespace Eticket.Infra.Data.Repository
             }
         }
 
-        public IEnumerable<Produto> GetAll(int loja)
+        public IEnumerable<Produto> GetAll()
         {
             using (var cn = Connection)
             {
@@ -47,8 +47,7 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.USABALANCA as ParaBalanca, " +
                           " Prod.QuantidadeFixo as QuantidadeFixo, " +
                           " pdvGrupoItens.HabProd as Visivel " +
-                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo " +
-                          "And hab_loja" + loja + " = 1";
+                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo ";
 
                 cn.Open();
                 var produto = cn.Query<Produto>(sql, new { });
@@ -58,7 +57,7 @@ namespace Eticket.Infra.Data.Repository
             }
         }
 
-        public IEnumerable<Produto> GetByGrupoId(int loja, int grupoId)
+        public IEnumerable<Produto> GetByGrupoId(int grupoId)
         {
             using (var cn = Connection)
             {
@@ -72,9 +71,7 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.USABALANCA as ParaBalanca, " +
                           " Prod.QuantidadeFixo as QuantidadeFixo, " +
                           " pdvGrupoItens.HabProd as Visivel " +
-                          " From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  " +
-                          " Where idPdvGrupo = @grupoId " +
-                          "And hab_loja" + loja + " = 1";
+                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  Where idPdvGrupo = @grupoId";
 
                 cn.Open();
                 var produto = cn.Query<Produto>(sql, new { grupoId });
@@ -105,7 +102,7 @@ namespace Eticket.Infra.Data.Repository
             }
         }
 
-        public IEnumerable<Produto> ObterPorEan(int loja, string ean)
+        public IEnumerable<Produto> ObterPorEan(string ean)
         {
             using (var cn = Connection)
             {
@@ -119,10 +116,8 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.USABALANCA as ParaBalanca, " +
                           " Prod.QuantidadeFixo as QuantidadeFixo, " +
                           " pdvGrupoItens.HabProd as Visivel " +
-                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  " +
-                          "Where Prod.Codigo In (" +
-                          "Select COD_PRODUTO From PROD_BARRA Where COD_BARRA = @ean) " +
-                          "And hab_loja"+loja+" = 1";
+                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  Where Prod.Codigo In (" +
+                          "Select COD_PRODUTO From PROD_BARRA Where COD_BARRA = @ean)";
 
                 cn.Open();
                 var produto = cn.Query<Produto>(sql, new { ean });
@@ -132,7 +127,7 @@ namespace Eticket.Infra.Data.Repository
             }
         }
 
-        public IEnumerable<Produto> ObterPorNome(int loja, string nome)
+        public IEnumerable<Produto> ObterPorNome(string nome)
         {
             using (var cn = Connection)
             {
@@ -146,8 +141,7 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.USABALANCA as ParaBalanca, " +
                           " Prod.QuantidadeFixo as QuantidadeFixo, " +
                           " pdvGrupoItens.HabProd as Visivel " +
-                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  " +
-                          "Where Prod.DES_ Like '%'+ @nome + '%'";
+                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  Where Prod.DES_ Like '%'+ @nome + '%'";
 
                 cn.Open();
                 var produto = cn.Query<Produto>(sql, new { nome });

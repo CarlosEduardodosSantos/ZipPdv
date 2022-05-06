@@ -82,18 +82,22 @@ namespace Zip.Pdv.Page
             // 
             this.btnPagamento.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPagamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(184)))));
-            this.btnPagamento.BackgroundImage = global::Zip.Pdv.Properties.Resources.FundoBotao;
-            this.btnPagamento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPagamento.AutoSize = true;
+            this.btnPagamento.BackColor = System.Drawing.Color.Transparent;
+            this.btnPagamento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPagamento.FlatAppearance.BorderSize = 0;
+            this.btnPagamento.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnPagamento.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPagamento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPagamento.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPagamento.ForeColor = System.Drawing.Color.Transparent;
+            this.btnPagamento.Image = global::Zip.Pdv.Properties.Resources.img_pagamento;
             this.btnPagamento.Location = new System.Drawing.Point(171, 776);
+            this.btnPagamento.Margin = new System.Windows.Forms.Padding(0);
             this.btnPagamento.Name = "btnPagamento";
-            this.btnPagamento.Size = new System.Drawing.Size(548, 68);
+            this.btnPagamento.Size = new System.Drawing.Size(602, 116);
             this.btnPagamento.TabIndex = 1;
             this.btnPagamento.Tag = "PagePagamento";
-            this.btnPagamento.Text = "CONSULTAR/PAGAR SUA CONTA";
             this.btnPagamento.UseVisualStyleBackColor = false;
             this.btnPagamento.Click += new System.EventHandler(this.selectItem);
             // 
@@ -101,16 +105,21 @@ namespace Zip.Pdv.Page
             // 
             this.btnPedido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(184)))));
+            this.btnPedido.AutoSize = true;
+            this.btnPedido.BackColor = System.Drawing.Color.Transparent;
             this.btnPedido.FlatAppearance.BorderSize = 0;
+            this.btnPedido.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPedido.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPedido.ForeColor = System.Drawing.Color.Transparent;
+            this.btnPedido.Image = global::Zip.Pdv.Properties.Resources.img_pedido;
             this.btnPedido.Location = new System.Drawing.Point(171, 655);
+            this.btnPedido.Margin = new System.Windows.Forms.Padding(0);
             this.btnPedido.Name = "btnPedido";
-            this.btnPedido.Size = new System.Drawing.Size(548, 74);
+            this.btnPedido.Size = new System.Drawing.Size(602, 116);
             this.btnPedido.TabIndex = 0;
             this.btnPedido.Tag = "FormPdvToten";
-            this.btnPedido.Text = "FAÇA SUA COMPRA";
             this.btnPedido.UseVisualStyleBackColor = false;
             this.btnPedido.Click += new System.EventHandler(this.selectItem);
             // 
@@ -123,6 +132,7 @@ namespace Zip.Pdv.Page
             this.Size = new System.Drawing.Size(885, 1024);
             this.Load += new System.EventHandler(this.PagePrincipalTotem_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Eticket.Application.Interface;
 using Zip.Pdv.Component;
 using Zip.Pdv.Component.EspeciePagamento;
+using Eticket.Infra.Data.Repository;
 
 namespace Zip.Pdv
 {
@@ -162,8 +163,10 @@ namespace Zip.Pdv
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
+            FichaGlobal.telaficha = true;
+
             if (Fichas.Count == 0 && !string.IsNullOrEmpty(txtFicha.Text))
-            {
+            {             
                 ValidaFicha();
             }
 
