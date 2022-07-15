@@ -180,6 +180,7 @@
     <Compile Include="ViewModels\TipoImpressaoViewEnum.cs" />
     <Compile Include="ViewModels\UnidadeMedidaViewModel.cs" />
     <Compile Include="ViewModels\UsuarioViewModel.cs" />
+    <Compile Include="ViewModels\VendaPendenteViewModel.cs" />
     <Compile Include="ViewModels\VendaProdutoOpcaoViewModel.cs" />
     <Compile Include="ViewModels\VendaViewModel.cs" />
     <Compile Include="ViewModels\VendaFichaViewModel.cs" />

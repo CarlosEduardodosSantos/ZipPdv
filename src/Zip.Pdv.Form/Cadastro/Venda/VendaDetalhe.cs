@@ -9,7 +9,7 @@ namespace Zip.Pdv.Cadastro.Venda
 {
     public partial class VendaDetalhe : CadastroBase
     {
-        private  VendaViewModel _vendaView;
+        private VendaViewModel _vendaView;
         public VendaDetalhe()
         {
             InitializeComponent();
@@ -20,6 +20,15 @@ namespace Zip.Pdv.Cadastro.Venda
         {
             splitContainer1.Panel2Collapsed = true;
             _vendaView = (VendaViewModel)objeto;
+
+            using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
+            {
+                _vendaView = vendaApp.ObterPorId(_vendaView.VendaId);
+                if (_vendaView == null)
+                {
+                    return;
+                }
+            }
 
             if (_vendaView.IsDelivery)
             {
@@ -53,8 +62,15 @@ namespace Zip.Pdv.Cadastro.Venda
             dgvVendaItens.DataSource = _vendaView.VendaItens.ToList();
 
             splitButton1.AddDropDownItemAndHandle("Imprimir Gerencial ", imprimirGerencialToolStripMenuItem_Click);
+
             if (string.IsNullOrEmpty(_vendaView.CupomFiscal))
                 splitButton1.AddDropDownItemAndHandle("Imprimir Fiscal", imprimirToolStripMenuItem_Click);
+            else
+                splitButton1.AddDropDownItemAndHandle($"Reimprimir  {Program.EmissorFiscal}", reimprimirComprovanteToolStripMenuItem_Click);
+
+
+
+
 
         }
 
@@ -93,6 +109,8 @@ namespace Zip.Pdv.Cadastro.Venda
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            ClassToObjeto(_vendaView);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -158,7 +176,7 @@ namespace Zip.Pdv.Cadastro.Venda
                 Funcoes.MensagemInformation("Ocorreu um erro ao excluir a venda!\nConsulte o log para mais informações.");
                 Program.GravaLog(ex.Message);
             }
-            
+
         }
 
         public override void LimparTudo()
@@ -197,45 +215,46 @@ namespace Zip.Pdv.Cadastro.Venda
 
         private void imprimirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(_vendaView.CupomFiscal))
-            {
-                TouchMessageBox.Show("Já existe uma cupom fiscal para essa venda.", "Fiscal", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-
-            switch (Program.EmissorFiscal)
-            {
-                case ModeloFiscalEnumView.None:
-                    using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
-                    {
-                        var tipoOperacao = _vendaView.IsDelivery ? 5 : 4;
-                        vendaApp.GeraImpressaoFechamento(_vendaView.VendaId, tipoOperacao);
-                    }
-                    break;
-                case ModeloFiscalEnumView.Ecf:
-                    break;
-                case ModeloFiscalEnumView.CfeSAT:
-                    var retorno = OperacoeFiscal.ImprimeSat(_vendaView);
-                    if (!retorno.IsOk)
-                    {
-                        Funcoes.MensagemError(retorno.Mensagem);
-                        break;
-                    }
-                    _vendaView.CupomFiscal = retorno.CfeSatNumeroNf.ToString();
-                    break;
-                case ModeloFiscalEnumView.NFCe:
-                    OperacoeFiscal.ImprimeNfce(_vendaView);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            //Atualiza Cupom Fiscal
             using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
             {
+                
 
-                vendaApp.AtualizaFiscal(_vendaView);
+
+                if (!string.IsNullOrEmpty(_vendaView.CupomFiscal))
+                {
+                    TouchMessageBox.Show("Já existe uma cupom fiscal para essa venda.", "Fiscal", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+
+                switch (Program.EmissorFiscal)
+                {
+                    case ModeloFiscalEnumView.None:
+                            var tipoOperacao = _vendaView.IsDelivery ? 5 : 4;
+                            vendaApp.GeraImpressaoFechamento(_vendaView.VendaId, tipoOperacao);
+                        break;
+                    case ModeloFiscalEnumView.Ecf:
+                        break;
+                    case ModeloFiscalEnumView.CfeSAT:
+                        var retorno = OperacoeFiscal.ImprimeSat(_vendaView);
+                        if (!retorno.IsOk)
+                        {
+                            Funcoes.MensagemError(retorno.Mensagem);
+                            break;
+                        }
+                        using (var retornoSatAppService = Program.Container.GetInstance<IRetornoSatAppService>())
+                        {
+                            retornoSatAppService.Adicionar(retorno);
+                        }
+                        break;
+                        
+                    case ModeloFiscalEnumView.NFCe:
+                        OperacoeFiscal.ImprimeNfce(_vendaView);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                ClassToObjeto(_vendaView);
             }
 
         }
@@ -247,6 +266,25 @@ namespace Zip.Pdv.Cadastro.Venda
                 var tipoOperacao = _vendaView.IsDelivery ? 5 : 4;
                 vendaApp.GeraImpressaoFechamento(_vendaView.VendaId, tipoOperacao);
             }
+        }
+
+        private void reimprimirComprovanteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch (Program.EmissorFiscal)
+            {
+                case ModeloFiscalEnumView.CfeSAT:
+                    var retorno = OperacoeFiscal.ReimprimeSat(_vendaView);
+                    if (!retorno.IsOk)
+                    {
+                        Funcoes.MensagemError(retorno.Mensagem);
+                        break;
+                    }
+                    break;
+                case ModeloFiscalEnumView.NFCe:
+                    TouchMessageBox.Show("Reimpressão devera ser feita pelo Essencial..", "Fiscal", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+            }
+
         }
     }
 }

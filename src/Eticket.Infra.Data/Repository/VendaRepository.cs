@@ -12,7 +12,7 @@ using System.Configuration;
 namespace Eticket.Infra.Data.Repository
 {
     public class VendaRepository : RepositoryBase, IVendaRepository
-    {   
+    {
         public Venda GetById(int id)
         {
             throw new System.NotImplementedException();
@@ -47,11 +47,14 @@ namespace Eticket.Infra.Data.Repository
             parms.Add("@xFrete", 1);
             parms.Add("@cpfcnpj", venda.Cnpj);
             parms.Add("@TipoPagamento", venda.TipoPagamento);
-            if(estacao == 1 && FichaGlobal.telaficha == true) {
-                parms.Add ("@Estacao", "Zimmer");
+            if (estacao == 1 && FichaGlobal.telaficha == true)
+            {
+                parms.Add("@Estacao", "Zimmer");
                 FichaGlobal.telaficha = false;
-            }else { 
-            parms.Add("@Estacao", Environment.MachineName);
+            }
+            else
+            {
+                parms.Add("@Estacao", Environment.MachineName);
             }
             parms.Add("@NRO_CARTAO", venda.FichaId);
             parms.Add("@OBS", venda.Observacao);
@@ -99,7 +102,7 @@ namespace Eticket.Infra.Data.Repository
                             itemparms.Add("@Des_", "ENTREGA");
                             itemparms.Add("@SEQLANC", 999);
                             itemparms.Add("@DATAHORA", venda.DataHora);
-                            itemparms.Add("@GPI_IMPRIMIR", 1);
+                            itemparms.Add("@GPI_IMPRIMIR", venda.PendenciaId == 0 ? 1 : 0);
                             itemparms.Add("@PROD_OBS", "");
                             itemparms.Add("@VlCusto", 0.01);
 
@@ -445,6 +448,8 @@ namespace Eticket.Infra.Data.Repository
 	                            venda.cpfcnpj as Cnpj,
 	                            venda.OBS as Observacao,
 	                            venda.Senha as Senha,
+                                CupomFiscal = isnull((Select top 1 NUMDOCFISCAL From SAT_TAB Where sat_tab.NROVENDA = venda.NRO Order By dataHora desc),''),
+                                MenssagemSat = isnull((Select top 1 MENSAGEM From SAT_TAB Where sat_tab.NROVENDA = venda.NRO Order By dataHora desc),''),
 	                            Isnull(venda.xTELE,0) as IsDelivery,
                                 Isnull(venda.TipoPagamento, '') as TipoPagamento,
 
@@ -752,7 +757,8 @@ namespace Eticket.Infra.Data.Repository
 	                            venda.VL_COMPRA as ValorCompra,
 	                            venda.cpfcnpj as Cnpj,
 	                            venda.OBS as Observacao,
-                                venda.Cupom_fiscal as CupomFiscal,
+                                CupomFiscal = isnull((Select top 1 NUMDOCFISCAL From SAT_TAB Where sat_tab.NROVENDA = venda.NRO Order By dataHora desc),''),
+                                MenssagemSat = isnull((Select top 1 MENSAGEM From SAT_TAB Where sat_tab.NROVENDA = venda.NRO Order By dataHora desc),''),
 	                            venda.Senha as Senha,
 	                            Isnull(venda.xTELE,0) as IsDelivery,
                                 iSNULL(venda.TipoPagamento, '') as TipoPagamento,

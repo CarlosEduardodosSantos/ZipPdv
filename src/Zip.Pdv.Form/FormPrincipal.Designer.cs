@@ -39,7 +39,7 @@
             this.panel25 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.panel30 = new System.Windows.Forms.Panel();
-            this.splitBtnIfood = new Zip.Pdv.Component.SplitButton();
+            this.btnRetira = new System.Windows.Forms.Button();
             this.panel29 = new System.Windows.Forms.Panel();
             this.splitBtnConfigure = new Zip.Pdv.Component.SplitButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -153,30 +153,24 @@
             // 
             // panel30
             // 
-            this.panel30.Controls.Add(this.splitBtnIfood);
+            this.panel30.Controls.Add(this.btnRetira);
             this.panel30.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel30.Location = new System.Drawing.Point(3, 3);
             this.panel30.Name = "panel30";
             this.panel30.Size = new System.Drawing.Size(62, 55);
             this.panel30.TabIndex = 0;
             // 
-            // splitBtnIfood
+            // btnRetira
             // 
-            this.splitBtnIfood.BackgroundImage = global::Zip.Pdv.Properties.Resources.cp0bta;
-            this.splitBtnIfood.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.splitBtnIfood.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitBtnIfood.Font = new System.Drawing.Font("Segoe UI", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitBtnIfood.ForeColor = System.Drawing.Color.Black;
-            this.splitBtnIfood.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.splitBtnIfood.ImageKey = "Normal";
-            this.splitBtnIfood.Location = new System.Drawing.Point(0, 0);
-            this.splitBtnIfood.Name = "splitBtnIfood";
-            this.splitBtnIfood.Size = new System.Drawing.Size(62, 55);
-            this.splitBtnIfood.TabIndex = 10;
-            this.splitBtnIfood.Text = "10";
-            this.splitBtnIfood.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.splitBtnIfood.UseVisualStyleBackColor = true;
-            this.splitBtnIfood.Visible = false;
+            this.btnRetira.BackgroundImage = global::Zip.Pdv.Properties.Resources.go_38;
+            this.btnRetira.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRetira.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRetira.Location = new System.Drawing.Point(0, 0);
+            this.btnRetira.Name = "btnRetira";
+            this.btnRetira.Size = new System.Drawing.Size(62, 55);
+            this.btnRetira.TabIndex = 1;
+            this.btnRetira.UseVisualStyleBackColor = true;
+            this.btnRetira.Click += new System.EventHandler(this.splitBtnIfood_Click);
             // 
             // panel29
             // 
@@ -346,8 +340,8 @@
         private System.Windows.Forms.Label lbEmpresa;
         private Component.SplitButton splitBtnConfigure;
         private System.Windows.Forms.Timer timer1;
-        private Component.SplitButton splitBtnIfood;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnDelivery;
+        private System.Windows.Forms.Button btnRetira;
     }
 }

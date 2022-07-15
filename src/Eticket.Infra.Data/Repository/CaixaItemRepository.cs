@@ -107,7 +107,7 @@ namespace Eticket.Infra.Data.Repository
             sql.AppendLine("CaixaItem.COD_USUARIO as UsuarioId,");
             sql.AppendLine("CaixaPagamentos.*");
             sql.AppendLine("From Caixa_2 CaixaItem");
-            sql.AppendLine("Inner Join CaixaPagamentos On CaixaItem.CaixaItemId = CaixaPagamentos.CaixaItemId");
+            sql.AppendLine("Left Join CaixaPagamentos On CaixaItem.CaixaItemId = CaixaPagamentos.CaixaItemId");
             sql.AppendLine("Where CaixaItem.NROCX = @caixaId");
 
             using (var conn = Connection)

@@ -151,6 +151,18 @@
     </Compile>
     <Compile Include="Component\CustomTab\Win32\Enum.cs" />
     <Compile Include="Component\CustomTab\Win32\User32.cs" />
+    <Compile Include="Component\PendenteGridView\PendenteGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\PendenteGridView\PendenteGridView.Designer.cs">
+      <DependentUpon>PendenteGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\PendenteGridView\PendenteGridViewitem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\PendenteGridView\PendenteGridViewitem.Designer.cs">
+      <DependentUpon>PendenteGridViewitem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\EntregaGridView\EntregaGridView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -282,6 +294,12 @@
     <Compile Include="Eventos\BarcodeScannedEventArgs.cs" />
     <Compile Include="Fast\ParameterReportDynamic.cs" />
     <Compile Include="Fast\RelatorioFastReport.cs" />
+    <Compile Include="FormCaixaLancamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCaixaLancamento.Designer.cs">
+      <DependentUpon>FormCaixaLancamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCaixaPesquisa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -473,6 +491,12 @@
     <Compile Include="Page\PageConfiguracoes.Designer.cs">
       <DependentUpon>PageConfiguracoes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Page\PagePendencia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Page\PagePendencia.Designer.cs">
+      <DependentUpon>PagePendencia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Page\PageDelivery.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -606,6 +630,12 @@
     <EmbeddedResource Include="Component\CupomGrid\UcItemObservacao.resx">
       <DependentUpon>UcItemObservacao.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Component\PendenteGridView\PendenteGridView.resx">
+      <DependentUpon>PendenteGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\PendenteGridView\PendenteGridViewitem.resx">
+      <DependentUpon>PendenteGridViewitem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Component\EntregaGridView\EntregaGridView.resx">
       <DependentUpon>EntregaGridView.cs</DependentUpon>
     </EmbeddedResource>
@@ -656,6 +686,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Component\TouchMessageBox.resx">
       <DependentUpon>TouchMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCaixaLancamento.resx">
+      <DependentUpon>FormCaixaLancamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCaixaPesquisa.resx">
       <DependentUpon>FormCaixaPesquisa.cs</DependentUpon>
@@ -746,6 +779,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Page\PageConfiguracoes.resx">
       <DependentUpon>PageConfiguracoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\PagePendencia.resx">
+      <DependentUpon>PagePendencia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Page\PageDelivery.resx">
       <DependentUpon>PageDelivery.cs</DependentUpon>

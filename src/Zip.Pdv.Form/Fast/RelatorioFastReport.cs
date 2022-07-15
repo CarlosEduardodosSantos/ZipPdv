@@ -182,13 +182,98 @@ namespace Zip.Pdv.Fast
                                                         PreviewButtons.Zoom |
                                                         PreviewButtons.Save;
 
-            report.LoadFromString(LoadFileReportDb(nameFrx));
-            if (report.Dictionary.Connections.Count > 0)
+            var localFile = $"{AppDomain.CurrentDomain.BaseDirectory}{nameFrx}.frx";
+            if (File.Exists(localFile))
             {
-                report.Dictionary.Connections[0].ConnectionString = _connectionString;
-                report.Prepare();
+                report.Load(localFile);
+                if (report.Dictionary.Connections.Count > 0)
+                {
+                    report.Dictionary.Connections[0].ConnectionString = _connectionString;
+                    report.Prepare();
+                }
+                
+            }
+            else
+            {
+                report.LoadFromString(LoadFileReportDb(nameFrx));
+                if (report.Dictionary.Connections.Count > 0)
+                {
+                    report.Dictionary.Connections[0].ConnectionString = _connectionString;
+                    report.Prepare();
+                }
+                else
+                    _tipoImpressaoViewEnum = TipoImpressaoViewEnum.Design;
+            }
+            for (int i = 0; i < parameterReport.ListParameters.Count; i++)
+            {
+                var keys = parameterReport.ListParameters.Keys.ToList()[i];
+                var value = parameterReport.ListParameters.Values.ToList()[i];
+
+                report.SetParameterValue(keys, value);
             }
 
+            switch (_tipoImpressaoViewEnum)
+            {
+                case TipoImpressaoViewEnum.PopUp:
+                    {
+                        report.Show();
+                        break;
+                    }
+                case TipoImpressaoViewEnum.Print:
+                    {
+                        report.PrintSettings.ShowDialog = false;
+                        report.Print();
+                        break;
+                    }
+                case TipoImpressaoViewEnum.Design:
+                    {
+                        report.Design();
+                        UpdateFileReportDb(nameFrx, report.ReportResourceString);
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
+
+        public void GerarRelatorioByList<T>(string nameFrx, ParameterReportDynamic parameterReport, List<T> models)
+        {
+            var report = new Report();
+            report.RegisterData(models, "models");
+
+            var reportPropriedade = new EnvironmentSettings
+            {
+                PreviewSettings = { ShowInTaskbar = false },
+                UIStyle = UIStyle.VisualStudio2005
+            };
+
+            reportPropriedade.PreviewSettings.Buttons = PreviewButtons.Close |
+                                                        PreviewButtons.Print |
+                                                        PreviewButtons.Zoom |
+                                                        PreviewButtons.Save;
+
+            var localFile = $"{AppDomain.CurrentDomain.BaseDirectory}{nameFrx}.frx";
+            if (File.Exists(localFile))
+            {
+                report.Load(localFile);
+                if (report.Dictionary.Connections.Count > 0)
+                {
+                    report.Dictionary.Connections[0].ConnectionString = _connectionString;
+                    report.Prepare();
+                }
+
+            }
+            else
+            {
+                report.LoadFromString(LoadFileReportDb(nameFrx));
+                if (report.Dictionary.Connections.Count > 0)
+                {
+                    report.Dictionary.Connections[0].ConnectionString = _connectionString;
+                    report.Prepare();
+                }
+                else
+                    _tipoImpressaoViewEnum = TipoImpressaoViewEnum.Design;
+            }
             for (int i = 0; i < parameterReport.ListParameters.Count; i++)
             {
                 var keys = parameterReport.ListParameters.Keys.ToList()[i];

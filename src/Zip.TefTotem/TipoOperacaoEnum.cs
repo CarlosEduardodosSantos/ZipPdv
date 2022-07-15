@@ -15,7 +15,7 @@ namespace Zip.TefTotem
         CartaoDebito = 4,
         Cancelamento = 5,
         Reimpressao = 6,
-
+        VendaVoucher = 18 //Sodexo e Alelo
 
     }
 }

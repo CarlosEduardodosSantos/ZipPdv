@@ -689,6 +689,9 @@ namespace SAT
                     if (Directory.Exists(_path + @"\" + mes))
                         _path += @"\" + mes;
                 }
+                if (File.Exists(_path + @"\" + _nomeArquivo))
+                    return true;
+
                 using (StreamWriter outfile = new StreamWriter(_path + @"\" + _nomeArquivo, true))
                 {
                     outfile.Write(_conteudoXML.ToString());

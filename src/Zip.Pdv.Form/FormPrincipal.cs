@@ -29,18 +29,29 @@ namespace Zip.Pdv
             lbUsuarioNome.Text = Program.Usuario.Nome;
             lbEmpresa.Text = Program.EmpresaView.Fantasia;
 
-            splitBtnConfigure.AddDropDownItemAndHandle("Caixa Abertura", btnCaixaAbertura_Click);
-            splitBtnConfigure.AddDropDownItemAndHandle("Caixa Fechamento", btnCaixaFechamento_Click);
-            splitBtnConfigure.AddDropDownItemAndHandle("Caixa Movimentacao", btnCaixaMovimentacao_Click);
-            //splitBtnConfigure.AddDropDownItemAndHandle("Caixa Lancamentos", btnCaixaMovimentacao_Click);
-            //splitBtnConfigure.AddDropDownItemAndHandle("Configurações", btnConfiguracao_Click);
-            splitBtnConfigure.AddDropDownItemAndHandle("Venda ADM", btnVendaAdm_Click);
+            using (var usuarioAppService = Program.Container.GetInstance<IUsuarioAppService>())
+            {
+                var dirAdmVenda = usuarioAppService.VerificaPrivilegio("AdmVendas1", Program.Usuario.UsuarioId);
+                var dirCaixaMov = usuarioAppService.VerificaPrivilegio("CaixaGerencial", Program.Usuario.UsuarioId);
+
+                splitBtnConfigure.AddDropDownItemAndHandle("Caixa Abertura", btnCaixaAbertura_Click);
+                splitBtnConfigure.AddDropDownItemAndHandle("Caixa Fechamento", btnCaixaFechamento_Click);
+                if (dirCaixaMov)
+                    splitBtnConfigure.AddDropDownItemAndHandle("Caixa Movimentacao", btnCaixaMovimentacao_Click);
+                //splitBtnConfigure.AddDropDownItemAndHandle("Caixa Lancamentos", btnCaixaMovimentacao_Click);
+                //splitBtnConfigure.AddDropDownItemAndHandle("Configurações", btnConfiguracao_Click);
+                if (dirAdmVenda)
+                    splitBtnConfigure.AddDropDownItemAndHandle("Venda ADM", btnVendaAdm_Click);
+
+            }
+
+
 
             OpenMenu();
             if (Program.InicializacaoViewAux.ModoPdv)
             {
                 //btnDelivery.Visible = false;
-                splitBtnIfood.Visible = false;
+                //splitBtnIfood.Visible = false;
                 //splitBtnConfigure.Visible = false;
 
                 if (Program.CaixaView == null)
@@ -150,13 +161,13 @@ namespace Zip.Pdv
         private void OpenMenuTotem()
         {
             btnVoltar.Visible = true;
-
+            btnRetira.Visible = false;
             btnVoltar.Visible = false;
             panel26.Visible = false;
             btnDelivery.Visible = false;
             splitBtnConfigure.Visible = false;
 
-           
+
             if (!panelPages.Controls.Contains(PagePrincipalTotem.Instance))
             {
                 PagePrincipalTotem.Instance.Dock = DockStyle.Fill;
@@ -283,12 +294,18 @@ namespace Zip.Pdv
 
             if (evento.Tag == "FormPdv")
             {
-                OpenPdv();
+                if (Program.TipoPdv == Eticket.Application.ViewModels.ModoPdvEnumView.Pedido)
+                    OpenPdv();
             }
             else if (evento.Tag == "FormPdvToten")
             {
-                btnVoltar.Visible = true;
-                OpenPdvToten();
+                if (Program.TipoPdv == Eticket.Application.ViewModels.ModoPdvEnumView.TotemMenu)
+                {
+                    btnVoltar.Visible = true;
+                    OpenPdvToten();
+                }
+
+
             }
             else if (evento.Tag == "ProdutoCad")
             {
@@ -305,7 +322,7 @@ namespace Zip.Pdv
         }
         private void OpenPdv()
         {
-            
+
 
             btnVoltar.Visible = true;
 
@@ -383,7 +400,7 @@ namespace Zip.Pdv
 
         private void CarregaIfood()
         {
-            splitBtnIfood.Text = "0";
+            //splitBtnIfood.Text = "0";
         }
 
         private void btnDelivery_Click(object sender, EventArgs e)
@@ -401,6 +418,12 @@ namespace Zip.Pdv
         public static void IsFrete()
         {
 
+        }
+
+        private void splitBtnIfood_Click(object sender, EventArgs e)
+        {
+            var page = new PagePendencia();
+            OpePage(page);
         }
     }
 }

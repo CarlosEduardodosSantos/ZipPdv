@@ -32,7 +32,6 @@
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.tableLayoutPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.panelLeft = new System.Windows.Forms.Panel();
-            this.cupomGridView1 = new Zip.Pdv.Component.CupomGrid.CupomGridView();
             this.panel33 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.panel43 = new System.Windows.Forms.Panel();
@@ -132,6 +131,7 @@
             this.btnBuscarProduto = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.cupomGridView1 = new Component.CupomGrid.CupomGridView();
             this.panelPrincipal.SuspendLayout();
             this.tableLayoutPrincipal.SuspendLayout();
             this.panelLeft.SuspendLayout();
@@ -1016,7 +1016,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flayoutProduto.Location = new System.Drawing.Point(48, 27);
             this.flayoutProduto.Name = "flayoutProduto";
-            this.flayoutProduto.Size = new System.Drawing.Size(451, 502);
+            this.flayoutProduto.Size = new System.Drawing.Size(451, 456);
             this.flayoutProduto.TabIndex = 3;
             // 
             // panelPadding
@@ -1282,7 +1282,6 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.toolTip1.SetToolTip(this.button1, "Venda Aguardando retirada do cliente");
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // panel38

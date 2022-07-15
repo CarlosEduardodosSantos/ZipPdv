@@ -42,7 +42,7 @@ namespace Zip.Pdv.Page
                 txtvVendas.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "VDA" || t.TipoLancamento == "TEL").Sum(t => t.Valor + t.Troco);
 
                 txtSuprimentos.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "SU").Sum(t => t.Valor);
-                txtSangrias.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "SA").Sum(t => t.Valor); ;
+                txtSangrias.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "SA").Sum(t => t.Valor); 
 
 
                 txtvTotalCaixa.ValueNumeric = _itemViewModels.Sum(t => t.Valor + t.Troco);
@@ -56,15 +56,15 @@ namespace Zip.Pdv.Page
 
 
                 var caixaItens = _itemViewModels
-                    .SelectMany(m => m.CaixaPagamentos.Select(e =>
+                    .SelectMany(m => m.CaixaPagamentos?.Select(e =>
                     new
                     {
                         m.TipoLancamento,
                         m.DataHora,
                         m.VendaId,
                         m.Historico,
-                        e.Especie,
-                        e.Valor
+                        Especie = e != null ? e.Especie : "DINHEIRO",
+                        Valor = e != null  ? e.Valor : m.Valor
                     })).OrderBy(o => o.VendaId).ToList();
 
 
@@ -146,6 +146,15 @@ namespace Zip.Pdv.Page
             }
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormCaixaLancamento())
+            {
+                form.ShowDialog();
+                CarregaCaixa(Program.CaixaView);
+            }
         }
     }
 }

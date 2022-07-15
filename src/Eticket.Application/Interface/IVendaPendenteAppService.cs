@@ -7,11 +7,15 @@ namespace Eticket.Application.Interface
 {
     public interface IVendaPendenteAppService : IDisposable
     {
-        void Add(VendaViewModel venda);
-        void Remover(VendaViewModel venda);
-        IEnumerable<VendaViewModel> ObterPorNome(string nome);
+        void Add(VendaPendenteViewModel venda);
+        void Remover(int nro);
+        void NotificarPronto(int nro);
+        IEnumerable<VendaPendenteViewModel> ObterPorNome(string nome);
+        IEnumerable<VendaPendenteViewModel> ObterTodos();
         int ObterUltimaSequencia(string nome);
-        void ImprimePendencia(string pendenciaId);
-        bool PendenciaExistente(string nome);
+        int ObterUltimoNro();
+        int PendenciaExistente(string nome);
+        bool GeraImpressaoFechamento(int pendenciaId, int tipoOperacao);
+        bool GeraImpressaoItem(int pendenciaId, int tipoOperacao);
     }
 }

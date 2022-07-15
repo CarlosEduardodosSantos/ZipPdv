@@ -89,10 +89,10 @@
             this.xButton19 = new System.Windows.Forms.Button();
             this.xButton20 = new System.Windows.Forms.Button();
             this.panel23 = new System.Windows.Forms.Panel();
+            this.btnSolicitaCpf = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.panelFundo = new System.Windows.Forms.Panel();
-            this.btnSolicitaCpf = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelHistorico.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -644,6 +644,7 @@
             // 
             // flayoutGrupo
             // 
+            this.flayoutGrupo.AutoScroll = true;
             this.flayoutGrupo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flayoutGrupo.Dock = System.Windows.Forms.DockStyle.Top;
             this.flayoutGrupo.Location = new System.Drawing.Point(0, 26);
@@ -838,6 +839,21 @@
             this.panel23.Size = new System.Drawing.Size(705, 42);
             this.panel23.TabIndex = 1;
             // 
+            // btnSolicitaCpf
+            // 
+            this.btnSolicitaCpf.BackColor = System.Drawing.Color.Transparent;
+            this.btnSolicitaCpf.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSolicitaCpf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSolicitaCpf.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSolicitaCpf.Location = new System.Drawing.Point(467, 0);
+            this.btnSolicitaCpf.Name = "btnSolicitaCpf";
+            this.btnSolicitaCpf.Size = new System.Drawing.Size(238, 42);
+            this.btnSolicitaCpf.TabIndex = 6;
+            this.btnSolicitaCpf.Text = "CPF/CNPJ na Nota?";
+            this.btnSolicitaCpf.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSolicitaCpf.UseVisualStyleBackColor = false;
+            this.btnSolicitaCpf.Click += new System.EventHandler(this.btnSolicitaCpf_Click);
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -879,21 +895,6 @@
             this.panelFundo.Name = "panelFundo";
             this.panelFundo.Size = new System.Drawing.Size(707, 580);
             this.panelFundo.TabIndex = 2;
-            // 
-            // btnSolicitaCpf
-            // 
-            this.btnSolicitaCpf.BackColor = System.Drawing.Color.Transparent;
-            this.btnSolicitaCpf.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnSolicitaCpf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSolicitaCpf.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSolicitaCpf.Location = new System.Drawing.Point(467, 0);
-            this.btnSolicitaCpf.Name = "btnSolicitaCpf";
-            this.btnSolicitaCpf.Size = new System.Drawing.Size(238, 42);
-            this.btnSolicitaCpf.TabIndex = 6;
-            this.btnSolicitaCpf.Text = "CPF/CNPJ na Nota?";
-            this.btnSolicitaCpf.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSolicitaCpf.UseVisualStyleBackColor = false;
-            this.btnSolicitaCpf.Click += new System.EventHandler(this.btnSolicitaCpf_Click);
             // 
             // FormPagamento
             // 

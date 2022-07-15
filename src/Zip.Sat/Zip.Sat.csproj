@@ -68,6 +68,12 @@
     <Compile Include="FrmCancelaSat.Designer.cs">
       <DependentUpon>FrmCancelaSat.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmReimprimirSat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReimprimirSat.Designer.cs">
+      <DependentUpon>FrmReimprimirSat.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSolicitaSatConcentrador.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FrmCancelaSat.resx">
       <DependentUpon>FrmCancelaSat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReimprimirSat.resx">
+      <DependentUpon>FrmReimprimirSat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSolicitaSatConcentrador.resx">
       <DependentUpon>FrmSolicitaSatConcentrador.cs</DependentUpon>

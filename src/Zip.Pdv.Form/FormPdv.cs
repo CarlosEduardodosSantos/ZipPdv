@@ -354,13 +354,13 @@ namespace Zip.Pdv
             btnPrevProd.Enabled = false;
 
             int qItemW = flayoutProduto.Width / 140;
-            int qItemH = flayoutProduto.Height / 75;
+            int qItemH = flayoutProduto.Height / 82;
             int itens = qItemW * qItemH;
 
             var skip = itens * (page - 1);
-
+            
             _pageProdQuantidade = int.Parse(Math.Ceiling(_produtos.Count() / double.Parse(itens.ToString())).ToString());
-            if (_pageProdQuantidade > 1)
+            if (_pageProdQuantidade > 1 && _pageProdQuantidade > page)
                 btnNextProd.Enabled = true;
 
             flayoutProduto.Controls.Clear();
@@ -572,8 +572,10 @@ namespace Zip.Pdv
             _currentProdPage--;
             ProdutoPaginacao(_currentProdPage);
 
-            if (_currentProdPage == 1)
-                btnPrevProd.Enabled = false;
+
+            btnPrevProd.Enabled = _currentProdPage > 1;
+            /*if (_currentProdPage == 1)
+                btnPrevProd.Enabled = false;*/
         }
 
         private void btnCancelarVenda_Click(object sender, EventArgs e)
@@ -690,9 +692,9 @@ namespace Zip.Pdv
                 //Verifica se pede numero do pager
                 if (Program.InicializacaoViewAux.HabSenhaPager)
                 {
-                    //var senhaPager = FormSolicitaNumeric.Instace("INFORME O NÚMERO DO PAGER", true);
+                    var senhaPager = FormSolicitaNumeric.Instace("INFORME O NÚMERO DO PAGER", true);
 
-                    //VendaView.Senha = senhaPager;
+                    VendaView.Senha = senhaPager;
 
                     var opcaoObs = FormSolicitaPergunta.Instace("SELECIONE UMA OPÇÃO", true);
                     VendaView.Observacao += opcaoObs;
@@ -998,7 +1000,7 @@ namespace Zip.Pdv
                 //item.ValorTotal = decimal.Round((item.VUnit * item.QProd) - vDesc, 2);
             }
 
-            if (descontoFinal.ValorReal > 0)
+            /*if (descontoFinal.ValorReal > 0)
             {
                 //descontoFinal.ValorReal = VendaView.VendaItens.Sum(t => t.Desconto);
                 for (var i = 0; i < 100; i++)
@@ -1013,7 +1015,7 @@ namespace Zip.Pdv
                         break;
 
                 }
-            }
+            }*/
             cupomGridView1.Atualizar(VendaView.VendaItens);
             TotalizaCupom();
         }
@@ -1183,34 +1185,50 @@ namespace Zip.Pdv
             //Grava pendencia
             try
             {
+                using (var vendaPendenciaAppService = Program.Container.GetInstance<IVendaPendenteAppService>())
+                {
+                    VendaView.ClientePendencia = nome.ToUpper();
+                    var clienteExists = vendaPendenciaAppService.ObterPorNome(nome);
+                    if (clienteExists.Any())
+                    {
+                        var aceitar = TouchMessageBox.Show("Cliente já existente, deseja atribuir os itens para o cliente?", "Venda Pendente",
+                            MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK;
 
+                        if (!aceitar)
+                            return;
+
+                        //Se aceitar criar rotina para adicionar itens no mesmo pendente
+                        VendaView.PendenciaId = clienteExists.Max(t => t.Nro);
+                        VendaView.DataHora = clienteExists.Max(t => t.DataHora);
+                        VendaView.HoraPendencia = clienteExists.Max(t => t.Hora);
+
+                    }
+                    else
+                    {
+                        var pendenciaId = vendaPendenciaAppService.ObterUltimoNro();
+                        VendaView.PendenciaId = pendenciaId;
+                        VendaView.DataHora = DateTime.Now.Date;
+                        VendaView.HoraPendencia = DateTime.Now.ToShortTimeString();
+                    }
+
+                    var vendaPendenciaViewModel = new VendaPendenteViewModel().ConvertVendaToVendaPendencia(VendaView);
+                    foreach (var item in vendaPendenciaViewModel)
+                    {
+                        vendaPendenciaAppService.Add(item);
+                    }
+
+                    vendaPendenciaAppService.GeraImpressaoItem(VendaView.PendenciaId, 3);
+                    vendaPendenciaAppService.GeraImpressaoFechamento(VendaView.PendenciaId, 6);
+                    IniciarVenda();
+                }
+ 
             }
             catch (Exception ex)
             {
                 TouchMessageBox.Show("Ocorreu um erro ao inlcuir a venda pendente.", "Venda Pendente");
             }
-            using (var vendaPendenciaAppService = Program.Container.GetInstance<IVendaPendenteAppService>())
-            {
-                var clienteExists = vendaPendenciaAppService.PendenciaExistente(nome);
-                if (clienteExists)
-                {
-                    var aceitar = TouchMessageBox.Show("Cliente já existente, deseja atribuir os itens para o cliente?", "Venda Pendente",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+            
 
-                    if (!aceitar)
-                        return;
-
-                    //Se aceitar criar rotina para adicionar itens no mesmo pendente
-
-
-                }
-                VendaView.ClientePendencia = nome;
-
-                vendaPendenciaAppService.Add(VendaView);
-
-            }
-
-            IniciarVenda();
 
 
         }

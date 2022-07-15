@@ -117,9 +117,12 @@ namespace Zip.Pdv
 
             }
 
-            _ficha = fichaId.ToString(); ;
-            Fichas.Add(int.Parse(_ficha));
-            CarregaFichas();
+            _ficha = fichaId.ToString();
+            if (!Fichas.Contains(fichaId))
+            {
+                Fichas.Add(int.Parse(_ficha));
+                CarregaFichas();
+            }
             txtFicha.Clear();
             txtFicha.Focus();
 
@@ -140,8 +143,13 @@ namespace Zip.Pdv
                     return;
                 }
                 _ficha = ficha.Ficha.ToString();
-                Fichas.Add(int.Parse(_ficha));
-                CarregaFichas();
+                if (!Fichas.Contains(int.Parse(_ficha)))
+                {
+                    Fichas.Add(int.Parse(_ficha));
+                    CarregaFichas();
+                }
+
+
                 txtFicha.Clear();
                 txtFicha.Focus();
             }

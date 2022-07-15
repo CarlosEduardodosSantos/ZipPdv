@@ -44,7 +44,7 @@ namespace Zip.Pdv
 
             using (var especieAppService = Program.Container.GetInstance<IEspeciePagamentoAppService>())
             {
-                _especies = especieAppService.ObterTodos().ToList();
+                _especies = especieAppService.ObterTodos().Where(t => t.Situacao == 1).ToList();
                 flayoutGrupo.Controls.Clear();
                 foreach (var especiePagamentoViewModel in _especies)
                 {
@@ -52,7 +52,8 @@ namespace Zip.Pdv
                     btnEspecie.Name = especiePagamentoViewModel.EspeciePagamentoId.ToString();
                     btnEspecie.AdicionarEspecie(especiePagamentoViewModel);
                     btnEspecie.SelectItem += xButton1_Click;
-                    btnEspecie.Width = 131;
+                    btnEspecie.Width = 126;
+                    btnEspecie.Height = btnEspecie.Height - 13;
                     flayoutGrupo.Controls.Add(btnEspecie);
                 }
             }
@@ -143,39 +144,54 @@ namespace Zip.Pdv
             if (_especiePagamento == null)
             {
                 TouchMessageBox.Show("Informe a espécie de pagamento", "Finalizar", MessageBoxButtons.OK);
+                btnLancarPgamento.Enabled = true;
                 return;
             }
             var valor = txtValor.ValueNumeric;
+            if (valor == 0)
+            {
+                TouchMessageBox.Show("Informe o valor.", "Finalizar", MessageBoxButtons.OK);
+                btnLancarPgamento.Enabled = true;
+                return;
+            }
 
-            
             if (_especiePagamento.Tef && Program.HabilitaTef)
             {
                 var pdv = Program.InicializacaoViewAux.PdvTef;
                 var codLoja = Program.InicializacaoViewAux.CodigoLoja;
                 var cnpj = Program.InicializacaoViewAux.Cnpj;
 
-                var cartaoResposta = TefTotem.AutomacaoTef.AcionaTef(CartaoTipoOperacaoEnumView.CRT, valor, "1",
-                    _especiePagamento.TipoCartao, pdv, codLoja, cnpj);
-                if (!cartaoResposta.Autorizado)
+                try
                 {
-                    TouchMessageBox.Show(cartaoResposta.Menssagem, "Autoatendimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    btnLancarPgamento.Enabled = true;
-                    return;
+                    var cartaoResposta = TefTotem.AutomacaoTef.AcionaTef(CartaoTipoOperacaoEnumView.CRT, valor, "1",
+                        _especiePagamento.TipoCartao, pdv, codLoja, cnpj);
+                    if (!cartaoResposta.Autorizado)
+                    {
+                        TouchMessageBox.Show(cartaoResposta.Menssagem, "Autoatendimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        btnLancarPgamento.Enabled = true;
+                        return;
+                    }
+                    Pagamentos.Add(new CaixaPagamentoViewModel()
+                    {
+                        CaixaId = Program.CaixaView.CaixaId,
+                        EspeciePagamentoId = _especiePagamento.EspeciePagamentoId,
+                        Especie = _especiePagamento.Especie,
+                        Valor = valor,
+                        Interno = _especiePagamento.Interno,
+                        CodigoFiscal = _especiePagamento.CodigoFiscal,
+                        CartaoResposta = cartaoResposta,
+                        CartaoRespostaGuid = cartaoResposta.CartaoRespostaGuid
+                    });
+
+
+                    CaixaItemView.CartaoRespostas.Add(cartaoResposta);
                 }
-                Pagamentos.Add(new CaixaPagamentoViewModel()
+                catch (Exception exx)
                 {
-                    CaixaId = Program.CaixaView.CaixaId,
-                    EspeciePagamentoId = _especiePagamento.EspeciePagamentoId,
-                    Especie = _especiePagamento.Especie,
-                    Valor = valor,
-                    Interno = _especiePagamento.Interno,
-                    CodigoFiscal = _especiePagamento.CodigoFiscal,
-                    CartaoResposta = cartaoResposta,
-                    CartaoRespostaGuid = cartaoResposta.CartaoRespostaGuid
-                });
 
+                    TouchMessageBox.Show($"Erro TEF {exx.Message}.", "Cartão Consumo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-                CaixaItemView.CartaoRespostas.Add(cartaoResposta);
             }
             else if (_especiePagamento.Vaucher)
             {
@@ -230,7 +246,8 @@ namespace Zip.Pdv
                     });
             }
 
-
+            if (_valorReceber > Pagamentos.Sum(t => t.Valor))
+                btnLancarPgamento.Enabled = true;
 
             LancarPagamento();
         }

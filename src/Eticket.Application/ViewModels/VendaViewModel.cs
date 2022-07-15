@@ -21,6 +21,7 @@ namespace Eticket.Application.ViewModels
         public int CaixaId { get; set; }
         public int ClienteId { get; set; }
         public DateTime DataHora { get; set; }
+        public string HoraPendencia { get; set; }
         public string Tipo { get; set; }
         public string TipoPagamento { get; set; }
         public int UsuarioId { get; set; }
@@ -33,6 +34,7 @@ namespace Eticket.Application.ViewModels
         public string Senha { get; set; }
         public string NumeroFicha { get; set; }
         public string MenssagemSat { get; set; }
+        public int PendenciaId { get; set; }
         public string FichaId { get; set; }
         public int[] Fichas { get; set; }
         public string Estacao { get; set; }

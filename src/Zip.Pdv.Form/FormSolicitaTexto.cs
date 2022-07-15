@@ -14,6 +14,7 @@ namespace Zip.Pdv
         {
             InitializeComponent();
             this.label2.Text = textFrm;
+            
         }
 
         public static string Instace(string textFrm, int lenMin = 0)

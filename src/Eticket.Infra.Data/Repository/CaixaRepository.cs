@@ -59,6 +59,8 @@ namespace Eticket.Infra.Data.Repository
                 conn.Query(sql.ToString(), parans);
                 conn.Close();
             }
+
+            ZeraSenha();
         }
 
         public void Fechar(Caixa caixa)
@@ -203,6 +205,22 @@ namespace Eticket.Infra.Data.Repository
                 conn.Close();
 
                 return caixa;
+            }
+        }
+
+        private void ZeraSenha()
+        {
+
+            using (var conn = Connection)
+            {
+
+                conn.Open();
+                var novaSenha = 0;
+
+                //Incrementa valor
+                conn.Execute("Update configuracoes Set valor = @novaSenha where variavel like 'senha'", new { novaSenha });
+
+                conn.Close();
             }
         }
     }

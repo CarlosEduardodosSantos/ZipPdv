@@ -80,6 +80,7 @@
     <Compile Include="Entity\VendaComplemento.cs" />
     <Compile Include="Entity\VendaItem.cs" />
     <Compile Include="Entity\VendaMeioMeio.cs" />
+    <Compile Include="Entity\VendaPendente.cs" />
     <Compile Include="Entity\VendaProdutoOpcao.cs" />
     <Compile Include="Entity\Vendedor.cs" />
     <Compile Include="Interface\Repository\IDashBoardResumoGeralRepository.cs" />

@@ -16,9 +16,9 @@ namespace Eticket.Application
             _vendaPendenteRepository = vendaPendenteRepository;
         }
 
-        public void Add(VendaViewModel vendaView)
+        public void Add(VendaPendenteViewModel vendaView)
         {
-            var venda = TypeAdapter.Adapt<VendaViewModel, Venda>(vendaView);
+            var venda = TypeAdapter.Adapt<VendaPendenteViewModel, VendaPendente>(vendaView);
             _vendaPendenteRepository.Add(venda);
         }
 
@@ -27,14 +27,14 @@ namespace Eticket.Application
             _vendaPendenteRepository.Dispose();
         }
 
-        public void ImprimePendencia(string pendenciaId)
+        public IEnumerable<VendaPendenteViewModel> ObterPorNome(string nome)
         {
-            _vendaPendenteRepository.ImprimeFichaGr(pendenciaId);
+            return TypeAdapter.Adapt<IEnumerable<VendaPendente>, IEnumerable<VendaPendenteViewModel>>(_vendaPendenteRepository.ObterPorNome(nome));
         }
 
-        public IEnumerable<VendaViewModel> ObterPorNome(string nome)
+        public IEnumerable<VendaPendenteViewModel> ObterTodos()
         {
-            throw new System.NotImplementedException();
+            return TypeAdapter.Adapt<IEnumerable<VendaPendente>, IEnumerable<VendaPendenteViewModel>>(_vendaPendenteRepository.ObterTodos());
         }
 
         public int ObterUltimaSequencia(string nome)
@@ -42,15 +42,33 @@ namespace Eticket.Application
             throw new System.NotImplementedException();
         }
 
-        public bool PendenciaExistente(string nome)
+        public int ObterUltimoNro()
+        {
+            return _vendaPendenteRepository.VendaId();
+        }
+
+        public int PendenciaExistente(string nome)
         {
             return _vendaPendenteRepository.PendenciaExistente(nome);
         }
 
-        public void Remover(VendaViewModel vendaView)
+        public void Remover(int nro)
+        { 
+            _vendaPendenteRepository.Remover(nro);
+        }
+        public bool GeraImpressaoFechamento(int pendenciaId, int tipoOperacao)
         {
-            var venda = TypeAdapter.Adapt<VendaViewModel, Venda>(vendaView);
-            _vendaPendenteRepository.Remover(venda);
+            return _vendaPendenteRepository.GeraImpressaoFechamento(pendenciaId, tipoOperacao);
+        }
+
+        public void NotificarPronto(int nro)
+        {
+            _vendaPendenteRepository.NotificarPronto(nro);
+        }
+
+        public bool GeraImpressaoItem(int pendenciaId, int tipoOperacao)
+        {
+            return _vendaPendenteRepository.GeraImpressaoItem(pendenciaId, tipoOperacao);
         }
     }
 }

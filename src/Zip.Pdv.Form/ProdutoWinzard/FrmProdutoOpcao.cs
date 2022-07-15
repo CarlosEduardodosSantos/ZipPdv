@@ -80,7 +80,7 @@ namespace Zip.Pdv
                 }
             }
 
-            if (!string.IsNullOrEmpty(produtoOpcao.ProdutoPdv) && produtoOpcao.Valor > 0)
+            if (!string.IsNullOrEmpty(produtoOpcao.ProdutoPdv) && produtoOpcao.Valor > 999)
             {
                 var seq = VendaItensAdicionais.Any() ? VendaItensAdicionais.Max(t => t.SeqProduto) + 1 : VendaItem.SeqProduto + 1;
                 VendaItensAdicionais.Add(new VendaItemViewModel()

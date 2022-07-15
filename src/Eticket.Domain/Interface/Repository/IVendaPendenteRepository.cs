@@ -6,11 +6,16 @@ namespace Eticket.Domain.Interface.Repository
 {
     public interface IVendaPendenteRepository : IDisposable
     {
-        void Add(Venda venda);
-        void Remover(Venda venda);
-        IEnumerable<Venda> ObterPorNome(string nome);
+        void Add(VendaPendente venda);
+        void Remover(int Nro);
+        void NotificarPronto(int nro);
+        IEnumerable<VendaPendente> ObterPorNome(string nome);
+        IEnumerable<VendaPendente> ObterTodos();
         int ObterUltimaSequencia(string nome);
-        void ImprimeFichaGr(string pendenciaId);
-        bool PendenciaExistente(string nome);
+        int VendaId();
+  
+        int PendenciaExistente(string nome);
+        bool GeraImpressaoFechamento(int pendenciaId, int tipoOperacao);
+        bool GeraImpressaoItem(int pendenciaId, int tipoOperacao);
     }
 }

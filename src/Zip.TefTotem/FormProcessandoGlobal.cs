@@ -71,8 +71,25 @@ namespace Zip.TefTotem
         {
             _xMotivo = "Iniciando o processo de pagamento, Aguarde...";
             backgroundWorker1.ReportProgress(Convert.ToInt32(1 * 100 / 4));
-
-            var tipoCartao = _cartaoRequisicao.TipoCartao == EspecieCartaoTipoEnumView.CartaoCredito ? TipoOperacaoEnum.VendaCreditoAvista : TipoOperacaoEnum.CartaoDebito;
+            var tipoCartao = TipoOperacaoEnum.VendaCreditoAvista;
+            switch (_cartaoRequisicao.TipoCartao)
+            {
+                case EspecieCartaoTipoEnumView.Nenhum:
+                    tipoCartao = TipoOperacaoEnum.VendaCreditoAvista;
+                    break;
+                case EspecieCartaoTipoEnumView.CartaoDebto:
+                    tipoCartao = TipoOperacaoEnum.CartaoDebito;
+                    break;
+                case EspecieCartaoTipoEnumView.CartaoCredito:
+                    tipoCartao = TipoOperacaoEnum.VendaCreditoAvista;
+                    break;
+                case EspecieCartaoTipoEnumView.VendaVoucher:
+                    tipoCartao = TipoOperacaoEnum.VendaVoucher;
+                    break;
+                default:
+                    tipoCartao = TipoOperacaoEnum.VendaCreditoAvista;
+                    break;
+            }
             var valor = _cartaoRequisicao.Valor;
             var cupom = _cartaoRequisicao.Vinculado;
             var data = $"{DateTime.Now.Year}{DateTime.Now.Month.ToString("d2")}{DateTime.Now.Day.ToString("d2")}";
@@ -172,128 +189,143 @@ namespace Zip.TefTotem
         {
             var retorno = string.Empty;
 
-            while (retorno.Trim() == "")
+            try
             {
-                Thread.Sleep(50);
-                retorno = _tefTotem.IAguardaFuncaoMCInterativo();
-
-                if (_isCancel)
+                while (retorno.Trim() == "")
                 {
+                    Thread.Sleep(50);
+                    retorno = _tefTotem.IAguardaFuncaoMCInterativo();
 
-                    CartaoRespostaView.Menssagem = "Operação cancelada pelo cliente.";
-                    _tefTotem.IContinuaFuncaoMCInterativo("ABORTAR");
+                    if (_isCancel)
+                    {
+
+                        CartaoRespostaView.Menssagem = "Operação cancelada pelo cliente.";
+                        _tefTotem.IContinuaFuncaoMCInterativo("ABORTAR");
+
+                    }
 
                 }
 
-            }
 
 
+                var sDadosPergunta = string.Empty;
 
-            var sDadosPergunta = string.Empty;
+                var arr = retorno.Split('#');
+                switch (arr[0])
+                {
+                    case "[RETORNO]":
+                    case "[RETORNO]Â":
+                        btnCancelar.Enabled = false;
+                        CartaoRespostaView.Autorizado = true;
+                        CartaoRespostaView.Bandeira = arr[3].Replace("CAMPO0132=", "");
+                        CartaoRespostaView.CodigoNsu = arr[6].Replace("CAMPO0133=", "");
+                        CartaoRespostaView.CnpjRede = arr[12].Replace("CAMPO1003=", "");
+                        CartaoRespostaView.NumeroCartao = arr[11].Replace("CAMPO0950=", "");
+                        CartaoRespostaView.CodigoAutorizacao = arr[5].Replace("CAMPO0135=", "");
+                        CartaoRespostaView.Requisicao = 0;
 
-            var arr = retorno.Split('#');
-            switch (arr[0])
-            {
-                case "[RETORNO]":
-                case "[RETORNO]Â":
-                    btnCancelar.Enabled = false;
-                    CartaoRespostaView.Autorizado = true;
-                    CartaoRespostaView.Bandeira = arr[3].Replace("CAMPO0132=", "");
-                    CartaoRespostaView.CodigoNsu = arr[6].Replace("CAMPO0133=", ""); 
-                    CartaoRespostaView.CnpjRede = arr[12].Replace("CAMPO1003=", ""); 
-                    CartaoRespostaView.NumeroCartao = arr[11].Replace("CAMPO0950=", ""); 
-                    CartaoRespostaView.CodigoAutorizacao = arr[5].Replace("CAMPO0135=", "");
-                    CartaoRespostaView.Requisicao = 0;
+                        var sComprovante = arr[15].Replace("CAMPO122=", "");
+                        arr = sComprovante.Split('|');
+                        sComprovante = "";
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            if (arr[i] == "CORTAR")
+                            {
+                                sComprovante += Environment.NewLine;
+                                CartaoRespostaView.Comprovantes.Add(new ComprovanteTef { Comprovante = sComprovante });
+                                sComprovante = string.Empty;
+                            }
+                            else
+                                sComprovante = sComprovante + arr[i] + Environment.NewLine;
+                        }
 
-                    var sComprovante = arr[15].Replace("CAMPO122=", "");
-                    arr = sComprovante.Split('|');
-                    sComprovante = "";
-                    for (int i = 0; i < arr.Length; i++)
-                    {
-                        sComprovante = sComprovante + arr[i] + Environment.NewLine;
-                    }
+                        CartaoRespostaView.Comprovante = sComprovante;
+                        CartaoRespostaView.Comprovantes.Add(new ComprovanteTef { Comprovante = sComprovante });
+                        CartaoRespostaView.Valor = _cartaoRequisicao.Valor;
+                        CartaoRespostaView.Requisicao = _cartaoRequisicao.Requisicao;
 
-                    CartaoRespostaView.Comprovante = sComprovante;
-                    CartaoRespostaView.Comprovantes.Add(new ComprovanteTef { Comprovante = sComprovante });
-                    CartaoRespostaView.Valor = _cartaoRequisicao.Valor;
-                    CartaoRespostaView.Requisicao = _cartaoRequisicao.Requisicao;
+                        var valor = _cartaoRequisicao.Valor;
+                        var cupom = _cartaoRequisicao.Vinculado;
+                        var data = $"{DateTime.Now.Year}{DateTime.Now.Month.ToString("d2")}{DateTime.Now.Day.ToString("d2")}";
+                        var cnpj = _cartaoRequisicao.EmpresaCnpj;
+                        var nsu = _cartaoRequisicao.CodigoNsu ?? "";
+                        var codLoja = _cartaoRequisicao.CodigoLoja;
+                        var pdv = _cartaoRequisicao.Pdv;
 
-                    var valor = _cartaoRequisicao.Valor;
-                    var cupom = _cartaoRequisicao.Vinculado;
-                    var data = $"{DateTime.Now.Year}{DateTime.Now.Month.ToString("d2")}{DateTime.Now.Day.ToString("d2")}";
-                    var cnpj = _cartaoRequisicao.EmpresaCnpj;
-                    var nsu = _cartaoRequisicao.CodigoNsu ?? "";
-                    var codLoja = _cartaoRequisicao.CodigoLoja;
-                    var pdv = _cartaoRequisicao.Pdv;
-                    
-                    _tefTotem.IFinalizaFuncaoMCInterativo(98, cnpj, 1, cupom, valor.ToString("N2"), nsu, data, pdv, codLoja, 0);
+                        _tefTotem.IFinalizaFuncaoMCInterativo(98, cnpj, 1, cupom, valor.ToString("N2"), nsu, data, pdv, codLoja, 0);
 
-                    _xMotivo = "Transação aprovada, aguarde a impressão do comprovante";
-                    backgroundWorker1.ReportProgress(Convert.ToInt32(4 * 100 / 4));
-                    break;
+                        _xMotivo = "Transação aprovada, aguarde a impressão do comprovante";
+                        backgroundWorker1.ReportProgress(Convert.ToInt32(4 * 100 / 4));
+                        break;
 
-                case "[MSG]":
-                case "[MSG]Â":
+                    case "[MSG]":
+                    case "[MSG]Â":
 
-                    if (arr[1] != "REDE-REDE")
-                        _xMotivo = arr[1].Replace("Â", "");
+                        if (arr[1] != "REDE-REDE")
+                            _xMotivo = arr[1].Replace("Â", "");
 
-                    _vRet = int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("OK"));
-                    backgroundWorker1.ReportProgress(Convert.ToInt32(2 * 100 / 4));
-                    ContinuaDLL();
-                    break;
-                case "[MENU]":
-                case "[MENU]Â":
-                   // _xMotivo = arr[1].Replace("Â", "");
-
-                    if (arr[1] == "TIPO DE FINANCIAMENTO")
-                        _vRet = int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("1"));
-                    else
                         _vRet = int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("OK"));
-                    backgroundWorker1.ReportProgress(Convert.ToInt32(2 * 100 / 4));
-
-                    ContinuaDLL();
-                    break;
-                case "[ERROABORTAR]":
-                case "[ERROABORTAR]Â":
-                    _xMotivo = arr[1].Replace("Â", "");
-                    int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("OK"));
-                    CartaoRespostaView.Menssagem = _xMotivo;
-                    backgroundWorker1.ReportProgress(Convert.ToInt32(4 * 100 / 4));
-                    break;
-                case "[ERRODISPLAY]":
-                case "[ERRODISPLAY]Â":
-                    _xMotivo = arr[1].Replace("Â", "");
-                    CartaoRespostaView.Menssagem = _xMotivo;
-                    int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("OK"));
-                   
-                    backgroundWorker1.ReportProgress(Convert.ToInt32(4 * 100 / 4));
-                    break;
-                case "[PERGUNTA]":
-                case "[PERGUNTA]Â":
-                    {
-                        sDadosPergunta = arr[1] + Environment.NewLine + Environment.NewLine;
-
-
-                        sDadosPergunta = sDadosPergunta + "TIPO DE DADO: " + arr[2] + Environment.NewLine;
-                        sDadosPergunta = sDadosPergunta + "TAM. MINIMO: " + arr[3] + Environment.NewLine;
-                        sDadosPergunta = sDadosPergunta + "TAM. MAXIMO: " + arr[4] + Environment.NewLine;
-                        sDadosPergunta = sDadosPergunta + "VALOR. MINIMO: " + arr[5] + Environment.NewLine;
-                        sDadosPergunta = sDadosPergunta + "VALOR. MAXIMO: " + arr[6] + Environment.NewLine;
-                        sDadosPergunta = sDadosPergunta + "CASAS DECIMAIS: " + arr[7] + Environment.NewLine;
-                        //TODO: rever
-                        sDadosPergunta = sDadosPergunta.Replace("Â", "");
-
-
-                        _xMotivo = arr[1].Replace("Â", "");
                         backgroundWorker1.ReportProgress(Convert.ToInt32(2 * 100 / 4));
-                        _vRet = int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("OK"));
                         ContinuaDLL();
                         break;
-                    }
+                    case "[MENU]":
+                    case "[MENU]Â":
+                        // _xMotivo = arr[1].Replace("Â", "");
+
+                        if (arr[1] == "TIPO DE FINANCIAMENTO")
+                            _vRet = int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("1"));
+                        else
+                            _vRet = int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("OK"));
+                        backgroundWorker1.ReportProgress(Convert.ToInt32(2 * 100 / 4));
+
+                        ContinuaDLL();
+                        break;
+                    case "[ERROABORTAR]":
+                    case "[ERROABORTAR]Â":
+                        _xMotivo = arr[1].Replace("Â", "");
+                        int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("OK"));
+                        CartaoRespostaView.Menssagem = _xMotivo;
+                        backgroundWorker1.ReportProgress(Convert.ToInt32(4 * 100 / 4));
+                        break;
+                    case "[ERRODISPLAY]":
+                    case "[ERRODISPLAY]Â":
+                        _xMotivo = arr[1].Replace("Â", "");
+                        CartaoRespostaView.Menssagem = _xMotivo;
+                        int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("OK"));
+
+                        backgroundWorker1.ReportProgress(Convert.ToInt32(4 * 100 / 4));
+                        break;
+                    case "[PERGUNTA]":
+                    case "[PERGUNTA]Â":
+                        {
+                            sDadosPergunta = arr[1] + Environment.NewLine + Environment.NewLine;
 
 
+                            sDadosPergunta = sDadosPergunta + "TIPO DE DADO: " + arr[2] + Environment.NewLine;
+                            sDadosPergunta = sDadosPergunta + "TAM. MINIMO: " + arr[3] + Environment.NewLine;
+                            sDadosPergunta = sDadosPergunta + "TAM. MAXIMO: " + arr[4] + Environment.NewLine;
+                            sDadosPergunta = sDadosPergunta + "VALOR. MINIMO: " + arr[5] + Environment.NewLine;
+                            sDadosPergunta = sDadosPergunta + "VALOR. MAXIMO: " + arr[6] + Environment.NewLine;
+                            sDadosPergunta = sDadosPergunta + "CASAS DECIMAIS: " + arr[7] + Environment.NewLine;
+                            //TODO: rever
+                            sDadosPergunta = sDadosPergunta.Replace("Â", "");
+
+
+                            _xMotivo = arr[1].Replace("Â", "");
+                            backgroundWorker1.ReportProgress(Convert.ToInt32(2 * 100 / 4));
+                            _vRet = int.Parse(_tefTotem.IContinuaFuncaoMCInterativo("OK"));
+                            ContinuaDLL();
+                            break;
+                        }
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao gravar a resposta do cartão", "MultPlus Card", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                _tefTotem.ICancelarFluxoMCInterativo();
+            }
+           
 
 
         }

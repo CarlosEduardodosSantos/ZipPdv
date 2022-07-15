@@ -26,6 +26,7 @@ namespace Eticket.Domain.Entity
         public Delivery Delivery { get; set; }
         public bool IsDelivery { get; set; }
         public string ClientePendencia { get; set; }
+        public int PendenciaId { get; set; }
         public string FichaId { get; set; }
         public int[] Fichas { get; set; }
 

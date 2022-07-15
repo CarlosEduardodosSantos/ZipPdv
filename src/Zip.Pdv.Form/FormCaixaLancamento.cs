@@ -11,24 +11,24 @@ using Zip.Pdv.Fast;
 
 namespace Zip.Pdv
 {
-    public partial class FormCaixaFechamento : Form
+    public partial class FormCaixaLancamento : Form
     {
         private decimal _valorReceber;
-        public List<CaixaFechamentoViewModel> Pagamentos;
+        public List<CaixaPagamentoViewModel> Pagamentos;
         private readonly ICaixaItemAppService _caixaItemAppService;
         private EspeciePagamentoViewModel _especiePagamento;
         private CaixaViewModel caixaView;
-        public FormCaixaFechamento()
+        public FormCaixaLancamento()
         {
             InitializeComponent();
-            Pagamentos = new List<CaixaFechamentoViewModel>();
+            Pagamentos = new List<CaixaPagamentoViewModel>();
             _especiePagamento = new EspeciePagamentoViewModel();
             _caixaItemAppService = Program.Container.GetInstance<ICaixaItemAppService>();
-             caixaView = Program.CaixaView;
+            caixaView = Program.CaixaView;
         }
         private void FormCaixaFechamento_Load(object sender, System.EventArgs e)
         {
-            
+
 
             CarregaEspecies();
             TotalizaPagamento();
@@ -95,36 +95,27 @@ namespace Zip.Pdv
 
         private void btnLancarPgamento_Click(object sender, EventArgs e)
         {
-            if (_especiePagamento.EspeciePagamentoId == 0)
+            if (_especiePagamento == null)
             {
                 TouchMessageBox.Show("Informe a espécie de pagamento", "Finalizar", MessageBoxButtons.OK);
                 return;
             }
             var valor = txtValor.ValueNumeric;
-            if (valor == 0)
-            {
-                TouchMessageBox.Show("Informe o valor.", "Finalizar", MessageBoxButtons.OK);
-                return;
-            }
-            
-
-            var caixaItens = _caixaItemAppService.ObterPorCaixaId(caixaView.CaixaId);
 
             if (Pagamentos.Any(t => t.Especie == _especiePagamento.Especie))
                 Pagamentos.FirstOrDefault(t => t.Especie == _especiePagamento.Especie).Valor += valor;
-
-            var totalEspecie = caixaItens.Sum(t => t.CaixaPagamentos.Where(w => w?.EspeciePagamentoId == _especiePagamento.EspeciePagamentoId).Sum(y => y.Valor));
-            var divergencia = totalEspecie - valor;
-            Pagamentos.Add(new CaixaFechamentoViewModel()
+            else
             {
-                CaixaId = caixaView.CaixaId,
-                EspeciePagamentoId = _especiePagamento.EspeciePagamentoId,
-                Especie = _especiePagamento.Especie,
-                Valor = valor,
-                Divergencia = divergencia
-            });
-
-
+                Pagamentos.Add(new CaixaPagamentoViewModel()
+                {
+                    CaixaId = caixaView.CaixaId,
+                    EspeciePagamentoId = _especiePagamento.EspeciePagamentoId,
+                    Especie = _especiePagamento.Especie,
+                    Valor = valor,
+                    CodigoFiscal = _especiePagamento.CodigoFiscal,
+                    Interno = _especiePagamento.Interno
+                });
+            }
             LancarPagamento();
         }
 
@@ -134,7 +125,7 @@ namespace Zip.Pdv
             foreach (var pdvPagamento in Pagamentos)
             {
                 var resumoItem = new UcPdvItem();
-                resumoItem.AdicionarCaixaFechamento(pdvPagamento);
+                resumoItem.AdicionarCaixaPagamento(pdvPagamento);
                 resumoItem.Dock = DockStyle.Top;
                 resumoItem.Click += ResumoItem_Click;
 
@@ -150,7 +141,7 @@ namespace Zip.Pdv
         private void ResumoItem_Click(object sender, EventArgs e)
         {
             var item = (UcPdvItem)sender;
-            var caixaFechamento = (CaixaFechamentoViewModel) item.CaixaSource;
+            var caixaFechamento = (CaixaPagamentoViewModel)item.CaixaSource;
             if (Pagamentos.Any(t => t.Especie == caixaFechamento.Especie))
             {
 
@@ -212,28 +203,58 @@ namespace Zip.Pdv
             try
             {
                 btnPagar.Enabled = false;
-                using (var caixAppService = Program.Container.GetInstance<ICaixaAppService>())
+                var caixaItem = new CaixaItemViewModel();
+                var totalEspecie = Pagamentos.Sum(y => y.Valor);
+
+                using (var caixaApp = Program.Container.GetInstance<ICaixaItemAppService>())
                 {
-                    caixaView.CaixaFechamentos = Pagamentos;
+                    var operacao = rbSuprimento.Checked ? "SUPRIMENTO" : "SANGRIA";
+                    caixaItem = new CaixaItemViewModel()
+                    {
+                        CaixaId = Program.CaixaView.CaixaId,
 
-                    caixaView.UsuarioFinalId = Program.Usuario.UsuarioId;
+                        UsuarioId = Program.Usuario.UsuarioId,
+                        DataHora = DateTime.Now,
+                        Valor = rbSuprimento.Checked ? totalEspecie : (-1) * totalEspecie,
+                        TipoLancamento = rbSuprimento.Checked ? "SU" : "SA",
+                        Historico = $"{operacao} FEITO PELO USR:{Program.Usuario.Nome}"
+                    };
 
-                    caixAppService.Fechar(caixaView);
+                    foreach (var especie in Pagamentos)
+                    {
+                        caixaItem.CaixaPagamentos.Add(new CaixaPagamentoViewModel()
+                        {
+                            Especie = especie.Especie,
+                            Valor = rbSuprimento.Checked ? especie.Valor : (-1) * especie.Valor,
+                            EspeciePagamentoId = especie.EspeciePagamentoId,
+                            Interno = especie.Interno,
+                            CodigoFiscal = especie.CodigoFiscal
+                        });
+
+                    }
+
+
+                    caixaApp.Adicionar(caixaItem);
+
+                    /*
+                 Imprime Fechamento do caixa
+                 */
+                    var parms = new ParameterReportDynamic();
+                    parms.Add("caixaId", caixaView.CaixaId);
+                    parms.Add("Operacao", operacao);
+                    parms.Add("Operador", Program.Usuario.Nome);
+
+                    var list = new List<CaixaItemViewModel>();
+                    list.Add(caixaItem);
+                    var report = new RelatorioFastReport();
+                    report.GerarRelatorioByList("Imp_CaixaLancamento", parms, list);
+
+
+                    TouchMessageBox.Show("Lançamento efetuado com sucesso!", "Lançamento de caixa", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
 
 
-                /*
-                 Imprime Fechamento do caixa
-                 */
-                var parms = new ParameterReportDynamic();
-                parms.Add("caixaId", caixaView.CaixaId);
-
-                var report = new RelatorioFastReport();
-                report.GerarRelatorio("Imp_FechamentoCaixa", parms);
-
-
-                TouchMessageBox.Show("Caixa fechado com sucesso!", "Fechamento de caixa", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
 
                 this.DialogResult = DialogResult.OK;
 
@@ -242,13 +263,13 @@ namespace Zip.Pdv
             catch (Exception ex)
             {
 
-                TouchMessageBox.Show("Erro ao fechar o caixa.\nPara mais informações consulte o suporte!", "Fechamento de caixa", MessageBoxButtons.OK,
+                TouchMessageBox.Show("Erro ao efetuar o lançamento no caixa.\nPara mais informações consulte o suporte!", "Fechamento de caixa", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 Program.GravaLog(ex.Message);
 
                 btnPagar.Enabled = true;
             }
-                       
+
         }
     }
 }

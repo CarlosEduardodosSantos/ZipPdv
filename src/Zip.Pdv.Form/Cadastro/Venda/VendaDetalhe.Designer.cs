@@ -1022,12 +1022,12 @@
             this.imprimirGerencialToolStripMenuItem,
             this.impremirFiscalToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
             // imprimirGerencialToolStripMenuItem
             // 
             this.imprimirGerencialToolStripMenuItem.Name = "imprimirGerencialToolStripMenuItem";
-            this.imprimirGerencialToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.imprimirGerencialToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.imprimirGerencialToolStripMenuItem.Text = "Imprimir Gerencial";
             this.imprimirGerencialToolStripMenuItem.Click += new System.EventHandler(this.imprimirGerencialToolStripMenuItem_Click);
             // 
@@ -1037,7 +1037,7 @@
             this.imprimirToolStripMenuItem,
             this.reimprimirComprovanteToolStripMenuItem});
             this.impremirFiscalToolStripMenuItem.Name = "impremirFiscalToolStripMenuItem";
-            this.impremirFiscalToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.impremirFiscalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.impremirFiscalToolStripMenuItem.Text = "Fiscal";
             // 
             // imprimirToolStripMenuItem
@@ -1052,6 +1052,7 @@
             this.reimprimirComprovanteToolStripMenuItem.Name = "reimprimirComprovanteToolStripMenuItem";
             this.reimprimirComprovanteToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.reimprimirComprovanteToolStripMenuItem.Text = "Reimprimir comprovante";
+            this.reimprimirComprovanteToolStripMenuItem.Click += new System.EventHandler(this.reimprimirComprovanteToolStripMenuItem_Click);
             // 
             // VendaDetalhe
             // 
