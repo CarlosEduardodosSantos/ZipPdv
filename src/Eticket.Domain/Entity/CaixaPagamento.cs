@@ -13,5 +13,6 @@ namespace Eticket.Domain.Entity
         public decimal Valor { get; set; }
         public string Interno { get; set; }
         public string CodigoFiscal { get; set; }
+        public string Vaucher { get; set; }
     }
 }

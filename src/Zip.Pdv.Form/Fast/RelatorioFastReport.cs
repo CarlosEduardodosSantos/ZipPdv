@@ -235,7 +235,6 @@ namespace Zip.Pdv.Fast
                     break;
             }
         }
-
         public void GerarRelatorioByList<T>(string nameFrx, ParameterReportDynamic parameterReport, List<T> models)
         {
             var report = new Report();

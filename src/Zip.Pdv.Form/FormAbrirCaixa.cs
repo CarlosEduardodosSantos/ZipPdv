@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
+using Zip.Pdv.Component;
 
 namespace Zip.Pdv
 {
@@ -73,6 +74,21 @@ namespace Zip.Pdv
                     caixaApp.Adicionar(caixaItem);
                 }
             }
+            if (Program.InicializacaoViewAux.HabZerarSenha)
+            {
+                var result = TouchMessageBox.Show("Deseja zerar sequência de senhas?", "Zerar senha",
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (result == DialogResult.OK)
+                {
+                    using (var configuracaoAppService = Program.Container.GetInstance<IConfiguracaoSistemaAppService>())
+                    {
+                        configuracaoAppService.ZerarSenha();
+                    }
+                }
+
+            }
+
             _caixaAberto = true;
 
             Close();

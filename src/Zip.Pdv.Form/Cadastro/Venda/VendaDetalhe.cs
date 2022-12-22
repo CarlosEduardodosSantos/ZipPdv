@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Eticket.Application.CartaoConsumo;
 using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
 using Zip.Pdv.Component;
@@ -55,7 +56,7 @@ namespace Zip.Pdv.Cadastro.Venda
 
             lbDesconto.Text = _vendaView.VendaItens.Sum(t => t.Desconto).ToString("C2");
             lbTaxa.Text = _vendaView.Delivery.TaxaEntrega.ToString("C2");
-            lbValorTotal.Text = _vendaView.ValorTotal.ToString("C2");
+            lbValorTotal.Text = _vendaView.ValorCompra.ToString("C2");
 
 
             dgvVendaItens.AutoGenerateColumns = false;
@@ -162,8 +163,23 @@ namespace Zip.Pdv.Cadastro.Venda
                         }
                     }
                 }
+                //Verifica se pagamento foi Vaucher
+                using (var caixaItemAppService = Program.Container.GetInstance<ICaixaItemAppService>())
+                {
+                    var pagamentos = caixaItemAppService.ObterPagamentoPorVendaId(_vendaView.VendaId);
+                    var user = Program.Usuario.Nome;
+                    foreach (var item in pagamentos)
+                    {
+                        var cartaoConsumoView = CartaoConsumoAppService.EstornaMovimentacao(item.CartaoRespostaGuid, user, item.Valor, motivo);
+                        if (cartaoConsumoView.error)
+                        {
+                            Funcoes.MensagemError($"{cartaoConsumoView.message}\nVenda não pode ser cancelada, pois ocorreu um erro ao estornar o cartão consumo.\n Consulte o suporte para mais informações.");
+                            return;
+                        }
+                    }
+                }
 
-                using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
+                    using (var vendaApp = Program.Container.GetInstance<IVendaAppService>())
                 {
                     vendaApp.Cancelar(_vendaView, motivo);
                 }

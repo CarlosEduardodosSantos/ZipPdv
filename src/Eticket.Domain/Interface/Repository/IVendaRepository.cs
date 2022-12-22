@@ -18,5 +18,6 @@ namespace Eticket.Domain.Interface
         IEnumerable<Venda> ObterPendenteSat(DateTime dataInicio, DateTime dataFinal, int pdv);
         IEnumerable<Venda> ObterNroSat(string nroSat);
         Venda ObterPorId(int vendaId);
+        string ObterSenha();
     }
 }

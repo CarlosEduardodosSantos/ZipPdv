@@ -13,11 +13,14 @@
         public int CedenteId { get; set; }
         public bool ModoPdv { get; set; }
         public bool HabSenhaPager { get; set; }
+        public bool PerguntaMesaBalcao { get; set; }
         public bool BalancaDigitada { get; set; }
         public string CodigoLoja { get; set; }
         public string Cnpj { get; set; }
         public string Pdv { get; set; }
         public string PdvTef { get; set; }
         public int RestauranteId { get; set; }
+        public bool CalculaValoresMeioMeio { get; set; }
+        public bool HabZerarSenha { get; set; }
     }
 }

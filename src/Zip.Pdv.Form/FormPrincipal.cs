@@ -1,4 +1,5 @@
-﻿using Eticket.Application.Interface;
+﻿using Eticket.Application;
+using Eticket.Application.Interface;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -43,6 +44,25 @@ namespace Zip.Pdv
                 if (dirAdmVenda)
                     splitBtnConfigure.AddDropDownItemAndHandle("Venda ADM", btnVendaAdm_Click);
 
+            }
+
+            //Valida Data Hora
+            using (var dataHoraAtualAppService = Program.Container.GetInstance<IDataHoraAtualAppService>())
+            {
+                try
+                {
+                    var datahoraDispositivo = DateTime.Now;
+                    var datahoraViewModel = dataHoraAtualAppService.ConsultaDataHora();
+
+                    if (datahoraDispositivo.Date != datahoraViewModel.datetime.Date)
+                        TouchMessageBox.Show("Verifique a data do seu dispositivo.\nVerifique ou entre em contato com o suporte.", "Validação data",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                catch
+                {
+                    //Ignore
+                }
             }
 
 

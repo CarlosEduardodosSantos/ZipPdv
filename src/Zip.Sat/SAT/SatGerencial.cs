@@ -29,6 +29,7 @@ namespace SAT
         Random rdn = new Random();
         string mMessageClient = string.Empty;
         string mMsg = "";
+        string senha = "";
 
         public string NomeImpressora { get; set; }
         public string ArquivoXML { get; set; }
@@ -382,14 +383,19 @@ namespace SAT
                     
                     mMsg = string.Empty;
 
+                    mMsg += "Venda: " + _venda.VendaID.ToString();
+
                     if (!string.IsNullOrEmpty(_venda.SenhaPainel))
-                        mMsg = "SENHA: " + _venda.SenhaPainel.Trim();
-                    mMsg += "CLIENTE: " + _venda.ClienteNome.Trim();
-                    mMsg += "|Venda: " + _venda.VendaID.ToString();
+                    {
+                        senha = _venda.SenhaPainel;
+                    }
+                     
+                    if (!string.IsNullOrEmpty(_venda.ClienteNome.Trim()))
+                        mMsg += "|Cliente: " + _venda.ClienteNome.Trim();
                     mMsg += "|ICMS a ser recolhido conforme LC 123/2006";
                     mMsg += "|Simples Nacional";
                     mMsg += "|Trib aprox R$" + impostoIbptFederalTotal.ToString("N2").Replace(".", "#").Replace(",", ".").Replace("#", "") + " Federal e R$" + impostoIbptEstadualTotal.ToString("N2").Replace(".", "#").Replace(",", ".").Replace("#", "") + " Estadual|Fonte IBPT ca7gi3";
-                    if (Global.ConfiguracaoInicial.SatMarca == "Gertec" || Global.ConfiguracaoInicial.SatMarca == "Sweda")
+                    if (Global.ConfiguracaoInicial.SatMarca == "Gertec" || Global.ConfiguracaoInicial.SatMarca == "Sweda"  || Global.ConfiguracaoInicial.SatMarca == "ControliD")
                         mMsg = mMsg.Replace("|", ";");
                     if (Global.ConfiguracaoInicial.SatMarca == "Emulador")
                         sb.Append("<infCpl>Trib aprox R$" + impostoIbptFederalTotal.ToString("N2").Replace(".", "#").Replace(",", ".").Replace("#", "") + " Federal e R$" + impostoIbptEstadualTotal.ToString("N2").Replace(".", "#").Replace(",", ".").Replace("#", "") + " Estadual - Fonte IBPT ca7gi3</infCpl>");
@@ -1025,6 +1031,9 @@ namespace SAT
             float Font_Tamanho2_negrito = 10;
             Font Font2_negrito = new Font("arial", Font_Tamanho2_negrito, FontStyle.Bold);
 
+            float Font_Tamanho3_negrito = 14;
+            Font Font3_negrito = new Font("arial", Font_Tamanho3_negrito, FontStyle.Bold);
+
             int _posicaoBlocoFinalY = 0;
             int _posicaoColunaInicial = 0;
 
@@ -1521,6 +1530,9 @@ namespace SAT
 
             g.DrawString(_separador, FontCourier, Brushes.Black, new PointF(_posicaoColunaInicial, _posicaoBlocoFinalY = _posicaoBlocoFinalY + 5));
 
+            g.DrawString(" SENHA Nº  " + senha, Font3_negrito, Brushes.Black, new PointF(_posicaoColunaInicial + 80, _posicaoBlocoFinalY = _posicaoBlocoFinalY + 14));
+
+            //g.DrawString(_separador, FontCourier, Brushes.Black, new PointF(_posicaoColunaInicial, _posicaoBlocoFinalY = _posicaoBlocoFinalY + 5));
 
             #endregion
 
@@ -1528,8 +1540,8 @@ namespace SAT
 
             try
             {
-                g.DrawString(" SAT Nº  " + _NumeroSerieSAT, Font1_negrito, Brushes.Black, new PointF(_posicaoColunaInicial + 90, _posicaoBlocoFinalY = _posicaoBlocoFinalY + 15));
-                g.DrawString(FormataDataHoraSDF(_DataHora), FontCourier, Brushes.Black, new PointF(_posicaoColunaInicial + 90, _posicaoBlocoFinalY = _posicaoBlocoFinalY + 10));
+                g.DrawString(" SAT Nº  " + _NumeroSerieSAT, Font1_negrito, Brushes.Black, new PointF(_posicaoColunaInicial + 90, _posicaoBlocoFinalY = _posicaoBlocoFinalY + 18));
+                g.DrawString(FormataDataHoraSDF(_DataHora), Font1_negrito, Brushes.Black, new PointF(_posicaoColunaInicial + 90, _posicaoBlocoFinalY = _posicaoBlocoFinalY + 18));
                 g.DrawString(_strChaveAcessoLeituraHumana, Font11_negrito, Brushes.Black, new PointF(_posicaoColunaInicial, _posicaoBlocoFinalY = _posicaoBlocoFinalY + 10));
                 g.DrawImage(GerarEAN128(30, 30, _strChaveAcesso), new Rectangle(_posicaoColunaInicial, _posicaoBlocoFinalY = _posicaoBlocoFinalY + 10, 270, 40));
                 g.DrawImage(GerarQRCode(80, 80, _strChaveAcesso + @"|" + _DataHora + "|" + _ValorTotalCFe + "|" + _NFP + "|" + _AssinaturaQRcode), new Rectangle(_posicaoColunaInicial + 65, _posicaoBlocoFinalY = _posicaoBlocoFinalY + 40, 160, 160));

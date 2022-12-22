@@ -44,8 +44,9 @@ namespace Eticket.Application.ViewModels
         public DeliveryViewModel Delivery { get; set; }
         public bool IsDelivery { get; set; }
         public string ClientePendencia { get; set; }
+        public decimal SaldoConsumo { get; set; }
         public decimal ValorTotal {
-            get { return VendaItens.Sum(t => t.SubTotal); }
+            get { return VendaItens.Sum(t => t.SubTotal - t.Desconto) + Delivery.TaxaEntrega; }
         }
         public decimal ValorFinal
         {

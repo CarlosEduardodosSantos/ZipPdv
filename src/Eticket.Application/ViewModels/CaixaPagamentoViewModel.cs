@@ -17,6 +17,8 @@ namespace Eticket.Application.ViewModels
         public decimal Valor { get; set; }
         public string Interno { get; set; }
         public string CodigoFiscal { get; set; }
+        public string Vaucher { get; set; }
         public CartaoRespostaViewModel CartaoResposta { get; set; }
+        public ClienteViewModel Cliente { get; set; }
     }
 }

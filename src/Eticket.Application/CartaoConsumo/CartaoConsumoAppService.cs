@@ -42,6 +42,36 @@ namespace Eticket.Application.CartaoConsumo
                 }
             }
         }
+        public static RespostaGenericaViewModel EstornaMovimentacao(Guid movId, string usuario,
+            decimal valor, string historico)
+        {
+            /*var cartaoMovViewModel = new CartaoConsumoMov()
+            {
+                NumeroCartao = numeroCartao,
+                DataMov = DateTime.Now,
+                Valor = valor,
+                RestauranteId = restauranteId,
+                Historico = historico
+            };
+            var cartaoMovJdon = JsonConvert.SerializeObject(cartaoMovViewModel);
+            var httpContent = new StringContent(cartaoMovJdon, Encoding.UTF8, "application/json");
+             */
 
+
+            using (var client = new HttpClient())
+            {
+                var response = client.DeleteAsync($"http://api.zclub.com.br/api/CartaoConsumo/deletarMov/{movId}/{usuario}");
+                if (response.Result.IsSuccessStatusCode)
+                {
+                    var xml = response.Result.Content.ReadAsStringAsync().Result;
+                    var result = JsonConvert.DeserializeObject<RespostaGenericaViewModel>(xml);
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response?.Exception?.Message);
+                }
+            }
+        }
     }
 }

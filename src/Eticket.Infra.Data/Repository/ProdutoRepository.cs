@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Dapper;
@@ -57,7 +58,7 @@ namespace Eticket.Infra.Data.Repository
             }
         }
 
-        public IEnumerable<Produto> GetByGrupoId(int grupoId)
+        public IEnumerable<Produto> GetByGrupoId(int grupoId, int lojaId)
         {
             using (var cn = Connection)
             {
@@ -71,10 +72,12 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.USABALANCA as ParaBalanca, " +
                           " Prod.QuantidadeFixo as QuantidadeFixo, " +
                           " pdvGrupoItens.HabProd as Visivel " +
-                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  Where idPdvGrupo = @grupoId";
+                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  " +
+                          " Where  idPdvGrupo = @grupoId And (@lojaId = 0 Or Isnull(hab_loja"+lojaId +",1) = 1)";
 
                 cn.Open();
-                var produto = cn.Query<Produto>(sql, new { grupoId });
+                var produto = cn.Query<Produto>(sql, new { grupoId, lojaId });
+
                 cn.Close();
 
                 return produto;
@@ -87,7 +90,7 @@ namespace Eticket.Infra.Data.Repository
             {
                 var sql = "Select Prod.Codigo as ProdutoId, " +
                           " Prod.Tipo as ProdutoTipo, " +
-                          " pdvGrupoItens.idPdvGrupo as GrupoId, " +
+                          "  Prod.Grupo as GrupoId,  " +
                           " Prod.Unidade, " +
                           " Prod.DES_ as Descricao, " +
                           " Prod.VLVENDA as ValorVenda, " +
@@ -116,8 +119,8 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.USABALANCA as ParaBalanca, " +
                           " Prod.QuantidadeFixo as QuantidadeFixo, " +
                           " pdvGrupoItens.HabProd as Visivel " +
-                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  Where Prod.Codigo In (" +
-                          "Select COD_PRODUTO From PROD_BARRA Where COD_BARRA = @ean)";
+                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  " +
+                          "Where Prod.Codigo In (Select COD_PRODUTO From PROD_BARRA Where COD_BARRA = @ean)";
 
                 cn.Open();
                 var produto = cn.Query<Produto>(sql, new { ean });
@@ -141,7 +144,8 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.USABALANCA as ParaBalanca, " +
                           " Prod.QuantidadeFixo as QuantidadeFixo, " +
                           " pdvGrupoItens.HabProd as Visivel " +
-                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  Where Prod.DES_ Like '%'+ @nome + '%'";
+                          "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  " +
+                          "Where Prod.DES_ Like '%'+ @nome + '%'";
 
                 cn.Open();
                 var produto = cn.Query<Produto>(sql, new { nome });
@@ -310,6 +314,40 @@ namespace Eticket.Infra.Data.Repository
 
                 cn.Open();
                 var produto = cn.Query<Produto>(sql, new { grupoId });
+                cn.Close();
+
+                return produto;
+            }
+        }
+
+        public IEnumerable<ProdutoComposto> ObterCompostoByProdutoId(int produtoId)
+        {
+            using (var cn = Connection)
+            {
+                var sql = "select * from Composto " 
+                        + "inner join prod on Composto.CODSUB = prod.CODIGO "
+                        + "Where Composto.CODIGO = @PrincipalId";
+
+                cn.Open();
+                var produto = cn.Query<ProdutoComposto>(sql, new { PrincipalId = produtoId });
+                cn.Close();
+
+                return produto;
+            }
+        }
+        public IEnumerable<ProdutoPromocao> ObterProdutoPromocao(int produtoId)
+        {
+            using (var cn = Connection)
+            {
+                var sql = "PR_PRODUTOEMPROMOCAO @produtoId, @dataHora, @idPromocao, @situacao";
+                var param = new DynamicParameters();
+                param.Add("@produtoId", produtoId);
+                param.Add("@dataHora", DateTime.Now);
+                param.Add("@idPromocao", 0);
+                param.Add("@situacao", 1);
+
+                cn.Open();
+                var produto = cn.Query<ProdutoPromocao>(sql, param);
                 cn.Close();
 
                 return produto;

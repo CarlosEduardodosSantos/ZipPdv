@@ -72,8 +72,8 @@ namespace Eticket.Infra.Data.Repository
 
 
                 var sqlPagamento = new StringBuilder();
-                sqlPagamento.AppendLine("Insert Into CaixaPagamentos(CaixaItemId, CaixaId, CartaoRespostaGuid, EspeciePagamentoId, Especie, Valor, Interno)");
-                sqlPagamento.AppendLine("Values (@CaixaItemId, @CaixaId,  @CartaoRespostaGuid, @EspeciePagamentoId, @Especie, @Valor, @Interno)");
+                sqlPagamento.AppendLine("Insert Into CaixaPagamentos(CaixaItemId, CaixaId, CartaoRespostaGuid, EspeciePagamentoId, Especie, Valor, Interno, Data, Vaucher)");
+                sqlPagamento.AppendLine("Values (@CaixaItemId, @CaixaId,  @CartaoRespostaGuid, @EspeciePagamentoId, @Especie, @Valor, @Interno, @Data, @Vaucher)");
 
                 foreach (var caixaItemCaixaPagamento in caixaItem.CaixaPagamentos)
                 {
@@ -85,6 +85,8 @@ namespace Eticket.Infra.Data.Repository
                     parmspagamento.Add("@Especie", caixaItemCaixaPagamento.Especie);
                     parmspagamento.Add("@Valor", caixaItemCaixaPagamento.Valor);
                     parmspagamento.Add("@Interno", caixaItemCaixaPagamento.Interno);
+                    parmspagamento.Add("@Data", DateTime.Now);
+                    parmspagamento.Add("@Vaucher", caixaItemCaixaPagamento.Vaucher);
 
                     conn.Query(sqlPagamento.ToString(), parmspagamento);
                 }
@@ -137,6 +139,31 @@ namespace Eticket.Infra.Data.Repository
                 conn.Close();
 
                 return caixaItem;
+            }
+        }
+
+        public void Remover(string caixaItemId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                conn.Query("Delete From Caixa_2 Where CaixaItemId = @caixaItemId " +
+                    "Delete From CaixaPagamentos Where CaixaItemId = @caixaItemId ", new { caixaItemId });
+                conn.Close();
+            }
+        }
+
+        public IEnumerable<CaixaPagamento> ObterPagamentoPorVendaId(int vendaId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                var pagamentos = conn.Query<CaixaPagamento>("select * from CaixaPagamentos where CaixaItemId In (select CaixaItemID from caixa_2 where NROVENDA = @vendaId)",
+                    new { vendaId });
+
+                conn.Close();
+
+                return pagamentos;
             }
         }
     }

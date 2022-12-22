@@ -53,7 +53,7 @@ namespace Zip.Pdv.Component.CupomGrid
                     //panelPrincipal.Dock = DockStyle.Top;
 
                     var label = new Label();
-                    label.Text = item.Descricao;
+                    label.Text = $"{item.Quantidade} {item.Descricao}";
                     label.Font = Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     label.AutoSize = false;
                     label.Height = 20;

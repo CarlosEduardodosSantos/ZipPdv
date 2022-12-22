@@ -18,5 +18,6 @@ namespace Eticket.Application.Interface
         int ObterVendaId();
         bool GeraImpressaoFechamento(int vendaId, int tipoOperacao);
         bool GeraImpressaoItens(int vendaId, int tipoOperacao);
+        string ObterSenha();
     }
 }

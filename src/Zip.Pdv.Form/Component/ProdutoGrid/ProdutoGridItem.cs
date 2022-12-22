@@ -8,7 +8,7 @@ namespace Zip.Pdv.Component.ProdutoGrid
     public partial class ProdutoGridItem : Button
     {
         public readonly ProdutoViewModel ProdutoView;
-
+        public readonly ClienteViewModel ClienteView;
         public event EventHandler<EventArgs> SelectItem;
         public event EventHandler<PreviewKeyDownEventArgs> KeyDownItem;
         void selectItem(object sender, EventArgs e)
@@ -50,6 +50,23 @@ namespace Zip.Pdv.Component.ProdutoGrid
             ProdutoGridItem_Load();
         }
 
+        public ProdutoGridItem(ClienteViewModel clienteViewModel)
+        {
+            ClienteView = clienteViewModel;
+            InitializeComponent();
+            lbDescricao.Click += selectItem;
+
+            tableLayoutPanel1.ColumnCount = 1;
+            lbUnidade.Visible = false;
+            lbUnidade.Click += selectItem;
+            lbEstoque.Click += selectItem;
+            lbValor.Click += selectItem;
+
+            this.PreviewKeyDown += keyDownItem;
+
+
+            ClienteGridItem_Load();
+        }
 
         public void ProdutoGridItem_Load()
         {
@@ -57,6 +74,14 @@ namespace Zip.Pdv.Component.ProdutoGrid
             lbUnidade.Text = ProdutoView.Unidade;
             lbEstoque.Text = ProdutoView.ProdutoTipo;
             lbValor.Text = ProdutoView.ValorVenda.ToString("N2");
+        }
+
+        public void ClienteGridItem_Load()
+        {
+            lbDescricao.Text = ClienteView.Nome;
+            lbUnidade.Text = ClienteView.Cpf;
+            lbEstoque.Text = ClienteView.Cidade;
+            lbValor.Text = ClienteView.Telefone;
         }
 
         private void lbDescricao_MouseEnter(object sender, EventArgs e)

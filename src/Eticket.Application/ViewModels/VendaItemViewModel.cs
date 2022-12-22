@@ -9,6 +9,7 @@ namespace Eticket.Application.ViewModels
         {
             VendaComplementos = new List<VendaComplementoViewModel>();
             VendaProdutoOpcoes = new List<VendaProdutoOpcaoViewModel>();
+            VendaProdutoMeioMeio = new List<VendaProdutoOpcaoViewModel>();
         }
         public int VendaItemId { get; set; }
         public int VendaId { get; set; }
@@ -28,8 +29,10 @@ namespace Eticket.Application.ViewModels
         public ProdutoViewModel ProdutoViewModel { get; set; }
         public ICollection<VendaComplementoViewModel> VendaComplementos { get; set; }
         public ICollection<VendaProdutoOpcaoViewModel> VendaProdutoOpcoes { get; set; }
+        public ICollection<VendaProdutoOpcaoViewModel> VendaProdutoMeioMeio { get; set; }
         public string ComplementoDescricao => ObterComplementoDescricao();
         public string DescricaoProduto => ObterDescricaoProduto();
+        public string DescricaoProdutoMeioMeio => ObterDescricaoProdutoMeioMeio();
 
         private string ObterComplementoDescricao()
         {
@@ -48,7 +51,24 @@ namespace Eticket.Application.ViewModels
                 obs = VendaComplementos.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + "\n";
 
             if (VendaProdutoOpcoes.Count() > 0)
-                obs = VendaProdutoOpcoes.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + System.Environment.NewLine;
+                obs = VendaProdutoOpcoes.Aggregate(obs, (current, subItem) => current + ($"{separator} {subItem.Quantidade} {subItem.Descricao}")) + System.Environment.NewLine;
+
+            if (!string.IsNullOrEmpty(Observacao))
+                obs += $" {Observacao}";
+
+            return obs;
+        }
+        private string ObterDescricaoProdutoMeioMeio()
+        {
+            var obs = "";
+            //if (VendaComplementos.Count == 0 && VendaProdutoOpcoes.Count == 0) return obs;
+
+            var separator = "\n";
+            if (VendaComplementos.Count() > 0)
+                obs = VendaComplementos.Aggregate(obs, (current, subItem) => current + (separator + subItem.Descricao)) + "\n";
+
+            if (VendaProdutoMeioMeio.Count() > 0)
+                obs = VendaProdutoMeioMeio.Aggregate(obs, (current, subItem) => current + ($"{subItem.Descricao} {separator}"));
 
             if (!string.IsNullOrEmpty(Observacao))
                 obs += $" {Observacao}";

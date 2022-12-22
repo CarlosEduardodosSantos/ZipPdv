@@ -57,6 +57,7 @@
     <Compile Include="CartaoRequisicaoAppService.cs" />
     <Compile Include="CartaoRespostaAppService.cs" />
     <Compile Include="CEPBrasil\ConsultaCepAppService.cs" />
+    <Compile Include="ClienteAppService.cs" />
     <Compile Include="ClienteDeliveryAppService.cs" />
     <Compile Include="ConfiguracaoSistemaAppService.cs" />
     <Compile Include="Conversores\EnumBooleanConverter.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Conversores\EnumParaString.cs" />
     <Compile Include="Conversores\InverterBooleanConverter.cs" />
     <Compile Include="DashBoardResumoGeralAppService.cs" />
+    <Compile Include="DataHoraAtual\DataHoraAtualAppService.cs" />
     <Compile Include="DeliveryAppService.cs" />
     <Compile Include="EmpresaAppService.cs" />
     <Compile Include="EspeciePagamentoAppService.cs" />
@@ -78,9 +80,11 @@
     <Compile Include="Interface\ICartaoConsumoAppService.cs" />
     <Compile Include="Interface\ICartaoRequisicaoAppService.cs" />
     <Compile Include="Interface\ICartaoRespostaAppService.cs" />
+    <Compile Include="Interface\IClienteAppService.cs" />
     <Compile Include="Interface\IClienteDeliveryAppService.cs" />
     <Compile Include="Interface\IConfiguracaoSistemaAppService.cs" />
     <Compile Include="Interface\IDashBoardResumoGeralAppService.cs" />
+    <Compile Include="Interface\IDataHoraAtualAppService.cs" />
     <Compile Include="Interface\IDeliveryAppService.cs" />
     <Compile Include="Interface\IEmpresaAppService.cs" />
     <Compile Include="Interface\IEntregadorAppService.cs" />
@@ -139,6 +143,7 @@
     <Compile Include="ViewModels\CartaoTipoTransacaoEnumView.cs" />
     <Compile Include="ViewModels\ClienteDeliveryViewModel.cs" />
     <Compile Include="ViewModels\ClienteFichaViewModel.cs" />
+    <Compile Include="ViewModels\ClienteViewModel.cs" />
     <Compile Include="ViewModels\ConfiguracaoInicialViewModel.cs" />
     <Compile Include="ViewModels\ConfiguracaoSistemaViewModel.cs" />
     <Compile Include="ViewModels\ConsultaCepViewModel.cs" />
@@ -146,6 +151,7 @@
     <Compile Include="ViewModels\DashBoard\DashBoardVendaClienteViewModel.cs" />
     <Compile Include="ViewModels\DashBoard\DashBoardVendaCompraProdutoViewModel.cs" />
     <Compile Include="ViewModels\DashBoard\DashBoardVendaViewModel.cs" />
+    <Compile Include="ViewModels\DataHoraAtualViewModel.cs" />
     <Compile Include="ViewModels\DeliveryViewModel.cs" />
     <Compile Include="ViewModels\DescontoViewResult.cs" />
     <Compile Include="ViewModels\EmissorFiscalEnumView.cs" />
@@ -169,10 +175,12 @@
     <Compile Include="ViewModels\ProdutoDeptoViewModel.cs" />
     <Compile Include="ViewModels\ProdutoOpcaoTipoVewModel.cs" />
     <Compile Include="ViewModels\ProdutoOpcaoViewModel.cs" />
+    <Compile Include="ViewModels\ProdutoPromocaoViewModel.cs" />
     <Compile Include="ViewModels\ProdutoSecaoViewModel.cs" />
     <Compile Include="ViewModels\ProdutosOpcaoTipoRelacaoViewModel.cs" />
     <Compile Include="ViewModels\ProdutoTipoViewModel.cs" />
     <Compile Include="ViewModels\ProdutoTributacaoViewModel.cs" />
+    <Compile Include="ViewModels\RespostaGenericaViewModel.cs" />
     <Compile Include="ViewModels\RetornoSatViewModel.cs" />
     <Compile Include="ViewModels\SatConcentradorViewModel.cs" />
     <Compile Include="ViewModels\SatOperacaoEnumView.cs" />

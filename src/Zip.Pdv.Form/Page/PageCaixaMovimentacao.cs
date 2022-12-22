@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
+using Zip.Pdv.Component;
 using Zip.Pdv.Fast;
 
 namespace Zip.Pdv.Page
@@ -42,7 +43,7 @@ namespace Zip.Pdv.Page
                 txtvVendas.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "VDA" || t.TipoLancamento == "TEL").Sum(t => t.Valor + t.Troco);
 
                 txtSuprimentos.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "SU").Sum(t => t.Valor);
-                txtSangrias.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "SA").Sum(t => t.Valor); 
+                txtSangrias.ValueNumeric = _itemViewModels.Where(t => t.TipoLancamento == "SA").Sum(t => t.Valor);
 
 
                 txtvTotalCaixa.ValueNumeric = _itemViewModels.Sum(t => t.Valor + t.Troco);
@@ -60,11 +61,12 @@ namespace Zip.Pdv.Page
                     new
                     {
                         m.TipoLancamento,
-                        m.DataHora,
+                        // m.DataHora,
                         m.VendaId,
                         m.Historico,
                         Especie = e != null ? e.Especie : "DINHEIRO",
-                        Valor = e != null  ? e.Valor : m.Valor
+                        Valor = e != null ? e.Valor : m.Valor,
+                        m.CaixaItemId
                     })).OrderBy(o => o.VendaId).ToList();
 
 
@@ -137,8 +139,8 @@ namespace Zip.Pdv.Page
             int caixaId;
             if (int.TryParse(txtnCaixa.Text, out caixaId))
             {
-                
-            var parms = new ParameterReportDynamic();
+
+                var parms = new ParameterReportDynamic();
                 parms.Add("caixaId", caixaId);
 
                 var report = new RelatorioFastReport();
@@ -154,6 +156,46 @@ namespace Zip.Pdv.Page
             {
                 form.ShowDialog();
                 CarregaCaixa(Program.CaixaView);
+            }
+        }
+
+        private void excluirRegistroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var usuarioAppService = Program.Container.GetInstance<IUsuarioAppService>())
+            {
+                var dirCaixaMov = usuarioAppService.VerificaPrivilegio("CaixaGerencial", Program.Usuario.UsuarioId);
+                if (!dirCaixaMov)
+                {
+                    TouchMessageBox.Show("Acesso não permitido.?", "Caixa");
+                    return;
+                }
+
+                var result = TouchMessageBox.Show("Confirma a exclusão do lançamento?", "Caixa", MessageBoxButtons.OKCancel,
+                            MessageBoxIcon.Question);
+
+                if (result != DialogResult.OK)
+                    return;
+
+                var row = dgvHistCaixa.SelectedRows[0];
+
+                var caixaItemId = row.Cells[5].Value.ToString();
+                var tipoDocumento = row.Cells[1].Value.ToString();
+
+                string[] demoArray = { "SU", "SA"};
+
+                if (demoArray.Contains(tipoDocumento) == false)
+                {
+                    TouchMessageBox.Show("Esse tipo de registro não pode ser excluido.", "Caixa");
+                    return;
+                }
+
+                //SU
+                using (var caixaItemAppService = Program.Container.GetInstance<ICaixaItemAppService>())
+                {
+                    caixaItemAppService.Remover(caixaItemId);
+                    CarregaCaixa(Program.CaixaView);
+                }
+
             }
         }
     }

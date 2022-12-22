@@ -8,5 +8,6 @@ namespace Eticket.Application.Interface
     {
         IEnumerable<ConfiguracaoSistemaViewModel> ObterTodos();
         ConfiguracaoSistemaViewModel ObterPorVariavel(string variavel);
+        void ZerarSenha();
     }
 }

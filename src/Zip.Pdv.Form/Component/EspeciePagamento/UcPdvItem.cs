@@ -54,8 +54,12 @@ namespace Zip.Pdv.Component.EspeciePagamento
         public void AdicionarProdutoOpcoes(VendaProdutoOpcaoViewModel vendaProdutoOpcaoView)
         {
             CaixaSource = vendaProdutoOpcaoView;
-            lbDisplay.Text = vendaProdutoOpcaoView.Descricao;
-            lbValue.Text = vendaProdutoOpcaoView.Valor.ToString("C2");
+            if (vendaProdutoOpcaoView.Quantidade > 0)
+                lbDisplay.Text = $"{vendaProdutoOpcaoView.Quantidade} x {vendaProdutoOpcaoView.Descricao}";
+            else
+                lbDisplay.Text = $"{vendaProdutoOpcaoView.Descricao}";
+
+            lbValue.Text = $"{vendaProdutoOpcaoView.Valor.ToString("C2")}";
             btnDeletar.Click += cClick;
         }
         public void AdicionarFicha(int ficha)

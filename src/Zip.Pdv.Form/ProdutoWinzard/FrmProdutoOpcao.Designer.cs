@@ -42,19 +42,21 @@ namespace Zip.Pdv
             this.panel23 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.tablessControl1 = new Zip.Pdv.TablessControl();
             this.pnlPrincipal.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel23.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlPrincipal
             // 
             this.pnlPrincipal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlPrincipal.Controls.Add(this.tablessControl1);
             this.pnlPrincipal.Controls.Add(this.panel2);
             this.pnlPrincipal.Controls.Add(this.panel1);
+            this.pnlPrincipal.Controls.Add(this.panel3);
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(0, 42);
             this.pnlPrincipal.Name = "pnlPrincipal";
@@ -67,9 +69,9 @@ namespace Zip.Pdv
             this.panel2.Controls.Add(this.bunifuFlatButton2);
             this.panel2.Controls.Add(this.bunifuFlatButton1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 450);
+            this.panel2.Location = new System.Drawing.Point(270, 450);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1022, 56);
+            this.panel2.Size = new System.Drawing.Size(752, 56);
             this.panel2.TabIndex = 1;
             // 
             // bunifuFlatButton3
@@ -95,7 +97,7 @@ namespace Zip.Pdv
             this.bunifuFlatButton3.IconVisible = true;
             this.bunifuFlatButton3.IconZoom = 110D;
             this.bunifuFlatButton3.IsTab = false;
-            this.bunifuFlatButton3.Location = new System.Drawing.Point(817, 8);
+            this.bunifuFlatButton3.Location = new System.Drawing.Point(547, 8);
             this.bunifuFlatButton3.Name = "bunifuFlatButton3";
             this.bunifuFlatButton3.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.bunifuFlatButton3.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
@@ -132,7 +134,8 @@ namespace Zip.Pdv
             this.bunifuFlatButton2.IconVisible = true;
             this.bunifuFlatButton2.IconZoom = 90D;
             this.bunifuFlatButton2.IsTab = false;
-            this.bunifuFlatButton2.Location = new System.Drawing.Point(12, 8);
+            this.bunifuFlatButton2.Location = new System.Drawing.Point(330, 8);
+            this.bunifuFlatButton2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bunifuFlatButton2.Name = "bunifuFlatButton2";
             this.bunifuFlatButton2.Normalcolor = System.Drawing.SystemColors.HotTrack;
             this.bunifuFlatButton2.OnHovercolor = System.Drawing.Color.OrangeRed;
@@ -169,7 +172,7 @@ namespace Zip.Pdv
             this.bunifuFlatButton1.IconVisible = true;
             this.bunifuFlatButton1.IconZoom = 90D;
             this.bunifuFlatButton1.IsTab = false;
-            this.bunifuFlatButton1.Location = new System.Drawing.Point(710, 8);
+            this.bunifuFlatButton1.Location = new System.Drawing.Point(440, 8);
             this.bunifuFlatButton1.Name = "bunifuFlatButton1";
             this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.bunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
@@ -185,13 +188,12 @@ namespace Zip.Pdv
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.flowLayoutPanel2);
+            this.panel1.Controls.Add(this.tablessControl1);
             this.panel1.Controls.Add(this.lbTabNome);
-            this.panel1.Controls.Add(this.lbProdutoNome);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(270, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1022, 142);
+            this.panel1.Size = new System.Drawing.Size(752, 506);
             this.panel1.TabIndex = 0;
             // 
             // flowLayoutPanel2
@@ -199,23 +201,24 @@ namespace Zip.Pdv
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.AutoScrollMinSize = new System.Drawing.Size(0, 35);
             this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 34);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1022, 81);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(270, 472);
             this.flowLayoutPanel2.TabIndex = 8;
             // 
             // lbTabNome
             // 
             this.lbTabNome.BackColor = System.Drawing.SystemColors.Info;
-            this.lbTabNome.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbTabNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTabNome.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbTabNome.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTabNome.ForeColor = System.Drawing.Color.Black;
-            this.lbTabNome.Location = new System.Drawing.Point(0, 115);
+            this.lbTabNome.Location = new System.Drawing.Point(0, 0);
             this.lbTabNome.Name = "lbTabNome";
             this.lbTabNome.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
-            this.lbTabNome.Size = new System.Drawing.Size(1022, 27);
+            this.lbTabNome.Size = new System.Drawing.Size(752, 34);
             this.lbTabNome.TabIndex = 2;
             this.lbTabNome.Text = "Produto Opção";
             this.lbTabNome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -224,12 +227,12 @@ namespace Zip.Pdv
             // 
             this.lbProdutoNome.BackColor = System.Drawing.SystemColors.Info;
             this.lbProdutoNome.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbProdutoNome.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbProdutoNome.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbProdutoNome.Location = new System.Drawing.Point(0, 0);
             this.lbProdutoNome.Name = "lbProdutoNome";
-            this.lbProdutoNome.Size = new System.Drawing.Size(1022, 34);
+            this.lbProdutoNome.Size = new System.Drawing.Size(270, 34);
             this.lbProdutoNome.TabIndex = 1;
-            this.lbProdutoNome.Text = "PRODUTO";
+            this.lbProdutoNome.Text = "Produto";
             this.lbProdutoNome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel23
@@ -274,13 +277,23 @@ namespace Zip.Pdv
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.flowLayoutPanel2);
+            this.panel3.Controls.Add(this.lbProdutoNome);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(270, 506);
+            this.panel3.TabIndex = 3;
+            // 
             // tablessControl1
             // 
             this.tablessControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tablessControl1.Location = new System.Drawing.Point(0, 142);
+            this.tablessControl1.Location = new System.Drawing.Point(0, 34);
             this.tablessControl1.Name = "tablessControl1";
             this.tablessControl1.SelectedIndex = 0;
-            this.tablessControl1.Size = new System.Drawing.Size(1022, 308);
+            this.tablessControl1.Size = new System.Drawing.Size(752, 472);
             this.tablessControl1.TabIndex = 2;
             // 
             // FrmProdutoOpcao
@@ -300,8 +313,9 @@ namespace Zip.Pdv
             this.pnlPrincipal.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel23.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -321,5 +335,6 @@ namespace Zip.Pdv
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnVoltar;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton3;
+        private System.Windows.Forms.Panel panel3;
     }
 }

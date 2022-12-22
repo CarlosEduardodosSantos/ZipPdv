@@ -47,6 +47,7 @@
     <Compile Include="Entity\CaixaPagamento.cs" />
     <Compile Include="Entity\CartaoRequisicao.cs" />
     <Compile Include="Entity\CartaoResposta.cs" />
+    <Compile Include="Entity\Cliente.cs" />
     <Compile Include="Entity\ClienteDelivery.cs" />
     <Compile Include="Entity\ClienteFicha.cs" />
     <Compile Include="Entity\ConfiguracaoSistema.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Entity\NfceSituacao.cs" />
     <Compile Include="Entity\ProdutoDepto.cs" />
     <Compile Include="Entity\ProdutoOpcao.cs" />
+    <Compile Include="Entity\ProdutoPromocao.cs" />
     <Compile Include="Entity\ProdutoSecao.cs" />
     <Compile Include="Entity\ProdutoTipo.cs" />
     <Compile Include="Entity\ProdutoTributacao.cs" />
@@ -81,8 +83,10 @@
     <Compile Include="Entity\VendaItem.cs" />
     <Compile Include="Entity\VendaMeioMeio.cs" />
     <Compile Include="Entity\VendaPendente.cs" />
+    <Compile Include="Entity\VendaProdutoComposto.cs" />
     <Compile Include="Entity\VendaProdutoOpcao.cs" />
     <Compile Include="Entity\Vendedor.cs" />
+    <Compile Include="Interface\Repository\IClienteRepository.cs" />
     <Compile Include="Interface\Repository\IDashBoardResumoGeralRepository.cs" />
     <Compile Include="Interface\IProdutoTipoRepository.cs" />
     <Compile Include="Interface\IUnidadeMedidaRepository.cs" />

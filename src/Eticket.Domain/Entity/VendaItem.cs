@@ -24,5 +24,7 @@ namespace Eticket.Domain.Entity
         public string DescricaoProduto { get; set; }
         public ICollection<VendaComplemento> VendaComplementos { get; set; }
         public ICollection<VendaProdutoOpcao> VendaProdutoOpcoes { get; set; }
+        public ICollection<VendaProdutoComposto> VendaProdutoCompostos { get; set; }
+        public ICollection<VendaProdutoOpcao> VendaProdutoMeioMeio { get; set; }
     }
 }

@@ -90,8 +90,7 @@ namespace Zip.Pdv.Page
         }
 
         private void OpenDetalheVenda(VendaViewModel vendaView)
-        {
-            
+        {            
             var headerPage = vendaView.IsDelivery ? $"Televenda [{vendaView.VendaId}]" : $"Venda Balção [{vendaView.VendaId}]";
             var page = new TabPageEx(headerPage);
             //page.Disposed += page_Disposed;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
 using Eticket.Domain.Entity;
@@ -31,6 +32,17 @@ namespace Eticket.Application
         {
             return TypeAdapter.Adapt<IEnumerable<CaixaItem>, IEnumerable<CaixaItemViewModel>>(_caixaItemRepository
                 .ObterPorCaixaId(caixaId));
+        }
+
+        public void Remover(string caixaItemId)
+        {
+            _caixaItemRepository.Remover(caixaItemId);
+        }
+
+        public IEnumerable<CaixaPagamentoViewModel> ObterPagamentoPorVendaId(int vendaId)
+        {
+            return TypeAdapter.Adapt<IEnumerable<CaixaPagamento>, IEnumerable<CaixaPagamentoViewModel>>(_caixaItemRepository
+                .ObterPagamentoPorVendaId(vendaId));
         }
     }
 }

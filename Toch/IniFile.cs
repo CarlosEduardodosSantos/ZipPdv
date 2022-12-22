@@ -39,15 +39,15 @@ namespace Toch
         public static string IniReadValue(string Section, string Key)
         {
             StringBuilder temp = new StringBuilder(255);
-            int i = GetPrivateProfileString(Section, Key, "", temp, 255, Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6) + "/config.ini");
+            int i = GetPrivateProfileString(Section, Key, "", temp, 255, Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6) + "/vip_config.ini");
             return temp.ToString();
 
         }
         public static string IniReadConnect()
         {
             StringBuilder _connection = new StringBuilder();
-            _connection.Append("Data Source=" + IniReadValue("Conexao", "Servidor"));
-            _connection.Append(";Initial Catalog=" + IniReadValue("Conexao", "Banco"));
+            _connection.Append("Data Source=" + IniReadValue("Caminho", "Servidor"));
+            _connection.Append(";Initial Catalog=" + IniReadValue("Caminho", "Banco"));
             _connection.Append(";User ID=" + IniReadValue("Autenticacao", "Login"));
             _connection.Append(";Password=" + IniReadValue("Autenticacao", "Password"));
 

@@ -110,13 +110,17 @@
             this.txtPeso.Name = "txtPeso";
             this.txtPeso.Size = new System.Drawing.Size(406, 39);
             this.txtPeso.TabIndex = 164;
-            this.txtPeso.Text = "0";
+            this.txtPeso.Text = "0,000";
             this.txtPeso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPeso.ValueNumeric = new decimal(new int[] {
             0,
             0,
             0,
-            0});
+            196608});
+            this.txtPeso.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPeso_KeyDown);
+            this.txtPeso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPeso_KeyPress);
+            this.txtPeso.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPeso_KeyUp);
+            this.txtPeso.Validating += new System.ComponentModel.CancelEventHandler(this.txtPeso_Validating);
             // 
             // FormSolicitaQuantidade
             // 
@@ -125,6 +129,7 @@
             this.ClientSize = new System.Drawing.Size(430, 480);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormSolicitaQuantidade";

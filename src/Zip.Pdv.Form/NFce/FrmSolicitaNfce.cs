@@ -72,6 +72,7 @@ namespace Zip.Pdv.NFce
             backgroundWorker1.ReportProgress(Convert.ToInt32(2 * 100 / 4));
 
             _dateEnvio = DateTime.Now;
+            var _qtdeEspera = 1;
             bool isOk = false;
             while (!isOk)
             {
@@ -117,7 +118,13 @@ namespace Zip.Pdv.NFce
                             isOk = true;
                             break;
                         default:
-                            Thread.Sleep(300);
+                            if (_qtdeEspera >=  3)
+                                isOk = true;
+                            else
+                            {
+                                Thread.Sleep(3000);
+                                _qtdeEspera++;
+                            }
                             break;
                     }
                 }
@@ -130,7 +137,7 @@ namespace Zip.Pdv.NFce
             //_xStatus += $"Operação concluida";
             backgroundWorker1.ReportProgress(Convert.ToInt32(4 * 100 / 4));
 
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

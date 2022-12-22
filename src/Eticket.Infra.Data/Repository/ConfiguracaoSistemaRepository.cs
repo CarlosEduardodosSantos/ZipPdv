@@ -37,7 +37,18 @@ namespace Eticket.Infra.Data.Repository
                 var configuracao = conn.Query<ConfiguracaoSistema>(sql, new { variavel }).FirstOrDefault();
                 conn.Close();
 
-                return configuracao;
+                return configuracao ?? new ConfiguracaoSistema();
+            }
+        }
+
+        public void ZerarSenha()
+        {
+            var sql = "Update configuracoes Set valor = '0' Where variavel Like 'senha'";
+            using (var conn = Connection)
+            {
+                conn.Open();
+                conn.Execute(sql);
+                conn.Close();
             }
         }
     }

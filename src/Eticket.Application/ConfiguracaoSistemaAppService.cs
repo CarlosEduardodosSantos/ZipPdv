@@ -30,5 +30,10 @@ namespace Eticket.Application
         {
             return TypeAdapter.Adapt<IEnumerable<ConfiguracaoSistema>, IEnumerable<ConfiguracaoSistemaViewModel>>(_configuracaoSistemaRepository.GetAll());
         }
+
+        public void ZerarSenha()
+        {
+            _configuracaoSistemaRepository.ZerarSenha();
+        }
     }
 }

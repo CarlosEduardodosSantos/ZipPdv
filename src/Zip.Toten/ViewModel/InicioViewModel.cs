@@ -172,7 +172,7 @@ namespace Zip.Toten.ViewModel
         { 
             using (var appServer = App.Container.GetInstance<IProdutoGrupoAppService>())
             {
-                Grupos = appServer.ObterTodos().ToList();
+                Grupos = appServer.ObterTodos(0).ToList();
                 RaiseChange("Grupos");
             }
         }
@@ -181,7 +181,7 @@ namespace Zip.Toten.ViewModel
         {
             using (var appServer = App.Container.GetInstance<IProdutoAppService>())
             {                
-                Produtos = appServer.ObterPorGrupoId(int.Parse(grupoId.ToString())).ToList();
+                Produtos = appServer.ObterPorGrupoId(int.Parse(grupoId.ToString()),0).ToList();
             }
             ProdFiltrados = Produtos;
             RaiseChange("Produtos");

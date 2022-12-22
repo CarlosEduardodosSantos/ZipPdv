@@ -84,5 +84,10 @@ namespace Eticket.Application
             var venda = TypeAdapter.Adapt<VendaViewModel, Venda>(vendaView);
             _vendaRepository.AtualizaFiscal(venda);
         }
+
+        public string ObterSenha()
+        {
+            return _vendaRepository.ObterSenha();
+        }
     }
 }

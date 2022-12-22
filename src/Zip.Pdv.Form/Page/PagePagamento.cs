@@ -169,7 +169,7 @@ namespace Zip.Pdv.Page
                 {
                     var vendaId = vendaApp.ObterVendaId();
                     VendaView.VendaId = int.Parse($"{Program.PdvId}{vendaId}");
-
+                    VendaView.FichaId = VendaView.Fichas.Count() > 0 ? VendaView.Fichas.Max().ToString() : "";
                     vendaApp.Adicionar(VendaView);
 
                 }

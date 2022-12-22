@@ -197,6 +197,27 @@ namespace Eticket.Infra.Data.Repository
 
 
                 }
+
+                //Cobranca
+                if (venda.Tipo == "P")
+                {
+                    var sqlCobranca = new StringBuilder();
+                    sqlCobranca.AppendLine("Insert Into COBRANCA(NRO_COB, COD_CLIENTE, LOJA, DATA_COMPRA, VALOR_COMPRA, AB_PG, vl_antecipado, NROCX)");
+                    sqlCobranca.AppendLine("Values(@NRO_COB, @COD_CLIENTE, @LOJA, @DATA_COMPRA, @VALOR_COMPRA, @AB_PG, @vl_antecipado, @NROCX)");
+
+                    var cobrancaparms = new DynamicParameters();
+                    cobrancaparms.Add("@NRO_COB", venda.VendaId);
+                    cobrancaparms.Add("@COD_CLIENTE", venda.ClienteId);
+                    cobrancaparms.Add("@LOJA", venda.VendaId);
+                    cobrancaparms.Add("@DATA_COMPRA", DateTime.Now);
+                    cobrancaparms.Add("@VALOR_COMPRA", venda.VendaItens.Sum(t => t.ValorTotal));
+                    cobrancaparms.Add("@AB_PG", "ABERTO");
+                    cobrancaparms.Add("@vl_antecipado", 0);
+                    cobrancaparms.Add("@NROCX", venda.CaixaId);
+
+                    conn.Query(sqlCobranca.ToString(), cobrancaparms);
+
+                }
                 conn.Close();
             }
 
@@ -277,6 +298,30 @@ namespace Eticket.Infra.Data.Repository
 
                     conn.Query(sqlCOmplemento.ToString(), complementoParms);
                 }
+
+                foreach (var vendaMeioMeio in vendaItem.VendaProdutoMeioMeio)
+                {
+                    var sqlMeioMeio = new StringBuilder();
+                    sqlMeioMeio.AppendLine("Insert Into MeioMeio(Descricao, NroOperacao, TipoOperacao, IdProduto, SeqProduto,");
+                    sqlMeioMeio.AppendLine("ValorVenda, Quantidade, QtdeImpresso, DataHora, Observacao)");
+                    sqlMeioMeio.AppendLine("Values(@Descricao, @NroOperacao, @TipoOperacao, @IdProduto, @SeqProduto,");
+                    sqlMeioMeio.AppendLine("@ValorVenda, @Quantidade, @QtdeImpresso, @DataHora, @Observacao)");
+
+                    var meiomeiooParms = new DynamicParameters();
+                    meiomeiooParms.Add("@Descricao", vendaMeioMeio.Descricao);
+                    meiomeiooParms.Add("@NroOperacao", vendaId);
+                    meiomeiooParms.Add("@TipoOperacao", "V");
+                    meiomeiooParms.Add("@IdProduto", vendaMeioMeio.ProdutoId);
+                    meiomeiooParms.Add("@SeqProduto", vendaItem.SeqProduto);
+                    meiomeiooParms.Add("@ValorVenda", vendaMeioMeio.Valor);
+                    meiomeiooParms.Add("@Quantidade", vendaMeioMeio.Quantidade/2);
+                    meiomeiooParms.Add("@QtdeImpresso", "1/2");
+                    meiomeiooParms.Add("@DataHora", DateTime.Now);
+                    meiomeiooParms.Add("@Observacao", "");
+
+                    conn.Query(sqlMeioMeio.ToString(), meiomeiooParms);
+                }
+
                 foreach (var vendaProdutoOpcao in vendaItem.VendaProdutoOpcoes)
                 {
                     var sqlCOmplemento = new StringBuilder();
@@ -291,7 +336,73 @@ namespace Eticket.Infra.Data.Repository
                     complementoParms.Add("@VALOR", vendaProdutoOpcao.Valor);
 
                     conn.Query(sqlCOmplemento.ToString(), complementoParms);
+
+                    //Baixar Estoque
+                    if (string.IsNullOrEmpty(vendaProdutoOpcao.ProdutoPdv))
+                        continue;
+
+                    var sqloOpcoes = new StringBuilder();
+                    sqloOpcoes.AppendLine("Exec PR_INSERT_KARDEX");
+                    sqloOpcoes.AppendLine("@kad_loja,");
+                    sqloOpcoes.AppendLine("@kad_op,");
+                    sqloOpcoes.AppendLine("@kad_nroop,");
+                    sqloOpcoes.AppendLine("@kad_prod,");
+                    sqloOpcoes.AppendLine("@kad_qtde,");
+                    sqloOpcoes.AppendLine("@kad_obs");
+                    sqloOpcoes.AppendLine("");
+                    sqloOpcoes.AppendLine(
+                            $"Update prod set Qtde{loja} = Qtde{loja} - @quantidade Where Codigo = {vendaProdutoOpcao.ProdutoPdv}");
+
+                    conn.Query(sqloOpcoes.ToString(),
+                        new
+                        {
+                            kad_loja = loja,
+                            kad_op = "V",
+                            kad_nroop = vendaId,
+                            kad_prod = vendaProdutoOpcao.ProdutoPdv,
+                            kad_qtde = (-1) * 1,
+                            kad_obs = "VENDA PRODUTO OPÇÃO",
+                            quantidade = 1
+                        });
+
                 }
+
+
+                #region Baixa produtos compostos
+                var sqlProdutoComposto = new StringBuilder();
+                sqlProdutoComposto.AppendLine("Select CODSUB as produtoId, QTDE as Quantidade  from Composto");
+                sqlProdutoComposto.AppendLine("Where CODIGO = @PrincipalId");
+
+                var produtoComposto = conn.Query<ProdutoComposto>(sqlProdutoComposto.ToString(), new { PrincipalId = vendaItem.ProdutoId });
+                foreach (var vendaProdutoComposto in produtoComposto)
+                {
+                    //Baixar Estoque
+
+                    var sqlComposto = new StringBuilder();
+                    sqlComposto.AppendLine("Exec PR_INSERT_KARDEX");
+                    sqlComposto.AppendLine("@kad_loja,");
+                    sqlComposto.AppendLine("@kad_op,");
+                    sqlComposto.AppendLine("@kad_nroop,");
+                    sqlComposto.AppendLine("@kad_prod,");
+                    sqlComposto.AppendLine("@kad_qtde,");
+                    sqlComposto.AppendLine("@kad_obs");
+                    sqlComposto.AppendLine("");
+                    sqlComposto.AppendLine(
+                            $"Update prod set Qtde{loja} = Qtde{loja} - @quantidade Where Codigo = {vendaProdutoComposto.ProdutoId}");
+
+                    conn.Query(sqlComposto.ToString(),
+                        new
+                        {
+                            kad_loja = loja,
+                            kad_op = "V",
+                            kad_nroop = vendaId,
+                            kad_prod = vendaProdutoComposto.ProdutoId,
+                            kad_qtde = (-1) * vendaProdutoComposto.Quantidade,
+                            kad_obs = "VENDA PRODUTO COMPOSTO",
+                            quantidade = vendaProdutoComposto.Quantidade
+                        });
+                }
+                #endregion
             }
         }
         public void AtualizaFiscal(Venda venda)
@@ -463,6 +574,7 @@ namespace Eticket.Infra.Data.Repository
 	                            vendaItem.QTDE as Quantidade,
 	                            vendaItem.VALOR as ValorTotal,
 	                            vendaItem.PROD_OBS as Observacao,
+                                (vendaItem.Valor - vendaItem.Total) as Desconto,
                                 
                                 --Produto 
                                 produto.DES_ as Produto,
@@ -567,6 +679,7 @@ namespace Eticket.Infra.Data.Repository
 	                            vendaItem.QTDE as Quantidade,
 	                            vendaItem.VALOR as ValorTotal,
 	                            vendaItem.PROD_OBS as Observacao,
+                                (vendaItem.Valor - vendaItem.Total) as Desconto,
                                 
                                 --Produto 
                                 produto.DES_ as Produto,
@@ -670,6 +783,7 @@ namespace Eticket.Infra.Data.Repository
 	                            vendaItem.QTDE as Quantidade,
 	                            vendaItem.VALOR as ValorTotal,
 	                            vendaItem.PROD_OBS as Observacao,
+                                (vendaItem.Valor - vendaItem.Total) as Desconto,
                                 
                                 --Produto 
                                 produto.DES_ as Produto,
@@ -773,6 +887,7 @@ namespace Eticket.Infra.Data.Repository
 	                            vendaItem.QTDE as Quantidade,
 	                            vendaItem.VALOR as ValorTotal,
 	                            vendaItem.PROD_OBS as Observacao,
+                                (vendaItem.Valor - vendaItem.Total) as Desconto,
                                 
                                 --Produto 
                                 produto.DES_ as Produto,
@@ -869,17 +984,27 @@ namespace Eticket.Infra.Data.Repository
 
         }
 
-        private string ObterSenha()
+        public string ObterSenha()
         {
-            var sql = "select Cast(Isnull(valor,0) as Int) from configuracoes where variavel like 'senha'";
             try
             {
+
                 using (var conn = Connection)
                 {
-
                     conn.Open();
-                    var senha = conn.Query<int>(sql).FirstOrDefault();
 
+                    var sqlSenhaAleatoria = "select Isnull(valor,'N') from configuracoes where variavel like 'SENHA_ALEATORIA'";
+                    var senhaAleatoria = conn.Query<string>(sqlSenhaAleatoria).FirstOrDefault();
+
+                    if (senhaAleatoria == "S")
+                    {
+                        conn.Close();
+                        var randNum = new Random();
+                        return randNum.Next(999).ToString();
+                    }                       
+
+                    var sql = "select Cast(Isnull(valor,0) as Int) from configuracoes where variavel like 'senha'";
+                    var senha = conn.Query<int>(sql).FirstOrDefault();
                     senha += 1;
 
                     //Incrementa valor
@@ -929,6 +1054,7 @@ namespace Eticket.Infra.Data.Repository
 	                            vendaItem.QTDE as Quantidade,
 	                            vendaItem.VALOR as ValorTotal,
 	                            vendaItem.PROD_OBS as Observacao,
+                                (vendaItem.Valor - vendaItem.Total) as Desconto,
                                 
                                 --Produto 
                                 produto.DES_ as Produto,

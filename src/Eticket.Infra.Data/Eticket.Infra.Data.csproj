@@ -54,6 +54,7 @@
     <Compile Include="Repository\CartaoRequisicaoRepository.cs" />
     <Compile Include="Repository\CartaoRespostaRepository.cs" />
     <Compile Include="Repository\ClienteDeliveryRepository.cs" />
+    <Compile Include="Repository\ClienteRepository.cs" />
     <Compile Include="Repository\ConfiguracaoSistemaRepository.cs" />
     <Compile Include="Repository\DashBoardResumoGeralRepository.cs" />
     <Compile Include="Repository\DeliveryRepository.cs" />

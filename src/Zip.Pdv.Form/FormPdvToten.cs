@@ -229,7 +229,7 @@ namespace Zip.Pdv
 
             using (var appServer = Program.Container.GetInstance<IProdutoGrupoAppService>())
             {
-                _grupos = appServer.ObterTodos().Where(t => t.HabTotem).ToList();
+                _grupos = appServer.ObterTodos(Program.Loja).Where(t => t.HabTotem).ToList();
             }
 
             GrupoPaginacao(1);
@@ -283,7 +283,7 @@ namespace Zip.Pdv
         {
             using (var appServer = Program.Container.GetInstance<IProdutoAppService>())
             {
-                _produtos = appServer.ObterPorGrupoId(int.Parse(grupoId.ToString())).ToList();
+                _produtos = appServer.ObterPorGrupoId(int.Parse(grupoId.ToString()), Program.Loja).ToList();
             }
 
             ProdutoPaginacao(1);

@@ -194,6 +194,9 @@ namespace Zip.Pdv
                 var tipoSenhaAleatoria = configuracaoAppService.ObterPorVariavel("SENHA_ALEATORIA");
                 var habSenhaPager = configuracaoAppService.ObterPorVariavel("Hab_Senha_Pager");
                 var usaBalancaDigitada = configuracaoAppService.ObterPorVariavel("USA_BALANCA_DIGITADA");
+                var perguntaMesaBalcao = configuracaoAppService.ObterPorVariavel("PERGUNTA_MESA_BALCAO");
+                var calculaValoresMeioMeio = configuracaoAppService.ObterPorVariavel("Hab_Calculo_Valores_MeioMeio");
+                var habZerarSenha = configuracaoAppService.ObterPorVariavel("Hab_Zerar_Senha_Automatico");
 
 
                 InicializacaoViewAux = new InicializacaoViewAux()
@@ -208,13 +211,16 @@ namespace Zip.Pdv
                     HabSenhaExcluirItem = habExcluirItem.Valor == "S" ? true : false,
                     ModoPdv = true,
                     HabSenhaPager = habSenhaPager.Valor == "S",
+                    PerguntaMesaBalcao = perguntaMesaBalcao.Valor == "S",
                     BalancaDigitada = usaBalancaDigitada?.Valor == "S",
                     Pdv = Pdv.ToString(),
                     PdvTef = PdvTef,
                     CodigoLoja = GetValueApp.GetValue<string>("CodigoLojaTef"),
                     Cnpj =EmpresaView.Cnpj,
-                    RestauranteId = GetValueApp.GetValue<int>("RestauranteId")
-            };
+                    RestauranteId = GetValueApp.GetValue<int>("RestauranteId"),
+                    CalculaValoresMeioMeio = calculaValoresMeioMeio?.Valor == "S",
+                    HabZerarSenha = habZerarSenha?.Valor == "S",
+                };
 
 
             }

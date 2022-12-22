@@ -8,7 +8,7 @@ namespace Eticket.Domain.Interface.Repository
     {
         Produto GetById(int id);
         IEnumerable<Produto> GetAll();
-        IEnumerable<Produto> GetByGrupoId(int grupoId);
+        IEnumerable<Produto> GetByGrupoId(int grupoId, int lojaId);
         IEnumerable<Produto> GetByMeioMeio();
         IEnumerable<Produto> ObterPorEan(string ean);
         IEnumerable<Produto> ObterPorNome(string nome);
@@ -20,5 +20,7 @@ namespace Eticket.Domain.Interface.Repository
         ProdutoTributacao ObterTributacaoPorProdutoId(int produtoId);
         IEnumerable<ProdutoObservacao> ObterProdutoObservacao(int grupoId);
         IEnumerable<Produto> GetSugestaoByGrupoId(int grupoId);
+        IEnumerable<ProdutoComposto> ObterCompostoByProdutoId(int produtoId);
+        IEnumerable<ProdutoPromocao> ObterProdutoPromocao(int produtoId);
     }
 }

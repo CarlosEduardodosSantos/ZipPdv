@@ -15,9 +15,12 @@ namespace Zip.Pdv
     {
         public bool IsPago;
         public string CpfCnpj;
-        private readonly decimal _valorReceber;
+        private  decimal _valorReceber;
         public List<CaixaPagamentoViewModel> Pagamentos;
         public CaixaItemViewModel CaixaItemView;
+        public ClienteViewModel ClienteItemView;
+        public bool IsPrazo;
+        public CartaoConsumoMovRespViewModel CartaoConsumoView;
         private EspeciePagamentoViewModel _especiePagamento;
         private List<EspeciePagamentoViewModel> _especies;
         public FormPagamento(decimal valorReceber)
@@ -211,26 +214,50 @@ namespace Zip.Pdv
                     return;
                 }
                 var tipoOp = 2; //Debto
-                var resposta = CartaoConsumoAppService.AutorizarMovimentacao(restauranteId, numeroCartao, valor, "Venda PDV", tipoOp);
-                if (!resposta.Aproved)
+                CartaoConsumoView = CartaoConsumoAppService.AutorizarMovimentacao(restauranteId, numeroCartao, valor, "Venda PDV", tipoOp);
+                if (!CartaoConsumoView.Aproved)
                 {
-                    TouchMessageBox.Show(resposta.Mensage, "Cartão Consumo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TouchMessageBox.Show(CartaoConsumoView.Mensage, "Cartão Consumo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnLancarPgamento.Enabled = true;
                     return;
                 }
+                
+                CartaoConsumoView.Cliente += $" - {numeroCartao}";
+
+                if (CartaoConsumoView.Desconto > 0)
+                    _valorReceber -= (_valorReceber / 100) * CartaoConsumoView.Desconto;
+
                 Pagamentos.Add(new CaixaPagamentoViewModel()
                 {
                     CaixaId = Program.CaixaView.CaixaId,
                     CaixaItemId = CaixaItemView.CaixaItemId,
                     EspeciePagamentoId = _especiePagamento.EspeciePagamentoId,
+                    CartaoRespostaGuid = CartaoConsumoView.MovId,
                     Especie = _especiePagamento.Especie,
-                    Valor = valor,
+                    Valor = CartaoConsumoView.Valor,
                     Interno = _especiePagamento.Interno,
-                    CodigoFiscal = _especiePagamento.CodigoFiscal
+                    CodigoFiscal = _especiePagamento.CodigoFiscal,
+                    Vaucher = numeroCartao
                 });
             }
             else
             {
+                if (_especiePagamento.Crediario)
+                {
+                    using (var frmCliente = new FormBuscaCliente())
+                    {
+                        frmCliente.ShowDialog();
+                        ClienteItemView = frmCliente.ClienteView;
+                        if (ClienteItemView == null)
+                        {
+                            btnLancarPgamento.Enabled = true;
+                            return;
+                        }
+                        IsPrazo = true;
+
+                    }
+                }
+
                 if (Pagamentos.Any(t => t.Especie == _especiePagamento.Especie))
                     Pagamentos.FirstOrDefault(t => t.Especie == _especiePagamento.Especie).Valor += valor;
                 else

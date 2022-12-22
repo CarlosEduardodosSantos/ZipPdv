@@ -68,11 +68,23 @@ namespace Zip.Pdv
             var item = (ProdutoGridViewItem)sender;
             var produtoOpcao = (ProdutoOpcaoViewModel)item.SelectedItem;
             var tipo = _produtosTipoOpoes.FirstOrDefault(t => t.ProdutosOpcaoTipoId == produtoOpcao.ProdutosOpcaoTipoId);
+            decimal quatidade = 1;
 
             if (tipo.QtdeMax > 0)
             {
-                var qtdeLancTipo = VendaItem.VendaProdutoOpcoes.Where(t => t.ProdutosOpcaoTipoId == produtoOpcao.ProdutosOpcaoTipoId).Count();
-                if (qtdeLancTipo >= tipo.QtdeMax)
+                var qtdeLancTipo = VendaItem.VendaProdutoOpcoes.Where(t => t.ProdutosOpcaoTipoId == produtoOpcao.ProdutosOpcaoTipoId).Sum(t => t.Quantidade);
+
+                if (tipo.QtdeMax > 1)
+                {
+                    var solicita = FormSolicitaNumeric.Instace("Informe a quantidade", false, "1");
+                    if (string.IsNullOrEmpty(solicita))
+                        return;
+
+                    quatidade = decimal.Parse(solicita);
+                    qtdeLancTipo += quatidade;
+                }
+                
+                if (qtdeLancTipo > tipo.QtdeMax)
                 {
                     TouchMessageBox.Show($"Não é permitido escolher mais que {tipo.QtdeMax}\npara essa opção.", "Validação", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -80,30 +92,44 @@ namespace Zip.Pdv
                 }
             }
 
+
             if (!string.IsNullOrEmpty(produtoOpcao.ProdutoPdv) && produtoOpcao.Valor > 999)
             {
                 var seq = VendaItensAdicionais.Any() ? VendaItensAdicionais.Max(t => t.SeqProduto) + 1 : VendaItem.SeqProduto + 1;
                 VendaItensAdicionais.Add(new VendaItemViewModel()
                 {
                     Produto = produtoOpcao.Nome,
-                    ValorUnitatio = produtoOpcao.Valor,
+                    ValorUnitatio = quatidade*produtoOpcao.Valor,
                     ProdutoId = int.Parse(produtoOpcao.ProdutoPdv),
-                    Quantidade = 1,
+                    Quantidade = quatidade,
                     SeqProduto = seq
 
                 });
             }
             else
             {
-                VendaItem.VendaProdutoOpcoes.Add(new VendaProdutoOpcaoViewModel()
+                var exist = VendaItem.VendaProdutoOpcoes.Where(t => t.ProdutosOpcaoId == produtoOpcao.ProdutosOpcaoId).FirstOrDefault();
+
+                if (exist == null)
                 {
-                    ProdutosOpcaoId = produtoOpcao.ProdutosOpcaoId,
-                    ProdutosOpcaoTipoId = produtoOpcao.ProdutosOpcaoTipoId,
-                    ProdutoId = VendaItem.ProdutoId,
-                    Sequencia = VendaItem.SeqProduto,
-                    Valor = produtoOpcao.Valor,
-                    Descricao = produtoOpcao.Nome
-                });
+                    VendaItem.VendaProdutoOpcoes.Add(new VendaProdutoOpcaoViewModel()
+                    {
+                        ProdutosOpcaoId = produtoOpcao.ProdutosOpcaoId,
+                        ProdutosOpcaoTipoId = produtoOpcao.ProdutosOpcaoTipoId,
+                        ProdutoId = VendaItem.ProdutoId,
+                        Sequencia = VendaItem.SeqProduto,
+                        Valor = quatidade*produtoOpcao.Valor,
+                        Descricao = produtoOpcao.Nome,
+                        Quantidade = quatidade,
+                        ProdutoPdv = produtoOpcao.ProdutoPdv
+                    });
+                }
+                else
+                {
+                    exist.Quantidade += quatidade;
+                    exist.Valor = produtoOpcao.Valor * exist.Quantidade;
+                }
+
             }
 
             CarregaDescricao();

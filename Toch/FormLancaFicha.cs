@@ -81,7 +81,7 @@ namespace Toch
         {
             using (var appServer = Program.Container.GetInstance<IProdutoGrupoAppService>())
             {
-                _listGrupos = appServer.ObterTodos().ToList();
+                _listGrupos = appServer.ObterTodos(0).ToList();
             }
 
 
@@ -136,7 +136,7 @@ namespace Toch
 
             using (var appServer = Program.Container.GetInstance<IProdutoAppService>())
             {
-                _listProdutosView = appServer.ObterPorGrupoId(int.Parse(_grupoProduto.ToString())).ToList();
+                _listProdutosView = appServer.ObterPorGrupoId(int.Parse(_grupoProduto.ToString()), 0).ToList();
             }
 
             if (_listProdutosView.Count > 0)

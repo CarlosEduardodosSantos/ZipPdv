@@ -29,7 +29,7 @@ namespace Zip.Pdv
 
             _deliveryView = deliveryView;
             _cliente = deliveryView.ClienteDelivery;
-            CarregaCliente();
+            
 
 
             _valorTaxa = Program.InicializacaoViewAux.ValorFrete;
@@ -43,6 +43,7 @@ namespace Zip.Pdv
         {
             txtTaxAdic.ValueNumeric = _valorTaxa;
             txtValorTotal.ValueNumeric = _valorReceber + _valorTaxa;
+            this.Refresh();
         }
         private void btnVoltar_Click(object sender, EventArgs e)
         {
@@ -274,6 +275,11 @@ namespace Zip.Pdv
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             btnVoltar.PerformClick();
+        }
+
+        private void FormPdvDelivery_Load(object sender, EventArgs e)
+        {
+            CarregaCliente();
         }
     }
 }

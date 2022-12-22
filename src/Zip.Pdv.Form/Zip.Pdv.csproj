@@ -294,6 +294,12 @@
     <Compile Include="Eventos\BarcodeScannedEventArgs.cs" />
     <Compile Include="Fast\ParameterReportDynamic.cs" />
     <Compile Include="Fast\RelatorioFastReport.cs" />
+    <Compile Include="FormBuscaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuscaCliente.Designer.cs">
+      <DependentUpon>FormBuscaCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCaixaLancamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -575,6 +581,12 @@
     <Compile Include="Page\PageVendaAdministracao.designer.cs">
       <DependentUpon>PageVendaAdministracao.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProdutoWinzard\FrmProdutoMeioMeio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProdutoWinzard\FrmProdutoMeioMeio.Designer.cs">
+      <DependentUpon>FrmProdutoMeioMeio.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProdutoWinzard\FrmProdutoOpcaoToten.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -686,6 +698,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Component\TouchMessageBox.resx">
       <DependentUpon>TouchMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuscaCliente.resx">
+      <DependentUpon>FormBuscaCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCaixaLancamento.resx">
       <DependentUpon>FormCaixaLancamento.cs</DependentUpon>
@@ -821,6 +836,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Page\PageVendaAdministracao.resx">
       <DependentUpon>PageVendaAdministracao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProdutoWinzard\FrmProdutoMeioMeio.resx">
+      <DependentUpon>FrmProdutoMeioMeio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProdutoWinzard\FrmProdutoOpcaoToten.resx">
       <DependentUpon>FrmProdutoOpcaoToten.cs</DependentUpon>

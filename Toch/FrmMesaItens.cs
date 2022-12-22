@@ -25,7 +25,7 @@ namespace Toch
         List<clsMesaItens> ListaItens;
         List<Complemento> ListaComponente;
         List<MeioMeio> ListaMeioMeio;
-        
+
 
         VENDA_4 venda4;
         /// <summary>
@@ -89,7 +89,7 @@ namespace Toch
                 Linhas = ListaGrupo.Count;
                 Linhas++;
                 int i = 0; //espaço left
-                int x = (pnlGrupo.Width)/ 98;
+                int x = (pnlGrupo.Width) / 98;
                 int j = 0;
                 int LinhaAtual = 1;
                 bool BreakOut = false;
@@ -114,7 +114,7 @@ namespace Toch
                         btn.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
                         btn.ForeColor = System.Drawing.Color.Black;
                         btn.BackColor = BackColor;
-                        
+
                         btn.Left = 98;
                         btn.Text = ListaGrupo[LinhaAtual - 1].DES_;
                         btn.CodigoProduto = ListaGrupo[LinhaAtual - 1].GRUPO1;
@@ -183,7 +183,7 @@ namespace Toch
                     {
                         TextBoxProd BtnProd = new TextBoxProd();
                         BtnProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular);
-                        BtnProd.BackColor = ((TextBoxProd)sender).BackColorEnter;  
+                        BtnProd.BackColor = ((TextBoxProd)sender).BackColorEnter;
                         BtnProd.ForeColor = System.Drawing.Color.Black;
                         BtnProd.Left = 95;
                         BtnProd.Text = ListaProdutos[LinhaAtual - 1].DES_;
@@ -210,43 +210,116 @@ namespace Toch
 
                 }
             }
-            
+
         }
 
         List<clsMesaItens> List = new List<clsMesaItens>();
-        
+
         clsMesaItens itens;
         private void BtnProd_Click(object sender, EventArgs e)
         {
-            TextBoxProd btnProd = (TextBoxProd)sender;
-
-            if (btnProd.TipoProduto == "M")
+            try
             {
-                //FrmMeioMeio frm = new FrmMeioMeio();
-                //frm.ShowDialog();
-                groupGrupo.Enabled = false;
-                splitContainer1.Panel2Collapsed = true;
-                pnlProd.Controls.Clear();
-                pnlComplementos.Controls.Clear();
 
-                groupProdutos.Text = "Produtos Meio a Meio";
 
-                produtos = new clsProdutos();
-                ListaProdutos = new List<PROD>();
-                int Linhas;
+                TextBoxProd btnProd = (TextBoxProd)sender;
 
-                if (GrupoProduto == 0) return;
-
-                ListaProdutos = produtos.ListaProdutosMeioMeio();
-                if (ListaProdutos.Count > 0)
+                if (btnProd.TipoProduto == "M")
                 {
-                    Linhas = ListaProdutos.Count;
-                    Linhas++;
+                    //FrmMeioMeio frm = new FrmMeioMeio();
+                    //frm.ShowDialog();
+                    groupGrupo.Enabled = false;
+                    splitContainer1.Panel2Collapsed = true;
+                    pnlProd.Controls.Clear();
+                    pnlComplementos.Controls.Clear();
 
-                    if (ListaProdutos.Count == 0) return;
+                    groupProdutos.Text = "Produtos Meio a Meio";
+
+                    produtos = new clsProdutos();
+                    ListaProdutos = new List<PROD>();
+                    int Linhas;
+
+                    if (GrupoProduto == 0) return;
+
+                    ListaProdutos = produtos.ListaProdutosMeioMeio();
+                    if (ListaProdutos.Count > 0)
+                    {
+                        Linhas = ListaProdutos.Count;
+                        Linhas++;
+
+                        if (ListaProdutos.Count == 0) return;
+                        bool FimProd = false;
+                        int i = 0; //espaço left
+                        int x = pnlProd.Width / 95;
+                        int j = 0;
+                        int LinhaAtual = 1;
+                        int y = Linhas / x; //Verifica quantas linha tera
+
+                        //Verifica se o resultado é fracionado e adiciona mais uma linha
+                        double Valor = ((double)Linhas / (double)x);
+                        if (Valor - Math.Truncate(Valor) > 0) y++;
+
+                        while (j < y)
+                        {
+                            i = 0;
+                            while (i < x)
+                            {
+                                TextBoxProd BtnProd = new TextBoxProd();
+                                BtnProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular);
+                                BtnProd.BackColor = ((TextBoxProd)sender).BackColorEnter;
+                                BtnProd.ForeColor = System.Drawing.Color.Black;
+                                BtnProd.Left = 95;
+                                BtnProd.Text = ListaProdutos[LinhaAtual - 1].DES_;
+                                BtnProd.Parent = pnlProd;
+                                BtnProd.Left = BtnProd.Left * i + 5;
+                                BtnProd.Top = 4;
+                                BtnProd.Top = BtnProd.Top + (53 * j);
+                                BtnProd.Height = 53;
+                                BtnProd.Width = 95;
+                                BtnProd.CodigoProduto = ListaProdutos[LinhaAtual - 1].CODIGO;
+                                BtnProd.ValorUnitario = ListaProdutos[LinhaAtual - 1].VLVENDA.HasValue ? (decimal)ListaProdutos[LinhaAtual - 1].VLVENDA : 0;
+                                BtnProd.TipoProduto = ListaProdutos[LinhaAtual - 1].TIPO;
+                                BtnProd.Click += BtnMeioMeio_Click;
+
+
+                                LinhaAtual++;
+                                if (Linhas == LinhaAtual) { FimProd = true; break; };
+
+                                i++;
+                            }
+
+                            j++;
+                            if (FimProd)
+                                break;
+                        }
+                    }
+                }
+
+
+                ListaComponente = new List<Complemento>();
+                ListaComponente = produtos.ListaComplemento(GrupoProduto);
+
+                if (ListaComponente.Count > 0)
+                {
+                    /*
+                    splitContainer1.Panel2Collapsed = false;
+                    itens = new clsMesaItens();
+                    TextBoxProd btnProd = (TextBoxProd)sender;
+                    itens.Codigo = btnProd.CodigoProduto;
+                    itens.Descricao = btnProd.Text;
+                    itens.Qtde = 1;
+                    itens.Unitario = btnProd.ValorUnitario;
+                    itens.Valor = (itens.Unitario * itens.Qtde);
+                    lbDesProd.Text = itens.Descricao;
+                    */
+                    splitContainer1.Panel2Collapsed = false;
+                    pnlComplementos.Controls.Clear();
+                    int Linhas;
                     bool FimProd = false;
+                    Linhas = ListaComponente.Count;
+                    Linhas++;
                     int i = 0; //espaço left
-                    int x = pnlProd.Width / 95;
+                    int x = pnlComplementos.Width / 85;
                     int j = 0;
                     int LinhaAtual = 1;
                     int y = Linhas / x; //Verifica quantas linha tera
@@ -262,21 +335,19 @@ namespace Toch
                         {
                             TextBoxProd BtnProd = new TextBoxProd();
                             BtnProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular);
-                            BtnProd.BackColor = ((TextBoxProd)sender).BackColorEnter;
                             BtnProd.ForeColor = System.Drawing.Color.Black;
-                            BtnProd.Left = 95;
-                            BtnProd.Text = ListaProdutos[LinhaAtual - 1].DES_;
-                            BtnProd.Parent = pnlProd;
+
+                            BtnProd.Left = 85;
+                            BtnProd.Text = ListaComponente[LinhaAtual - 1].des_;
+                            BtnProd.Parent = pnlComplementos;
                             BtnProd.Left = BtnProd.Left * i + 5;
                             BtnProd.Top = 4;
                             BtnProd.Top = BtnProd.Top + (53 * j);
                             BtnProd.Height = 53;
-                            BtnProd.Width = 95;
-                            BtnProd.CodigoProduto = ListaProdutos[LinhaAtual - 1].CODIGO;
-                            BtnProd.ValorUnitario = ListaProdutos[LinhaAtual - 1].VLVENDA.HasValue ? (decimal)ListaProdutos[LinhaAtual - 1].VLVENDA : 0;
-                            BtnProd.TipoProduto = ListaProdutos[LinhaAtual - 1].TIPO;
-                            BtnProd.Click += BtnMeioMeio_Click;
-
+                            BtnProd.Width = 85;
+                            BtnProd.CodigoProduto = ListaComponente[LinhaAtual - 1].inc_compto;
+                            BtnProd.ValorUnitario = ListaComponente[LinhaAtual - 1].valor.HasValue ? (decimal)ListaComponente[LinhaAtual - 1].valor : 0;
+                            BtnProd.Click += BtnComplemento_Click;
 
                             LinhaAtual++;
                             if (Linhas == LinhaAtual) { FimProd = true; break; };
@@ -288,88 +359,25 @@ namespace Toch
                         if (FimProd)
                             break;
                     }
+
                 }
-            }
 
-
-            ListaComponente = new List<Complemento>();
-            ListaComponente = produtos.ListaComplemento(GrupoProduto);
-
-            if (ListaComponente.Count > 0)
-            {
-                /*
-                splitContainer1.Panel2Collapsed = false;
-                itens = new clsMesaItens();
-                TextBoxProd btnProd = (TextBoxProd)sender;
-                itens.Codigo = btnProd.CodigoProduto;
-                itens.Descricao = btnProd.Text;
-                itens.Qtde = 1;
-                itens.Unitario = btnProd.ValorUnitario;
-                itens.Valor = (itens.Unitario * itens.Qtde);
-                lbDesProd.Text = itens.Descricao;
-                */
-                splitContainer1.Panel2Collapsed = false;
-                pnlComplementos.Controls.Clear();
-                int Linhas;
-                bool FimProd = false;
-                Linhas = ListaComponente.Count;
-                Linhas++;
-                int i = 0; //espaço left
-                int x = pnlComplementos.Width / 85;
-                int j = 0;
-                int LinhaAtual = 1;
-                int y = Linhas / x; //Verifica quantas linha tera
-
-                //Verifica se o resultado é fracionado e adiciona mais uma linha
-                double Valor = ((double)Linhas / (double)x);
-                if (Valor - Math.Truncate(Valor) > 0) y++;
-
-                while (j < y)
                 {
-                    i = 0;
-                    while (i < x)
-                    {
-                        TextBoxProd BtnProd = new TextBoxProd();
-                        BtnProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular);
-                        BtnProd.ForeColor = System.Drawing.Color.Black;
-                
-                        BtnProd.Left = 85;
-                        BtnProd.Text = ListaComponente[LinhaAtual - 1].des_;
-                        BtnProd.Parent = pnlComplementos;
-                        BtnProd.Left = BtnProd.Left * i + 5;
-                        BtnProd.Top = 4;
-                        BtnProd.Top = BtnProd.Top + (53 * j);
-                        BtnProd.Height = 53;
-                        BtnProd.Width = 85;
-                        BtnProd.CodigoProduto = ListaComponente[LinhaAtual - 1].inc_compto;
-                        BtnProd.ValorUnitario = ListaComponente[LinhaAtual - 1].valor.HasValue ? (decimal)ListaComponente[LinhaAtual - 1].valor : 0;
-                        BtnProd.Click += BtnComplemento_Click;
+                    itens = new clsMesaItens();
+                    itens.Codigo = btnProd.CodigoProduto;
+                    itens.Descricao += btnProd.Text;
+                    itens.Qtde = 1;
+                    itens.Unitario = btnProd.ValorUnitario;
+                    itens.Valor = (itens.Unitario * itens.Qtde);
 
-                        LinhaAtual++;
-                        if (Linhas == LinhaAtual) { FimProd = true; break; };
-
-                        i++;
-                    }
-
-                    j++;
-                    if (FimProd)
-                        break;
+                    AdicionaItenGrid(itens);
                 }
 
             }
-     
+            catch (Exception ex)
             {
-                itens = new clsMesaItens();
-                itens.Codigo = btnProd.CodigoProduto;
-                itens.Descricao += btnProd.Text;
-                itens.Qtde = 1;
-                itens.Unitario = btnProd.ValorUnitario;
-                itens.Valor = (itens.Unitario * itens.Qtde);
-
-                AdicionaItenGrid(itens);
+                MessageBox.Show(ex.Message);
             }
-
-
 
         }
         decimal ValorProdutos;
@@ -384,7 +392,7 @@ namespace Toch
 
                 itens = ListaItens[theRowsSelected[0].Index];
                 MeioMeio itemMeio = new MeioMeio();
-                
+
                 if (itens.IdMeio1 == 0)
                 {
 
@@ -475,10 +483,10 @@ namespace Toch
             dataGridView1.DataSource = ListaItens;
 
             if (dataGridView1.Rows.Count > 0 && index >= 0)
-                dataGridView1.Rows[index-1].Selected = true;
+                dataGridView1.Rows[index - 1].Selected = true;
 
 
-            
+
 
             lbTotal.Text = "R$ " + ListaItens.Sum(P => P.Valor).ToString("N2");
             blPendentes.Text = ListaItens.Count.ToString();
@@ -689,7 +697,7 @@ namespace Toch
 
         private void BtnComplemento_DoubleClick(object sender, EventArgs e)
         {
-            if (ListaComponente.Count > 0)
+            if (ListaComponente?.Count > 0)
             {
                 TextBoxProd btnProd = (TextBoxProd)sender;
                 itens = new clsMesaItens();

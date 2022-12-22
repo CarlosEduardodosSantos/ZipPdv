@@ -14,12 +14,15 @@ namespace Zip.Pdv
             InitializeComponent();
         }
 
-        public static string Instace(string title, bool obrigatorio = false)
+        public static string Instace(string title, bool obrigatorio = false, string valueDafaut = "")
         {
             using (var form = new FormSolicitaNumeric())
             {
                 form._title = title;
                 form._obrigatorio = obrigatorio;
+                form.txtCpf.Text = valueDafaut;
+                form.txtCpf.SelectAll();
+
                 var result = form.ShowDialog();
                 return result == DialogResult.OK ? form._number : string.Empty;
             }

@@ -48,7 +48,7 @@ namespace Toch
         /// </summary>
         static public Int32 UsaLoginMesa
         {
-            get { return Convert.ToInt32(IniFile.IniReadValue("Geral", "UsaLoginMesa")); }
+            get { return Convert.ToInt32(IniFile.IniReadValue("Gerais", "UsaLoginMesa")); }
         }
 
         /// <summary>

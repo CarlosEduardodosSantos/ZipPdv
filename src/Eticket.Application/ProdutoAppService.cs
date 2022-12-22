@@ -21,9 +21,9 @@ namespace Eticket.Application
             return TypeAdapter.Adapt<Produto, ProdutoViewModel>(_produtoRepository.GetById(id));
         }
 
-        public IEnumerable<ProdutoViewModel> ObterPorGrupoId(int grupoId)
+        public IEnumerable<ProdutoViewModel> ObterPorGrupoId(int grupoId, int lojaId)
         {
-            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.GetByGrupoId(grupoId));
+            return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.GetByGrupoId(grupoId, lojaId));
         }
 
         public IEnumerable<ProdutoViewModel> ObterMeioMeio()
@@ -86,6 +86,11 @@ namespace Eticket.Application
         public IEnumerable<ProdutoViewModel> GetSugestaoByGrupoId(int grupoId)
         {
             return TypeAdapter.Adapt<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoRepository.GetSugestaoByGrupoId(grupoId));
+        }
+
+        public IEnumerable<ProdutoPromocaoViewModel> ObterProdutoPromocao(int produtoId)
+        {
+            return TypeAdapter.Adapt<IEnumerable<ProdutoPromocao>, IEnumerable<ProdutoPromocaoViewModel>>(_produtoRepository.ObterProdutoPromocao(produtoId));
         }
     }
 }
