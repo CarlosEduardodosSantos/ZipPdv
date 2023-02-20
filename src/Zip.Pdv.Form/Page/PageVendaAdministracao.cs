@@ -10,6 +10,7 @@ using Zip.Pdv.Cadastro.Produto;
 using Zip.Pdv.Cadastro.Venda;
 using Zip.Pdv.Component;
 using Zip.Pdv.Component.CustomTab;
+using Zip.Pdv.NFce;
 
 namespace Zip.Pdv.Page
 {
@@ -129,6 +130,14 @@ namespace Zip.Pdv.Page
         private void tableLayoutPanel7_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnNfceNaoEnviadas_Click(object sender, EventArgs e)
+        {
+            using (var form = new FrmNfceNaoEnviada())
+            {
+                form.ShowDialog();
+            }
         }
     }
 }

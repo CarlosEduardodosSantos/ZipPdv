@@ -15,7 +15,7 @@ namespace Zip.Pdv
     {
         public bool IsPago;
         public string CpfCnpj;
-        private  decimal _valorReceber;
+        private decimal _valorReceber;
         public List<CaixaPagamentoViewModel> Pagamentos;
         public CaixaItemViewModel CaixaItemView;
         public ClienteViewModel ClienteItemView;
@@ -221,7 +221,7 @@ namespace Zip.Pdv
                     btnLancarPgamento.Enabled = true;
                     return;
                 }
-                
+
                 CartaoConsumoView.Cliente += $" - {numeroCartao}";
 
                 if (CartaoConsumoView.Desconto > 0)
@@ -320,7 +320,18 @@ namespace Zip.Pdv
                     }
                 }
 
-                Pagamentos.Remove(pagamento);
+                if (!string.IsNullOrEmpty(pagamento.Vaucher))
+                {
+                    var user = Program.Usuario.Nome;
+                    var motivo = "Cancelamento de pagamento";
+                    var cartaoConsumoView = CartaoConsumoAppService.EstornaMovimentacao(pagamento.CartaoRespostaGuid, user, pagamento.Valor, motivo);
+                    if (cartaoConsumoView.error)
+                    {
+                        Funcoes.MensagemError($"{cartaoConsumoView.message}\nVenda não pode ser cancelada, pois ocorreu um erro ao estornar o cartão consumo.\n Consulte o suporte para mais informações.");
+                    }
+                }
+
+                    Pagamentos.Remove(pagamento);
             }
 
             LancarPagamento();

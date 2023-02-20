@@ -1,48 +1,3 @@
-
-CREATE TABLE [dbo].[CaixaPagamentos](
-	[CaixaPagamentoId] [int] IDENTITY(1,1) NOT NULL,
-	[CaixaId] [int] NOT NULL,
-	[CaixaItemId] [uniqueidentifier] NOT NULL,
-	[CartaoRespostaGuid] [uniqueidentifier] NOT NULL,
-	[EspeciePagamentoId] [int] NOT NULL,
-	[Especie] [varchar](50) NOT NULL,
-	[Valor] [decimal](18, 2) NOT NULL,
-	[Interno] [varchar](10) NOT NULL,
- CONSTRAINT [PK_CaixaPagamentos] PRIMARY KEY CLUSTERED 
-(
-	[CaixaPagamentoId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-
-CREATE TABLE [dbo].[CaixaFechamentos](
-	[CaixaFechamentoId] [int] IDENTITY(1,1) NOT NULL,
-	[CaixaId] [int] NOT NULL,
-	[EspecieId] [int] NOT NULL,
-	[Especie] [varchar](50) NOT NULL,
-	[Valor] [decimal](18, 2) NOT NULL,
-	[Divergencia] [decimal](18, 2) NOT NULL,
-	[Conferido] [bit] NOT NULL,
-	[UsuarioConferenciaId] [int] NOT NULL
-) ON [PRIMARY]
-
-GO
-
-SET ANSI_PADDING OFF
-GO
-
-ALTER TABLE [dbo].[CaixaFechamentos] ADD  CONSTRAINT [DF_CaixaFechamentos_Conferido]  DEFAULT ((0)) FOR [Conferido]
-GO
-
-
-Alter table Caixa_2 Add CaixaItemId uniqueidentifier
-
-
-GO
-
-
 ALTER Procedure [dbo].[PROC_INSERT_NFCE]  
  @VendaId Int  
 AS  
@@ -69,10 +24,15 @@ BEGIN
  From NaturezaOperacao Where PadraoVenda = 1  
   
  --Cliente  
- Declare @ClienteId Int, @Nome Varchar(100)  
+ Declare @ClienteId Int, @Nome Varchar(100), @DadosAdic Varchar(500), @Senha Int
  Set @ClienteId = (Select COD_CLI From Venda_1 Where Nro = @VendaId)  
+ Set  @Senha = (Select Senha From Venda_1 Where Nro = @VendaId)
  Declare @ValorNF Decimal(18,2) = (Select VL_COMPRA From Venda_1 Where Nro = @VendaId)  
  Declare @UsuarioId Int = (Select Vend From Venda_1 Where Nro = @VendaId)  
+
+ Set @DadosAdic = ''
+ if(@Senha > 0)
+	set @DadosAdic = 'Senha: ' + ltrim(@Senha)
  --Gravar NF1   
  Insert Into NF1(NF1_NRO, NF1_SERIE, NF1_MOD, NF1_EMP, NF1_DTEMI, NF1_DTSAI, NF1_HSAI,  
   NF1_INDPGTO, NF1_NATOP, NF1_TIPOOP, NF1_TIPOEMI, NF1_FINEMI, NF1_BICMS, NF1_VICMS,  
@@ -112,7 +72,7 @@ BEGIN
   9 as NF1_MODFRETE,  
   'C' as NF1_TIPODEST,  
   @ClienteId as NF1_CODDEST,  
-  '' as NF1_DADOSADIC,  
+  @DadosAdic as NF1_DADOSADIC,  
   0 as NF1_VSERV,  
   '' as NF1_DADOSFISCO,  
   '00' as NF1_SIT_DOC,  
@@ -125,7 +85,7 @@ BEGIN
  Declare @NF_Id Int = (Select @@Identity)  
  --Produtos  
  declare @table table(id int identity(1,1), vendaItemId Int)  
- Insert @table Select INC_VENDA2 From Venda_2 Where Nro = @VendaId  
+ Insert @table Select INC_VENDA2 From Venda_2 Where Nro = @VendaId and UNIT > 0 
   
  Declare @Inicio Int = (Select Min(id) From @table)  
  Declare @Final Int = (Select Max(id) From @table)  

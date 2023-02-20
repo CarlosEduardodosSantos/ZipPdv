@@ -92,7 +92,8 @@ namespace Zip.Pdv.Page
                     Tipo = "V",
                     Loja = Program.Loja,
                     ClientePendencia = vendapendente.Max(t => t.Cliente),
-                    ValorCompra = vendapendente.Sum(t => t.Total)
+                    ValorCompra = vendapendente.Sum(t => t.Total),
+                    DescontoPercentual = vendapendente.Sum(t => t.Desconto)
                 };
 
                 foreach (var itemPendente in vendapendente)
@@ -104,7 +105,8 @@ namespace Zip.Pdv.Page
                         ValorUnitatio = itemPendente.Unitario,
                         Produto = itemPendente.Produto,
                         SeqProduto = itemPendente.SeqProduto,
-                        Observacao = itemPendente.Observacao
+                        Observacao = itemPendente.Observacao,
+                        Desconto = itemPendente.Desconto
                     });
                 }
 

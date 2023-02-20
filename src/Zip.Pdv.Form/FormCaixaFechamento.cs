@@ -212,6 +212,7 @@ namespace Zip.Pdv
             try
             {
                 btnPagar.Enabled = false;
+                caixaView.ValorFechamento = FormSolicitaQuantidade.Instace("Informe o valor do troco, para proxima abertura.", false, 0, 2);
                 using (var caixAppService = Program.Container.GetInstance<ICaixaAppService>())
                 {
                     caixaView.CaixaFechamentos = Pagamentos;

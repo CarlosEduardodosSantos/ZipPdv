@@ -1,5 +1,6 @@
 ﻿using System;
 using Eticket.Application.ViewModels;
+using Eticket.Domain.Entity;
 
 namespace Eticket.Application.Interface
 {
@@ -10,5 +11,6 @@ namespace Eticket.Application.Interface
         CaixaViewModel ObterCaixaAberto(int loja, int pdv);
         CaixaViewModel ObterCaixaId(int caixaId);
         CaixaViewModel ObterCaixaData(DateTime dtCaixa);
+        CaixaViewModel ObterUltimoCaixaFechado(int loja, int pdv);
     }
 }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PageVendaAdministracao));
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -76,6 +76,7 @@
             this.panel23 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.btnNfceNaoEnviadas = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel30.SuspendLayout();
@@ -194,8 +195,8 @@
             this.dgvVendas.AllowUserToDeleteRows = false;
             this.dgvVendas.AllowUserToResizeColumns = false;
             this.dgvVendas.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvVendas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            this.dgvVendas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvVendas.BackgroundColor = System.Drawing.Color.White;
             this.dgvVendas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvVendas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -218,8 +219,8 @@
             this.dgvVendas.RowHeadersVisible = false;
             this.dgvVendas.RowHeadersWidth = 30;
             this.dgvVendas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvVendas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvVendas.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvVendas.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvVendas.RowTemplate.Height = 25;
             this.dgvVendas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -270,8 +271,8 @@
             // clDesconto
             // 
             this.clDesconto.DataPropertyName = "ValorDesconto";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clDesconto.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clDesconto.DefaultCellStyle = dataGridViewCellStyle6;
             this.clDesconto.Frozen = true;
             this.clDesconto.HeaderText = "DESCONTO";
             this.clDesconto.Name = "clDesconto";
@@ -282,13 +283,13 @@
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "ValorFinal";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = "0,00";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = "0,00";
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn2.HeaderText = "VALOR";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -586,6 +587,7 @@
             // 
             this.panel23.BackgroundImage = global::Zip.Pdv.Properties.Resources.bg_2;
             this.panel23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel23.Controls.Add(this.btnNfceNaoEnviadas);
             this.panel23.Controls.Add(this.label2);
             this.panel23.Controls.Add(this.btnVoltar);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
@@ -623,6 +625,18 @@
             this.btnVoltar.Size = new System.Drawing.Size(50, 42);
             this.btnVoltar.TabIndex = 4;
             this.btnVoltar.UseVisualStyleBackColor = false;
+            // 
+            // btnNfceNaoEnviadas
+            // 
+            this.btnNfceNaoEnviadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNfceNaoEnviadas.BackColor = System.Drawing.Color.Transparent;
+            this.btnNfceNaoEnviadas.Image = global::Zip.Pdv.Properties.Resources.keyboard_32;
+            this.btnNfceNaoEnviadas.Location = new System.Drawing.Point(965, 0);
+            this.btnNfceNaoEnviadas.Name = "btnNfceNaoEnviadas";
+            this.btnNfceNaoEnviadas.Size = new System.Drawing.Size(51, 40);
+            this.btnNfceNaoEnviadas.TabIndex = 19;
+            this.btnNfceNaoEnviadas.UseVisualStyleBackColor = false;
+            this.btnNfceNaoEnviadas.Click += new System.EventHandler(this.btnNfceNaoEnviadas_Click);
             // 
             // PageVendaAdministracao
             // 
@@ -706,5 +720,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clDesconto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Button btnNfceNaoEnviadas;
     }
 }

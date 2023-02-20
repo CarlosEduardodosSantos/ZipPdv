@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dapper;
 using Eticket.Domain.Entity;
@@ -57,6 +58,35 @@ namespace Eticket.Infra.Data.Repository
             {
                 conn.Open();
                 var caixaEntrada = conn.Query<string>("Select DiretorioEntrada From Parametros Where Id = @empresaId", new { empresaId }).FirstOrDefault();
+                conn.Close();
+
+                return caixaEntrada;
+            }
+        }
+
+        public IEnumerable<NFce> NfceNãoEnviadas(DateTime datahora)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                var timeout = conn.ConnectionTimeout;
+
+                var caixaEntrada = conn.Query<NFce>(@"SELECT NF4.NF1_ID AS NFCEID, 
+                                        NF4.NF1_NRO AS NUMERONFCE, 
+                                        NF4.NF1_SERIE AS SERIE, 
+                                        NF4.NF1_MOD AS MODELO,
+                                        NF4.NF4_VENDA AS VENDAID
+                                FROM NF4
+                                LEFT JOIN NF1 ON NF4.NF1_ID = NF1.NF1_ID
+                                WHERE NF1_DTEMI >= @datahora
+                                AND NOT EXISTS (SELECT 1 FROM NOTASFISCAIS
+				                                Where 
+					                                CAST(SUBSTRING(NOTASFISCAIS.CHAVENOTA,29,9) AS INT) = NF4.NF1_NRO   AND
+					                                CAST(SUBSTRING(NOTASFISCAIS.CHAVENOTA,26,3) AS INT)	= NF4.NF1_SERIE AND
+					                                CAST(SUBSTRING(NOTASFISCAIS.CHAVENOTA,24,2) AS INT) = NF4.NF1_MOD   AND
+					                                --NOTASFISCAIS.CNPJ = SIEMP.SIEMP_CNPJ                                AND 
+                                                    --NOTASFISCAIS.CodigoSituacao = 15                                    AND
+                                                    NOTASFISCAIS.DataSituacao >= @datahora)", new { datahora });
                 conn.Close();
 
                 return caixaEntrada;

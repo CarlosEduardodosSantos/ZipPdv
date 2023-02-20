@@ -475,6 +475,12 @@
     <Compile Include="ModuloBalanca\FormLeituraBalanca.Designer.cs">
       <DependentUpon>FormLeituraBalanca.cs</DependentUpon>
     </Compile>
+    <Compile Include="NFce\FrmNfceNaoEnviada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NFce\FrmNfceNaoEnviada.Designer.cs">
+      <DependentUpon>FrmNfceNaoEnviada.cs</DependentUpon>
+    </Compile>
     <Compile Include="NFce\FrmSolicitaNfce.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -785,6 +791,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModuloBalanca\FormLeituraBalanca.resx">
       <DependentUpon>FormLeituraBalanca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFce\FrmNfceNaoEnviada.resx">
+      <DependentUpon>FrmNfceNaoEnviada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NFce\FrmSolicitaNfce.resx">
       <DependentUpon>FrmSolicitaNfce.cs</DependentUpon>

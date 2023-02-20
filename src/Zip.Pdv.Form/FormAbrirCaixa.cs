@@ -134,5 +134,21 @@ namespace Zip.Pdv
             }
             txtValorInicial.SelectionStart = txtValorInicial.Text.Length;
         }
+
+        private void FormAbrirCaixa_Load(object sender, EventArgs e)
+        {
+            using (var caixaApp = Program.Container.GetInstance<ICaixaAppService>())
+            {
+                var caixaAnt = caixaApp.ObterUltimoCaixaFechado(Program.Loja, Program.Pdv);
+
+                if (caixaAnt.ValorFechamento > 0)
+                {
+                    txtValorInicial.ValueNumeric = caixaAnt.ValorFechamento;
+                    txtValorInicial.ReadOnly = true; 
+                }
+                
+
+            }
+        }
     }
 }

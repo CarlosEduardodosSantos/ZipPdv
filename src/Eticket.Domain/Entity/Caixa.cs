@@ -14,6 +14,7 @@ namespace Eticket.Domain.Entity
         public string UsuarioFinal { get; set; }
         public DateTime DataFinal { get; set; }
         public decimal ValorAbertura { get; set; }
+        public decimal ValorFechamento { get; set; }
         public int  CedenteId { get; set; }
         public ICollection<CaixaFechamento> CaixaFechamentos { get; set; }
     }

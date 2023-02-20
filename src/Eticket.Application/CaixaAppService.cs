@@ -47,5 +47,10 @@ namespace Eticket.Application
         {
             return TypeAdapter.Adapt<Caixa, CaixaViewModel>(_caixaRepository.ObterCaixaData(dtCaixa));
         }
+
+        public CaixaViewModel ObterUltimoCaixaFechado(int loja, int pdv)
+        {
+            return TypeAdapter.Adapt<Caixa, CaixaViewModel>(_caixaRepository.ObterUltimoCaixaFechado(loja, pdv));
+        }
     }
 }

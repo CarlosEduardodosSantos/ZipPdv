@@ -18,6 +18,7 @@ namespace Eticket.Application.ViewModels
         public string UsuarioFinal { get; set; }
         public DateTime DataFinal { get; set; }
         public decimal ValorAbertura { get; set; }
+        public decimal ValorFechamento { get; set; }
         public int CedenteId { get; set; }
         public ICollection<CaixaFechamentoViewModel> CaixaFechamentos { get; set; }
     }

@@ -122,6 +122,7 @@ namespace Eticket.Infra.Data.Repository
                 sql.AppendLine("FIM_DATA = @FIM_DATA,");
                 sql.AppendLine("FIM_HORA = @FIM_HORA,");
                 sql.AppendLine("FIM_USUARIO = @FIM_USUARIO,");
+                sql.AppendLine("Troco_Final = @Troco_Final,");
                 sql.AppendLine("Div1 = @Div1,");
                 sql.AppendLine("Div2 = @Div2,");
                 sql.AppendLine("Div3 = @Div3,");
@@ -139,6 +140,7 @@ namespace Eticket.Infra.Data.Repository
                 parans.Add("@FIM_DATA", System.DateTime.Now.Date);
                 parans.Add("@FIM_HORA", System.DateTime.Now.ToString("HH:mm"));
                 parans.Add("@FIM_USUARIO", caixa.UsuarioFinalId);
+                parans.Add("@Troco_Final", caixa.ValorFechamento);
                 parans.Add("@FIM_LOJA", caixa.Loja);
                 parans.Add("@Div1", dev01);
                 parans.Add("@Div2", dev02);
@@ -174,6 +176,22 @@ namespace Eticket.Infra.Data.Repository
                 return caixa;
             }
         }
+        public Caixa ObterUltimoCaixaFechado(int loja, int pdv)
+        {
+            var sql = SelecView() +
+                      " Where cx.FIM_DATA IS NOT NULL And " +
+                      "cx.Loja = @loja And  pdv = @pdv " +
+                      "Order By cx.FIM_DATA Desc";
+
+            using (var conn = Connection)
+            {
+                conn.Open();
+                var caixa = conn.Query<Caixa>(sql, new { loja, pdv }).FirstOrDefault();
+                conn.Close();
+
+                return caixa;
+            }
+        }
 
         private string SelecView()
         {
@@ -184,6 +202,7 @@ namespace Eticket.Infra.Data.Repository
 	                    cx.USUARIO UsuarioId,
 	                    cx.Data + cx.HORA as DataInicio,
 	                    cx.INICIAL as ValorAbertura,
+                        cx.Troco_Final as ValorFechamento,
 	                    cx.COD_CEDENTE as CedenteId,
 	                    UF.NOME as UsuarioFinal,
 	                    cx.FIM_DATA + cx.FIM_HORA as DataFinal

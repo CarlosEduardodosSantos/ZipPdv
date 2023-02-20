@@ -48,7 +48,8 @@ namespace Eticket.Application.ViewModels
                     Observacao = item.Observacao,
                     SeqProduto = item.SeqProduto,
                     ValorVenda = item.ValorUnitatio,
-                    UsuarioId = venda.UsuarioId
+                    UsuarioId = venda.UsuarioId,
+                    Desconto = item.Desconto
                 });
             }
 

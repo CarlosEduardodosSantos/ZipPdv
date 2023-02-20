@@ -3,6 +3,8 @@ using Eticket.Application.ViewModels;
 using Eticket.Domain.Entity;
 using Eticket.Domain.Interface.Repository;
 using FastMapper;
+using System;
+using System.Collections.Generic;
 
 namespace Eticket.Application
 {
@@ -34,6 +36,16 @@ namespace Eticket.Application
         public string ObterDiretorioNfce(int empresaId)
         {
             return _nfceServicoRepository.ObterDiretorioNfce(empresaId);
+        }
+
+        public IEnumerable<NFceViewModel> NfceNãoEnviadas(DateTime datahora)
+        {
+            return TypeAdapter.Adapt<IEnumerable<NFce>, IEnumerable<NFceViewModel>>(_nfceServicoRepository.NfceNãoEnviadas(datahora));
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }

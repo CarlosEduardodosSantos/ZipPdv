@@ -9,5 +9,6 @@ namespace Eticket.Domain.Interface.Repository
         void Fechar(Caixa caixa);
         Caixa ObterCaixaAberto(int loja, int pdv);
         Caixa ObterCaixaData(DateTime dtCaixa);
+        Caixa ObterUltimoCaixaFechado(int loja, int pdv);
     }
 }
