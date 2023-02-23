@@ -13,6 +13,7 @@ namespace Zip.Pdv.Component.PendenteGridView
         public event EventHandler<EventArgs> EntregaItem;
         public event EventHandler<EventArgs> ProntoItem;
         public event EventHandler<EventArgs> DetalheItem;
+        public event EventHandler<EventArgs> ExcluirItem;
         void entregaItem(object sender, EventArgs e)
         {
             var completedEvent = EntregaItem;
@@ -34,6 +35,16 @@ namespace Zip.Pdv.Component.PendenteGridView
         void detalheItem(object sender, EventArgs e)
         {
             var completedEvent = DetalheItem;
+            if (completedEvent != null)
+            {
+                var item = (PendenteGridViewitem)sender;
+                completedEvent(item, e);
+            }
+        }
+
+        void excluirItem(object sender, EventArgs e)
+        {
+            var completedEvent = ExcluirItem;
             if (completedEvent != null)
             {
                 var item = (PendenteGridViewitem)sender;
@@ -85,6 +96,7 @@ namespace Zip.Pdv.Component.PendenteGridView
                 cupomItem.ProntoItem += prontoItem;
                 cupomItem.DetalheItem += detalheItem;
                 cupomItem.SelectItem += CupomItemOnSelectItem;
+                cupomItem.ExcluirItem += excluirItem;
 
                 
 

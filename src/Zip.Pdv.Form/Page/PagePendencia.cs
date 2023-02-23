@@ -22,11 +22,10 @@ namespace Zip.Pdv.Page
             btnVoltar.Click += closeForm;
             pendenciaGridView1.EntregaItem += EntregaGridView1_EntregaItem;
 
-            //entregaGridView2.RetornoItem += EntregaGridView2OnRetornoItem;
-
             pendenciaGridView1.DetalheItem += EntregaGridView2OnDetalheItem;
-            //entregaGridView2.DetalheItem += EntregaGridView2OnDetalheItem;
+
             pendenciaGridView1.ProntoItem += PendenciaGridView1_ProntoItem;
+            pendenciaGridView1.ExcluirItem += PendenciaGridView1_ExcluirItem;
 
             _vendaPendenteAppService = Program.Container.GetInstance<IVendaPendenteAppService>();
 
@@ -53,6 +52,24 @@ namespace Zip.Pdv.Page
                 timer1.Start();
         }
 
+        private void PendenciaGridView1_ExcluirItem(object sender, EventArgs e)
+        {
+            var oK = Funcoes.MensagemQuestao("Deseja Excluir o pedido?");
+            if (oK != DialogResult.OK)
+                return;
+
+            timer1.Stop();
+            var item = (PendenteGridViewitem)sender;
+            var vendaView = (VendaViewModel)item.DataSource;
+
+            _vendaPendenteAppService.Remover(vendaView.PendenciaId);
+
+            Funcoes.MensagemInformation("Exclusão efetuada com sucesso.");
+
+            timer1.Start();
+            CarregaEntregas();
+        }
+
         private void EntregaGridView2OnDetalheItem(object sender, EventArgs eventArgs)
         {
             timer1.Stop();
@@ -70,7 +87,7 @@ namespace Zip.Pdv.Page
             CarregaEntregas();
         }
 
-        private void CarregaEntregas()
+        public void CarregaEntregas()
         {
 
             timer1.Stop();
@@ -131,7 +148,8 @@ namespace Zip.Pdv.Page
             var venda = (VendaViewModel)item.DataSource;
 
             var valorReceber = venda.VendaItens.Sum(t => t.ValorTotal);
-            using (var form = new FormPagamento(valorReceber))
+            var descontoTela = venda.VendaItens.Sum(t => t.Desconto);
+            using (var form = new FormPagamento(valorReceber, descontoTela))
             {
                 form.CpfCnpj = venda.Cnpj;
                 form.ShowDialog();

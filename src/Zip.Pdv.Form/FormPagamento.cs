@@ -23,10 +23,11 @@ namespace Zip.Pdv
         public CartaoConsumoMovRespViewModel CartaoConsumoView;
         private EspeciePagamentoViewModel _especiePagamento;
         private List<EspeciePagamentoViewModel> _especies;
-        public FormPagamento(decimal valorReceber)
+        public FormPagamento(decimal valorReceber, decimal desconto)
         {
             InitializeComponent();
             txtValor.CasasDecimais = "C2";
+            lbDesconto.Text = desconto.ToString("C2"); ;
 
             _valorReceber = valorReceber;
 
@@ -114,7 +115,6 @@ namespace Zip.Pdv
         private void TotalizaPagamento()
         {
             lbValorReceber.Text = _valorReceber.ToString("C2");
-
             var valorPago = Pagamentos.Sum(t => t.Valor);
             lbValorPago.Text = valorPago.ToString("C2");
             var saldoPagar = (_valorReceber - valorPago);

@@ -90,7 +90,8 @@ namespace Zip.Pdv.Page
 
 
             var valorReceber = vendaView.Delivery.Valor + vendaView.Delivery.Troco;
-            using (var form = new FormPagamento(valorReceber))
+            var descontoTela = vendaView.VendaItens.Sum(t => t.Desconto);
+            using (var form = new FormPagamento(valorReceber, descontoTela))
             {
                 form.ShowDialog();
 

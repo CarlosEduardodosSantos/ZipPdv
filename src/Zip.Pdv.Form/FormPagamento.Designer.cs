@@ -41,7 +41,7 @@
             this.panel14 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbDesconto = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
@@ -76,7 +76,6 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.btnLancarPgamento = new System.Windows.Forms.Button();
-            this.txtValor = new Zip.Pdv.Component.TextBoxDecimal();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.xButton12 = new System.Windows.Forms.Button();
             this.xButton11 = new System.Windows.Forms.Button();
@@ -93,6 +92,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.panelFundo = new System.Windows.Forms.Panel();
+            this.txtValor = new Zip.Pdv.Component.TextBoxDecimal();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelHistorico.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -277,23 +277,23 @@
             // 
             // panel15
             // 
-            this.panel15.Controls.Add(this.label4);
+            this.panel15.Controls.Add(this.lbDesconto);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(139, 3);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(130, 27);
             this.panel15.TabIndex = 1;
             // 
-            // label4
+            // lbDesconto
             // 
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(130, 27);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "R$ 0,00";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbDesconto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbDesconto.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDesconto.Location = new System.Drawing.Point(0, 0);
+            this.lbDesconto.Name = "lbDesconto";
+            this.lbDesconto.Size = new System.Drawing.Size(130, 27);
+            this.lbDesconto.TabIndex = 2;
+            this.lbDesconto.Text = "R$ 0,00";
+            this.lbDesconto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel16
             // 
@@ -688,25 +688,6 @@
             this.btnLancarPgamento.UseVisualStyleBackColor = false;
             this.btnLancarPgamento.Click += new System.EventHandler(this.btnLancarPgamento_Click);
             // 
-            // txtValor
-            // 
-            this.txtValor.BackColorEnter = System.Drawing.Color.Empty;
-            this.txtValor.CasasDecimais = null;
-            this.txtValor.Font = new System.Drawing.Font("Arial", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValor.FormatDecimal = null;
-            this.txtValor.Location = new System.Drawing.Point(7, 223);
-            this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(294, 45);
-            this.txtValor.TabIndex = 8;
-            this.txtValor.Text = "0";
-            this.txtValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtValor.ValueNumeric = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.txtValor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValor_KeyDown);
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -896,6 +877,25 @@
             this.panelFundo.Size = new System.Drawing.Size(707, 580);
             this.panelFundo.TabIndex = 2;
             // 
+            // txtValor
+            // 
+            this.txtValor.BackColorEnter = System.Drawing.Color.Empty;
+            this.txtValor.CasasDecimais = null;
+            this.txtValor.Font = new System.Drawing.Font("Arial", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValor.FormatDecimal = null;
+            this.txtValor.Location = new System.Drawing.Point(7, 223);
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(294, 45);
+            this.txtValor.TabIndex = 8;
+            this.txtValor.Text = "0";
+            this.txtValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtValor.ValueNumeric = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtValor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValor_KeyDown);
+            // 
             // FormPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -985,7 +985,7 @@
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbDesconto;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel17;

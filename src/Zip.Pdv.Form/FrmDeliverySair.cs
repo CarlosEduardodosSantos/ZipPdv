@@ -154,7 +154,8 @@ namespace Zip.Pdv
                 if (resultFiscal == DialogResult.OK)
                 {
                     var valorReceber = _vendaView.Delivery.Valor + _vendaView.Delivery.Troco;
-                    using (var form = new FormPagamento(valorReceber))
+                    var descontoTela = _vendaView.VendaItens.Sum(t => t.Desconto);
+                    using (var form = new FormPagamento(valorReceber, descontoTela))
                     {
                         form.ShowDialog();
 

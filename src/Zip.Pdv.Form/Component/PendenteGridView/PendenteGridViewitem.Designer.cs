@@ -30,6 +30,7 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPronto = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnRetornar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -44,7 +45,7 @@
             this.lbValor = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnDetalhe = new System.Windows.Forms.Button();
-            this.btnPronto = new System.Windows.Forms.Button();
+            this.btnDeletar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -82,6 +83,17 @@
             this.panel2.Size = new System.Drawing.Size(42, 40);
             this.panel2.TabIndex = 3;
             // 
+            // btnPronto
+            // 
+            this.btnPronto.BackgroundImage = global::Zip.Pdv.Properties.Resources.ic_checkout;
+            this.btnPronto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPronto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPronto.Location = new System.Drawing.Point(0, 0);
+            this.btnPronto.Name = "btnPronto";
+            this.btnPronto.Size = new System.Drawing.Size(42, 40);
+            this.btnPronto.TabIndex = 1;
+            this.btnPronto.UseVisualStyleBackColor = true;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.btnRetornar);
@@ -117,7 +129,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
             this.tableLayoutPanel2.Controls.Add(this.panel7, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel4, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel8, 2, 0);
@@ -129,6 +141,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(525, 40);
             this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // panel7
             // 
@@ -138,14 +151,14 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(3, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(280, 34);
+            this.panel7.Size = new System.Drawing.Size(250, 34);
             this.panel7.TabIndex = 4;
             // 
             // lbMoto
             // 
             this.lbMoto.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbMoto.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMoto.Location = new System.Drawing.Point(137, 0);
+            this.lbMoto.Location = new System.Drawing.Point(107, 0);
             this.lbMoto.Name = "lbMoto";
             this.lbMoto.Size = new System.Drawing.Size(143, 34);
             this.lbMoto.TabIndex = 3;
@@ -158,7 +171,7 @@
             this.lbNome.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNome.Location = new System.Drawing.Point(73, 0);
             this.lbNome.Name = "lbNome";
-            this.lbNome.Size = new System.Drawing.Size(207, 34);
+            this.lbNome.Size = new System.Drawing.Size(177, 34);
             this.lbNome.TabIndex = 2;
             this.lbNome.Text = "Alexandre Santos de Amorim";
             this.lbNome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -180,9 +193,9 @@
             // 
             this.panel4.Controls.Add(this.lbDataHora);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(289, 3);
+            this.panel4.Location = new System.Drawing.Point(259, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(89, 34);
+            this.panel4.Size = new System.Drawing.Size(79, 34);
             this.panel4.TabIndex = 1;
             // 
             // lbDataHora
@@ -191,7 +204,7 @@
             this.lbDataHora.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDataHora.Location = new System.Drawing.Point(0, 0);
             this.lbDataHora.Name = "lbDataHora";
-            this.lbDataHora.Size = new System.Drawing.Size(89, 34);
+            this.lbDataHora.Size = new System.Drawing.Size(79, 34);
             this.lbDataHora.TabIndex = 2;
             this.lbDataHora.Text = "19/03/2019 11:30";
             this.lbDataHora.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -200,10 +213,9 @@
             // panel8
             // 
             this.panel8.Controls.Add(this.lbValor);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(384, 3);
+            this.panel8.Location = new System.Drawing.Point(344, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(89, 34);
+            this.panel8.Size = new System.Drawing.Size(52, 34);
             this.panel8.TabIndex = 5;
             // 
             // lbValor
@@ -212,41 +224,42 @@
             this.lbValor.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbValor.Location = new System.Drawing.Point(0, 0);
             this.lbValor.Name = "lbValor";
-            this.lbValor.Size = new System.Drawing.Size(89, 34);
+            this.lbValor.Size = new System.Drawing.Size(52, 34);
             this.lbValor.TabIndex = 4;
             this.lbValor.Text = "Vlr. 1000,00";
             this.lbValor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnDeletar);
             this.panel5.Controls.Add(this.btnDetalhe);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(479, 3);
+            this.panel5.Location = new System.Drawing.Point(429, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(43, 34);
+            this.panel5.Size = new System.Drawing.Size(93, 34);
             this.panel5.TabIndex = 6;
             // 
             // btnDetalhe
             // 
             this.btnDetalhe.BackgroundImage = global::Zip.Pdv.Properties.Resources.anote_38;
             this.btnDetalhe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDetalhe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDetalhe.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnDetalhe.Location = new System.Drawing.Point(0, 0);
             this.btnDetalhe.Name = "btnDetalhe";
             this.btnDetalhe.Size = new System.Drawing.Size(43, 34);
             this.btnDetalhe.TabIndex = 1;
             this.btnDetalhe.UseVisualStyleBackColor = true;
             // 
-            // btnPronto
+            // btnDeletar
             // 
-            this.btnPronto.BackgroundImage = global::Zip.Pdv.Properties.Resources.ic_checkout;
-            this.btnPronto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPronto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPronto.Location = new System.Drawing.Point(0, 0);
-            this.btnPronto.Name = "btnPronto";
-            this.btnPronto.Size = new System.Drawing.Size(42, 40);
-            this.btnPronto.TabIndex = 1;
-            this.btnPronto.UseVisualStyleBackColor = true;
+            this.btnDeletar.BackgroundImage = global::Zip.Pdv.Properties.Resources.TabHover;
+            this.btnDeletar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnDeletar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnDeletar.Location = new System.Drawing.Point(49, 0);
+            this.btnDeletar.Name = "btnDeletar";
+            this.btnDeletar.Size = new System.Drawing.Size(44, 34);
+            this.btnDeletar.TabIndex = 5;
+            this.btnDeletar.UseVisualStyleBackColor = true;
             // 
             // PendenteGridViewitem
             // 
@@ -288,5 +301,6 @@
         private System.Windows.Forms.Button btnPronto;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button btnDetalhe;
+        private System.Windows.Forms.Button btnDeletar;
     }
 }

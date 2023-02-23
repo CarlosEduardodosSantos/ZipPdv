@@ -34,14 +34,12 @@
             this.lbEmpresa = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbUsuarioNome = new System.Windows.Forms.Label();
-            this.panelPages = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel25 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.panel30 = new System.Windows.Forms.Panel();
             this.btnRetira = new System.Windows.Forms.Button();
             this.panel29 = new System.Windows.Forms.Panel();
-            this.splitBtnConfigure = new Zip.Pdv.Component.SplitButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelivery = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
@@ -49,6 +47,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.splitBtnConfigure = new Zip.Pdv.Component.SplitButton();
+            this.panelPages = new System.Windows.Forms.Panel();
             this.panel26.SuspendLayout();
             this.panel25.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -104,14 +104,6 @@
             this.lbUsuarioNome.TabIndex = 0;
             this.lbUsuarioNome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbUsuarioNome.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbUsuarioNome_MouseDoubleClick);
-            // 
-            // panelPages
-            // 
-            this.panelPages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPages.Location = new System.Drawing.Point(0, 65);
-            this.panelPages.Name = "panelPages";
-            this.panelPages.Size = new System.Drawing.Size(965, 424);
-            this.panelPages.TabIndex = 3;
             // 
             // timer1
             // 
@@ -180,20 +172,6 @@
             this.panel29.Name = "panel29";
             this.panel29.Size = new System.Drawing.Size(63, 55);
             this.panel29.TabIndex = 1;
-            // 
-            // splitBtnConfigure
-            // 
-            this.splitBtnConfigure.BackgroundImage = global::Zip.Pdv.Properties.Resources.Configure_32;
-            this.splitBtnConfigure.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.splitBtnConfigure.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitBtnConfigure.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.splitBtnConfigure.ImageKey = "Normal";
-            this.splitBtnConfigure.Location = new System.Drawing.Point(0, 0);
-            this.splitBtnConfigure.Name = "splitBtnConfigure";
-            this.splitBtnConfigure.Size = new System.Drawing.Size(63, 55);
-            this.splitBtnConfigure.TabIndex = 0;
-            this.splitBtnConfigure.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.splitBtnConfigure.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -293,6 +271,28 @@
             this.btnVoltar.Visible = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // splitBtnConfigure
+            // 
+            this.splitBtnConfigure.BackgroundImage = global::Zip.Pdv.Properties.Resources.Configure_32;
+            this.splitBtnConfigure.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.splitBtnConfigure.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitBtnConfigure.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.splitBtnConfigure.ImageKey = "Normal";
+            this.splitBtnConfigure.Location = new System.Drawing.Point(0, 0);
+            this.splitBtnConfigure.Name = "splitBtnConfigure";
+            this.splitBtnConfigure.Size = new System.Drawing.Size(63, 55);
+            this.splitBtnConfigure.TabIndex = 0;
+            this.splitBtnConfigure.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.splitBtnConfigure.UseVisualStyleBackColor = true;
+            // 
+            // panelPages
+            // 
+            this.panelPages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelPages.Location = new System.Drawing.Point(0, 65);
+            this.panelPages.Name = "panelPages";
+            this.panelPages.Size = new System.Drawing.Size(965, 424);
+            this.panelPages.TabIndex = 3;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -329,7 +329,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label lbUsuarioNome;
-        private System.Windows.Forms.Panel panelPages;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
@@ -343,5 +342,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnDelivery;
         private System.Windows.Forms.Button btnRetira;
+        private System.Windows.Forms.Panel panelPages;
     }
 }

@@ -730,7 +730,9 @@ namespace Zip.Pdv
 
             }
             var valorReceber = VendaView.VendaItens.Sum(t => t.ValorTotal);
-            using (var form = new FormPagamento(valorReceber))
+            var descPercent = VendaView.DescontoPercentual;
+            var descontoTela = VendaView.VendaItens.Sum(t => t.Desconto);
+            using (var form = new FormPagamento(valorReceber, descontoTela))
             {
                 form.CpfCnpj = VendaView.Cnpj;
                 form.ShowDialog();

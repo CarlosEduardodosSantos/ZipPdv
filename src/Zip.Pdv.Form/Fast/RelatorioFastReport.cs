@@ -20,7 +20,8 @@ namespace Zip.Pdv.Fast
         {
             _connectionString = ConfigurationManager.ConnectionStrings["MyContext"].ConnectionString;
             //_tipoImpressaoViewEnum = Program.InicializacaoViewAux.TipoImpressao;
-            _tipoImpressaoViewEnum = tipoImpressaoViewEnum;
+            //_tipoImpressaoViewEnum = tipoImpressaoViewEnum;
+            _tipoImpressaoViewEnum = TipoImpressaoViewEnum.PopUp;
         }
 
         public void GerarRelatorio(string nameFrx, ParameterReportDynamic parameterReport)
