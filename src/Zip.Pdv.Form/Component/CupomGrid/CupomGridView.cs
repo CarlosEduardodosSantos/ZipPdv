@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Eticket.Application.Interface;
 using Eticket.Application.ViewModels;
+using Zip.Pdv.Eventos;
 
 namespace Zip.Pdv.Component.CupomGrid
 {
@@ -21,6 +23,14 @@ namespace Zip.Pdv.Component.CupomGrid
                 var item = (CupomItemBase)sender;
                 completedEvent(item, e);
             }
+        }
+
+        public CupomGridView()
+        {
+            InitializeComponent();
+
+
+
         }
 
         void adicionarItem(object sender, EventArgs e)

@@ -289,9 +289,10 @@
             // 
             // keyboardNum1
             // 
-            this.keyboardNum1.Location = new System.Drawing.Point(170, 120);
+            this.keyboardNum1.Location = new System.Drawing.Point(171, 121);
+            this.keyboardNum1.Margin = new System.Windows.Forms.Padding(4);
             this.keyboardNum1.Name = "keyboardNum1";
-            this.keyboardNum1.Size = new System.Drawing.Size(314, 245);
+            this.keyboardNum1.Size = new System.Drawing.Size(312, 243);
             this.keyboardNum1.TabIndex = 6;
             this.keyboardNum1.UserKeyPressed += new KeyboardClassLibrary.Num.KeyboardNumDelegate(this.keyboardNum1_UserKeyPressed);
             // 

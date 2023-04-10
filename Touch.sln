@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31105.61
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touch", "Toch\Touch.csproj", "{0D1EF56F-D8FF-46ED-861D-199CA9F17420}"
 EndProject
@@ -55,19 +55,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Services", "02 - Servi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zip.Sat.Service", "Zip.Sat.Service\Zip.Sat.Service.csproj", "{ECD54378-B03B-42A4-AAD9-C26C1B4640DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFe.Danfe.Base", "..\..\..\ProjectMaster\DFe.NET\NFe.Danfe.Base\NFe.Danfe.Base.csproj", "{80C6093C-47D5-41A1-9FA0-E218E82FA666}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFe.Danfe.Fast", "..\..\..\ProjectMaster\DFe.NET\NFe.Danfe.Fast\NFe.Danfe.Fast.csproj", "{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zip.Toten", "src\Zip.Toten\Zip.Toten.csproj", "{F5820DD5-723D-468A-AA00-AF09D9D4DCD4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zip.TefTotem", "src\Zip.TefTotem\Zip.TefTotem.csproj", "{C95393F0-6F0D-41F3-A5DE-CC6F49AF3AFA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NFe.Danfe.Base", "..\..\DFe.NET-master\NFe.Danfe.Base\NFe.Danfe.Base.csproj", "{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NFe.Danfe.Fast", "..\..\DFe.NET-master\NFe.Danfe.Fast\NFe.Danfe.Fast.csproj", "{CD4BD195-134C-4B16-B214-E52B52F66088}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NFe.Utils", "..\..\DFe.NET-master\NFe.Utils\NFe.Utils.csproj", "{46AD1DA2-4A15-4184-8777-ED7989F753EF}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\..\..\ProjectMaster\DFe.NET\Shared.NFe.Danfe.Base\Shared.NFe.Danfe.Base.projitems*{80c6093c-47d5-41a1-9fa0-e218e82fa666}*SharedItemsImports = 4
-		..\..\..\ProjectMaster\DFe.NET\Shared.NFe.Danfe.Fast\Shared.NFe.Danfe.Fast.projitems*{b7f6a2ff-fd0e-4b44-82b3-371605cd0510}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -262,30 +260,6 @@ Global
 		{ECD54378-B03B-42A4-AAD9-C26C1B4640DE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{ECD54378-B03B-42A4-AAD9-C26C1B4640DE}.Release|x86.ActiveCfg = Release|Any CPU
 		{ECD54378-B03B-42A4-AAD9-C26C1B4640DE}.Release|x86.Build.0 = Release|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Debug|x86.Build.0 = Debug|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Release|x86.ActiveCfg = Release|Any CPU
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666}.Release|x86.Build.0 = Release|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Debug|x86.Build.0 = Debug|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Release|x86.ActiveCfg = Release|Any CPU
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510}.Release|x86.Build.0 = Release|Any CPU
 		{F5820DD5-723D-468A-AA00-AF09D9D4DCD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5820DD5-723D-468A-AA00-AF09D9D4DCD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5820DD5-723D-468A-AA00-AF09D9D4DCD4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -310,6 +284,42 @@ Global
 		{C95393F0-6F0D-41F3-A5DE-CC6F49AF3AFA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C95393F0-6F0D-41F3-A5DE-CC6F49AF3AFA}.Release|x86.ActiveCfg = Release|Any CPU
 		{C95393F0-6F0D-41F3-A5DE-CC6F49AF3AFA}.Release|x86.Build.0 = Release|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Debug|x86.Build.0 = Debug|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Release|x86.ActiveCfg = Release|Any CPU
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D}.Release|x86.Build.0 = Release|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Debug|x86.Build.0 = Debug|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Release|x86.ActiveCfg = Release|Any CPU
+		{CD4BD195-134C-4B16-B214-E52B52F66088}.Release|x86.Build.0 = Release|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Debug|x86.Build.0 = Debug|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Release|x86.ActiveCfg = Release|Any CPU
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -329,12 +339,16 @@ Global
 		{E936E396-4572-4DF1-B49E-EFBD086AEF48} = {9F854EE7-7C0D-4325-BB10-D026015CE2FD}
 		{3ECEC0AA-A1EC-463D-9FF4-72E6F3DCE145} = {9F854EE7-7C0D-4325-BB10-D026015CE2FD}
 		{ECD54378-B03B-42A4-AAD9-C26C1B4640DE} = {D3B6575A-D2F6-4380-BD9F-4E5CE5B4C15C}
-		{80C6093C-47D5-41A1-9FA0-E218E82FA666} = {92F7BAF8-E406-46E2-B02B-D38128F31F1C}
-		{B7F6A2FF-FD0E-4B44-82B3-371605CD0510} = {92F7BAF8-E406-46E2-B02B-D38128F31F1C}
 		{F5820DD5-723D-468A-AA00-AF09D9D4DCD4} = {9F854EE7-7C0D-4325-BB10-D026015CE2FD}
 		{C95393F0-6F0D-41F3-A5DE-CC6F49AF3AFA} = {D377D84B-E163-49FD-9A14-250CC6AAE4AF}
+		{E1E2A784-11EC-4F6B-8E68-13D21A80A59D} = {92F7BAF8-E406-46E2-B02B-D38128F31F1C}
+		{CD4BD195-134C-4B16-B214-E52B52F66088} = {92F7BAF8-E406-46E2-B02B-D38128F31F1C}
+		{46AD1DA2-4A15-4184-8777-ED7989F753EF} = {92F7BAF8-E406-46E2-B02B-D38128F31F1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC7A3B8C-C97F-48A8-A9DD-F6E13C04D097}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\DFe.NET-master\Shared.NFe.Danfe\Shared.NFe.Danfe.projitems*{cd4bd195-134c-4b16-b214-e52b52f66088}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

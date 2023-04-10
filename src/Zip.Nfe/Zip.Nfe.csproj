@@ -36,6 +36,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.52">
+      <HintPath>..\..\Dlls\Bunifu_UI_v1.52.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper">
+      <HintPath>..\..\..\..\..\ZFoodGestorV2-main\referencias\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="DFe.Classes, Version=1.0.0.772, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Zeus.Net.NFe.NFCe.1.0.1.1077\lib\net40\DFe.Classes.dll</HintPath>
     </Reference>
@@ -44,6 +50,28 @@
     </Reference>
     <Reference Include="DFe.Wsdl, Version=1.0.0.772, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Zeus.Net.NFe.NFCe.1.0.1.1077\lib\net40\DFe.Wsdl.dll</HintPath>
+    </Reference>
+    <Reference Include="EasyModbus">
+      <HintPath>..\..\Dlls\EasyModbus.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport">
+      <HintPath>..\..\..\..\..\ZFoodGestorV2-main\referencias\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars">
+      <HintPath>..\..\..\..\..\ZFoodGestorV2-main\referencias\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor">
+      <HintPath>..\..\..\..\..\ZFoodGestorV2-main\referencias\FastReport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteDB">
+      <HintPath>..\..\..\..\..\ZFoodGestorV2-main\referencias\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin">
+      <HintPath>..\..\..\..\..\ZFoodGestorV2-main\referencias\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\ZFoodGestorV2-main\referencias\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NFe.Classes, Version=1.0.0.772, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Zeus.Net.NFe.NFCe.1.0.1.1077\lib\net40\NFe.Classes.dll</HintPath>
@@ -59,6 +87,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\..\..\ZFoodGestorV2-main\referencias\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -677,12 +708,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\ProjectMaster\DFe.NET\NFe.Danfe.Base\NFe.Danfe.Base.csproj">
-      <Project>{80c6093c-47d5-41a1-9fa0-e218e82fa666}</Project>
+    <ProjectReference Include="..\..\..\..\DFe.NET-master\NFe.Danfe.Base\NFe.Danfe.Base.csproj">
+      <Project>{e1e2a784-11ec-4f6b-8e68-13d21a80a59d}</Project>
       <Name>NFe.Danfe.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\ProjectMaster\DFe.NET\NFe.Danfe.Fast\NFe.Danfe.Fast.csproj">
-      <Project>{b7f6a2ff-fd0e-4b44-82b3-371605cd0510}</Project>
+    <ProjectReference Include="..\..\..\..\DFe.NET-master\NFe.Danfe.Fast\NFe.Danfe.Fast.csproj">
+      <Project>{cd4bd195-134c-4b16-b214-e52b52f66088}</Project>
       <Name>NFe.Danfe.Fast</Name>
     </ProjectReference>
     <ProjectReference Include="..\Eticket.Application\Eticket.Application.csproj">
@@ -692,6 +723,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\remove_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

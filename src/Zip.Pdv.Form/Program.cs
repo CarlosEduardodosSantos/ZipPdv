@@ -13,6 +13,7 @@ namespace Zip.Pdv
     static class Program
     {
         public static Container Container;
+        public static string caixaEstacao = "S";
         public static CaixaViewModel CaixaView => VerificaCaixa();
         private static EmpresaViewModel _empresaViewModel;
         public static EmpresaViewModel EmpresaView => _empresaViewModel ?? ObterEmpresa();
@@ -89,7 +90,6 @@ namespace Zip.Pdv
 
         private static void Bootstrap()
         {
-            // Create the container as usual.
             Container = new ContainerIoc().GetModule();
         }
 

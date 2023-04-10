@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Eticket.Application.ViewModels
@@ -24,7 +25,7 @@ namespace Eticket.Application.ViewModels
         public decimal DescontoPercentual { get; set; }
         public decimal Adicional { get; set; }
         public decimal SubTotal => (Quantidade * ValorUnitatio);
-        public decimal ValorTotal => decimal.Round(((ValorUnitatio * Quantidade) + Adicional )- Desconto, 2);
+        public decimal ValorTotal => checaBonificado();
         public string Observacao { get; set; }
         public ProdutoViewModel ProdutoViewModel { get; set; }
         public ICollection<VendaComplementoViewModel> VendaComplementos { get; set; }
@@ -74,6 +75,20 @@ namespace Eticket.Application.ViewModels
                 obs += $" {Observacao}";
 
             return obs;
+        }
+
+        private decimal checaBonificado()
+        {
+            decimal bon = Convert.ToDecimal(0.01);
+            if (Decimal.Round(ValorUnitatio) == Decimal.Round(bon))
+            {
+                return bon;
+            }
+
+            else
+            {
+                return decimal.Round(((ValorUnitatio * Quantidade) + Adicional) - Desconto, 2);
+            }
         }
     }
 }

@@ -60,7 +60,8 @@ namespace Eticket.Application.CartaoConsumo
 
             using (var client = new HttpClient())
             {
-                var response = client.DeleteAsync($"http://api.zclub.com.br/api/CartaoConsumo/deletarMov/{movId}/{usuario}");
+                //var response = client.DeleteAsync($"http://api.zclub.com.br/api/CartaoConsumo/deletarMov/{movId}/{usuario}");
+                var response = client.DeleteAsync($"http://localhost:56435/api/CartaoConsumo/deletarMov/{movId}/{usuario}");
                 if (response.Result.IsSuccessStatusCode)
                 {
                     var xml = response.Result.Content.ReadAsStringAsync().Result;

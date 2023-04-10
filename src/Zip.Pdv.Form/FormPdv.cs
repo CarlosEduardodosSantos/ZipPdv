@@ -48,6 +48,10 @@ namespace Zip.Pdv
 
         private int _pageProdQuantidade;
         private int _currentProdPage = 1;
+        public CupomGridView cupomGridView1;
+
+
+
 
         public FormPdv()
         {
@@ -60,10 +64,14 @@ namespace Zip.Pdv
             _complementoAppService = Program.Container.GetInstance<IProdutoComplementoAppService>();
             ScannerListener = new BarCodeListener(this.ParentForm);
             ScannerListener.BarCodeScanned += ScannerListener_BarCodeScanned;
+            
         }
 
         private void FormPdv_Load(object sender, EventArgs e)
         {
+            //Adciona o Grid No PDV pois quando editado apresentava problemas
+            cupomGridView1 = new CupomGridView();
+            panelLeft.Controls.Add(cupomGridView1);
             cupomGridView1.TaskItem += CupomGridView1_TaskItem;
             btnDesconto.Enabled = Program.InicializacaoViewAux.DescontoMaximo > 0;
             //txtPesquisaProduto.Select();
@@ -156,8 +164,8 @@ namespace Zip.Pdv
                     ? (decimal)balancaPeso.ObterPeso()
                     : (decimal)1;
             }
-            /*
-            if (VendaView.VendaItens.Any(t => t.ProdutoId == produto.ProdutoId && !produto.BalancaEtiqueta))
+            
+           /* if (VendaView.VendaItens.Any(t => t.ProdutoId == produto.ProdutoId && !produto.BalancaEtiqueta))
             {
                 var updateItem = VendaView.VendaItens.FirstOrDefault(t => t.ProdutoId == produto.ProdutoId);
                 if (updateItem == null) return;
@@ -243,14 +251,16 @@ namespace Zip.Pdv
         }
         private void CupomGridView1_TaskItem(object sender, EventArgs e)
         {
-            if (!VerificaPermissaoExclusao()) return;
 
-            var gridItem = (CupomItem)sender;
-            VendaView.VendaItens.RemoveAt(gridItem.Index);
 
-            cupomGridView1.Atualizar(VendaView.VendaItens);
+                if (!VerificaPermissaoExclusao()) return;
 
-            TotalizaCupom();
+                var gridItem = (CupomItem)sender;
+                VendaView.VendaItens.RemoveAt(gridItem.Index);
+
+                cupomGridView1.Atualizar(VendaView.VendaItens);
+
+                TotalizaCupom();
         }
 
         private void GrupoPaginacao(int page)
@@ -630,8 +640,10 @@ namespace Zip.Pdv
                 btnPrevProd.Enabled = false;*/
         }
 
-        private void btnCancelarVenda_Click(object sender, EventArgs e)
+
+        public void btnCancelarVenda_Click(object sender, EventArgs e)
         {
+  
             if (!VerificaPermissaoExclusao()) return;
 
             IniciarVenda();
@@ -898,7 +910,7 @@ namespace Zip.Pdv
                             //VendaView.CupomFiscal = retorno.CfeSatNumeroNf.ToString();
                             ImprimeComprovanteTef(caixaItem);
 
-                            var result = Funcoes.MensagemQuestao("Desenja imprimir o cupom nao fiscal vinculado?");
+                            var result = Funcoes.MensagemQuestao("Deseja imprimir o cupom nao fiscal vinculado?");
                             if (result == DialogResult.OK)
                             {
                                 ImprimeCupomNaoFiscal();
@@ -907,7 +919,7 @@ namespace Zip.Pdv
                         case ModeloFiscalEnumView.NFCe:
                             OperacoeFiscal.ImprimeNfce(VendaView);
                             ImprimeComprovanteTef(caixaItem);
-                            var resultNfce = Funcoes.MensagemQuestao("Desenja imprimir o cupom nao fiscal vinculado?");
+                            var resultNfce = Funcoes.MensagemQuestao("Deseja imprimir o cupom nao fiscal vinculado?");
                             if (resultNfce == DialogResult.OK)
                             {
                                 ImprimeCupomNaoFiscal();
@@ -1351,7 +1363,8 @@ namespace Zip.Pdv
             }
             catch (Exception ex)
             {
-                TouchMessageBox.Show("Ocorreu um erro ao inlcuir a venda pendente.", "Venda Pendente");
+                TouchMessageBox.Show("Ocorreu um erro ao incluir a venda pendente.", "Venda Pendente");
+                throw ex;
             }
 
 
@@ -1381,6 +1394,14 @@ namespace Zip.Pdv
 
             cupomGridView1.Atualizar(VendaView.VendaItens);
             CarregaVendaItem();
+        }
+
+        private void btnMesas_Click(object sender, EventArgs e)
+        {
+            var vendasItens = VendaView;
+            var myForm = new FormMesas(vendasItens);
+            //myForm.FormClosing += (s, o) => { btnCancelarVenda_Click(sender, e); };
+            myForm.ShowDialog();
         }
     }
 }

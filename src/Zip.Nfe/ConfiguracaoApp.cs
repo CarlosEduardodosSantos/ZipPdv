@@ -84,7 +84,7 @@ namespace Zip.Nfe
 
         /// <summary>
         ///     Salva os dados de CfgServico em um arquivo XML
-        /// </summary>
+        /// </summary>.=
         /// <param name="arquivo">Arquivo XML onde será salvo os dados</param>
         public void SalvarParaAqruivo(string arquivo)
         {

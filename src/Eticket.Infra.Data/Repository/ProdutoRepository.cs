@@ -73,7 +73,7 @@ namespace Eticket.Infra.Data.Repository
                           " Prod.QuantidadeFixo as QuantidadeFixo, " +
                           " pdvGrupoItens.HabProd as Visivel " +
                           "From pdvGrupoItens Inner Join Prod On  CodProduto = Prod.Codigo  " +
-                          " Where  idPdvGrupo = @grupoId And (@lojaId = 0 Or Isnull(hab_loja"+lojaId +",1) = 1)";
+                          " Where  idPdvGrupo = @grupoId And HabProd = 1 And (@lojaId = 0 Or Isnull(hab_loja"+lojaId +",1) = 1)";
 
                 cn.Open();
                 var produto = cn.Query<Produto>(sql, new { grupoId, lojaId });

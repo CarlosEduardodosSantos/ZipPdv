@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PageVendaAdministracao));
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -74,9 +74,9 @@
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel23 = new System.Windows.Forms.Panel();
+            this.btnNfceNaoEnviadas = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
-            this.btnNfceNaoEnviadas = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel30.SuspendLayout();
@@ -195,8 +195,8 @@
             this.dgvVendas.AllowUserToDeleteRows = false;
             this.dgvVendas.AllowUserToResizeColumns = false;
             this.dgvVendas.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            this.dgvVendas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvVendas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvVendas.BackgroundColor = System.Drawing.Color.White;
             this.dgvVendas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvVendas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -219,8 +219,8 @@
             this.dgvVendas.RowHeadersVisible = false;
             this.dgvVendas.RowHeadersWidth = 30;
             this.dgvVendas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvVendas.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvVendas.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvVendas.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvVendas.RowTemplate.Height = 25;
             this.dgvVendas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -237,6 +237,7 @@
             this.clInOperacao.DataPropertyName = "VendaId";
             this.clInOperacao.Frozen = true;
             this.clInOperacao.HeaderText = "Nº. VENDA";
+            this.clInOperacao.MinimumWidth = 6;
             this.clInOperacao.Name = "clInOperacao";
             this.clInOperacao.ReadOnly = true;
             this.clInOperacao.Width = 110;
@@ -246,6 +247,7 @@
             this.clTipoOperacao.DataPropertyName = "CaixaId";
             this.clTipoOperacao.Frozen = true;
             this.clTipoOperacao.HeaderText = "CAIXA";
+            this.clTipoOperacao.MinimumWidth = 6;
             this.clTipoOperacao.Name = "clTipoOperacao";
             this.clTipoOperacao.ReadOnly = true;
             this.clTipoOperacao.Width = 110;
@@ -255,6 +257,7 @@
             this.clHistorico.DataPropertyName = "DataHora";
             this.clHistorico.Frozen = true;
             this.clHistorico.HeaderText = "DATA HORA";
+            this.clHistorico.MinimumWidth = 6;
             this.clHistorico.Name = "clHistorico";
             this.clHistorico.ReadOnly = true;
             this.clHistorico.Width = 150;
@@ -264,6 +267,7 @@
             this.clTipo.DataPropertyName = "TipoOperacao";
             this.clTipo.Frozen = true;
             this.clTipo.HeaderText = "TIPO";
+            this.clTipo.MinimumWidth = 6;
             this.clTipo.Name = "clTipo";
             this.clTipo.ReadOnly = true;
             this.clTipo.Width = 150;
@@ -271,10 +275,11 @@
             // clDesconto
             // 
             this.clDesconto.DataPropertyName = "ValorDesconto";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clDesconto.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clDesconto.DefaultCellStyle = dataGridViewCellStyle2;
             this.clDesconto.Frozen = true;
             this.clDesconto.HeaderText = "DESCONTO";
+            this.clDesconto.MinimumWidth = 6;
             this.clDesconto.Name = "clDesconto";
             this.clDesconto.ReadOnly = true;
             this.clDesconto.Width = 88;
@@ -283,14 +288,15 @@
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "ValorFinal";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.Format = "C2";
-            dataGridViewCellStyle7.NullValue = "0,00";
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "0,00";
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn2.HeaderText = "VALOR";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -353,7 +359,7 @@
             this.txtVendaId.Location = new System.Drawing.Point(0, 0);
             this.txtVendaId.Name = "txtVendaId";
             this.txtVendaId.PlaceholderText = "Nº. VENDA";
-            this.txtVendaId.Size = new System.Drawing.Size(250, 18);
+            this.txtVendaId.Size = new System.Drawing.Size(250, 23);
             this.txtVendaId.TabIndex = 0;
             this.txtVendaId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVendaId_KeyDown);
             // 
@@ -374,7 +380,7 @@
             this.placeholderTextBox2.Location = new System.Drawing.Point(0, 0);
             this.placeholderTextBox2.Name = "placeholderTextBox2";
             this.placeholderTextBox2.PlaceholderText = "Nº. CAIXA";
-            this.placeholderTextBox2.Size = new System.Drawing.Size(250, 18);
+            this.placeholderTextBox2.Size = new System.Drawing.Size(250, 23);
             this.placeholderTextBox2.TabIndex = 1;
             this.placeholderTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVendaId_KeyDown);
             // 
@@ -395,7 +401,7 @@
             this.placeholderTextBox3.Location = new System.Drawing.Point(0, 0);
             this.placeholderTextBox3.Name = "placeholderTextBox3";
             this.placeholderTextBox3.PlaceholderText = "CLIENTE";
-            this.placeholderTextBox3.Size = new System.Drawing.Size(250, 18);
+            this.placeholderTextBox3.Size = new System.Drawing.Size(250, 23);
             this.placeholderTextBox3.TabIndex = 2;
             this.placeholderTextBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVendaId_KeyDown);
             // 
@@ -442,7 +448,7 @@
             this.dtpFinal.Location = new System.Drawing.Point(96, 0);
             this.dtpFinal.Name = "dtpFinal";
             this.dtpFinal.ShowCheckBox = true;
-            this.dtpFinal.Size = new System.Drawing.Size(155, 29);
+            this.dtpFinal.Size = new System.Drawing.Size(155, 34);
             this.dtpFinal.TabIndex = 16;
             // 
             // panel7
@@ -473,7 +479,7 @@
             this.dtpInicio.Location = new System.Drawing.Point(96, 0);
             this.dtpInicio.Name = "dtpInicio";
             this.dtpInicio.ShowCheckBox = true;
-            this.dtpInicio.Size = new System.Drawing.Size(155, 29);
+            this.dtpInicio.Size = new System.Drawing.Size(155, 34);
             this.dtpInicio.TabIndex = 15;
             // 
             // label3
@@ -596,6 +602,18 @@
             this.panel23.Size = new System.Drawing.Size(1016, 42);
             this.panel23.TabIndex = 6;
             // 
+            // btnNfceNaoEnviadas
+            // 
+            this.btnNfceNaoEnviadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNfceNaoEnviadas.BackColor = System.Drawing.Color.Transparent;
+            this.btnNfceNaoEnviadas.Image = global::Zip.Pdv.Properties.Resources.keyboard_32;
+            this.btnNfceNaoEnviadas.Location = new System.Drawing.Point(965, 0);
+            this.btnNfceNaoEnviadas.Name = "btnNfceNaoEnviadas";
+            this.btnNfceNaoEnviadas.Size = new System.Drawing.Size(51, 40);
+            this.btnNfceNaoEnviadas.TabIndex = 19;
+            this.btnNfceNaoEnviadas.UseVisualStyleBackColor = false;
+            this.btnNfceNaoEnviadas.Click += new System.EventHandler(this.btnNfceNaoEnviadas_Click);
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -625,18 +643,6 @@
             this.btnVoltar.Size = new System.Drawing.Size(50, 42);
             this.btnVoltar.TabIndex = 4;
             this.btnVoltar.UseVisualStyleBackColor = false;
-            // 
-            // btnNfceNaoEnviadas
-            // 
-            this.btnNfceNaoEnviadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNfceNaoEnviadas.BackColor = System.Drawing.Color.Transparent;
-            this.btnNfceNaoEnviadas.Image = global::Zip.Pdv.Properties.Resources.keyboard_32;
-            this.btnNfceNaoEnviadas.Location = new System.Drawing.Point(965, 0);
-            this.btnNfceNaoEnviadas.Name = "btnNfceNaoEnviadas";
-            this.btnNfceNaoEnviadas.Size = new System.Drawing.Size(51, 40);
-            this.btnNfceNaoEnviadas.TabIndex = 19;
-            this.btnNfceNaoEnviadas.UseVisualStyleBackColor = false;
-            this.btnNfceNaoEnviadas.Click += new System.EventHandler(this.btnNfceNaoEnviadas_Click);
             // 
             // PageVendaAdministracao
             // 

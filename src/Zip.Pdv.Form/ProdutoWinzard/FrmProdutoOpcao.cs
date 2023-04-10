@@ -227,8 +227,28 @@ namespace Zip.Pdv
         private void bunifuFlatButton3_Click(object sender, EventArgs e)
         {
             if (!bunifuFlatButton3.Enabled) return;
-            DialogResult = DialogResult.OK;
-            Close();
+            var tipo = _produtosTipoOpoes[_tabindex];
+            if (tipo.Obrigatorio)
+            {
+                var qtdeLancTipo = VendaItem.VendaProdutoOpcoes.Where(t => t.ProdutosOpcaoTipoId == tipo.ProdutosOpcaoTipoId).Count();
+                if (qtdeLancTipo == 0)
+                {
+                    TouchMessageBox.Show($"Item com seleção obrigatória.", "Validação", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+           
         }
     }
 

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Eticket.Application</RootNamespace>
     <AssemblyName>Eticket.Application</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -33,12 +33,15 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Eticket.Application">
+      <HintPath>bin\Debug\Eticket.Application.dll</HintPath>
+    </Reference>
     <Reference Include="FastMapper, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FastMapper.1.2.0\lib\net40\FastMapper.dll</HintPath>
+      <HintPath>bin\Debug\FastMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -50,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CadGarcomAppService.cs" />
+    <Compile Include="CadMesasAppService.cs" />
     <Compile Include="CaixaAppService.cs" />
     <Compile Include="CaixaFechamentoAppService.cs" />
     <Compile Include="CaixaItemAppService.cs" />
@@ -74,6 +79,8 @@
     <Compile Include="FichaAppService.cs" />
     <Compile Include="EntregadorAppService.cs" />
     <Compile Include="FornecedorAppService.cs" />
+    <Compile Include="Interface\ICadGarcomAppService.cs" />
+    <Compile Include="Interface\ICadMesasAppService.cs" />
     <Compile Include="Interface\ICaixaAppService.cs" />
     <Compile Include="Interface\ICaixaFechamentoAppService.cs" />
     <Compile Include="Interface\ICaixaItemAppService.cs" />
@@ -92,6 +99,8 @@
     <Compile Include="Interface\IFabricaRelatorioAppService.cs" />
     <Compile Include="Interface\IFornecedorAppService.cs" />
     <Compile Include="Interface\INfceServicoAppService.cs" />
+    <Compile Include="Interface\IOpMesa1AppService.cs" />
+    <Compile Include="Interface\IOpMesa2AppService.cs" />
     <Compile Include="Interface\IProdutoComplementoAppService.cs" />
     <Compile Include="Interface\IProdutoDeptoAppService.cs" />
     <Compile Include="Interface\IProdutoOpcaoAppService.cs" />
@@ -107,6 +116,8 @@
     <Compile Include="Interface\IVendaPendenteAppService.cs" />
     <Compile Include="Interface\IVendedorAppService.cs" />
     <Compile Include="NfceServicoAppService.cs" />
+    <Compile Include="OpMesa1AppService.cs" />
+    <Compile Include="OpMesa2AppService.cs" />
     <Compile Include="ProdutoComplementoAppService.cs" />
     <Compile Include="ProdutoDeptoAppService.cs" />
     <Compile Include="ProdutoOpcaoAppService.cs" />
@@ -129,6 +140,8 @@
     <Compile Include="VendaComplementoAppService.cs" />
     <Compile Include="VendaPendenteAppService.cs" />
     <Compile Include="VendedorAppService.cs" />
+    <Compile Include="ViewModels\CadGarcomViewModel.cs" />
+    <Compile Include="ViewModels\CadMesasViewModel.cs" />
     <Compile Include="ViewModels\CaixaFechamentoViewModel.cs" />
     <Compile Include="ViewModels\CaixaHistoricoViewModel.cs" />
     <Compile Include="ViewModels\CaixaItemViewModel.cs" />
@@ -172,6 +185,8 @@
     <Compile Include="ViewModels\ModoPdvEnumView.cs" />
     <Compile Include="ViewModels\NfceSituacaoViewModel.cs" />
     <Compile Include="ViewModels\NFceViewModel.cs" />
+    <Compile Include="ViewModels\OpMesa1ViewModel.cs" />
+    <Compile Include="ViewModels\OpMesa2ViewModel.cs" />
     <Compile Include="ViewModels\ProdutoDeptoViewModel.cs" />
     <Compile Include="ViewModels\ProdutoOpcaoTipoVewModel.cs" />
     <Compile Include="ViewModels\ProdutoOpcaoViewModel.cs" />

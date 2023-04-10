@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Dapper;
@@ -16,7 +17,7 @@ namespace Eticket.Infra.Data.Repository
             using (var conn = Connection)
             {
                 conn.Open();
-                var caixa = conn.Query<Caixa>(sql, new {id}).FirstOrDefault();
+                var caixa = conn.Query<Caixa>(sql, new { id }).FirstOrDefault();
                 conn.Close();
 
                 return caixa;
@@ -38,13 +39,28 @@ namespace Eticket.Infra.Data.Repository
 
         public void Abrir(Caixa caixa)
         {
+            var config = GetConfigCx();
+            var seq = GetSeqCx();
+            string caixapdv;
+
+            if (config == "S")
+            {
+                caixapdv = caixa.Pdv.ToString() + seq.ToString();
+            }
+
+            else
+            {
+                caixapdv = (seq + 1).ToString();
+            }
+
             var sql = new StringBuilder();
             sql.AppendLine(
-                "Insert Into Caixa_1(LOJA, PDV, USUARIO, DATA, HORA, INICIAL, COD_CEDENTE, conferido)");
+                "Insert Into Caixa_1(NroCx, LOJA, PDV, USUARIO, DATA, HORA, INICIAL, COD_CEDENTE, conferido)");
             sql.AppendLine(
-                "Values (@LOJA, @PDV, @USUARIO, @DATA, @HORA, @INICIAL, @COD_CEDENTE, @conferido)");
+                "Values (@CaixaId, @LOJA, @PDV, @USUARIO, @DATA, @HORA, @INICIAL, @COD_CEDENTE, @conferido)");
 
             var parans = new DynamicParameters();
+            parans.Add("@CaixaId", Convert.ToInt32(caixapdv));
             parans.Add("@LOJA", caixa.Loja);
             parans.Add("@PDV", caixa.Pdv);
             parans.Add("@USUARIO", caixa.UsuarioId);
@@ -59,13 +75,13 @@ namespace Eticket.Infra.Data.Repository
                 conn.Query(sql.ToString(), parans);
                 conn.Close();
             }
-
+            UpdateSeq(Convert.ToInt32(seq + 1));
             ZeraSenha();
         }
 
         public void Fechar(Caixa caixa)
         {
-            
+
             using (var conn = Connection)
             {
                 conn.Open();
@@ -81,7 +97,7 @@ namespace Eticket.Infra.Data.Repository
                 {
                     var sqlEspecie = "Select Interno From EspeciePagamentos Where Especie = @Especie";
 
-                    var espInterno = conn.Query<string>(sqlEspecie, new { caixaCaixaFechamento.Especie } ).FirstOrDefault();
+                    var espInterno = conn.Query<string>(sqlEspecie, new { caixaCaixaFechamento.Especie }).FirstOrDefault();
 
                     if (espInterno == "ESP1")
                         dev01 = caixaCaixaFechamento.Divergencia;
@@ -238,6 +254,46 @@ namespace Eticket.Infra.Data.Repository
 
                 //Incrementa valor
                 conn.Execute("Update configuracoes Set valor = @novaSenha where variavel like 'senha'", new { novaSenha });
+
+                conn.Close();
+            }
+        }
+
+        public string GetConfigCx()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                var config = conn.Query<string>("Select valor From configuracoes Where variavel = 'HabAberturaCaixaMaquina'")
+                    .FirstOrDefault();
+                conn.Close();
+
+                return config;
+            }
+        }
+
+        public int GetSeqCx()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                var config = conn.Query<int>("select Sequencia from seq_tabela where tabela = 'CAIXA_1' and coluna = 'NRO'")
+                    .FirstOrDefault();
+                conn.Close();
+
+                return config;
+            }
+        }
+
+        private void UpdateSeq(int seq)
+        {
+
+            using (var conn = Connection)
+            {
+
+                conn.Open();
+
+                conn.Execute("Update Seq_tabela Set sequencia = @seq where tabela = 'CAIXA_1' and coluna = 'NRO'", new { seq });
 
                 conn.Close();
             }

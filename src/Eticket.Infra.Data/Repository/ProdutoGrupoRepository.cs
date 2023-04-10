@@ -27,7 +27,7 @@ namespace Eticket.Infra.Data.Repository
             using (var cn = Connection)
             {
                 var sql = "Select IdPdvGrupo as GrupoId, Descricao, grupo_img as Imagem, Grupo_Cor as GrupoCor, IsPadrao, HabTotem, HabElisa, HabPdv " +
-                    " from pdvGrupos Where (@lojaId = 0 Or Isnull(hab_loja" + lojaId + ",1) = 1)" +
+                    " from pdvGrupos Where (@lojaId = 0 and HabPdv = 1 Or Isnull(hab_loja" + lojaId + ",1) = 1 and HabPdv = 1)" +
                     "  Order By Sequencia";
 
                 cn.Open();

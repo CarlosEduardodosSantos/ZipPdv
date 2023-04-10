@@ -54,19 +54,36 @@
     <Reference Include="Bunifu_UI_v1.52">
       <HintPath>..\..\Dlls\Bunifu_UI_v1.52.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper">
+      <HintPath>..\..\..\..\ZFoodGestor\referencias\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="FastReport, Version=2017.4.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.dll</HintPath>
+      <HintPath>..\..\..\..\ZFoodGestor\referencias\FastReport.dll</HintPath>
     </Reference>
     <Reference Include="FastReport.Bars, Version=2017.4.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.Bars.dll</HintPath>
+      <HintPath>..\..\..\..\ZFoodGestor\referencias\FastReport.Bars.dll</HintPath>
     </Reference>
     <Reference Include="FastReport.Editor, Version=2017.4.4.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.Editor.dll</HintPath>
+      <HintPath>..\..\..\..\ZFoodGestor\referencias\FastReport.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="LiteDB">
+      <HintPath>..\..\..\..\ZFoodGestor\referencias\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin">
+      <HintPath>..\..\..\..\ZFoodGestor\referencias\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ZFoodGestor\referencias\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\..\ZFoodGestor\referencias\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleInjector, Version=4.7.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SimpleInjector.4.7.1\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
@@ -86,6 +103,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cadastro\CadastroBase.cs">
@@ -118,6 +136,12 @@
     </Compile>
     <Compile Include="Component\CupomGrid\CupomGridTotemView.Designer.cs">
       <DependentUpon>CupomGridTotemView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\CupomGrid\CupomGridViewMesa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\CupomGrid\CupomGridViewMesa.Designer.cs">
+      <DependentUpon>CupomGridViewMesa.cs</DependentUpon>
     </Compile>
     <Compile Include="Component\CupomGrid\CupomGridView.cs">
       <SubType>UserControl</SubType>
@@ -294,6 +318,30 @@
     <Compile Include="Eventos\BarcodeScannedEventArgs.cs" />
     <Compile Include="Fast\ParameterReportDynamic.cs" />
     <Compile Include="Fast\RelatorioFastReport.cs" />
+    <Compile Include="FormAbreMesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAbreMesa.Designer.cs">
+      <DependentUpon>FormAbreMesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAlteraGarcom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAlteraGarcom.Designer.cs">
+      <DependentUpon>FormAlteraGarcom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFechamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFechamento.Designer.cs">
+      <DependentUpon>FormFechamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMesaDetalhes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMesaDetalhes.Designer.cs">
+      <DependentUpon>FormMesaDetalhes.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormBuscaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -335,6 +383,18 @@
     </Compile>
     <Compile Include="FormCaixaFechamento.Designer.cs">
       <DependentUpon>FormCaixaFechamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMesaPagParcial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMesaPagParcial.Designer.cs">
+      <DependentUpon>FormMesaPagParcial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMesas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMesas.Designer.cs">
+      <DependentUpon>FormMesas.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPagamentoToten.cs">
       <SubType>Form</SubType>
@@ -449,6 +509,12 @@
     </Compile>
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTransferenciaMesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTransferenciaMesa.Designer.cs">
+      <DependentUpon>FormTransferenciaMesa.cs</DependentUpon>
     </Compile>
     <Compile Include="FormVideoPlayer.cs">
       <SubType>Form</SubType>
@@ -636,6 +702,9 @@
     <EmbeddedResource Include="Component\CupomGrid\CupomGridTotemView.resx">
       <DependentUpon>CupomGridTotemView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Component\CupomGrid\CupomGridViewMesa.resx">
+      <DependentUpon>CupomGridViewMesa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Component\CupomGrid\CupomGridView.resx">
       <DependentUpon>CupomGridView.cs</DependentUpon>
     </EmbeddedResource>
@@ -705,6 +774,18 @@
     <EmbeddedResource Include="Component\TouchMessageBox.resx">
       <DependentUpon>TouchMessageBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAbreMesa.resx">
+      <DependentUpon>FormAbreMesa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAlteraGarcom.resx">
+      <DependentUpon>FormAlteraGarcom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFechamento.resx">
+      <DependentUpon>FormFechamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMesaDetalhes.resx">
+      <DependentUpon>FormMesaDetalhes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBuscaCliente.resx">
       <DependentUpon>FormBuscaCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -725,6 +806,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCaixaFechamento.resx">
       <DependentUpon>FormCaixaFechamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMesaPagParcial.resx">
+      <DependentUpon>FormMesaPagParcial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMesas.resx">
+      <DependentUpon>FormMesas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPagamentoToten.resx">
       <DependentUpon>FormPagamentoToten.cs</DependentUpon>
@@ -782,6 +869,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTransferenciaMesa.resx">
+      <DependentUpon>FormTransferenciaMesa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVideoPlayer.resx">
       <DependentUpon>FormVideoPlayer.cs</DependentUpon>
@@ -887,6 +977,10 @@
     <ProjectReference Include="..\Eticket.Application\Eticket.Application.csproj">
       <Project>{61392fb6-988c-4e20-937a-6eb52bbd5138}</Project>
       <Name>Eticket.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eticket.Domain\Eticket.Domain.csproj">
+      <Project>{d2d611ac-1032-4b54-afbf-e8bfa3c0c93a}</Project>
+      <Name>Eticket.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Eticket.Infra.CrossCutting.IoC\Eticket.Infra.CrossCutting.IoC.csproj">
       <Project>{32dfa282-26f9-441b-913d-43e88e00b025}</Project>
@@ -1104,6 +1198,11 @@
     <None Include="Resources\FundoBotao.png" />
     <None Include="Resources\img_pagamento.png" />
     <None Include="Resources\img_pedido.png" />
+    <None Include="Resources\mesa_disponivel.bmp" />
+    <None Include="Resources\mesa_disponivel.png" />
+    <None Include="Resources\mesa_ocupada.png" />
+    <None Include="Resources\mesa_pendente.png" />
+    <None Include="Resources\Image1.bmp" />
     <Content Include="Zip.TefDial.dll" />
     <None Include="ZipPdv.exe_backup" />
     <None Include="Resources\filter_381.png" />

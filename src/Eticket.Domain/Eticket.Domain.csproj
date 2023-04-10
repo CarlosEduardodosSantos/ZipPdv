@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Eticket.Domain</RootNamespace>
     <AssemblyName>Eticket.Domain</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -33,6 +33,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Eticket.Application">
+      <HintPath>..\Eticket.Application\bin\Debug\Eticket.Application.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\CadGarcom.cs" />
+    <Compile Include="Entity\CadMesas.cs" />
     <Compile Include="Entity\Caixa.cs" />
     <Compile Include="Entity\CaixaFechamento.cs" />
     <Compile Include="Entity\CaixaItem.cs" />
@@ -64,6 +69,8 @@
     <Compile Include="Entity\Fornecedor.cs" />
     <Compile Include="Entity\NFce.cs" />
     <Compile Include="Entity\NfceSituacao.cs" />
+    <Compile Include="Entity\OpMesa1.cs" />
+    <Compile Include="Entity\OpMesa2.cs" />
     <Compile Include="Entity\ProdutoDepto.cs" />
     <Compile Include="Entity\ProdutoOpcao.cs" />
     <Compile Include="Entity\ProdutoPromocao.cs" />
@@ -71,6 +78,7 @@
     <Compile Include="Entity\ProdutoTipo.cs" />
     <Compile Include="Entity\ProdutoTributacao.cs" />
     <Compile Include="Entity\RetornoSat.cs" />
+    <Compile Include="Entity\TesteVenda.cs" />
     <Compile Include="Entity\UnidadeMedida.cs" />
     <Compile Include="Entity\Usuario.cs" />
     <Compile Include="Entity\Venda.cs" />
@@ -82,10 +90,14 @@
     <Compile Include="Entity\VendaComplemento.cs" />
     <Compile Include="Entity\VendaItem.cs" />
     <Compile Include="Entity\VendaMeioMeio.cs" />
+    <Compile Include="Entity\VendaMesa.cs" />
+    <Compile Include="Entity\VendaMesaItens.cs" />
     <Compile Include="Entity\VendaPendente.cs" />
     <Compile Include="Entity\VendaProdutoComposto.cs" />
     <Compile Include="Entity\VendaProdutoOpcao.cs" />
     <Compile Include="Entity\Vendedor.cs" />
+    <Compile Include="Interface\Repository\ICadGarcomRepository.cs" />
+    <Compile Include="Interface\Repository\ICadMesasRepository.cs" />
     <Compile Include="Interface\Repository\IClienteRepository.cs" />
     <Compile Include="Interface\Repository\IDashBoardResumoGeralRepository.cs" />
     <Compile Include="Interface\IProdutoTipoRepository.cs" />
@@ -102,6 +114,8 @@
     <Compile Include="Interface\Repository\IFabricaRelatorioRepository.cs" />
     <Compile Include="Interface\Repository\IFornecedorRepository.cs" />
     <Compile Include="Interface\Repository\INfceServicoRepository.cs" />
+    <Compile Include="Interface\Repository\IOpMesa1Repository.cs" />
+    <Compile Include="Interface\Repository\IOpMesa2Repository.cs" />
     <Compile Include="Interface\Repository\IProdutoDeptoRepository.cs" />
     <Compile Include="Interface\Repository\IProdutoOpcaoRepository.cs" />
     <Compile Include="Interface\Repository\IProdutoSecaoRepository.cs" />

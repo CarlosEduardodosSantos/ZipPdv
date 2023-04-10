@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CadGarcomRepository.cs" />
+    <Compile Include="Repository\CadMesasRepository.cs" />
     <Compile Include="Repository\CaixaFechamentoRepository.cs" />
     <Compile Include="Repository\CaixaItemRepository.cs" />
     <Compile Include="Repository\CaixaRepository.cs" />
@@ -64,7 +66,10 @@
     <Compile Include="Repository\FabricaRelatorioRepository.cs" />
     <Compile Include="Repository\FichaGlobal.cs" />
     <Compile Include="Repository\FornecedorRepository.cs" />
+    <Compile Include="Repository\Mesas.cs" />
     <Compile Include="Repository\NfceServicoRepository.cs" />
+    <Compile Include="Repository\OpMesa1Repository.cs" />
+    <Compile Include="Repository\OpMesa2Repository.cs" />
     <Compile Include="Repository\ProdutoDeptoRepository.cs" />
     <Compile Include="Repository\ProdutoOpcaoRepository.cs" />
     <Compile Include="Repository\ProdutoSecaoRepository.cs" />
